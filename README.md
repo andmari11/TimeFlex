@@ -12,7 +12,7 @@ git clone https://github.com/andmari11/TimeFlex.git
 Accede al directorio del proyecto Laravel:
 
 ```bash
-cd /TimeFlex
+cd TimeFlex/
 ```
 
 ## 3. Instalar las Dependencias con Composer
