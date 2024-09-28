@@ -5,15 +5,14 @@
 Si el proyecto Laravel está en un repositorio Git y necesitas clonarlo, puedes hacerlo con el siguiente comando:
 
 ```bash
-git clone https://github.com/usuario/repositorio.git /ruta/al/directorio
+git clone https://github.com/andmari11/TimeFlex.git
 ```
-Reemplaza https://github.com/usuario/repositorio.git con la URL del repositorio y /ruta/al/directorio con la ruta donde deseas clonar el proyecto.
 
 ## 2. Navegar al Directorio del Proyecto
 Accede al directorio del proyecto Laravel:
 
 ```bash
-cd /ruta/al/directorio
+cd /TimeFlex
 ```
 
 ## 3. Instalar las Dependencias con Composer
