@@ -11,6 +11,36 @@
 
 
     </head>
+    <style>
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #000;
+            background-color: #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .selected {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    <script>
+        function toggleButton(button) {
+            button.classList.toggle('selected');
+            updateSelectedOptions();
+        }
+
+        function updateSelectedOptions() {
+            const selectedButtons = document.querySelectorAll('.button.selected');
+            const selectedValues = Array.from(selectedButtons).map(btn => btn.value);
+            document.getElementById('selected_options').value = JSON.stringify(selectedValues);
+        }
+
+        function submitForm() {
+            document.getElementById('selectionForm').submit();
+        }
+    </script>
     <body class="h-full">
 
     <div x-data="{ open_menu: false , open_profile_menu: false}" class="min-h-full">
@@ -124,7 +154,24 @@
         </header>
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <!-- Your content -->
+
+
+
+                <!-- Formulario -->
+                <form id="selectionForm" method="POST" action="{{ url('/submit') }}">
+                    @csrf
+                    <!-- Botones A, B y C -->
+                    <button type="button" class="button" value="A" onclick="toggleButton(this)">A</button>
+                    <button type="button" class="button" value="B" onclick="toggleButton(this)">B</button>
+                    <button type="button" class="button" value="C" onclick="toggleButton(this)">C</button>
+
+                    <!-- Campo oculto para las opciones seleccionadas -->
+                    <input type="hidden" id="selected_options" name="selected_options" value="[]">
+
+                    <!-- Botón para enviar -->
+                    <button type="button" onclick="submitForm()">Enviar Selección</button>
+                </form>
+
             </div>
         </main>
     </div>
