@@ -38,7 +38,7 @@
                         </button>
 
                         <!-- Profile dropdown -->
-                        <div class="relative ml-3">
+                        <div class="relative ml-3" @click.outside="open_profile_menu=false">
                             <div>
                                 <button @click="open_profile_menu = !open_profile_menu" type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="absolute -inset-1.5"></span>
@@ -82,7 +82,7 @@
 
 
             </div>
-            <div class="border-t border-gray-700 pb-3 pt-4">
+            <div class="border-t border-gray-700 pb-3 pt-4" >
                 <div class="flex items-center px-5">
                     <button @click="open_profile_menu=!open_profile_menu" type="button" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
                         <!-- Imagen de perfil -->
@@ -103,7 +103,7 @@
                         </svg>
                     </button>
                 </div>
-                <div x-show="open_profile_menu" class="mt-3 space-y-1 px-2">
+                <div x-show="open_profile_menu"  class="mt-3 space-y-1 px-2">
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
