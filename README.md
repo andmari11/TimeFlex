@@ -44,10 +44,15 @@ Si el proyecto utiliza una base de datos y tiene migraciones definidas, ejecuta 
 
 ```bash
 php artisan migrate
+
+```
+## 7. Poblar Base de Datos
+Llenar la base de datos con usuarios y empresas ficticios
+```
+php artisan db:seed
 ```
 
-
-## 7. Verificar Configuración del Servidor Web
+## 8. Verificar Configuración del Servidor Web
 Asegúrate de que el servidor web (Apache, Nginx, etc.) esté configurado correctamente para servir el proyecto Laravel. Si estás usando el servidor web integrado de Laravel para pruebas, puedes iniciarlo con:
 
 ```bash
