@@ -30,7 +30,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'empresa_id' => 1
+            'empresa_id' => 1,
+            'role' => fake()->randomElement(['admin', 'user']),
+
             //'empresa_id' => Empresa::inRandomOrder()->value('id') ?? Empresa::factory()->create()->id,
         ];
     }

@@ -22,8 +22,8 @@ return new class extends Migration
         });
         Schema::create('horarios_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Empresa::class)->constrained()->onDelete('cascade');;
-            $table->foreignIdFor(\App\Models\User::class)->constrained()->onDelete('cascade');;
+            $table->foreignIdFor(\App\Models\Empresa::class);;
+            $table->foreignIdFor(\App\Models\User::class);;
             $table->timestamps();
 
             $table->unique(['empresa_id', 'user_id']);
