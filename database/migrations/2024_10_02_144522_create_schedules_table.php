@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Empresa::class);
-            $table->json('horario');
+            $table->foreignIdFor(\App\Models\Company::class);
+            $table->json('scheduleJSON');
             $table->timestamps();
-            $table->string("nombre");
-            $table->string("descripcion")->nullable();
+            $table->string("name");
+            $table->string("description")->nullable();
 
         });
-        Schema::create('horarios_usuarios', function (Blueprint $table) {
+        Schema::create('schedules_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Empresa::class);;
+            $table->foreignIdFor(\App\Models\Schedule::class);;
             $table->foreignIdFor(\App\Models\User::class);;
             $table->timestamps();
 
-            $table->unique(['empresa_id', 'user_id']);
+            $table->unique(['schedule_id', 'user_id']);
         });
     }
 
@@ -35,8 +35,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horarios');
-        Schema::dropIfExists('horarios_usuarios');
+        Schema::dropIfExists('schedule');
+        Schema::dropIfExists('schedules_users');
 
     }
 };

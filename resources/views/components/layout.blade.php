@@ -32,12 +32,11 @@
                     <div class="ml-4 flex items-center md:ml-6">
                         @guest
                         <x-nav-link ref="login">Iniciar Sesión </x-nav-link>
+                        <x-nav-link ref="register"> Organiza tu empresa hoy! </x-nav-link>
+
                         @endguest
                         @auth
-                                <form method="POST" action="/logout">
-                                    @csrf
-                                    <x-form-button>Cierre de sesión</x-form-button>
-                                </form>
+
                         <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">View notifications</span>
@@ -61,7 +60,10 @@
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                                <form method="POST" action="/logout">
+                                    @csrf
+                                    <button type='submit' class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</button>
+                                </form>
                             </div>
                         </div>
                             @endauth

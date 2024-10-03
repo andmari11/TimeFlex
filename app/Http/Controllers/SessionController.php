@@ -28,7 +28,7 @@ class SessionController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect('/about');
+        return redirect('/shifts');
     }
     public function destroy()
     {
