@@ -28,7 +28,16 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
+
                     <div class="ml-4 flex items-center md:ml-6">
+                        @guest
+                        <x-nav-link ref="login">Iniciar Sesión </x-nav-link>
+                        @endguest
+                        @auth
+                                <form method="POST" action="/logout">
+                                    @csrf
+                                    <x-form-button>Cierre de sesión</x-form-button>
+                                </form>
                         <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">View notifications</span>
@@ -47,6 +56,7 @@
                                 </button>
                             </div>
 
+
                             <div x-show="open_profile_menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
@@ -54,6 +64,7 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                             </div>
                         </div>
+                            @endauth
                     </div>
                 </div>
                 <div  class="-mr-2 flex md:hidden">

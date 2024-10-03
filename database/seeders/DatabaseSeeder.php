@@ -30,6 +30,16 @@ class DatabaseSeeder extends Seeder
             'empresa_id' => 1,
             'role' => 'admin',
         ]);
+        //prueba para ver si funciona el login
+        User::factory(1)->create([
+            'name' => fake()->name(),
+            'email' => "prueba@gmail.com",
+            'email_verified_at' => now(),
+            'password' => "password",
+            'remember_token' => Str::random(10),
+            'empresa_id' => 1,
+            'role' => 'admin',
+        ]);
 
 
     }
