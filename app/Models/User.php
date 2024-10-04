@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'empresa_id',
+        'company_id',
         'role'
     ];
 
