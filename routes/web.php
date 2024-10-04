@@ -8,19 +8,23 @@ use Illuminate\Support\Facades\Route;
 
 // devolver la vista de welcome en home
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 // devolver la vista mi-area en shifts
 Route::get('/shifts', function () {
     return view('mi-area');
 });
 // devolver la vista about en about
-Route::get('/about', function () {
-    return view('about');
+Route::get('/about-us', function () {
+    return view('about-us');
 });
 // devolver la vista contact en contact
 Route::get('/contact', function () {
     return view('contact');
+});
+// devolver la vista soporte en support
+Route::get('/support', function () {
+    return view('support');
 });
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest');

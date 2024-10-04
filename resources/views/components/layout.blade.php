@@ -15,14 +15,14 @@
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                        <img class="h-8 w-8" src="{{ asset('logo.png') }}" alt="logo" >
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <x-nav-link ref="/">Welcome </x-nav-link>
+                            <x-nav-link ref="/">Home </x-nav-link>
                             <x-nav-link ref="shifts">Mi área </x-nav-link>
                             <x-nav-link ref="support">Soporte </x-nav-link>
-                            <x-nav-link ref="about">Sobre nosotros </x-nav-link>
+                            <x-nav-link ref="about-us">Sobre nosotros </x-nav-link>
                             <x-nav-link ref="contact">Contacto</x-nav-link>
 
                         </div>
@@ -33,7 +33,7 @@
                     <div class="ml-4 flex items-center md:ml-6">
                         @guest
                         <x-nav-link ref="login">Iniciar Sesión </x-nav-link>
-                        <x-nav-link-light ref="register-company"> Organiza tu empresa hoy! </x-nav-link-light>
+                        <x-nav-link-light ref="register-company"> ¡Organiza tu empresa hoy! </x-nav-link-light>
 
                         @endguest
                         @auth
@@ -94,7 +94,7 @@
                 <x-nav-link-mobile ref="/">Welcome </x-nav-link-mobile>
                 <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
                 <x-nav-link-mobile ref="support">Soporte </x-nav-link-mobile>
-                <x-nav-link-mobile ref="about">Sobre nosotros </x-nav-link-mobile>
+                <x-nav-link-mobile ref="about-us">Sobre nosotros </x-nav-link-mobile>
 
 
             </div>
