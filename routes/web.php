@@ -20,7 +20,7 @@ Route::get('/about', function () {
 });
 // devolver la vista contact en contact
 Route::get('/contact', function () {
-    return "Contáctanos mandando un correo a admin@timeflex.es";
+    return view('contact');
 });
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest');

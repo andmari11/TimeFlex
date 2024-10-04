@@ -23,6 +23,7 @@
                             <x-nav-link ref="shifts">Mi área </x-nav-link>
                             <x-nav-link ref="support">Soporte </x-nav-link>
                             <x-nav-link ref="about">Sobre nosotros </x-nav-link>
+                            <x-nav-link ref="contact">Contacto</x-nav-link>
 
                         </div>
                     </div>
