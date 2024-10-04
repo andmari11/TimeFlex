@@ -4,14 +4,14 @@
             @csrf
             <div class="space-y-1 row" >
                 <x-forms.field class="col-12">
-                    <x-forms.label for="companyName">Company Name</x-forms.label>
+                    <x-forms.label for="companyName">Nombre de empresa</x-forms.label>
                     <x-forms.input name="companyName" id="companyName" :value="old('companyName')" required />
                     <x-forms.error name="companyName" />
                 </x-forms.field>
 
                 <!-- Preguntar el tipo de empresa (docencia, sanidad, etc)-->
                 <x-forms.field class="col-12">
-                    <x-forms.label for="name">Name</x-forms.label>
+                    <x-forms.label for="name">Nombre</x-forms.label>
                         <x-forms.input name="name" id="name" :value="old('name')" required />
                         <x-forms.error name="name" />
                 </x-forms.field>
@@ -23,13 +23,13 @@
                 </x-forms.field>
 
                 <x-forms.field class="col-12">
-                    <x-forms.label for="password">Password</x-forms.label>
+                    <x-forms.label for="password">Contraseña</x-forms.label>
                         <x-forms.input name="password" id="password" type="password" required />
                         <x-forms.error name="password" />
                 </x-forms.field>
 
                 <x-forms.field class="col-12">
-                    <x-forms.label for="password_confirmation">Password Confirmation</x-forms.label>
+                    <x-forms.label for="password_confirmation">Confirma contraseña</x-forms.label>
                         <x-forms.input name="password_confirmation" id="password_confirmation" type="password" required />
                         <x-forms.error name="password_confirmation" />
                 </x-forms.field>
@@ -37,8 +37,8 @@
 
             </div>
             <div class="mt-6 flex items-center justify-between">
-                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-                <x-forms.button>Log In</x-forms.button>
+                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
+                <x-forms.button>Registrar empresa</x-forms.button>
             </div>
         </form>
     </div>

@@ -15,7 +15,7 @@
                     </x-forms.field>
 
                     <x-forms.field class="col-12">
-                        <x-forms.label for="password">Password</x-forms.label>
+                        <x-forms.label for="password">Contraseña</x-forms.label>
 
                         <div class="mt-2">
                             <x-forms.input name="password" id="password" type="password" required />
@@ -26,8 +26,8 @@
             </div>
 
             <div class="mt-6 flex items-center justify-between">
-                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-                <x-forms.button>Log In</x-forms.button>
+                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
+                <x-forms.button>Iniciar sesión</x-forms.button>
             </div>
         </form>
     </div>
