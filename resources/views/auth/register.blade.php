@@ -1,11 +1,15 @@
 <x-layout :title="'Registro'">
-    <x-page-heading>Registro administrador</x-page-heading>
-
     <div class=" flex items-center justify-center ">
-        <form method="POST" action="/register" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-14">
+        <form method="POST" action="/register" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
             @csrf
-            <div class="space-y-2 row" >
+            <div class="space-y-1 row" >
+                <x-forms.field class="col-12">
+                    <x-forms.label for="companyName">Company Name</x-forms.label>
+                    <x-forms.input name="companyName" id="companyName" :value="old('companyName')" required />
+                    <x-forms.error name="companyName" />
+                </x-forms.field>
 
+                <!-- Preguntar el tipo de empresa (docencia, sanidad, etc)-->
                 <x-forms.field class="col-12">
                     <x-forms.label for="name">Name</x-forms.label>
                         <x-forms.input name="name" id="name" :value="old('name')" required />
@@ -32,7 +36,10 @@
 
 
             </div>
-            <x-forms.button>Create Account</x-forms.button>
+            <div class="mt-6 flex items-center justify-between">
+                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
+                <x-forms.button>Log In</x-forms.button>
+            </div>
         </form>
     </div>
 </x-layout>

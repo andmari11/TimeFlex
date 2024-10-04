@@ -32,7 +32,7 @@
                     <div class="ml-4 flex items-center md:ml-6">
                         @guest
                         <x-nav-link ref="login">Iniciar Sesión </x-nav-link>
-                        <x-nav-link ref="register"> Organiza tu empresa hoy! </x-nav-link>
+                        <x-nav-link-light ref="register"> Organiza tu empresa hoy! </x-nav-link-light>
 
                         @endguest
                         @auth

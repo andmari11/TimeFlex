@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,20 +15,27 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
-    public function store()
+    public function storeCompany()
     {
-        $attributes = request()->validate([
-            'name' => ['required'],
-            'email'      => ['required', 'email'],
+        $validatedData = request()->validate([
+            "companyName" => ["required", "string", "max:255"]
+        ]);
+        //Company tiene atributo name no companyName
+        $attributesCompany['name'] = $validatedData['companyName'];
+        $company=Company::create($attributesCompany);
+
+        $attributesUser = request()->validate([
+            'name'       => ['required'],
+            'email'      => ['required', 'email', 'unique:users,email'],
             'password'   => ['required', Password::min(6), 'confirmed']
         ]);
 
-        $attributes_defaults=[
+        $attributesUser_defaults=[
             "role"=> 'admin',
-            "company"=>null
+            "company"=> $company->get('id')
         ];
-        $attributes=array_merge($attributes, $attributes_defaults);
-        $user = User::create($attributes);
+        $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
+        $user = User::create($attributesUser);
 
         Auth::login($user);
 
