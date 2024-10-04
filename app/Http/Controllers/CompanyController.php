@@ -8,14 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
-class RegisteredUserController extends Controller
+class CompanyController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return view('auth.register-company');
     }
-
-    public function storeCompany()
+    public function store()
     {
 
         //valdiamos datos de ususario y empresa
