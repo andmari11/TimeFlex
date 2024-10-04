@@ -15,35 +15,23 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    public function storeCompany()
+    public function store()
     {
+        //TODO comprobar que sea admin de la empresa
 
-        //valdiamos datos de ususario y empresa
-        $validatedData = request()->validate([
-            "companyName" => ["required", "string", "max:255"]
-        ]);
         $attributesUser = request()->validate([
             'name'       => ['required'],
             'email'      => ['required', 'email', 'unique:users,email'],
-            'password'   => ['required', Password::min(6), 'confirmed']
+            'password'   => ['required', Password::min(6), 'confirmed'],
+            'role'       => ['required'],
         ]);
 
-
-        //Company tiene atributo name no companyName
-        $attributesCompany['name'] = $validatedData['companyName'];
-
-        //creamos company y recibimos model company (necesitamos su id)
-        $company=Company::create($attributesCompany);
-
         $attributesUser_defaults=[
-            "role"=> 'admin',
-            "company_id"=> $company->id
+            "company_id"=> auth()->user()->company->id
         ];
         $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
 
         $user = User::create($attributesUser);
-
-        Auth::login($user);
 
         return redirect('/');
     }
