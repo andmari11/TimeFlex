@@ -1,8 +1,8 @@
-<x-layout :title="'Mi área'"></x-layout>
-<div class="bg-white py-24 sm:py-32">
-    <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-        <div class="max-w-2xl">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bienvenido a tu área personal</h2>
-        </div>
-    </div>
-</div>
+<x-layout :title="'Mi área'">
+    <x-page-heading>Bienvenido a tu área personal</x-page-heading>
+    @auth()
+        @if(auth()->user()->role === 'admin')
+            <a href="register" class="bg-blue-900 text-white font-bold py-2 px-6 mx-8 my-12 rounded-md hover:bg-blue-700 transition relative top-6"> Nuevo empleado para la compañia </a>
+        @endif
+    @endauth
+</x-layout>
