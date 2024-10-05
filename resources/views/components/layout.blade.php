@@ -54,7 +54,7 @@
                                 <button @click="open_profile_menu = !open_profile_menu" type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                    <img class="h-8 w-8 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
                                 </button>
                             </div>
 
@@ -91,7 +91,7 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="md:hidden" id="mobile-menu">
             <div x-show="open_menu" class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                <x-nav-link-mobile ref="/">Welcome </x-nav-link-mobile>
+                <x-nav-link-mobile ref="/">Home </x-nav-link-mobile>
                 <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
                 <x-nav-link-mobile ref="support">Soporte </x-nav-link-mobile>
                 <x-nav-link-mobile ref="about-us">Sobre nosotros </x-nav-link-mobile>
@@ -102,12 +102,12 @@
                 <div class="flex items-center px-5">
                     <button @click="open_profile_menu=!open_profile_menu" type="button" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
                         <!-- Imagen de perfil -->
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <img class="h-10 w-10 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
 
                         <!-- Información de perfil (nombre y email) -->
                         <div class="ml-3 text-left">
-                            <div class="text-base font-medium leading-none text-white">Tom Cook</div>
-                            <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                            <div class="text-base font-medium leading-none text-white">Mario Gómez</div>
+                            <div class="text-sm font-medium leading-none text-gray-400">mariogl@gmail.com</div>
                         </div>
                     </button>
 
