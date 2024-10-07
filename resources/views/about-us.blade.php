@@ -36,7 +36,7 @@
             </li>
             <li>
                 <div class="flex items-center gap-x-6">
-                    <img class="h-16 w-16 rounded-full" src="https://www.lapreferente.com/imagenes/jugadores/20122013/108431.jpg?f=" alt="">
+                    <img class="h-16 w-16 rounded-full" src="https://media.licdn.com/dms/image/v2/D5603AQEfUFsNgROSRg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1728324289519?e=1733961600&v=beta&t=lom1hHDv27hpRAPdyokgW6xw7eyly5KseKaDnAJ09j8" alt="">
                     <div>
                         <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Gabriel Fernández Sacristán</h3>
                         <p class="text-sm font-semibold leading-6 text-indigo-600">Socio fundador</p>
