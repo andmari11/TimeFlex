@@ -21,7 +21,6 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             <x-nav-link ref="/">Home </x-nav-link>
                             <x-nav-link ref="shifts">Mi área </x-nav-link>
-                            <x-nav-link ref="support">Soporte </x-nav-link>
                             <x-nav-link ref="about-us">Sobre nosotros </x-nav-link>
                             <x-nav-link ref="contact">Contacto</x-nav-link>
 
@@ -91,7 +90,6 @@
             <div x-show="open_menu" class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 <x-nav-link-mobile ref="/">Home </x-nav-link-mobile>
                 <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
-                <x-nav-link-mobile ref="support">Soporte </x-nav-link-mobile>
                 <x-nav-link-mobile ref="about-us">Sobre nosotros </x-nav-link-mobile>
 
 

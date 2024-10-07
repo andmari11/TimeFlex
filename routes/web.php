@@ -22,10 +22,6 @@ Route::get('/about-us', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-// devolver la vista soporte en support
-Route::get('/support', function () {
-    return view('support');
-});
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
