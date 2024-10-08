@@ -26,6 +26,9 @@
                             @endguest
                             @auth
                                 <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>
                             @endauth
                         </div>
                     </div>
@@ -98,6 +101,9 @@
                 @endguest
                 @auth
                     <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>
                 @endauth
             </div>
             <div class="border-t border-gray-700 pb-3 pt-4" >

@@ -23,6 +23,18 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/ayuda', function () {
+    return view('ayuda');
+});
+
+Route::get('/horario', function () {
+    return view('horario');
+});
+
+Route::get('/equipo', function () {
+    return view('equipo');
+});
+
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
