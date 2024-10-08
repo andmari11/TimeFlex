@@ -16,7 +16,6 @@ class CompanyController extends Controller
     }
     public function store()
     {
-
         //valdiamos datos de ususario y empresa
         $validatedData = request()->validate([
             "companyName" => ["required", "string", "max:255"]
@@ -43,7 +42,6 @@ class CompanyController extends Controller
         $user = User::create($attributesUser);
 
         Auth::login($user);
-
         return redirect('/');
     }
 }

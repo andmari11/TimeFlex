@@ -13,7 +13,7 @@ Route::get('/', function () {
 // devolver la vista mi-area en shifts
 Route::get('/shifts', function () {
     return view('mi-area');
-})->middleware('auth')  ;
+})->middleware('auth');
 // devolver la vista about en about
 Route::get('/about-us', function () {
     return view('about-us');
