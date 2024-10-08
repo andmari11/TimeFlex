@@ -13,7 +13,7 @@ Route::get('/', function () {
 // devolver la vista mi-area en shifts
 Route::get('/shifts', function () {
     return view('mi-area');
-});
+})->middleware('auth')  ;
 // devolver la vista about en about
 Route::get('/about-us', function () {
     return view('about-us');
@@ -23,7 +23,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
+Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 

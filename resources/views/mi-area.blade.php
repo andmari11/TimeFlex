@@ -1,4 +1,4 @@
-<x-layout :title="'Mi área'">
+    <x-layout :title="'Mi área'">
     <x-page-heading>Bienvenido a tu área personal</x-page-heading>
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
         @auth()
