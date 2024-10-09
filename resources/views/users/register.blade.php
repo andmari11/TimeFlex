@@ -1,6 +1,6 @@
 <x-layout :title="'Registro'">
     <div class=" flex items-center justify-center ">
-        <form method="POST" action="/register" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
+        <form method="POST" action="/register-user" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
             @csrf
             <div class="space-y-1 row" >
 

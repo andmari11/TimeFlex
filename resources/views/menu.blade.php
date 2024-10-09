@@ -10,7 +10,7 @@
                 <div>
                     @if(auth()->user()->role === 'admin')
 
-                        <a href="register" class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
+                        <a href="register-user" class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
                     @endif
                 </div>
 

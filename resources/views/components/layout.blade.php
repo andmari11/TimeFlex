@@ -25,7 +25,7 @@
                                 <x-nav-link ref="contact">Contacto</x-nav-link>
                             @endguest
                             @auth
-                                <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="menu">Mi área </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>
@@ -100,7 +100,7 @@
                     <x-nav-link ref="contact">Contacto</x-nav-link>
                 @endguest
                 @auth
-                    <x-nav-link-mobile ref="shifts">Mi área </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="menu">Mi área </x-nav-link-mobile>
                     <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
                     <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>

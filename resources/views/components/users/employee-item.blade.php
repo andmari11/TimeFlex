@@ -12,7 +12,7 @@
     <div>
         @if(auth()->user()->role === 'admin')
             <button>
-                <a href="/shifts/{{$employee->id}}/edit">
+                <a href="/users/{{$employee->id}}/edit">
                     <img class="h-8 w-8" src="{{ asset('editar.png') }}" alt="editar">
                 </a>
             </button>

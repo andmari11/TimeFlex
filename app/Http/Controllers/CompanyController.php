@@ -42,6 +42,6 @@ class CompanyController extends Controller
         $user = User::create($attributesUser);
 
         Auth::login($user);
-        return redirect('/');
+        return redirect('/menu');
     }
 }
