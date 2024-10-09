@@ -4,7 +4,7 @@
 
 @php
 
-    if(request()->is(trim($ref, '/'))){
+    if(request()->is(trim($ref, '/')) or ($ref === '/' and request()->is('/'))){
         $clase="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white";
     }
     else{
