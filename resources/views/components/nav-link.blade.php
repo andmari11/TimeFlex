@@ -3,7 +3,7 @@
 @props(['ref', 'clase'=>""])
 
 @php
-    if(request()->is($ref)){
+    if(request()->is(trim($ref, '/')) or ($ref === '/' and request()->is('/'))){
         $clase="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white";
     }
     else{
