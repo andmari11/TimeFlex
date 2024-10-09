@@ -9,7 +9,7 @@
                 <!-- Preguntar el tipo de empresa (docencia, sanidad, etc)-->
                 <x-forms.field class="col-12">
                     <x-forms.label for="name">Nombre</x-forms.label>
-                    <x-forms.input name="name" placeholder="{{$user->name}}" id="name" value="{{old('name'),$user->name}}" required />
+                    <x-forms.input name="name" placeholder="{{$user->name}}" id="name" value="{{old('name',$user->name)}}" required />
                     <x-forms.error name="name" />
                 </x-forms.field>
 
