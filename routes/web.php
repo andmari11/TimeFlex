@@ -42,8 +42,7 @@ Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth'
 
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::patch('/users/{id}/edit', [UserController::class, 'update'])->middleware('auth');
-
-Route::delete('/users/{id}/delete', [UserController::class, 'delete'])->middleware('auth');
+Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->middleware('auth');
 
 //no hay company hay q crear->se llama a company controller
 Route::get('/register-company', [CompanyController::class, 'create'])->middleware('guest');
