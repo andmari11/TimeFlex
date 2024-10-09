@@ -11,7 +11,7 @@
     </div>
     <div>
         @if(auth()->user()->role === 'admin')
-            <a href="/shifts/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+            <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
             <a href="#" class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</a>
             {{--<button>
                 <a href="/shifts/{{$employee->id}}/edit">
