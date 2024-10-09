@@ -21,14 +21,14 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             @guest
                                 <x-nav-link ref="/">Home </x-nav-link>
-                                <x-nav-link ref="about-us">Sobre nosotros </x-nav-link>
-                                <x-nav-link ref="contact">Contacto</x-nav-link>
+                                <x-nav-link ref="/about-us">Sobre nosotros </x-nav-link>
+                                <x-nav-link ref="/contact">Contacto</x-nav-link>
                             @endguest
                             @auth
-                                <x-nav-link-mobile ref="menu">Mi área </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/horario">Mi horario </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                             @endauth
                         </div>
                     </div>
@@ -37,8 +37,8 @@
 
                     <div class="ml-4 flex items-center md:ml-6">
                         @guest
-                        <x-nav-link ref="login">Iniciar Sesión </x-nav-link>
-                        <x-nav-link-light ref="register-company"> ¡Organiza tu empresa hoy! </x-nav-link-light>
+                        <x-nav-link ref="/login">Iniciar Sesión </x-nav-link>
+                        <x-nav-link-light ref="/register-company"> ¡Organiza tu empresa hoy! </x-nav-link-light>
 
                         @endguest
                         @auth
@@ -96,14 +96,14 @@
             <div class="ml-10 flex items-baseline space-x-4">
                 @guest
                     <x-nav-link ref="/">Home </x-nav-link>
-                    <x-nav-link ref="about-us">Sobre nosotros </x-nav-link>
-                    <x-nav-link ref="contact">Contacto</x-nav-link>
+                    <x-nav-link ref="/about-us">Sobre nosotros </x-nav-link>
+                    <x-nav-link ref="/contact">Contacto</x-nav-link>
                 @endguest
                 @auth
-                    <x-nav-link-mobile ref="menu">Mi área </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="horario">Mi horario </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="equipo">Mi equipo </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="ayuda">Ayuda </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/horario">Mi horario </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                 @endauth
             </div>
             <div class="border-t border-gray-700 pb-3 pt-4" >

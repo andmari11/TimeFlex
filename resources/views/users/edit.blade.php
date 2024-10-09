@@ -35,7 +35,7 @@
 
             </div>
             <div class="mt-6 flex items-center justify-between">
-                <a href="/shifts" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
+                <a href="/menu" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
                 <x-forms.button>Actualizar información</x-forms.button>
             </div>
         </form>
