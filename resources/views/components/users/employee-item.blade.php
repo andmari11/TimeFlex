@@ -12,7 +12,11 @@
     <div>
         @if(auth()->user()->role === 'admin')
             <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-            <a href="#" class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</a>
+            <button form="delete-form-{{$employee->id}}"  class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+            <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
+                @csrf
+                @method('DELETE')
+            </form>
             {{--<button>
                 <a href="/shifts/{{$employee->id}}/edit">
                     <img class="h-8 w-8" src="{{ asset('editar.png') }}" alt="editar">
