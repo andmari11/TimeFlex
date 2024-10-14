@@ -8,8 +8,7 @@
 <div class=" flex justify-between">
     <div>
         <a href="#" class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$employee->role}}</a>
-    </div>
-    <div>
+        <span class="bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$employee->section->name}}</span> <!-- Falta colocar mejor la etiqueta de seccion dentro de la caja -->
         @if(auth()->user()->role === 'admin')
             <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
             <button form="delete-form-{{$employee->id}}"  class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>

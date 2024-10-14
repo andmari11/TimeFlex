@@ -16,15 +16,16 @@
 
             </nav>
             <section class="p-4 rounded-xl flex flex-col text-center">
-
-                    @foreach(auth()->user()->company->employees as $employee)
+                @foreach(auth()->user()->company->employees->filter(function ($employee) {
+                    return $employee->section_id == auth()->user()->section_id;
+                }) as $employee)
                     <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
                         <x-users.employee-item :employee="$employee"></x-users.employee-item>
                     </div>
-                    @endforeach
-
-
+                @endforeach
             </section>
+
+
 
 
     </section>
