@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         //crea 1 empresa
         Company::factory(1)->create();
-        //crea 10 trabajadores
-        User::factory(10)->create();
         //crea 3 secciones
         $sections = Section::factory(3)->create();
+        //crea 10 trabajadores
+        User::factory(10)->create();
+
         //crea 1 admin
         User::factory(1)->create([
             'name' => fake()->name(),
