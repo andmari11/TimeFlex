@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\Users\RegisteredUserController;
 use App\Http\Controllers\Users\UserController;
@@ -10,10 +11,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
 // devolver la vista mi-area en my-area
-Route::get('/menu', function () {
-    return view('menu');
-})->middleware('auth');
+Route::get('/menu', [MenuController::class, 'index'])->middleware('auth');
+Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('auth');
+
+
 // devolver la vista about en about
 Route::get('/about-us', function () {
     return view('about-us');
