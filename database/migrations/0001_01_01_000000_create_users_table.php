@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role');
+            $table->foreignId('section_id')->nullable();
             $table->foreignIdFor(\App\Models\Company::class);
             $table->rememberToken();
             $table->timestamps();

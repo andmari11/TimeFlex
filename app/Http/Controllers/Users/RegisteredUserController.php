@@ -16,11 +16,13 @@ class RegisteredUserController extends Controller
     public function store()
     {
         //TODO comprobar que sea admin de la empresa
+
         $attributesUser = request()->validate([
             'name'       => ['required'],
             'email'      => ['required', 'email', 'unique:users,email'],
             'password'   => ['required', Password::min(6), 'confirmed'],
             'role'       => ['required'],
+            
         ]);
 
         $attributesUser_defaults=[
