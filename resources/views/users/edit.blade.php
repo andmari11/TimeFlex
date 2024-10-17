@@ -20,6 +20,17 @@
                 </x-forms.field>
 
                 <x-forms.field class="col-12">
+                    <x-forms.label for="section_id">Sección</x-forms.label>
+                    <select class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" name="section_id" id="section_id" required>
+                        <option value="{{ old('section_id', $user->section) }}">Selecciona nueva sección</option>
+                        @foreach(auth()->user()->company->sections as $section)
+                            <option value="{{ $section->id }}">{{ $section->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-forms.error name="section_id" />
+                </x-forms.field>
+
+                <x-forms.field class="col-12">
                     <x-forms.label for="password">Contraseña</x-forms.label>
                     <x-forms.input name="password" id="password" type="password" />
                     <x-forms.error name="password" />

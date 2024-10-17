@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function store()
     {
-        
+
         //TODO comprobar que sea admin de la empresa
         $attributesUser = request()->validate([
             'name'       => ['required'],
@@ -47,11 +47,13 @@ class UserController extends Controller
             'email'      => ['required', 'email'],
             'password'   => ['nullable', Password::min(6), 'confirmed'],
             'role'       => ['required'],
+            'section_id' => ['required'],
         ]);
         $user = User::findOrFail($id);
         $user->update([
             'name' => request('name'),
             'email' => request('email'),
+            'section_id' => request('section_id'),
 
         ]);
         return redirect('/menu');
