@@ -18,6 +18,7 @@ class SectionFactory extends Factory
     {
         return [
             'name' => $this->faker->jobTitle(),
+            'company_id' => 1,
         ];
     }
 }
