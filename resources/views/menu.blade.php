@@ -15,6 +15,14 @@
                 </div>
             </nav>
             <section class="p-4 rounded-xl flex flex-col text-center">
+                @if(auth()->user()->role === 'admin')
+                    @foreach(auth()->user()->company->employees as $employee)
+                        <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+                            <x-users.employee-item :employee="$employee"></x-users.employee-item>
+                        </div>
+                    @endforeach
+                @endif
+                @if(auth()->user()->role === 'employee')
                 @foreach(auth()->user()->company->employees->filter(function ($employee) {
                     return $employee->section_id == auth()->user()->section_id;
                 }) as $employee)
@@ -22,6 +30,7 @@
                         <x-users.employee-item :employee="$employee"></x-users.employee-item>
                     </div>
                 @endforeach
+                @endif
             </section>
         </section>
 
@@ -37,7 +46,7 @@
                     </div>
                 </nav>
                 <section class="p-4 rounded-xl flex flex-col text-center">
-                    @foreach (auth()->user()->company->employees as $section)
+                    @foreach (auth()->user()->company->sections as $section)
                         <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
                             <h3 class="text-white">{{ $section->name }}</h3>
                         </div>
