@@ -28,7 +28,7 @@
 </div>
 
 <div class="flex justify-start">
-    <a href="#" class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$employee->role}}</a>
+    <a href="#" class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">$employee->section?->name</a>
 
 </div>
 
