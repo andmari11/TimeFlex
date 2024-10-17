@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'role'=> 'employee',
             'company_id' => 1,
-            'section_id' => random_int(0,config('const.seeder.sections'))
+            'section_id' => random_int(1,config('const.seeder.sections'))
             //'role' => fake()->randomElement(['admin', 'user']),
 
             //'empresa_id' => Empresa::inRandomOrder()->value('id') ?? Empresa::factory()->create()->id,

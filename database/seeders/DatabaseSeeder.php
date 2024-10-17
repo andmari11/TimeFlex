@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'company_id' => 1,
             'role' => 'admin',
-            'section_id' => null
+            'section_id' => 0
         ]);
 
 
