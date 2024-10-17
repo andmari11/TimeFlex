@@ -11,7 +11,8 @@ class Section extends Model
 
     protected $fillable = [
         'id',
-        'name'
+        'name',
+        'company_id'
     ];
 
     public function users(){
