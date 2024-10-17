@@ -9,10 +9,17 @@
         </div>
     </nav>
     <section class="p-4 rounded-xl flex flex-col text-center">
+        <a class="p-4 bg-gray-900 shadow rounded-xl my-1"  href="/menu">
+            <h3 class="text-white">
+                Ver todos
+            </h3>
+        </a>
         @foreach (auth()->user()->company->sections as $section)
-            <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
-                <h3 class="text-white">{{ $section->name }}</h3>
-            </div>
+            <a class="p-4 bg-gray-600 shadow rounded-xl my-1" href="/menu/{{ $section->id }}">
+                <h3 class="text-white">
+                    {{ $section->name }}
+                </h3>
+            </a>
         @endforeach
     </section>
 </section>
