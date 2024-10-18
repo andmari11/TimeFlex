@@ -8,7 +8,6 @@
 
 
 <x-layout :title="'Mi área'">
-    <x-page-heading>Bienvenido a tu área personal</x-page-heading>
     @if(auth()->user()->role === 'admin')
         <x-sections.all-sections></x-sections.all-sections>
     @endif
