@@ -12,7 +12,7 @@
     @if(auth()->user()->role === 'admin')
         <x-sections.all-sections></x-sections.all-sections>
     @endif
-        <section class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10">
+        <section class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10 mx-4">
             <nav class="flex justify-between items-center py-5 border-b border-blue/10">
                 <div class="inline-flex items-center gap-x-2">
                     <span class="w-2 h-2 bg-black inline-block"></span>
@@ -33,10 +33,11 @@
                     @endif
                 </div>
             </nav>
-            <section class="p-4 rounded-xl flex flex-col text-center">
+            <section class="p-4 rounded-xl flex flex-col text-center overflow-y-auto" style="max-height: 500px;"  >
                 @if(!$section && auth()->user()->role === 'admin')
                     @foreach(auth()->user()->company->employees as $employee)
-                        <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+
+                        <div class="p-4 bg-gray-600 shadow rounded-xl my-1 ">
                             <x-users.employee-item :employee="$employee"></x-users.employee-item>
                         </div>
                     @endforeach

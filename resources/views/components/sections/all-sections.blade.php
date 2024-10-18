@@ -1,14 +1,14 @@
-<section  x-data="{ open_sections: false }" class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10 ml-4 overflow-y-auto" style="max-height: 500px;">
-    <nav @click="open_sections = !open_sections" class="flex justify-between items-center py-5 border-b border-blue/10">
+<section  x-data="{ open_sections: false }" class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10 ml-4 " >
+    <nav @click="open_sections = !open_sections" class="flex justify-between items-center py-5 border-b border-blue/10  hover:cursor-pointer">
         <div class="inline-flex items-center gap-x-2">
             <span class="w-2 h-2 bg-black inline-block"></span>
-            <h3 class="text-bold text-xl">Secciones</h3>
+            <h3 class="text-bold text-xl hover:underline">Secciones</h3>
         </div>
         <div>
             <a href="register-section" class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
         </div>
     </nav>
-    <section x-show="open_sections" class="p-4 rounded-xl flex flex-col text-center">
+    <section x-show="open_sections" class="p-4 rounded-xl flex flex-col text-center overflow-y-auto" style="max-height: 500px;" >
 
             <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
                 <div class="p-4 text-white text-bold text-l">
