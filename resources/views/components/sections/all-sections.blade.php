@@ -9,17 +9,37 @@
         </div>
     </nav>
     <section class="p-4 rounded-xl flex flex-col text-center">
-        <a class="p-4 bg-gray-900 shadow rounded-xl my-1"  href="/menu">
-            <h3 class="text-white">
-                Ver todos
-            </h3>
-        </a>
+        <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+            <div class="flex justify-end gap-1">
+                <a class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                <button class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+            </div>
+            <div class="p-4 text-white text-bold text-l">
+                <a href="/menu" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-110">Ver Todos</a>
+            </div>
+            <div class="flex justify-between">
+                <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{auth()->user()->company->employees->count()}} empleados</a>
+                <a class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Ver equipo</a>
+            </div>
+        </div>
+
+
         @foreach (auth()->user()->company->sections as $section)
-            <a class="p-4 bg-gray-600 shadow rounded-xl my-1" href="/menu/{{ $section->id }}">
-                <h3 class="text-white">
-                    {{ $section->name }}
-                </h3>
-            </a>
+            <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+                <div class="flex justify-end gap-1">
+                    <a class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                    <button class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                </div>
+                <div class="p-4 text-white text-bold text-l">
+                    <a href="/menu/{{ $section->id }}" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-110">{{ $section->name }}</a>
+                </div>
+                <div class="flex justify-between">
+                    <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$section->users->count()}} empleados</a>
+                    <a class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Ver equipo</a>
+                </div>
+            </div>
+
+
         @endforeach
     </section>
 </section>
