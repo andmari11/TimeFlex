@@ -9,7 +9,9 @@
 
 <x-layout :title="'Mi área'">
     <x-page-heading>Bienvenido a tu área personal</x-page-heading>
-
+    @if(auth()->user()->role === 'admin')
+        <x-sections.all-sections></x-sections.all-sections>
+    @endif
         <section class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10">
             <nav class="flex justify-between items-center py-5 border-b border-blue/10">
                 <div class="inline-flex items-center gap-x-2">
@@ -50,8 +52,6 @@
             </section>
         </section>
 
-        @if(auth()->user()->role === 'admin')
-            <x-sections.all-sections></x-sections.all-sections>
-        @endif
+
 
 </x-layout>
