@@ -24,7 +24,7 @@
     </div>
 
     <x-drawer :title="$employee->name">
-        {{$employee}}
+        <x-users.employee-section :employee="$employee"></x-users.employee-section>
     </x-drawer>
 </div>
 <script>

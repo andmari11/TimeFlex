@@ -32,7 +32,7 @@
                     </div>
                     <div class="flex justify-between">
                         <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$section->users->count()}} empleados</a>
-                        <a class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Ver equipo</a>
+                        <a href="/equipo/{{ $section->id }}" class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Ver equipo</a>
                     </div>
                 </div>
 

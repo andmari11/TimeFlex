@@ -1,5 +1,9 @@
 @php
+
+    if (auth()->user()->role === 'employee') {
+        // Si es un empleado, obtenemos su sección
         $section = auth()->user()->section;
+    }
 @endphp
 <x-layout :title="'Mi equipo'">
     <x-page-heading>Sección de {{$section->name}}</x-page-heading>
