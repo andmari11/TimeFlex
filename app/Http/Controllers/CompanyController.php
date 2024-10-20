@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,14 @@ class CompanyController extends Controller
 
         //creamos company y recibimos model company (necesitamos su id)
         $company=Company::create($attributesCompany);
-
+        $section= Section::create([
+            'name'  => "Administradores",
+            "company_id"=> $company->id,
+        ]);
         $attributesUser_defaults=[
             "role"=> 'admin',
-            "company_id"=> $company->id
+            "company_id"=> $company->id,
+            "section_id"=> $section->id,
         ];
         $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
 

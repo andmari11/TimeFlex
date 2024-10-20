@@ -20,9 +20,9 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             @guest
-                                <x-nav-link ref="/">Home </x-nav-link>
-                                <x-nav-link ref="/about-us">Sobre nosotros </x-nav-link>
-                                <x-nav-link ref="/contact">Contacto</x-nav-link>
+                                <x-nav-link-mobile ref="/">Home </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/about-us">Sobre nosotros </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/contact">Contacto</x-nav-link-mobile>
                             @endguest
                             @auth
                                 <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
@@ -93,11 +93,11 @@
 
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="md:hidden" id="mobile-menu">
-            <div class="ml-10 flex items-baseline space-x-4">
+            <div x-show="open_menu" class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 @guest
-                    <x-nav-link ref="/">Home </x-nav-link>
-                    <x-nav-link ref="/about-us">Sobre nosotros </x-nav-link>
-                    <x-nav-link ref="/contact">Contacto</x-nav-link>
+                    <x-nav-link-mobile ref="/">Home </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/about-us">Sobre nosotros </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/contact">Contacto</x-nav-link-mobile>
                 @endguest
                 @auth
                     <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>

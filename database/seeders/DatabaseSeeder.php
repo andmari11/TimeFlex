@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         //crea 1 empresa
         Company::factory(config('const.seeder.companies'))->create();
-        //crea 3 secciones
+        //crea 4 secciones
+        Section::factory(1)->create([
+            'name'  => "Administradores",
+            "company_id"=> 1,
+        ]);
         Section::factory(config('const.seeder.sections'))->create();
         //crea 10 trabajadores
         User::factory(config('const.seeder.employees'))->create();
@@ -33,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'company_id' => 1,
             'role' => 'admin',
-            'section_id' => 0
+            'section_id' => 1
         ]);
 
 
