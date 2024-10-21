@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex justify-between">
                     <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{auth()->user()->company->employees->count()}} empleados totales</a>
-                    <a class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados</a>
+                    <a href ="/equipo"class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados</a>
                 </div>
             </div>
 
