@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Users\RegisteredUserController;
@@ -19,6 +20,8 @@ Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('aut
 
 Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
+
+Route::get('/search', SearchController::class);
 
 
 // devolver la vista about en about
