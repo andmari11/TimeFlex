@@ -52,6 +52,12 @@ Llenar la base de datos con usuarios y empresas ficticios
 php artisan db:seed
 ```
 
+## 8. Ejecutar FastApi 
+```bash
+cd fastApi
+python3 -m uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+```
+
 ## 8. Verificar Configuración del Servidor Web
 Asegúrate de que el servidor web (Apache, Nginx, etc.) esté configurado correctamente para servir el proyecto Laravel. Si estás usando el servidor web integrado de Laravel para pruebas, puedes iniciarlo con:
 
