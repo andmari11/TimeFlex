@@ -16,6 +16,9 @@ Route::get('/', function () {
 Route::get('/menu', [MenuController::class, 'index'])->middleware('auth');
 Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('auth');
 
+Route::get('/pruebaAPI', [FastApiController::class, 'indexAdmin']);
+
+
 
 // devolver la vista about en about
 Route::get('/about-us', function () {
