@@ -11,15 +11,15 @@ class FastApiController extends Controller
 {
     public function sendData(){
         $data=[
-            "parametro1" => "nombreEmpresa",
+            "parametro1" => "xcccccc",
         ];
-        $response = Http::post('http://0.0.0.0:8000/api/', $data);
+        $response = Http::post('http://0.0.0.0:8001/api/', $data);
 
 
         return $response->json();
     }
     public function receiveData(){
-        
+
         $data=request()->validate([
             "name" => ["required", "string", "max:255"]
         ]);
