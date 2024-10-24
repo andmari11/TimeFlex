@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Users\RegisteredUserController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('aut
 Route::get('/pruebaAPI', [FastApiController::class, 'sendData']);
 Route::post('/pruebaAPI', [FastApiController::class, 'receiveData']);
 
+Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
+Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
 
 
 // devolver la vista about en about
@@ -39,9 +42,7 @@ Route::get('/horario', function () {
     return view('horario');
 });
 
-Route::get('/equipo', function () {
-    return view('equipo');
-});
+
 
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');

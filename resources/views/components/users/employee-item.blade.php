@@ -23,8 +23,9 @@
         <a href="#" class="bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$employee->section?->name}}</a>
     </div>
 
+
     <x-drawer :title="$employee->name">
-        {{$employee}}
+        <x-users.employee-section :employee="$employee"></x-users.employee-section>
     </x-drawer>
 </div>
 <script>
