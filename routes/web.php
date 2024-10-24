@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
@@ -16,6 +17,9 @@ Route::get('/', function () {
 // devolver la vista mi-area en my-area
 Route::get('/menu', [MenuController::class, 'index'])->middleware('auth');
 Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('auth');
+
+Route::get('/pruebaAPI', [FastApiController::class, 'sendData']);
+Route::post('/pruebaAPI', [FastApiController::class, 'receiveData']);
 
 Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
