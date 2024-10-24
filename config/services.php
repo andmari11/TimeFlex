@@ -34,5 +34,8 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'fastApi' =>[
+        'url'=>'http://0.0.0.0:8001/',
 
+    ]
 ];
