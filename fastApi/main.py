@@ -12,10 +12,12 @@ class Params(BaseModel):
 async def send_post_to_laravel(data):
     async with httpx.AsyncClient() as client:
         print("before response")
-        await asyncio.sleep(10)
+        await asyncio.sleep(3)
         response = await client.post("http://127.0.0.1:8000/pruebaAPI", json=data)
         print(response)
         return response
+
+
 
 @app.post("/api/")
 async def root(params: Params):
