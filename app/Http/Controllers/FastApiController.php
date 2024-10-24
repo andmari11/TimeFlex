@@ -11,7 +11,7 @@ class FastApiController extends Controller
 {
     public function sendData(){
         $data=[
-            "parametro1" => "xcccccc",
+            "parametro1" => "que pesada",
         ];
         $response = Http::post('http://0.0.0.0:8001/api/', $data);
 
