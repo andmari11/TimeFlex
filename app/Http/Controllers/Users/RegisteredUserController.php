@@ -1,5 +1,6 @@
 <?php
 
+//BORRAR PORQUE NO SE UTILIZA
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class RegisteredUserController extends Controller
             'email'      => ['required', 'email', 'unique:users,email'],
             'password'   => ['required', Password::min(6), 'confirmed'],
             'role'       => ['required'],
-            
+
         ]);
 
         $attributesUser_defaults=[
