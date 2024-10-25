@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sections;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Users\UserController;
 use App\Models\Section;
 
 class SectionController extends Controller
@@ -72,6 +73,7 @@ class SectionController extends Controller
     public function destroy(int $id)
     {
         $section = Section::findOrFail($id);
+        UserController::reassignSectionToZero($id);
         $section->delete();
 
         // Redirigir al menú principal

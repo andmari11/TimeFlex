@@ -40,6 +40,25 @@ class DatabaseSeeder extends Seeder
             'section_id' => 1
         ]);
 
+        //crea 1 user
+        User::factory(1)->create([
+            'name' => fake()->name(),
+            'email' => "user@user.com",
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+            'company_id' => 1,
+            'role' => 'employee',
+            'section_id' => 0
+        ]);
+
+        Section::factory(1)->create([
+            'id' => 0,
+            'name' => 'Unassigned',
+            'company_id' => 1
+
+
+        ]);
 
 
     }

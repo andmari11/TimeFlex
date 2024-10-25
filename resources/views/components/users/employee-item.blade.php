@@ -31,7 +31,7 @@
 <script>
     function confirmDelete(event, employeeId) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
-        const confirmation = confirm("¿Estás seguro de que deseas eliminar esta sección?");
+        const confirmation = confirm("¿Estás seguro de que deseas eliminar este empleado?");
         if (confirmation) {
             document.getElementById('delete-form-' + employeeId).submit(); // Envía el formulario si el usuario confirma
         }

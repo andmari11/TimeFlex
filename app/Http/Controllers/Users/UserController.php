@@ -61,8 +61,14 @@ class UserController extends Controller
 
     public function destroy(int $id)
     {
+        die($id);
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('/menu');
+    }
+
+    public static function reassignSectionToZero(int $section_id)
+    {
+        User::where('section_id', $section_id)->update(['section_id' => 0]);
     }
 }
