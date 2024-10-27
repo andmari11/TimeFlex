@@ -9,21 +9,21 @@
         <a class="bg-cyan-700 hover:bg-white/35 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
     </div>
     @if(auth()->user()->role === 'admin')
-        <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-        <button onclick="confirmDelete(event, {{$employee->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
-        <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
+        <a href="/sections/{{$employee->section->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+        <button onclick="confirmDelete(event, {{$employee->section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+        <form method="POST" action="/sections/{{$employee->section->id}}/delete" id="delete-form-{{$employee->section->id}}" class="hidden">
             @csrf
             @method('DELETE')
         </form>
     @endif
-
 </div>
+
 <script>
-    function confirmDelete(event, employeeId) {
+    function confirmDelete(event, sectionID) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
-        const confirmation = confirm("¿Estás seguro de que deseas eliminar este empleado?");
+        const confirmation = confirm("¿Estás seguro de que deseas eliminar esta sección?");
         if (confirmation) {
-            document.getElementById('delete-form-' + employeeId).submit(); // Envía el formulario si el usuario confirma
+            document.getElementById('delete-form-' + sectionID).submit(); // Envía el formulario si el usuario confirma
         }
     }
 </script>

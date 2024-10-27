@@ -3,10 +3,12 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Users\RegisteredUserController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Sections\SectionController;
 use Illuminate\Support\Facades\Route;
 
 // devolver la vista de welcome en home
@@ -23,6 +25,8 @@ Route::post('/pruebaAPI', [FastApiController::class, 'receiveData']);
 
 Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
+
+Route::get('/search', SearchController::class);
 
 
 // devolver la vista about en about
@@ -60,3 +64,9 @@ Route::post('/register-company', [CompanyController::class, 'store'])->middlewar
 Route::get('/register-user/', [UserController::class, 'create'])->middleware('auth');
 Route::post('/register-user/', [UserController::class, 'store'])->middleware('auth');
 
+Route::get('/register-section/', [SectionController::class, 'create'])->middleware('auth'); //CAMBIAR CONTROLLER
+Route::post('/register-section/', [SectionController::class, 'store'])->middleware('auth');
+
+Route::get('/sections/{id}/edit', [SectionController::class, 'edit'])->middleware('auth');
+Route::patch('/sections/{id}/edit', [SectionController::class, 'update'])->middleware('auth');
+Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->middleware('auth');
