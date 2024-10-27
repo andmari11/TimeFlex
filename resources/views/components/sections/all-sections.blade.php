@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex justify-between">
                     <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{auth()->user()->company->employees->count()}} empleados totales</a>
-                    <a class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados</a>
+                    <a href ="/equipo"class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados</a>
                 </div>
             </div>
 
@@ -24,8 +24,14 @@
             @foreach (auth()->user()->company->sections as $section)
                 <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
                     <div class="flex justify-end gap-1">
-                        <a class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-                        <button class=" bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                        @if(auth()->user()->role === 'admin')
+                            <a href="/sections/{{$section->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                            <button onclick="confirmDelete(event, {{$section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                            <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form-{{$section->id}}" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        @endif
                     </div>
                     <div class="p-4 text-white text-bold text-l">
                         <a href="/menu/{{ $section->id }}" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-110">{{ $section->name }}</a>
@@ -41,3 +47,13 @@
 
     </section>
 </section>
+
+<script>
+    function confirmDelete(event, sectionID) {
+        event.preventDefault(); // Evita que se envíe el formulario inmediatamente
+        const confirmation = confirm("¿Estás seguro de que deseas eliminar esta sección?");
+        if (confirmation) {
+            document.getElementById('delete-form-' + sectionID).submit(); // Envía el formulario si el usuario confirma
+        }
+    }
+</script>

@@ -52,11 +52,14 @@ Llenar la base de datos con usuarios y empresas ficticios
 php artisan db:seed
 ```
 
-## 8. Activar API Python
-Activa el servidor FastApi y configuralo para todas las funcionalidades que necesiten Python
+
+## 8. Ejecutar Api Python 
+Para las optimizaciones y demás funciones de python es necesario este servidor que implementa el micro-framework FastApi
 ```bash
+cd fastApi
 python3 -m uvicorn main:app --host 0.0.0.0 --port 8001 --reload
 ```
+
 
 ## 9. Verificar Configuración del Servidor Web
 Asegúrate de que el servidor web (Apache, Nginx, etc.) esté configurado correctamente para servir el proyecto Laravel. Si estás usando el servidor web integrado de Laravel para pruebas, puedes iniciarlo con:
