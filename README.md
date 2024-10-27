@@ -56,8 +56,12 @@ php artisan db:seed
 ## 8. Ejecutar Api Python 
 Para las optimizaciones y demás funciones de python es necesario este servidor que implementa el micro-framework FastApi
 ```bash
-cd fastApi
-python3 -m uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+pip install uvicorn
+pip install fastapi
+pip install httpx
+
+python3 -m uvicorn main:app --host 127.0.0.1 --port 8001 --reload
+uvicorn main:app --host 127.0.0.1 --port 8001 --reload
 ```
 
 
