@@ -44,7 +44,7 @@
 
             </div>
             <div class="mt-6 flex items-center justify-between">
-                <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
+                <a href="/menu" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
                 <x-forms.button>Registrar empleado</x-forms.button>
             </div>
         </form>

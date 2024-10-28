@@ -26,7 +26,7 @@
                     <div class="flex justify-end gap-1">
                         @if(auth()->user()->role === 'admin')
                             <a href="/sections/{{$section->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-                            <button onclick="confirmDelete(event, {{$section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                            <button onclick="confirmDeleteSection(event, {{$section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
                             <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form-{{$section->id}}" class="hidden">
                                 @csrf
                                 @method('DELETE')

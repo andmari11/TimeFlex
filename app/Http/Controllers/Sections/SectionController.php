@@ -76,7 +76,17 @@ class SectionController extends Controller
     public function destroy(int $id)
     {
         $section = Section::findOrFail($id);
-        UserController::reassignSectionToZero($id);
+        if($section->name === "Administradores"){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de administradores',
+            ]);
+        }
+        if($section->name === "Sin sección"){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de trabajadores sin sección asignada',
+            ]);
+        }
+        UserController::reassignSectionToUnassigned($id);
         $section->delete();
 
         // Redirigir al menú principal

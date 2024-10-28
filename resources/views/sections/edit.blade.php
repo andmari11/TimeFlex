@@ -20,7 +20,7 @@
                 <x-forms.button>Actualizar información</x-forms.button>
             </div>
         </form>
-        <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form-{{$section->id}}" class="hidden">
+        <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form" class="hidden">
             @csrf
             @method('DELETE')
         </form>

@@ -6,7 +6,7 @@
         <div>
             @if(auth()->user()->role === 'admin')
                 <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-                <button onclick="confirmDelete(event, {{$employee->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                <button onclick="confirmDeleteEmployee(event, {{$employee->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
                 <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
                     @csrf
                     @method('DELETE')
@@ -29,7 +29,7 @@
     </x-drawer>
 </div>
 <script>
-    function confirmDelete(event, employeeId) {
+    function confirmDeleteEmployee(event, employeeId) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
         const confirmation = confirm("¿Estás seguro de que deseas eliminar este empleado?");
         if (confirmation) {

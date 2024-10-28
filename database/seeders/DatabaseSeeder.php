@@ -54,10 +54,8 @@ class DatabaseSeeder extends Seeder
 
         Section::factory(1)->create([
             'id' => 0,
-            'name' => 'Unassigned',
+            'name' => 'Sin sección',
             'company_id' => 1
-
-
         ]);
 
 
