@@ -21,7 +21,7 @@
             </div>
 
 
-            @foreach (auth()->user()->company->sections as $section)
+            @foreach (auth()->user()->company->sections->reverse() as $section)
                 <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
                     <div class="flex justify-end gap-1">
                         @if(auth()->user()->role === 'admin')
