@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Section;
 use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
@@ -67,8 +68,15 @@ class UserController extends Controller
         return redirect('/menu');
     }
 
-    public static function reassignSectionToZero(int $section_id)
+    public static function reassignSectionToUnassigned(int $section_id)
     {
-        User::where('section_id', $section_id)->update(['section_id' => 0]);
+        $sectionToDelete = Section::find($section_id);
+        if (!$sectionToDelete) {
+            return;
+        }
+        $sinSeccion = Section::where('name', 'Sin sección')->where('company_id', $sectionToDelete->company_id)->first();
+        if($sinSeccion){
+            User::where('section_id', $section_id)->update(['section_id' => $sinSeccion->id]);
+        }
     }
 }

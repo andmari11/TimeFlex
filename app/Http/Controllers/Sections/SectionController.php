@@ -21,7 +21,10 @@ class SectionController extends Controller
 
         // Validar los atributos de la sección
         $attributesSection = request()->validate([
-            'name' => ['required'],
+            'name' => ['required', 'unique:sections,name'],
+        ], [
+            'name.required' => 'Es necesario introducir el nombre de la sección a registrar',
+            'name.unique' => 'Ya existe una sección con este nombre',
         ]);
 
         // Obtener el último ID de la base de datos y sumarle 1
@@ -73,7 +76,17 @@ class SectionController extends Controller
     public function destroy(int $id)
     {
         $section = Section::findOrFail($id);
-        UserController::reassignSectionToZero($id);
+        if($section->name === "Administradores"){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de administradores',
+            ]);
+        }
+        if($section->name === "Sin sección"){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de trabajadores sin sección asignada',
+            ]);
+        }
+        UserController::reassignSectionToUnassigned($id);
         $section->delete();
 
         // Redirigir al menú principal

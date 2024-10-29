@@ -10,7 +10,7 @@
     </div>
     @if(auth()->user()->role === 'admin')
         <a href="/sections/{{$employee->section->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-        <button onclick="confirmDelete(event, {{$employee->section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+        <button onclick="confirmDeleteSection(event, {{$employee->section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
         <form method="POST" action="/sections/{{$employee->section->id}}/delete" id="delete-form-{{$employee->section->id}}" class="hidden">
             @csrf
             @method('DELETE')
@@ -19,7 +19,7 @@
 </div>
 
 <script>
-    function confirmDelete(event, sectionID) {
+    function confirmDeleteSection(event, sectionID) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
         const confirmation = confirm("¿Estás seguro de que deseas eliminar esta sección?");
         if (confirmation) {

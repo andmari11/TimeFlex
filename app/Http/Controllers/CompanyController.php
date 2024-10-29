@@ -33,14 +33,18 @@ class CompanyController extends Controller
 
         //creamos company y recibimos model company (necesitamos su id)
         $company=Company::create($attributesCompany);
-        $section= Section::create([
+        $adminSection= Section::create([
             'name'  => "Administradores",
+            "company_id"=> $company->id,
+        ]);
+        $sinSeccion= Section::create([
+            'name'  => "Sin sección",
             "company_id"=> $company->id,
         ]);
         $attributesUser_defaults=[
             "role"=> 'admin',
             "company_id"=> $company->id,
-            "section_id"=> $section->id,
+            "section_id"=> $adminSection->id,
         ];
         $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
 
