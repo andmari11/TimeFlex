@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         Section::factory(1)->create([
             'name'  => "Administradores",
             "company_id"=> 1,
+            'default'=>true
         ]);
         Section::factory(config('const.seeder.sections'))->create();
         //crea 10 trabajadores
@@ -55,7 +56,8 @@ class DatabaseSeeder extends Seeder
         Section::factory(1)->create([
             'id' => 0,
             'name' => 'Sin sección',
-            'company_id' => 1
+            'company_id' => 1,
+            'default'=>true
         ]);
 
 

@@ -5,40 +5,42 @@
             <h3 class="text-bold text-xl hover:underline">Secciones</h3>
         </div>
         <div>
-            <a href="register-section" class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
+            <a href="/register-section" @click.stop class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
         </div>
     </nav>
     <section x-show="open_sections" class="p-4 rounded-xl flex flex-col text-center overflow-y-auto" style="max-height: 500px;" >
 
-            <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
-                <div class="p-4 text-white text-bold text-l">
-                    <a href="/menu" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-110 ">Ver Todos</a>
+            <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
+                <div class="p-4 text-black text-bold text-l">
+                    <a href="/menu" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:scale-110 ">Ver Todos</a>
                 </div>
-                <div class="flex justify-between">
-                    <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{auth()->user()->company->employees->count()}} empleados totales</a>
-                    <a href ="/equipo"class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados</a>
+                <div class="flex justify-end">
+                    <!--<a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{auth()->user()->company->employees->count()}} empleados totales</a>-->
+                    <a href ="/equipo" class="bg-cyan-500 hover:bg-cyan-400 px-2 py-1 rounded-xl text-xs text-white">Todos los empleados ({{auth()->user()->company->employees->count()}})</a>
                 </div>
             </div>
 
 
             @foreach (auth()->user()->company->sections as $section)
-                <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+                <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
                     <div class="flex justify-end gap-1">
                         @if(auth()->user()->role === 'admin')
-                            <a href="/sections/{{$section->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-                            <button onclick="confirmDeleteSection(event, {{$section->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
-                            <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form-{{$section->id}}" class="hidden">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <a href="/sections/{{$section->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                            @if(!$section->default)
+                                <button onclick="confirmDeleteSection(event, {{$section->id}})" class="bg-red-600 hover:bg-red-500 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                                <form method="POST" action="/sections/{{$section->id}}/delete" id="delete-form-{{$section->id}}" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            @endif
                         @endif
                     </div>
-                    <div class="p-4 text-white text-bold text-l">
-                        <a href="/menu/{{ $section->id }}" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:scale-110">{{ $section->name }}</a>
+                    <div class="p-4 text-black text-bold text-l">
+                        <a href="/menu/{{ $section->id }}" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:text-black hover:scale-110">{{ $section->name }}</a>
                     </div>
-                    <div class="flex justify-between">
-                        <a class=" bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$section->users->count()}} empleados</a>
-                        <a href="/equipo/{{ $section->id }}" class="bg-cyan-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Ver equipo</a>
+                    <div class="flex justify-end">
+                        <!--<a class="  text-xs text-black">{{$section->users->count()}} empleados</a>-->
+                        <a href="/equipo/{{ $section->id }}" class="bg-cyan-500 hover:bg-cyan-400 px-2 py-1 rounded-xl text-xs text-white">Ver equipo ({{$section->users->count()}}) </a>
                     </div>
                 </div>
 

@@ -51,12 +51,18 @@ class SectionController extends Controller
     public function edit(int $id)
     {
         $section = Section::findOrFail($id);
+        if($section->default){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de administradores',
+            ]);
+        }
         return view('sections.edit', compact('section'));
     }
 
     // Método para actualizar una sección en la base de datos
     public function update(int $id)
     {
+
         // Validar los atributos de la sección
         request()->validate([
             'name' => ['required'],
@@ -64,6 +70,11 @@ class SectionController extends Controller
 
         // Encontrar la sección y actualizarla
         $section = Section::findOrFail($id);
+        if($section->default){
+            return redirect('/menu')->withErrors([
+                'error'=>'No se puede eliminar la sección de administradores',
+            ]);
+        }
         $section->update([
             'name' => request('name'),
         ]);
@@ -76,16 +87,12 @@ class SectionController extends Controller
     public function destroy(int $id)
     {
         $section = Section::findOrFail($id);
-        if($section->name === "Administradores"){
+        if($section->default){
             return redirect('/menu')->withErrors([
                 'error'=>'No se puede eliminar la sección de administradores',
             ]);
         }
-        if($section->name === "Sin sección"){
-            return redirect('/menu')->withErrors([
-                'error'=>'No se puede eliminar la sección de trabajadores sin sección asignada',
-            ]);
-        }
+
         UserController::reassignSectionToUnassigned($id);
         $section->delete();
 

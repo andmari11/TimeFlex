@@ -40,11 +40,13 @@ class CompanyController extends Controller
         $sinSeccion= Section::create([
             'name'  => "Sin sección",
             "company_id"=> $company->id,
+            'default'=>true
         ]);
         $attributesUser_defaults=[
             "role"=> 'admin',
             "company_id"=> $company->id,
             "section_id"=> $adminSection->id,
+            'default'=>true
         ];
         $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
 

@@ -6,12 +6,13 @@
             @method('PATCH')
             <div class="space-y-1 row" >
 
-                <!-- Preguntar el tipo de empresa (docencia, sanidad, etc)-->
-                <x-forms.field class="col-12">
-                    <x-forms.label for="name">Nombre</x-forms.label>
-                    <x-forms.input name="name" placeholder="{{$section->name}}" id="name" value="{{old('name',$section->name)}}" required />
-                    <x-forms.error name="name" />
-                </x-forms.field>
+                @if(!$section->default)
+                    <x-forms.field class="col-12">
+                        <x-forms.label for="name">Nombre</x-forms.label>
+                        <x-forms.input name="name" placeholder="{{$section->name}}" id="name" value="{{old('name',$section->name)}}" required />
+                        <x-forms.error name="name" />
+                    </x-forms.field>
+                @endif
             </div>
             <div class="mt-6 flex items-center justify-between">
 

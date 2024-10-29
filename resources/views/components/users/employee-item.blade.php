@@ -6,17 +6,21 @@
         <div>
             @if(auth()->user()->role === 'admin')
                 <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                @if($employee->role!=='admin')
+
                 <button onclick="confirmDeleteEmployee(event, {{$employee->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
-                <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
-                    @csrf
-                    @method('DELETE')
-                </form>
+
+                    <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                @endif
             @endif
         </div>
     </div>
 
     <button class="p-2 text-white text-bold text-l " >
-        <h3 @click="open_drawer = true"  class="hover:underline">{{$employee->name}}</h3>
+        <h3 @click="open_drawer = true"  class="hover:scale-110">{{$employee->name}}</h3>
     </button>
 
     <div class="flex justify-start">

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Company::class);
-
+            $table->boolean('default')->default(false);
         });
     }
 
