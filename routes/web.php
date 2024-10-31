@@ -44,7 +44,7 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', function () {
     return view('horario');
-});
+})->middleware('auth');
 
 
 

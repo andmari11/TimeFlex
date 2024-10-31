@@ -22,5 +22,8 @@ class Company extends Model
         return $this->hasMany(Section::class);
     }
 
+    public function schedules(){
+        return $this->hasMany(Schedule::class);
+    }
 
 }

@@ -12,6 +12,7 @@ class Schedule extends Model
     protected $fillable = [
         'scheduleJSON',
         'name',
-        'description'
+        'description',
+        'company_id'
     ];
 }
