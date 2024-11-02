@@ -62,7 +62,6 @@ class UserController extends Controller
 
     public function destroy(int $id)
     {
-        die($id);
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('/menu');
