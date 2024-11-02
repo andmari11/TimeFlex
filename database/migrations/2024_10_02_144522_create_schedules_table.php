@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Company::class);
-            $table->json('scheduleJSON');
             $table->timestamps();
+
             $table->string("name");
             $table->string("description")->nullable();
+            $table->json('scheduleJSON')->nullable();
+            $table->json('usersJSON')->nullable();
+
 
         });
         Schema::create('schedules_users', function (Blueprint $table) {

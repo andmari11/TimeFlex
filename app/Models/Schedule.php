@@ -13,6 +13,7 @@ class Schedule extends Model
         'scheduleJSON',
         'name',
         'description',
-        'company_id'
+        'company_id',
+        'usersJSON'
     ];
 }

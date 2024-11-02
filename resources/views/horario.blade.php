@@ -5,7 +5,7 @@
 
     <div class="w-full max-w-xl bg-white p-8 rounded-lg shadow-md mt-10">
         @foreach(auth()->user()->company->schedules as $schedule)
-            <p>{{$schedule->scheduleJSON}}</p>
+            <p>{{$schedule}}</p>
         @endforeach
     </div>
 </x-layout>

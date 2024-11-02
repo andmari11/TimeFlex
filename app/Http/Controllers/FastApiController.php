@@ -14,11 +14,24 @@ class FastApiController extends Controller
         $data=[
             "name" => "hola",
             "company_id" => auth()->user()->company->id,
-            "scheduleJSON" => [
-                ["process" => "initiated"]
-            ]
+            'status' => 'pending',
+            'usersJSON' => json_encode([
+                [
+                    'user_id' => '1',
+                    'request' => 'request_1'
+                ],
+                [
+                    'user_id' => '2',
+                    'request' => 'request_2'
+                ],
+                [
+                    'user_id' => '3',
+                    'request' => 'request_3'
+                ]
+            ])
         ];
-        $data['scheduleJSON'] = json_encode($data['scheduleJSON']);
+
+
         $schedule=Schedule::create($data);
         $data['id']=$schedule->id;
         $response = Http::post(config('services.fastApi.url') . 'api/', $data);

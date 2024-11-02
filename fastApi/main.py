@@ -1,24 +1,30 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import List, Optional
 from z3 import *
 import httpx
 import asyncio
+import json
+
 
 
 app = FastAPI()
 
+
 class Params(BaseModel):
-    name: str
-    company_id: str
     id: str
+    company_id: str	
+    name: str
+    usersJSON: str
+
+
 
 @app.post("/api/")
 async def root(params: Params):
 
     input_data = {
         "id":params.id,
-        "name": params.name,
-        "company_id": params.company_id
+	"users":json.loads(params.usersJSON)
     }
     asyncio.create_task(send_post_to_laravel(input_data))
 
@@ -42,9 +48,12 @@ async def send_post_to_laravel(data):
 
         if s.check()==sat:
             model = s.model()
-            data['scheduleJSON'] = {f"day_{i}": model.eval(sol[i]).as_long() for i in range(7)}
+            data['scheduleJSON'] = {
+        	"process_status": "success",
+        	**{f"day_{i}": model.eval(sol[i]).as_long() for i in range(7)}
+	    }
         else:
-            data['scheduleJSON'] = {"error": "No solution found"}
+            data['scheduleJSON'] = {"process_status": "failed"}
 
 
         #response = await client.post("http://timeflex.test/pruebaAPI", json=data)
