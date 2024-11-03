@@ -14,30 +14,48 @@ class FastApiController extends Controller
         $data=[
             "name" => "hola",
             "company_id" => auth()->user()->company->id,
-            'status' => 'pending',
-            'usersJSON' => json_encode([
-                [
-                    'user_id' => '1',
-                    'request' => 'request_1'
-                ],
-                [
-                    'user_id' => '2',
-                    'request' => 'request_2'
-                ],
-                [
-                    'user_id' => '3',
-                    'request' => 'request_3'
-                ]
-            ])
         ];
 
 
         $schedule=Schedule::create($data);
         $data['id']=$schedule->id;
-        $response = Http::post(config('services.fastApi.url') . 'api/', $data);
-        if ($response->failed()) {
+        $data['usersJSON'] = json_encode([
+            [
+                'user_id' => '1',
+                'request' => [
+                    'holidays' => [1]
+                ]
+            ],
+            [
+                'user_id' => '2',
+                'request' => [
+                    'holidays' => [2]
+                ]
+            ],
+            [
+                'user_id' => '3',
+                'request' => [
+                    'holidays' => [3]
+                ]
+            ]
+        ]);
+
+
+        try{
+            $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/', $data);
+            if ($response->failed()) {
+                return redirect('/horario')->withErrors(['message' => 'Error sending data.']);
+            }
+        }
+         catch (\Illuminate\Http\Client\ConnectionException $e) {
+            // errores de conexion
+            return redirect('/horario')->withErrors(['message' => 'Request timed out. Please try again later.']);
+        }
+        catch (\Exception $e) {
+            // otro tipos de errores
             return redirect('/horario')->withErrors(['message' => 'Error sending data.']);
         }
+
         return redirect('/horario');
 
     }
@@ -45,14 +63,24 @@ class FastApiController extends Controller
 
         $data=request()->validate([
             "id"=>"required",
-            "scheduleJSON"=>["required","array"]
+            "scheduleJSON"=>["required"],
+            "status"=>"required",
         ]);
 
         $schedule = Schedule::findOrFail($data['id']);
         if($schedule){
-            $schedule->update([
-                'scheduleJSON' => json_encode($data['scheduleJSON'])
-            ]);
+            if(!isset($data['scheduleJSON'])){
+                $schedule->update([
+                    'status' => $data['status']
+                ]);
+            }
+            else{
+                $schedule->update([
+                    'scheduleJSON' => json_encode($data['scheduleJSON']),
+                    'status' => $data['status']
+                ]);
+            }
+
             return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
         }
 

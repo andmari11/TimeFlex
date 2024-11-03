@@ -4,8 +4,8 @@
     <a class ="btn bg-blue-500 p-1 rounded-lg text-white" href="">Refrescar</a>
 
     <div class="w-full max-w-xl bg-white p-8 rounded-lg shadow-md mt-10">
-        @foreach(auth()->user()->company->schedules as $schedule)
-            <p>{{$schedule}}</p>
+        @foreach(auth()->user()->company->schedules->reverse() as $schedule)
+            <p class="pb-6">{{$schedule}} </p>
         @endforeach
     </div>
 </x-layout>

@@ -14,6 +14,7 @@ class Schedule extends Model
         'name',
         'description',
         'company_id',
-        'usersJSON'
+        'usersJSON',
+        'status'
     ];
 }
