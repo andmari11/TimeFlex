@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List, Optional
 from z3 import *
+from datetime import datetime, timedelta
 import httpx
 import asyncio
 import json
@@ -46,6 +46,7 @@ async def send_post_to_laravel(data):
         num_days = 7
         min_working_days = 5
         max_working_days = 5
+        start_date = datetime(datetime.now().year, 11, 1, 9, 0)
 
         ids=[]
         vacations =[]
@@ -54,13 +55,13 @@ async def send_post_to_laravel(data):
             ids.append(users[i].get('user_id'))
 
             user_dictionary = users[i].get('request', {}).get('holidays', [])
-            user_vacations=[]
+            vacation_days=[]
             for day in range(num_days):
                 if day in user_dictionary:
-                    user_vacations.append(1)   #  vacaciones
+                    vacation_days.append(1)   #  vacaciones
                 else:
-                    user_vacations.append(0)   # no vacaciones
-            vacations.append(user_vacations)
+                    vacation_days.append(0)   # no vacaciones
+            vacations.append(vacation_days)
         s=Solver()
 
         sol=[]
@@ -76,27 +77,33 @@ async def send_post_to_laravel(data):
             s.add(Sum(sol[i])<=max_working_days)
 
 
-
+        solution_to_send={}
+        solution_to_send['id']=data['id']
 
         if s.check()==sat:
             model = s.model()
-            data['status'] = "success"
-            data['scheduleJSON'] = {}
+            solution_to_send['status'] = "success"
+            solution_to_send['scheduleJSON'] = {}
 
             for i in range(num_users):
                 user_schedule = []
                 for j in range(num_days):
-                    user_schedule.append(model.eval(sol[i][j]).as_long())
-                data['scheduleJSON'][f"user_{ids[i]}"] = user_schedule
+                    if model.eval(sol[i][j]).as_long()!=0:
+                        user_schedule.append((start_date + timedelta(days=j)).isoformat())
+                solution_to_send['scheduleJSON'][f"user_{ids[i]}"] = user_schedule
 
         else:
-            data['status'] = "failed"
+            solution_to_send['status'] = "failed"
 
+        try:
+            response = await client.post("http://timeflex.test/pruebaAPI", json=solution_to_send)
+            #response = await client.post("http://127.0.0.1:8000/pruebaAPI", json=solution_to_send)
 
+            print(response.json())
+        except Exception as e:
+            print(f"Error during POST request: {e}")
+            response = None
 
-        response = await client.post("http://timeflex.test/pruebaAPI", json=data)
-        #response = await client.post("http://127.0.0.1:8000/pruebaAPI", json=data)
-        print(response)
 
         return response
 

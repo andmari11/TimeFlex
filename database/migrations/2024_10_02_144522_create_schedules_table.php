@@ -18,8 +18,7 @@ return new class extends Migration
 
             $table->string("name");
             $table->string("description")->nullable();
-            $table->json('scheduleJSON')->nullable();
-            $table->json('usersJSON')->nullable();
+            $table->json("scheduleJSON")->nullable();
             $table->string("status")->default("pending");
 
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
-use App\Http\Controllers\Users\RegisteredUserController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Sections\SectionController;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +42,7 @@ Route::get('/ayuda', function () {
     return view('ayuda');
 });
 
-Route::get('/horario', function () {
-    return view('horario');
-})->middleware('auth');
+Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 
 
 

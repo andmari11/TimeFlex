@@ -15,27 +15,111 @@ class FastApiController extends Controller
             "name" => "hola",
             "company_id" => auth()->user()->company->id,
         ];
-
-
         $schedule=Schedule::create($data);
         $data['id']=$schedule->id;
         $data['usersJSON'] = json_encode([
             [
-                'user_id' => '1',
+                'user_id' => '111',
                 'request' => [
-                    'holidays' => [1]
+                    'holidays' => [0, 1]
                 ]
             ],
             [
-                'user_id' => '2',
+                'user_id' => '222',
                 'request' => [
-                    'holidays' => [2]
+                    'holidays' => [5, 6]
                 ]
             ],
             [
-                'user_id' => '3',
+                'user_id' => '333',
                 'request' => [
-                    'holidays' => [3]
+                    'holidays' => [3, 4]
+                ]
+            ]
+        ]);
+        $data['shiftsJSON'] = json_encode([
+            [
+                'day' => '2024-11-06',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-06T09:00:00Z',
+                        'end' => '2024-11-06T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-07',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-07T09:00:00Z',
+                        'end' => '2024-11-07T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-08',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-08T09:00:00Z',
+                        'end' => '2024-11-08T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-09',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-09T09:00:00Z',
+                        'end' => '2024-11-09T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-10',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-10T09:00:00Z',
+                        'end' => '2024-11-10T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-11',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-11T09:00:00Z',
+                        'end' => '2024-11-11T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
+                ]
+            ],
+            [
+                'day' => '2024-11-12',
+                'shifts' => [
+                    [
+                        'time' => '09:00-14:00',
+                        'start' => '2024-11-12T09:00:00Z',
+                        'end' => '2024-11-12T14:00:00Z',
+                        'assigned_users' => [],
+                        'users_needed' => 2
+                    ]
                 ]
             ]
         ]);
@@ -63,7 +147,7 @@ class FastApiController extends Controller
 
         $data=request()->validate([
             "id"=>"required",
-            "scheduleJSON"=>["required"],
+            "scheduleJSON"=>"array",
             "status"=>"required",
         ]);
 
