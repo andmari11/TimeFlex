@@ -13,8 +13,9 @@ class FastApiController extends Controller
     public function sendData(){
         $data=[
             "name" => "hola",
-            "company_id" => auth()->user()->company->id,
+            "section_id" => auth()->user()->section->id,
         ];
+
         $schedule=Schedule::create($data);
         $data['id']=$schedule->id;
         $data['usersJSON'] = json_encode([

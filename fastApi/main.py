@@ -96,8 +96,8 @@ async def send_post_to_laravel(data):
             solution_to_send['status'] = "failed"
 
         try:
-            response = await client.post("http://timeflex.test/pruebaAPI", json=solution_to_send)
-            #response = await client.post("http://127.0.0.1:8000/pruebaAPI", json=solution_to_send)
+            #response = await client.post("http://timeflex.test/pruebaAPI", json=solution_to_send)
+            response = await client.post("http://127.0.0.1:8000/pruebaAPI", json=solution_to_send)
 
             print(response.json())
         except Exception as e:

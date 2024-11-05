@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Schedule;
+use App\Models\Shift;
 use App\Models\User;
 use App\Models\Section;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,10 +21,16 @@ class DatabaseSeeder extends Seeder
     {
         //crea 1 empresa
         Company::factory(config('const.seeder.companies'))->create();
-        //crea 4 secciones
+        //crea 3 secciones, admin y sin seccion
         Section::factory(1)->create([
             'name'  => "Administradores",
             "company_id"=> 1,
+            'default'=>true
+        ]);
+        Section::factory(1)->create([
+            'id' => 0,
+            'name' => 'Sin sección',
+            'company_id' => 1,
             'default'=>true
         ]);
         Section::factory(config('const.seeder.sections'))->create();
@@ -52,13 +60,23 @@ class DatabaseSeeder extends Seeder
             'role' => 'employee',
             'section_id' => 0
         ]);
+        Schedule::factory(2)->create();
+        for ($i = 0; $i < 5; $i++) {
+            Shift::factory()->create([
+                'begin' => now()->addDays($i)->setTime(9, 0),
+                'end' => now()->addDays($i)->setTime(15, 0),
+            ]);
 
-        Section::factory(1)->create([
-            'id' => 0,
-            'name' => 'Sin sección',
-            'company_id' => 1,
-            'default'=>true
-        ]);
+            Shift::factory()->create([
+                'begin' => now()->addDays($i)->setTime(15, 0),
+                'end' => now()->addDays($i)->setTime(21, 0),
+            ]);
+
+            Shift::factory()->create([
+                'begin' => now()->addDays($i)->setTime(21, 0),
+                'end' => now()->addDays($i + 1)->setTime(4, 0),
+            ]);
+        }
 
 
     }
