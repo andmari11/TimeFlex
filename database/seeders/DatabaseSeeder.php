@@ -63,17 +63,17 @@ class DatabaseSeeder extends Seeder
         Schedule::factory(2)->create();
         for ($i = 0; $i < 5; $i++) {
             Shift::factory()->create([
-                'begin' => now()->addDays($i)->setTime(9, 0),
+                'start' => now()->addDays($i)->setTime(9, 0),
                 'end' => now()->addDays($i)->setTime(15, 0),
             ]);
 
             Shift::factory()->create([
-                'begin' => now()->addDays($i)->setTime(15, 0),
+                'start' => now()->addDays($i)->setTime(15, 0),
                 'end' => now()->addDays($i)->setTime(21, 0),
             ]);
 
             Shift::factory()->create([
-                'begin' => now()->addDays($i)->setTime(21, 0),
+                'start' => now()->addDays($i)->setTime(21, 0),
                 'end' => now()->addDays($i + 1)->setTime(4, 0),
             ]);
         }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Schedule;
+use App\Models\Shift;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -13,119 +15,59 @@ class FastApiController extends Controller
     public function sendData(){
         $data=[
             "name" => "hola",
-            "section_id" => auth()->user()->section->id,
+            "section_id" => 2,
         ];
 
         $schedule=Schedule::create($data);
-        $data['id']=$schedule->id;
-        $data['usersJSON'] = json_encode([
+        $data['id'] = $schedule->id;
+        $data['usersJSON'] = json_encode(
             [
-                'user_id' => '111',
-                'request' => [
-                    'holidays' => [0, 1]
-                ]
-            ],
-            [
-                'user_id' => '222',
-                'request' => [
-                    'holidays' => [5, 6]
-                ]
-            ],
-            [
-                'user_id' => '333',
-                'request' => [
-                    'holidays' => [3, 4]
-                ]
-            ]
-        ]);
-        $data['shiftsJSON'] = json_encode([
-            [
-                'day' => '2024-11-06',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-06T09:00:00Z',
-                        'end' => '2024-11-06T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
+                [
+                    "user_id" => 1,
+                    "holidays" => [
+                        date('Y-m-d H:i:s', strtotime('2024-12-01')),  // 1 de diciembre de 2024
+                        date('Y-m-d H:i:s', strtotime('2024-12-02'))   // 2 de diciembre de 2024
                     ]
-                ]
-            ],
-            [
-                'day' => '2024-11-07',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-07T09:00:00Z',
-                        'end' => '2024-11-07T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
+                ],
+                [
+                    "user_id" => 2,
+                    "holidays" => [
+                        date('Y-m-d H:i:s', strtotime('2024-12-05')),  // 5 de diciembre de 2024
+                        date('Y-m-d H:i:s', strtotime('2024-12-06'))   // 6 de diciembre de 2024
                     ]
-                ]
-            ],
-            [
-                'day' => '2024-11-08',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-08T09:00:00Z',
-                        'end' => '2024-11-08T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
-                    ]
-                ]
-            ],
-            [
-                'day' => '2024-11-09',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-09T09:00:00Z',
-                        'end' => '2024-11-09T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
-                    ]
-                ]
-            ],
-            [
-                'day' => '2024-11-10',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-10T09:00:00Z',
-                        'end' => '2024-11-10T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
-                    ]
-                ]
-            ],
-            [
-                'day' => '2024-11-11',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-11T09:00:00Z',
-                        'end' => '2024-11-11T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
-                    ]
-                ]
-            ],
-            [
-                'day' => '2024-11-12',
-                'shifts' => [
-                    [
-                        'time' => '09:00-14:00',
-                        'start' => '2024-11-12T09:00:00Z',
-                        'end' => '2024-11-12T14:00:00Z',
-                        'assigned_users' => [],
-                        'users_needed' => 2
+                ],
+                [
+                    "user_id" => 3,
+                    "holidays" => [
+                        date('Y-m-d H:i:s', strtotime('2024-12-03')),  // 3 de diciembre de 2024
+                        date('Y-m-d H:i:s', strtotime('2024-12-04'))   // 4 de diciembre de 2024
                     ]
                 ]
             ]
-        ]);
+        );
+        for ($i = 0; $i < 5; $i++) {
+            // Crear el turno de mañana
+            Shift::factory()->create([
+                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
+                'start' => now()->addDays($i)->setTime(9, 0),
+                'end' => now()->addDays($i)->setTime(15, 0),
+            ]);
 
+            // Crear el turno de tarde
+            Shift::factory()->create([
+                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
+                'start' => now()->addDays($i)->setTime(15, 0),
+                'end' => now()->addDays($i)->setTime(21, 0),
+            ]);
 
+            // Crear el turno de noche
+            Shift::factory()->create([
+                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
+                'start' => now()->addDays($i)->setTime(21, 0),
+                'end' => now()->addDays($i + 1)->setTime(4, 0),
+            ]);
+        }
+        $data['shiftsJSON'] = json_encode($schedule->shifts);
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/', $data);
             if ($response->failed()) {
@@ -152,23 +94,34 @@ class FastApiController extends Controller
             "status"=>"required",
         ]);
 
-        $schedule = Schedule::findOrFail($data['id']);
-        if($schedule){
-            if(!isset($data['scheduleJSON'])){
-                $schedule->update([
-                    'status' => $data['status']
-                ]);
-            }
-            else{
-                $schedule->update([
-                    'scheduleJSON' => json_encode($data['scheduleJSON']),
-                    'status' => $data['status']
-                ]);
+        $schedule = Schedule::find($data['id']);
+        if($schedule) {
+            $schedule->update([
+                'status' => $data['status']
+            ]);
+            if (isset($data['scheduleJSON'])) {
+                foreach ($data['scheduleJSON'] as $userId => $shiftIds) {
+                    $user = User::find($userId);
+                    if ($user) {
+                        foreach ($shiftIds as $shiftId) {
+                            $shift = Shift::find($shiftId);
+
+                            if ($shift) {
+                                $shift->users()->attach($user->id);
+                            } else {
+                                return response()->json(['message' => "Shift con ID {$shiftId} no encontrado."], 404);
+
+                            }
+                        }
+                    } else {
+                        return response()->json(['message' => "Usuario con ID {$userId} no encontrado."], 404);
+
+                    }
+                }
             }
 
             return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
         }
-
         return response()->json(['message' => 'Se ha producido un error'], 404);
     }
 }

@@ -15,12 +15,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Schedule::class);
-            $table->foreignIdFor(\App\Models\User::class)->nullable();
             $table->string('notes')->nullable();
-            $table->timestamp("begin");
+            $table->timestamp("start");
             $table->timestamp("end");
             $table->integer("users_needed");
         });
+        Schema::create('shift_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('shift_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -29,5 +35,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('shifts');
+        Schema::dropIfExists('shift_user');
     }
 };

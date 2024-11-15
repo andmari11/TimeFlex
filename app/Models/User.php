@@ -58,5 +58,8 @@ class User extends Authenticatable
         return $this->belongsTo(Section::class);
     }
 
-
+    public function shifts()
+    {
+        return $this->belongsToMany(Shift::class);
+    }
 }

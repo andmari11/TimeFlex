@@ -20,7 +20,6 @@ class ScheduleFactory extends Factory
             'section_id' => 2,
             'name' => $this->faker->sentence(3),
             'description' => $this->faker->optional()->paragraph(),
-            'scheduleJSON' => null,
             'status' => $this->faker->randomElement(['pending', 'active', 'completed'])
         ];
     }

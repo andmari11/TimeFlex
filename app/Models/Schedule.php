@@ -10,7 +10,6 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'scheduleJSON',
         'name',
         'description',
         'section_id',

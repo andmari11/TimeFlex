@@ -13,4 +13,8 @@ class Shift extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'shift_user');
+    }
 }
