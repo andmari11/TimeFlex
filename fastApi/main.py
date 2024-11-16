@@ -63,10 +63,11 @@ async def send_post_to_laravel(data):
                 worker_takes_shift.append(Int(nWork(i,j)))
                 holiday_constraints = []
                 for holiday in workers[i].holidays:
-                    holiday_day = holiday.date 
                     holiday_constraints.append(And(
-                        shifts[j].start.date != holiday_day, 
-                        shifts[j].end.date != holiday_day))
+                        shifts[j].start.date() != holiday.date(), 
+                        shifts[j].end.date() != holiday.date()))
+                    
+                    print(f"Checking if shift {shifts[j].shift_id} on {shifts[j].start.date} to {shifts[j].end.date} conflicts with holiday on {holiday.date}")
                 # coge ese día de vacaciones o trabaja y no ha pedido vacación
                 s.add(Or(worker_takes_shift[j]==0, And(worker_takes_shift[j]==1, *holiday_constraints )))
 

@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\User;
+use App\Models\WorkerPreference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -20,51 +21,59 @@ class FastApiController extends Controller
 
         $schedule=Schedule::create($data);
         $data['id'] = $schedule->id;
-        $data['usersJSON'] = json_encode(
+
+        $worker_preferences=(
             [
                 [
                     "user_id" => 1,
-                    "holidays" => [
+                    "holidays" => json_encode([
                         date('Y-m-d H:i:s', strtotime('2024-12-01')),  // 1 de diciembre de 2024
                         date('Y-m-d H:i:s', strtotime('2024-12-02'))   // 2 de diciembre de 2024
-                    ]
+                    ])
                 ],
                 [
                     "user_id" => 2,
-                    "holidays" => [
+                    "holidays" => json_encode([
                         date('Y-m-d H:i:s', strtotime('2024-12-05')),  // 5 de diciembre de 2024
                         date('Y-m-d H:i:s', strtotime('2024-12-06'))   // 6 de diciembre de 2024
-                    ]
+                    ])
                 ],
                 [
                     "user_id" => 3,
-                    "holidays" => [
+                    "holidays" => json_encode([
                         date('Y-m-d H:i:s', strtotime('2024-12-03')),  // 3 de diciembre de 2024
                         date('Y-m-d H:i:s', strtotime('2024-12-04'))   // 4 de diciembre de 2024
-                    ]
+                    ])
                 ]
             ]
         );
-        for ($i = 0; $i < 5; $i++) {
+        foreach ($worker_preferences as $worker_preference) {
+            WorkerPreference::create($worker_preference);
+        }
+
+
+        $data['usersJSON'] =json_encode($worker_preferences);
+
+        for ($i = 1; $i <= 5; $i++) {
             // Crear el turno de mañana
             Shift::factory()->create([
-                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
-                'start' => now()->addDays($i)->setTime(9, 0),
-                'end' => now()->addDays($i)->setTime(15, 0),
+                'schedule_id' => $schedule->id,
+                'start' => date('Y-m-d H:i:s', strtotime("2024-12-$i 09:00:00")),
+                'end' => date('Y-m-d H:i:s', strtotime("2024-12-$i 15:00:00")),
             ]);
 
             // Crear el turno de tarde
             Shift::factory()->create([
-                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
-                'start' => now()->addDays($i)->setTime(15, 0),
-                'end' => now()->addDays($i)->setTime(21, 0),
+                'schedule_id' => $schedule->id,
+                'start' => date('Y-m-d H:i:s', strtotime("2024-12-$i 15:00:00")),
+                'end' => date('Y-m-d H:i:s', strtotime("2024-12-$i 21:00:00")),
             ]);
 
             // Crear el turno de noche
             Shift::factory()->create([
-                'schedule_id' => $schedule->id,  // Añadir el schedule_id aquí
-                'start' => now()->addDays($i)->setTime(21, 0),
-                'end' => now()->addDays($i + 1)->setTime(4, 0),
+                'schedule_id' => $schedule->id,
+                'start' => date('Y-m-d H:i:s', strtotime("2024-12-$i 21:00:00")),
+                'end' => date('Y-m-d H:i:s', strtotime("2024-12-$i 04:00:00")),
             ]);
         }
         $data['shiftsJSON'] = json_encode($schedule->shifts);

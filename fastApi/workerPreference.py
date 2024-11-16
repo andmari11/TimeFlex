@@ -18,7 +18,7 @@ def process_worker_preferences(data:json) -> List[WorkerPreference]:
 
     for item in data:
         user_id = item.get("user_id")
-        date_strings = item.get('holidays')
+        date_strings = json.loads(item.get('holidays'))
         holidays = [datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S") for date_str in date_strings]
         worker_preference = WorkerPreference(user_id=user_id, holidays=holidays)
         worker_preferences.append(worker_preference)
