@@ -29,7 +29,7 @@ class FastApiController extends Controller
                     "holidays" => json_encode([
                         date('Y-m-d H:i:s', strtotime('2024-12-01')),  // 1 de diciembre de 2024
                         date('Y-m-d H:i:s', strtotime('2024-12-02'))   // 2 de diciembre de 2024
-                    ])
+                    ]),
                 ],
                 [
                     "user_id" => 2,

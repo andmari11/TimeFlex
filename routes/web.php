@@ -3,12 +3,12 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Schedules\ScheduleController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
-use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Users\UserController;
-use App\Http\Controllers\Sections\SectionController;
 use Illuminate\Support\Facades\Route;
 
 // devolver la vista de welcome en home
@@ -43,7 +43,7 @@ Route::get('/ayuda', function () {
 });
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
-
+Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 
 
 
