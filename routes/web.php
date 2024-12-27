@@ -45,7 +45,9 @@ Route::get('/ayuda', function () {
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 
-
+Route::get('forms', function (){
+    return view('forms');
+});
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
