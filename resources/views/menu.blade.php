@@ -130,7 +130,6 @@
                                 <ul class="mt-2">
                                     <li class="bg-red-100 text-black rounded p-1 mb-1">
                                         <strong>16:00 - 20:00</strong>
-                                        <span>(4 usuarios)</span>
                                         <div class="mt-2 flex flex-wrap gap-1">
                     <span class="bg-blue-200 text-blue-800 text-xs font-semibold py-1 px-2 rounded">
                         Javier Castro
