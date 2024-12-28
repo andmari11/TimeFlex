@@ -14,60 +14,6 @@
             <div class="font-bold hidden lg:block">Viernes</div>
             <div class="font-bold hidden lg:block">Sábado</div>
             <div class="font-bold hidden lg:block">Domingo</div>
-            <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
-                <div class="flex flex-col gap-2">
-                    <p class="text-black text-bold text-l"><strong>ID:</strong> Octubre</p>
-                    <p class="text-black text-bold text-l"><strong>Estado:</strong> Finalizado</p>
-                </div>
-                <div class="flex justify-between items-center mt-4">
-                    <button
-                        class="bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-xl text-bold transition-all duration-300 hover:scale-105"
-                    >
-                        Eliminar
-                    </button>
-                    <a
-                        href="/horario/octubre"
-                        class="bg-blue-800 hover:bg-blue-700 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300 hover:scale-105"
-                    >
-                        Ver detalles
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
-                <div class="flex flex-col gap-2">
-                    <p class="text-black text-bold text-l"><strong>ID:</strong> Noviembre</p>
-                    <p class="text-green-600 text-bold text-l"><strong>Estado:</strong> En curso</p>
-                </div>
-                <div class="flex justify-center mt-4">
-                    <a
-                        href="/horario/noviembre"
-                        class="bg-blue-800 hover:bg-blue-700 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300 hover:scale-105"
-                    >
-                        Ver detalles
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
-                <div class="flex flex-col gap-2">
-                    <p class="text-black text-bold text-l"><strong>ID:</strong> Diciembre</p>
-                    <p class="text-black text-bold text-l"><strong>Estado:</strong> Recopilando preferencias</p>
-                </div>
-                <div class="flex justify-between items-center mt-4">
-                    <button
-                        class="bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-bold transition-all duration-300 hover:scale-105"
-                    >
-                        Rellenar formulario
-                    </button>
-                    <a
-                        href="/horario/diciembre"
-                        class="bg-blue-800 hover:bg-blue-700 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300 hover:scale-105"
-                    >
-                        Ver detalles
-                    </a>
-                </div>
-            </div>
 
             <!-- Días del calendario -->
             @foreach ($days as $day)

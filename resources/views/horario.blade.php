@@ -14,7 +14,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <a
-                    href="/horario/diciembre"
+                    href="/horario/1"
                     class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300"
                 >
                     Ver detalles
@@ -32,7 +32,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <a
-                    href="/horario/noviembre"
+                    href="/horario/1"
                     class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300"
                 >
                     Ver detalles
@@ -54,7 +54,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <a
-                    href="/horario/octubre"
+                    href="/horario/1"
                     class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300"
                 >
                     Ver detalles
@@ -75,7 +75,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <a
-                    href="/horario/octubre"
+                    href="/horario/1"
                     class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300"
                 >
                     Ver detalles
@@ -96,7 +96,7 @@
             </div>
             <div class="flex justify-center mt-4">
                 <a
-                    href="/horario/octubre"
+                    href="/horario/1"
                     class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300"
                 >
                     Ver detalles

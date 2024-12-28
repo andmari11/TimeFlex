@@ -1,7 +1,7 @@
 
 
 
-<section x-data="{ open_all_employees: true }" class="w-full max-w-md bg-white px-8 rounded-lg shadow-md mt-10 mx-4">
+<section x-data="{ open_all_employees: true }" class="w-full bg-white px-5 rounded-lg shadow-md mt-10 mx-4">
     <nav @click="open_all_employees = !open_all_employees" class="flex justify-between items-center py-5 border-b border-blue/10 hover:cursor-pointer">
         <div class="inline-flex items-center gap-x-2">
             <span class="w-2 h-2 bg-black inline-block"></span>
