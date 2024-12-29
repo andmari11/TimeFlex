@@ -2,10 +2,16 @@
     <nav @click="open_sections = !open_sections" class="flex justify-between items-center py-5 border-b border-blue/10  hover:cursor-pointer">
         <div class="inline-flex items-center gap-x-2">
             <span class="w-2 h-2 bg-black inline-block"></span>
-            <h3 class="text-bold text-xl hover:underline">Secciones</h3>
+            <h3 class="font-bold text-xl hover:underline">Secciones</h3>
         </div>
         <div>
-            <a href="/register-section" @click.stop class="bg-white text-blue-900 font-bold py-2 px-4 my-12 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition"> + </a>
+            <a href="/register-section" @click.stop
+               class="flex items-center justify-center w-8 h-8 bg-white text-blue-900 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m-4-4h8" />
+                </svg>
+            </a>
+
         </div>
     </nav>
     <section x-show="open_sections" class="p-4 rounded-xl flex flex-col text-center overflow-y-auto" style="max-height: 500px;" >
