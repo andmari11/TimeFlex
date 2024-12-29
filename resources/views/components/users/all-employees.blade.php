@@ -31,14 +31,14 @@
         @if(!$section && auth()->user()->role === 'admin')
             @foreach(auth()->user()->company->employees as $employee)
 
-                <div class="p-4 bg-gray-600 shadow rounded-xl my-1 ">
+                <div class="p-4 bg-blue-50 shadow rounded-xl my-1 ">
                     <x-users.employee-item :employee="$employee"></x-users.employee-item>
                 </div>
             @endforeach
         @else
 
             @foreach($section->users as $employee)
-                <div class="p-4 bg-gray-600 shadow rounded-xl my-1">
+                <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
                     <x-users.employee-item :employee="$employee"></x-users.employee-item>
                 </div>
             @endforeach

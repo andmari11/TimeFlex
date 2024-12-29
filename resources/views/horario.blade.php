@@ -10,7 +10,7 @@
             </div>
             <div class="flex flex-col gap-2">
                 <p class="text-black text-bold text-l"><strong>ID:</strong> Diciembre</p>
-                <p class="text-black text-bold text-l"><strong>Estado:</strong> Recopilando preferencias</p>
+                <p class="text-blue-600 text-bold text-l"><strong>Estado:</strong> Recopilando preferencias</p>
             </div>
             <div class="flex justify-center mt-4">
                 <a

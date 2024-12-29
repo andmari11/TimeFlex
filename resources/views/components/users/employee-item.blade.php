@@ -5,10 +5,10 @@
         </div>
         <div>
             @if(auth()->user()->role === 'admin')
-                <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+                <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
                 @if($employee->role!=='admin')
 
-                <button onclick="confirmDeleteEmployee(event, {{$employee->id}})" class="bg-red-600 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+                <button onclick="confirmDeleteEmployee(event, {{$employee->id}})" class="bg-red-600  px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
 
                     <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{$employee->id}}" class="hidden">
                         @csrf
@@ -19,12 +19,12 @@
         </div>
     </div>
 
-    <button class="p-2 text-white text-bold text-l " >
+    <button class="p-2 text-gray-700 text-bold text-l " >
         <h3 @click="open_drawer = true"  class="hover:scale-110">{{$employee->name}}</h3>
     </button>
 
     <div class="flex justify-start">
-        <a href="#" class="bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-white">{{$employee->section?->name}}</a>
+        <a href="#" class="bg-white/10 hover:bg-white/35 px-2 py-1 rounded-xl text-xs text-gray-700">{{$employee->section?->name}}</a>
     </div>
 
 

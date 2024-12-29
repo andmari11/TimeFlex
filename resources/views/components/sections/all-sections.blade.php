@@ -16,7 +16,7 @@
     </nav>
     <section x-show="open_sections" class="p-4 rounded-xl flex flex-col text-center overflow-y-auto" style="max-height: 500px;" >
 
-            <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
+            <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
                 <div class="p-4 text-black text-bold text-l">
                     <a href="/menu" class="relative inline-block px-4 py-2 rounded-full transition-all duration-300 hover:scale-110 ">Ver Todos</a>
                 </div>
@@ -28,7 +28,7 @@
 
 
             @foreach (auth()->user()->company->sections->reverse() as $section)
-                <div class="p-4 bg-gray-100 shadow rounded-xl my-1">
+                <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
                     <div class="flex justify-end gap-1">
                         @if(auth()->user()->role === 'admin')
                             <a href="/sections/{{$section->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
