@@ -47,8 +47,6 @@ Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth')
 
 Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth');
 
-
-
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');

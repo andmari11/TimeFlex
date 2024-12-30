@@ -4,26 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Form;
-use Carbon\Carbon;
+use App\Models\Question;
 
 class FormsController extends Controller
 {
     // Mostrar todos los formularios disponibles
     public function index()
     {
-        $fechaActual = Carbon::now();
-        $formularios = Form::where('status', 1)
-            ->where('start_date', '<=', $fechaActual)
-            ->where('end_date', '>=', $fechaActual)
-            ->get();
-
+        $formularios = Form::all();
         return view('forms.index', compact('formularios'));
     }
 
-    // Mostrar formulario específico
+    // Mostrar formulario específico junto con sus preguntas
     public function show($id)
     {
-        $formulario = Form::find($id);
+        $formulario = Form::with('questions')->find($id);
         return view('forms.show', compact('formulario'));
     }
 
@@ -44,44 +39,32 @@ class FormsController extends Controller
             'end_date' => 'required|date',
         ]);
 
-        Form::create($request->all());
+        $formulario = Form::create($request->all());
 
-        return redirect()->route('forms.index')
+        return redirect()->route('forms.show', $formulario->id)
             ->with('success', 'Formulario creado exitosamente.');
     }
 
-    // Mostrar formulario para editar un formulario existente
-    public function edit($id)
+    // Mostrar formulario para agregar una nueva pregunta
+    public function createQuestion($formId)
     {
-        $formulario = Form::find($id);
-        return view('forms.edit', compact('formulario'));
+        $formulario = Form::find($formId);
+        return view('questions.create', compact('formulario'));
     }
 
-    // Actualizar un formulario existente
-    public function update(Request $request, $id)
+    // Guardar una nueva pregunta
+    public function storeQuestion(Request $request, $formId)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'summary' => 'required|string',
-            'status' => 'required|boolean',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'id_question_type' => 'required|integer|exists:question_types,id'
         ]);
 
-        $formulario = Form::find($id);
-        $formulario->update($request->all());
+        $question = new Question($request->all());
+        $question->id_form = $formId;
+        $question->save();
 
-        return redirect()->route('forms.index')
-            ->with('success', 'Formulario actualizado exitosamente.');
-    }
-
-    // Eliminar un formulario existente
-    public function destroy($id)
-    {
-        $formulario = Form::find($id);
-        $formulario->delete();
-
-        return redirect()->route('forms.index')
-            ->with('success', 'Formulario eliminado exitosamente.');
+        return redirect()->route('forms.show', $formId)
+            ->with('success', 'Pregunta creada exitosamente.');
     }
 }
