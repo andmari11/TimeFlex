@@ -46,7 +46,7 @@
                     </div>
                     <div class="flex justify-end">
                         <!--<a class="  text-xs text-black">{{$section->users->count()}} empleados</a>-->
-                        <a href="/equipo/{{ $section->id }}" class="bg-cyan-500 hover:bg-cyan-400 px-2 py-1 rounded-xl text-xs text-white">Ver equipo ({{$section->users->count()}}) </a>
+                        <a href="/equipo/{{ $section->id }}" class="bg-sky-500 hover:bg-sky-400 px-2 py-1 rounded-xl text-xs text-white">Ver equipo ({{$section->users->count()}}) </a>
                     </div>
                 </div>
 
