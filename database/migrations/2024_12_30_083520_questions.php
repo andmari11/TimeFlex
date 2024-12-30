@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->foreign('id_form')->references('id')->on('forms')->onDelete('cascade');
             $table->foreign('id_question_type')->references('id')->on('question_types')->onDelete('cascade');
-        })
+        });
     }
 
     /**

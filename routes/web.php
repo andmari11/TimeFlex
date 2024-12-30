@@ -6,6 +6,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\FormsController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Sections\SectionController;
@@ -44,6 +45,7 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 
+Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth');
 
 
 

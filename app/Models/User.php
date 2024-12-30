@@ -58,5 +58,9 @@ class User extends Authenticatable
         return $this->belongsTo(Section::class);
     }
 
+    public function forms()
+    {
+        return $this->belongsTo(Form::class);
+    }
 
 }
