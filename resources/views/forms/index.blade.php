@@ -1,7 +1,7 @@
 <x-layout :title="'Formularios disponibles'">
     <x-page-heading>Formularios disponibles</x-page-heading>
 
-        <a class="btn bg-red-500 p-2 rounded-lg text-white mb-4 inline-block" href="/formularios/{form}/questions/create">Crear nuevo formulario</a>
+        <a class="btn bg-red-500 p-2 rounded-lg text-white mb-4 inline-block" href="/formularios/create">Crear nuevo formulario</a>
 
         @if($formularios->isEmpty())
             <p>No hay formularios disponibles en este momento.</p>
