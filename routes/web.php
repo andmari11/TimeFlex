@@ -44,6 +44,8 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
+Route::get('/horario/personal/{id}', function () { return view('/schedules/schedule-personal-view'); })->middleware('auth');
+
 
 Route::get('forms', function (){
     return view('forms');

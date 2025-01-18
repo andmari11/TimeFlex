@@ -1,11 +1,12 @@
 <x-layout :title="'Mi horario'">
     <x-page-heading>Bienvenido a tu página de horarios</x-page-heading>
 
-    <a class ="btn bg-red-500 p-1 rounded-lg text-white" href="/pruebaAPI">Crear</a>
-    <a class ="btn bg-blue-500 p-1 rounded-lg text-white" href="">Refrescar</a>
+
 
     <div class="w-full max-w-xl bg-white p-8 rounded-lg shadow-md mt-10 mx-auto">
-        <div class="p-4 bg-gray-100 mb-6 shadow rounded-xl my-1 relative">
+        <a class ="btn bg-red-500 p-1 rounded-lg text-white" href="/pruebaAPI">Crear</a>
+        <a class ="btn bg-blue-500 p-1 rounded-lg text-white" href="">Refrescar</a>
+        <div class="p-4 bg-gray-100 mb-6 shadow rounded-xl my-1 relative mt-7">
             <div class="absolute top-2 right-2">
             </div>
             <div class="flex flex-col gap-2">

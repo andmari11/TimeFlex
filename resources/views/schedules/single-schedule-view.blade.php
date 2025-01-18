@@ -2,10 +2,19 @@
     <x-page-heading>Bienvenido a tu página de horarios</x-page-heading>
 
     <div class="p-4 m-10 bg-white shadow rounded-xl">
-        <h2 class="text-2xl font-bold mb-4">Calendario del Horario: {{ $schedule->name }}</h2>
+        <div class="flex justify-between">
+            <h2 class="text-2xl font-bold mb-4">Calendario de equipo de Emelie paterson</h2>
+            <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de : {{ $schedule->name }}</h2>-->
+            <div class="flex space-x-0">
+                <button class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</button>
+                <a href="/horario/personal/{id}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Horario personal</a>
+            </div>
+
+        </div>
+
 
         <!-- Contenedor del calendario -->
-        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center">
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center mt-8">
             <!-- Cabecera con nombres de los días -->
             <div class="font-bold hidden lg:block">Lunes</div>
             <div class="font-bold hidden lg:block">Martes</div>
@@ -22,13 +31,13 @@
                     $dayOfWeek = $day['day_of_week'];
                     $isCurrentMonth = $day['is_current_month'];
                     $bgColor = $isCurrentMonth ? match ($dayOfWeek) {
-                        1 => 'bg-blue-100', // Lunes
-                        2 => 'bg-green-100', // Martes
-                        3 => 'bg-yellow-100', // Miércoles
-                        4 => 'bg-purple-100', // Jueves
-                        5 => 'bg-pink-100', // Viernes
-                        6 => 'bg-orange-100', // Sábado
-                        0 => 'bg-red-100', // Domingo
+                        1 => 'bg-sky-400', // Lunes
+                        2 => 'bg-sky-500', // Martes
+                        3 => 'bg-sky-600', // Miércoles
+                        4 => 'bg-sky-500', // Jueves
+                        5 => 'bg-sky-500', // Viernes
+                        6 => 'bg-sky-800', // Sábado
+                        0 => 'bg-sky-900', // Domingo
                         default => 'bg-gray-100',
                     } : 'bg-gray-200'; // Color apagado para días fuera del mes
                 @endphp
@@ -44,9 +53,9 @@
                                     $shiftStart = Carbon\Carbon::parse($shift['start']);
                                 @endphp
                                 @if ($shiftStart->isSameDay($date))
-                                    <li class="{{ $bgColor }} text-black rounded p-1 mb-1">
+                                    <li class="{{ $bgColor }} text-white rounded p-1 mb-1">
                                         <strong>{{ $shiftStart->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
-                                        <span>({{ $shift['users_needed'] }} usuarios)</span>
+                                        <span>({{ $shift['users_needed'] }} trabajadores)</span>
 
                                         <!-- Mostrar etiquetas para los trabajadores -->
                                         @if (isset($shift['users']) && count($shift['users']) > 0)
@@ -58,7 +67,11 @@
                                                 @endforeach
                                             </div>
                                         @else
-                                            <p class="text-xs italic mt-2">Sin trabajadores asignados</p>
+                                            <div class="flex justify-end m-3">
+                                                <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Ver trabajadores</span>
+                                            </div>
+
+
                                         @endif
                                     </li>
                                 @endif
