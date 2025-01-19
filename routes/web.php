@@ -9,6 +9,7 @@ use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Middleware\HistorialAccesosMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // devolver la vista de welcome en home
@@ -40,7 +41,7 @@ Route::get('/contact', function () {
 
 Route::get('/ayuda', function () {
     return view('ayuda');
-});
+})->middleware(HistorialAccesosMiddleware::class)->name('Ayuda');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');

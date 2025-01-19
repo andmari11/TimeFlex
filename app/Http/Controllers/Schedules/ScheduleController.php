@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Schedules;
 
+use App\Http\Controllers\BrowserHistoryController;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use Carbon\Carbon;
@@ -11,6 +12,9 @@ class ScheduleController extends Controller
     public function index(){
 
         if(auth()->user()->role==="admin"){
+            BrowserHistoryController::add(
+                'Todos los horarios', url()->current()
+            );
             $schedules = auth()->user()->company->schedules->reverse()->map(function ($schedule) {
                 return $schedule;
             });
@@ -38,7 +42,9 @@ class ScheduleController extends Controller
         } else {
             $month = Carbon::now()->startOfMonth(); // Mes actual si no hay turnos
         }
-
+        BrowserHistoryController::add(
+            "Horario " . $schedule->section->name, url()->current()
+        );
         // Ajustar para que comience el calendario desde el lunes anterior
         $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
         $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
