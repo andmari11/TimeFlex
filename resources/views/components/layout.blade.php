@@ -15,7 +15,7 @@
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <img class="h-8 w-8" src="{{ asset('logo.png') }}" alt="logo" >
+                        <img class="h-10 w-10" src="{{ asset('logo_no_background.png') }}" alt="logo" >
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
@@ -26,7 +26,8 @@
                             @endguest
                             @auth
                                 <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="/horario">Mi horario </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                             @endauth
@@ -101,7 +102,8 @@
                 @endguest
                 @auth
                     <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="/horario">Mi horario </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                 @endauth
