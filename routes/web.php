@@ -21,8 +21,10 @@ Route::get('/', function () {
 Route::get('/menu', [MenuController::class, 'index'])->middleware('auth');
 Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('auth');
 
-Route::get('/pruebaAPI', [FastApiController::class, 'sendData']);
-Route::post('/pruebaAPI', [FastApiController::class, 'receiveData']);
+Route::get('/fastapi-schedule', [FastApiController::class, 'sendSchedule']);
+Route::get('/fastapi-stats', [FastApiController::class, 'sendStats']);
+Route::post('/fastapi-schedule', [FastApiController::class, 'receiveSchedule']);
+Route::post('/fastapi-stats', [FastApiController::class, 'receiveStats']);
 
 Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
@@ -45,8 +47,8 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
-Route::get('/horario/personal/{id}', function () { return view('/schedules/schedule-personal-view'); })->middleware('auth');
-
+Route::get('/horario/personal/{id}', [ScheduleController::class, 'showPersonal'])->middleware('auth');
+Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 
 Route::get('forms', function (){
     return view('forms');
