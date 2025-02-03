@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 import httpx
 import asyncio
 import json
-from shift import *
-from workerPreference import *
+from model.shift import *
+from model.workerPreference import *
 from stats import *
 from typing import List, Optional
 
