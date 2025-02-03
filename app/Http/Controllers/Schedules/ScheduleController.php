@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Schedules;
 
 use App\Http\Controllers\BrowserHistoryController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FastApiController;
 use App\Models\Schedule;
 use Carbon\Carbon;
 
@@ -61,11 +62,31 @@ class ScheduleController extends Controller
             ]);
             $currentDay->addDay();
         }
-
-        return view('schedules/single-schedule-view', compact('schedule', 'days'));
+        $user = auth()->user();
+        return view('schedules/single-schedule-view', compact('schedule', 'days', 'user'));
     }
 
 
+    public function showPersonal($id)
+    {
+        $user = auth()->user();
+        $schedule = Schedule::find(1);
 
 
+        return view('schedules/schedule-personal-view', compact('schedule','user'));
+    }
+
+    public function stats()
+    {
+        $schedule = Schedule::find(1);
+
+        $user = auth()->user();
+        $dataReceived = FastApiController::sendStats();
+        if($dataReceived==null){
+            return redirect('/horario')->withErrors(['message' => 'Error al generar gráfico.']);
+        }
+        $img=base64_encode($dataReceived->body());
+        $imgUrl = 'data:image/png;base64,' . $img;
+        return view('schedules/stats', compact('schedule','user', 'imgUrl'));
+    }
 }

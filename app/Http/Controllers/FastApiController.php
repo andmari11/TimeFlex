@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class FastApiController extends Controller
 {
-    public function sendData(){
+    public function sendSchedule(){
         $data=[
             "name" => "hola",
             "section_id" => 2,
@@ -78,7 +78,7 @@ class FastApiController extends Controller
         }
         $data['shiftsJSON'] = json_encode($schedule->shifts);
         try{
-            $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/', $data);
+            $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
                 return redirect('/horario')->withErrors(['message' => 'Error sending data.']);
             }
@@ -95,7 +95,7 @@ class FastApiController extends Controller
         return redirect('/horario');
 
     }
-    public function receiveData(){
+    public function receiveSchedule(){
 
         $data=request()->validate([
             "id"=>"required",
@@ -132,5 +132,24 @@ class FastApiController extends Controller
             return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
         }
         return response()->json(['message' => 'Se ha producido un error'], 404);
+    }
+
+    public static function sendStats(){
+        $statsInfo['id']=1;
+        try{
+
+            $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/stats', $statsInfo);
+
+        }
+        catch (\Illuminate\Http\Client\ConnectionException $e) {
+            // errores de conexion
+            return false;
+        }
+        catch (\Exception $e) {
+            // otro tipos de errores
+            return false;
+        }
+
+        return $response;
     }
 }

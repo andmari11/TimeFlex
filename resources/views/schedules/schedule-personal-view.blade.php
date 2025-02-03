@@ -1,13 +1,14 @@
 
 <x-layout :title="'Calendario del Horario:'">
-    <x-page-heading>Bienvenido a tu página de horarios</x-page-heading>
+    <x-page-heading>Calendario de {{$user->name}}</x-page-heading>
 
     <div class="p-4 m-10 bg-white shadow rounded-xl w-7/10">
-        <div class="flex justify-between">
-            <h2 class="text-2xl font-bold mb-4">Calendario de Emelie Paterson</h2>
+        <div class="flex justify-end">
             <div class="flex space-x-0">
-                <button class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</button>
-                <a href="/horario/personal/{id}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Horario personal</a>
+                <a href="/horario/{{ $user->section->id }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
+                <a href="/horario/personal/{{ $user->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
+
             </div>
         </div>
 
