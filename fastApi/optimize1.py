@@ -27,12 +27,17 @@ def satisfaction_score(all_assigned_shifts, workers, shifts):
         score = (holidays_worked * HOLIDAYS_WEIGHT) + (preferred_shifts * PREFERRED_SHIFTS_WEIGHT)
         scores.append(score)
 
-    max_score = max(scores)
-    min_score = min(scores)
-
     # normalizar satisfabilidad
+    
+    return normalize_satisfaction(scores)
+
+
+def normalize_satisfaction(satisfaction_scores):
+    max_score = max(satisfaction_scores)
+    min_score = min(satisfaction_scores)
+
     normalized_scores = []
-    for score in scores:
+    for score in satisfaction_scores:
         if max_score == min_score:
             normalized_scores.append(100) 
         else:
@@ -41,6 +46,7 @@ def satisfaction_score(all_assigned_shifts, workers, shifts):
     
     return normalized_scores
 
+
 workers = process_worker_preferences(read_file('z3_pruebas/preferencias.txt'))
 shifts = process_shifts_from_json(read_file("z3_pruebas/turnos.txt"))
 
@@ -48,7 +54,7 @@ n_shifts = len(shifts)
 n_workers = len(workers)
 
 def nWork (i,j):
-    return "user"+str(i)+"works"+str(j)
+    return "worker"+str(i)+"works"+str(j)
 def bool2int(b):
     return If(b, 1, 0)
 def addsum(a):
@@ -112,25 +118,58 @@ for i in range(n_workers):
         s.add_soft(Implies(all_workers_shifts[i][j], shifts[j].type in workers[i].preferred_shift_types))
 
 
+# calcular la satisfacción de cada trabajador
+this_calendar_satisfaction = []
+for i in range(n_workers):
+    holidays_worked = []
+    preferred_shifts = []
+    for j in range(n_shifts):
+        holidays_worked.append(If(Or(shifts[j].start.date() == holiday.date(), shifts[j].end.date() == holiday.date()), bool2int(all_workers_shifts[i][j]), 0))
+        preferred_shifts.append(If(shifts[j].type in workers[i].preferred_shift_types, bool2int(all_workers_shifts[i][j]), 0))
+
+    worker_satisfaction=(addsum(holidays_worked) * HOLIDAYS_WEIGHT + addsum(preferred_shifts) * PREFERRED_SHIFTS_WEIGHT)
+    this_calendar_satisfaction.append(worker_satisfaction)
+
+#calcular la satisfacción media teniendo en cuenta calendarios anteriores
+all_averages=[]
+for i in range(n_workers):
+    all_averages.append((sum(workers[i].past_satisfaction) + this_calendar_satisfaction[i]) / (len(workers[i].past_satisfaction) + 1))
+    
+
+#calcular la desviación de la satisfacción media
+avg_satisfaction = Sum(all_averages) / n_workers
+deviations=[]
+for i in range(n_workers):
+    deviations.append(avg_satisfaction-all_averages[i])
+s.minimize(Sum(deviations))
 
 #Imrpimir resultados
 shift_types = {0: 'm', 1: 't', 2: 'n'}
 if s.check() == sat:
     m = s.model()
+    print("---------- Horario por empleado ----------\n")
     for i in range(n_workers):
-        user_schedule = []
+        worker_schedule = []
         for j in range(n_shifts):
             if m.eval(all_workers_shifts[i][j]):
-                user_schedule.append((shifts[j].start.date(), shift_types[shifts[j].type]))
+                worker_schedule.append((shifts[j].start.date(), shift_types[shifts[j].type]))
                 
-        print(f"Worker {workers[i].user_id} works shifts {user_schedule}")
+        print(f"Worker {workers[i].user_id} works shifts {worker_schedule}")
 
+    print("---------- Horario por turno ----------\n")
     for j in range(n_shifts):
-        users_in_shift = []
+        workers_in_shift = []
         for i in range(n_workers):
-            users_in_shift.append(m.eval(all_workers_shifts[i][j]))
-        print(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {users_in_shift}")
-    print("Satisfaction score: ", satisfaction_score(all_workers_shifts, workers, shifts))
+            workers_in_shift.append(m.eval(all_workers_shifts[i][j]))
+        print(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
+
+    print("---------- Satisfacción ----------\n")
+    this_satisfaction_score=satisfaction_score(all_workers_shifts, workers, shifts)
+    print("Satisfaction score this calendar: ", this_satisfaction_score)
+    last_calendar_scores = [sum(workers[i].past_satisfaction) / len(workers[i].past_satisfaction) for i in range(n_workers)]
+    print("Satisfaction score last calendars: ", last_calendar_scores)
+    all_calendar_scores = [sum(workers[i].past_satisfaction)+ this_satisfaction_score[i] / len(workers[i].past_satisfaction)+1 for i in range(n_workers)]
+    print("Satisfaction score all calendars including last: ", all_calendar_scores)
 
 else:
     print("No solution found")
