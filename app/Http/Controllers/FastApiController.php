@@ -95,7 +95,9 @@ class FastApiController extends Controller
         return redirect('/horario');
 
     }
-    public function receiveSchedule(){
+    public function receiveSchedule(): \Illuminate\Http\JsonResponse
+    {
+        Log::info('Datos recibidos:', request()->all()); // Verifica lo que está llegando
 
         $data=request()->validate([
             "id"=>"required",

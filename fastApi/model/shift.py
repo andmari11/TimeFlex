@@ -30,7 +30,7 @@ def process_shifts_from_json(data:json) -> List[Shift]:
             start=entry['start'],
             end=entry['end'],
             users_needed=entry['users_needed'],
-            type=entry['type']
+            type=entry.get('type',0)
         )
         shifts.append(shift)
     return shifts
