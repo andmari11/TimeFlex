@@ -1,5 +1,5 @@
 
-<x-layout :title="'Calendario del Horario:'">
+<x-layout :title="'Calendario'">
     <x-page-heading>Calendario de {{$user->name}}</x-page-heading>
 
     <div class="p-4 m-10 bg-white shadow rounded-xl w-7/10">
