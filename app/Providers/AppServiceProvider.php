@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         VerifyCsrfToken::except([
-            'pruebaAPI'
+            'fastapi-schedule'
         ]);
     }
 }

@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 import httpx
 import asyncio
 import json
-from shift import *
-from workerPreference import *
+from model.shift import *
+from model.workerPreference import *
 from stats import *
 from typing import List, Optional
 
@@ -75,7 +75,6 @@ async def send_schedule(data):
                         shifts[j].start.date() != holiday.date(), 
                         shifts[j].end.date() != holiday.date()))
                     
-                    print(f"Checking if shift {shifts[j].shift_id} on {shifts[j].start.date} to {shifts[j].end.date} conflicts with holiday on {holiday.date}")
                 # coge ese día de vacaciones o trabaja y no ha pedido vacación
                 s.add(Or(worker_takes_shift[j]==0, And(worker_takes_shift[j]==1, *holiday_constraints )))
 

@@ -1,4 +1,4 @@
-<x-layout :title="'Calendario del Horario:'">
+<x-layout :title="'Calendario'">
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
 
     <div class="p-4 m-10 bg-white shadow rounded-xl">
