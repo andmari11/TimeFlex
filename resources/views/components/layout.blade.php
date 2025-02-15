@@ -9,6 +9,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs"></script>
 </head>
+<!-- llamadas para ver el numero de notificaciones -->
+<script>
+    function checkUnreadNotifications() {
+        fetch('/unread-notifications')
+            .then(response => response.json())
+            .then(data => {
+                const notificationDot = document.getElementById('notification-dot');
+                if (data > 0) {
+                    notificationDot.classList.remove('hidden');
+                } else {
+                    notificationDot.classList.add('hidden');
+                }
+            })
+            .catch(error => console.error('Error al obtener las notificaciones:', error));
+    }
+
+    setInterval(checkUnreadNotifications, 5000);
+
+    checkUnreadNotifications();
+</script>
 <div x-data="{ open_menu: false , open_profile_menu: false}" class="min-h-full">
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -43,14 +63,23 @@
 
                         @endguest
                         @auth
+                            <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                <span class="absolute -inset-1.5"></span>
+                                <span class="sr-only">View notifications</span>
 
-                        <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">View notifications</span>
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                            </svg>
-                        </button>
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                                </svg>
+                                <div id="notification-dot-container">
+                                    @php
+                                        $notifications = auth()->user()->unreadNotifications->count();
+                                    @endphp
+
+                                    @if($notifications > 0)
+                                        <span id="notification-dot" class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-gray-800"></span>
+                                    @endif
+                                </div>
+                            </button>
 
                         <!-- Profile dropdown -->
                         <div class="relative ml-3" @click.outside="open_profile_menu=false">

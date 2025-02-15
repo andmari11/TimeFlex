@@ -16,7 +16,9 @@ class Company extends Model
     public function employees(){
         return $this->hasMany(User::class);
     }
-
+    public function admins(){
+        return $this->hasMany(User::class)->where('role', 'admin');
+    }
     public function sections(){
 
         return $this->hasMany(Section::class);
