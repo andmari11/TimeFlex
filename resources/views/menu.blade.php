@@ -268,13 +268,33 @@
                     <!-- Lista de notificaciones -->
                     <ul class="mt-4 space-y-2">
 
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <div class="flex justify-between">
-                                <h3>Confirmar cambio de turno</h3>
+                        <li class="flex flex-col items-center px-4 py-4 bg-blue-50 rounded-lg">
+                            <div class="flex justify-between w-full mb-4">
                                 <div>
+                                    <h3><strong>Cambio de turno con María</strong></h3>
+                                </div>
+                                <div class="flex-grow"></div> <!-- Espaciador flexible para empujar los botones a la derecha -->
+                                <div class="flex space-x-2"> <!-- Añadir espacio entre los botones -->
                                     <a href="/" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Aceptar</a>
                                     <a href="/" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white">Rechazar</a>
                                 </div>
+                            </div>
+                            <div class="w-full"> <!-- Contenedor de la tabla -->
+                                <table class="w-full border-collapse border-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="px-2 py-1 text-center">Turno Actual</th>
+                                        <th class="px-2 py-1 text-center">Posible turno</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">14/2/2024 <br> (12:00-16:00)</td>
+                                        <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">13/2/2024 <br> (8:00-12:00)</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </li>
                         <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
