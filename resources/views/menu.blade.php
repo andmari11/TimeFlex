@@ -48,9 +48,42 @@
 
                         <!-- Lista de notificaciones -->
                         <ul class="mt-4 space-y-2">
-                            <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                                <span class="text-md text-gray-700">Nuevo horario de Diciembre</span>
+                            <li class="flex flex-col items-center px-4 py-4 bg-blue-50 rounded-lg">
+                                <div class="flex justify-between w-full mb-4">
+                                    <div>
+                                        <h3><strong>Cambio de turno</strong></h3>
+                                    </div>
+                                    <div class="flex-grow"></div> <!-- Espaciador flexible para empujar los botones a la derecha -->
+                                    <div class="flex space-x-2"> <!-- Añadir espacio entre los botones -->
+                                        <a href="/" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Aceptar</a>
+                                        <a href="/" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white">Rechazar</a>
+                                    </div>
+                                </div>
+                                <div class="w-full"> <!-- Contenedor de la tabla -->
+                                    <table class="w-full border-collapse border-0">
+                                        <thead>
+                                        <tr>
+                                            <th class="px-4 py-2"></th>
+                                            <th class="px-4 py-2 text-center">Actual</th>
+                                            <th class="px-4 py-2 text-center">Cambio</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">Juan Pérez</td>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">L 8:00-12:00</td>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs font-bold py-1 px-2 rounded">M 12:00-16:00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">María López</td>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">X 9:00-13:00</td>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">J 14:00-18:00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </li>
+
                             <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
                                 <span class="text-md text-gray-700">Formularios a rellenar de Diciembre</span>
                             </li>
@@ -219,7 +252,13 @@
                     <!-- Lista de notificaciones -->
                     <ul class="mt-4 space-y-2">
                         <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Nuevo horario de Diciembre</span>
+                            <div class="flex justify-between">
+                                <h3>Confirmar cambio de turno</h3>
+                                <div>
+                                    <a href="/" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Aceptar</a>
+                                    <a href="/" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white">Rechazar</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
                             <span class="text-md text-gray-700">Formularios a rellenar de Diciembre</span>
