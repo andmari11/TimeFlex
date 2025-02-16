@@ -78,15 +78,6 @@ class FastApiController extends Controller
             ]);
         }
         $data['shiftsJSON'] = json_encode($schedule->shifts);
-        foreach ($schedule->section->company->admins as $user) {
-            Notification::create([
-                'user_id' => $user->id,
-                'message' => "Nuevo horario {$schedule->name} disponible.",
-                'url' => "/horario/{$schedule->id}",
-                'read' => false,
-                'tipo' => 'normal',
-            ]);
-        }
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
@@ -115,8 +106,16 @@ class FastApiController extends Controller
             "scheduleJSON"=>"array",
             "status"=>"required",
         ]);
-
         $schedule = Schedule::find($data['id']);
+        foreach ($schedule->section->company->admins as $user) {
+            Notification::create([
+                'user_id' => $user->id,
+                'message' => "Nuevo horario {$schedule->name} disponible. ($data[status])",
+                'url' => "/horario/{$schedule->id}",
+                'read' => false,
+                'tipo' => 'normal',
+            ]);
+        }
         if($schedule) {
             $schedule->update([
                 'status' => $data['status']
