@@ -63,21 +63,21 @@
                                     <table class="w-full border-collapse border-0">
                                         <thead>
                                         <tr>
-                                            <th class="px-4 py-2"></th>
-                                            <th class="px-4 py-2 text-center">Actual</th>
-                                            <th class="px-4 py-2 text-center">Cambio</th>
+                                            <th class="px-2 py-1"></th>
+                                            <th class="px-2 py-1 text-center">Actual</th>
+                                            <th class="px-2 py-1 text-center">Cambio</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">Juan Pérez</td>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">L 8:00-12:00</td>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">M 12:00-16:00</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">Juan Pérez</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">L13 8:00-12:00</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">M14 12:00-16:00</td>
                                             </tr>
                                             <tr>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">María López</td>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">X 9:00-13:00</td>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">J 14:00-18:00</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">María López</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">X18 9:00-13:00</td>
+                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">J19 14:00-18:00</td>
                                             </tr>
                                         </tbody>
                                     </table>
