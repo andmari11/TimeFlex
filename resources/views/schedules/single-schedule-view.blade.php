@@ -5,8 +5,8 @@
         <div class="flex justify-end">
             <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
             <div class="flex space-x-0">
-                <a href="/horario/{{ $user->section->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
-                <a href="/horario/personal/{{ $user->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
+                <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
                 <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
 
             </div>
@@ -36,7 +36,7 @@
                         2 => 'bg-sky-500', // Martes
                         3 => 'bg-sky-600', // Miércoles
                         4 => 'bg-sky-500', // Jueves
-                        5 => 'bg-sky-500', // Viernes
+                        5 => 'bg-sky-700', // Viernes
                         6 => 'bg-sky-800', // Sábado
                         0 => 'bg-sky-900', // Domingo
                         default => 'bg-gray-100',
