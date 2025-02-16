@@ -48,6 +48,7 @@
 
                         <!-- Lista de notificaciones -->
                         <ul class="mt-4 space-y-2">
+
                             <li class="flex flex-col items-center px-4 py-4 bg-blue-50 rounded-lg">
                                 <div class="flex justify-between w-full mb-4">
                                     <div>
@@ -83,13 +84,28 @@
                                     </table>
                                 </div>
                             </li>
+                            @if(auth()->user()->notifications->isEmpty())
+                                <li class="px-4 py-4 text-center text-gray-500">
+                                    No hay nuevas notificaciones.
+                                </li>
+                            @else
+                                @foreach(auth()->user()->notifications as $notification)
+                                    @php
+                                        $isUnread = !$notification->read;
+                                        $bgColor = $isUnread ? 'bg-blue-100' : 'bg-blue-50';
+                                    @endphp
 
-                            <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                                <span class="text-md text-gray-700">Formularios a rellenar de Diciembre</span>
-                            </li>
-                            <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                                <span class="text-md text-gray-700">Encuesta de satisfacción Noviembre</span>
-                            </li>
+                                    <li class="flex items-center px-4 py-4 rounded-lg {{ $bgColor }}">
+                                        @if($notification->url)
+                                            <a href="{{ $notification->url }}" class="text-md text-blue-700 font-semibold hover:underline">
+                                                {{ $notification->message }}
+                                            </a>
+                                        @else
+                                            <span class="text-md text-gray-700">{{ $notification->message }}</span>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </section>
                     <x-sections.all-sections></x-sections.all-sections>
@@ -251,6 +267,7 @@
 
                     <!-- Lista de notificaciones -->
                     <ul class="mt-4 space-y-2">
+
                         <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
                             <div class="flex justify-between">
                                 <h3>Confirmar cambio de turno</h3>
@@ -281,7 +298,30 @@
                         <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
                             <span class="text-md text-gray-700">Encuesta de satisfacción Agosto</span>
                         </li>
+                        @if(auth()->user()->notifications->isEmpty())
+                            <li class="px-4 py-4 text-center text-gray-500">
+                                No hay nuevas notificaciones.
+                            </li>
+                        @else
+                            @foreach(auth()->user()->notifications as $notification)
+                                @php
+                                    $isUnread = !$notification->read;
+                                    $bgColor = $isUnread ? 'bg-blue-100' : 'bg-blue-50';
+                                @endphp
+
+                                <li class="flex items-center px-4 py-4 rounded-lg {{ $bgColor }}">
+                                    @if($notification->url)
+                                        <a href="{{ $notification->url }}" class="text-md text-blue-700 font-semibold hover:underline">
+                                            {{ $notification->message }}
+                                        </a>
+                                    @else
+                                        <span class="text-md text-gray-700">{{ $notification->message }}</span>
+                                    @endif
+                                </li>
+                    @endforeach
+                    @endif
                     </ul>
+
                 </section>
                 <x-sections.all-sections></x-sections.all-sections>
 

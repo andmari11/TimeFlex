@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Notification;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\User;
@@ -77,6 +78,15 @@ class FastApiController extends Controller
             ]);
         }
         $data['shiftsJSON'] = json_encode($schedule->shifts);
+        foreach ($schedule->section->company->admins as $user) {
+            Notification::create([
+                'user_id' => $user->id,
+                'message' => "Nuevo horario {$schedule->name} disponible.",
+                'url' => "/horario/{$schedule->id}",
+                'read' => false,
+                'tipo' => 'normal',
+            ]);
+        }
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
@@ -131,7 +141,6 @@ class FastApiController extends Controller
                     }
                 }
             }
-
             return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
         }
         return response()->json(['message' => 'Se ha producido un error'], 404);

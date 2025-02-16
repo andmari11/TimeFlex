@@ -75,3 +75,7 @@ Route::post('/register-section/', [SectionController::class, 'store'])->middlewa
 Route::get('/sections/{id}/edit', [SectionController::class, 'edit'])->middleware('auth');
 Route::patch('/sections/{id}/edit', [SectionController::class, 'update'])->middleware('auth');
 Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->middleware('auth');
+
+Route::get('/unread-notifications', function () {
+    return auth()->user()->unreadNotifications->count();
+})->middleware('auth');

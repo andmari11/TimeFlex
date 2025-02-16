@@ -19,7 +19,6 @@ class Section extends Model
 
         return $this->hasMany(User::class);
     }
-
     public function company()
     {
         return $this->belongsTo(Company::class);
