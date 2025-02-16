@@ -62,4 +62,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Shift::class);
     }
+    public function notifications()
+    {
+        $this->updateReadNotifications();
+        return $this->hasMany(Notification::class)->latest()->take(10);
+    }
+    public function unreadNotifications()
+    {
+        return $this->hasMany(Notification::class)->where('read', false);
+    }
+
+    public function updateReadNotifications()
+    {
+        $ret= $this->hasMany(Notification::class);
+        $ret->update(['read' => true]);
+    }
 }
