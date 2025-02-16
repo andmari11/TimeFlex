@@ -109,13 +109,12 @@ class ScheduleController extends Controller
                 'is_current_month' => $currentDay->month === $month->month,
                 'is_passed' => $currentDay->isBefore(now()->startOfDay()),
                 'is_working_day' => !$currentDay->isWeekend() && $hasShift,
-                'shifts'=> $shifts->filter(function ($shift) use ($currentDay) {
-                    return $currentDay->between($shift->start->startOfDay(), $shift->end->endOfDay());
+                'shifts'=> $schedule->shifts->filter(function ($shift) use ($user, $currentDay) {
+                    return in_array($user->id, $shift->users->pluck('id')->toArray()) && Carbon::parse($shift->start)->isSameDay($currentDay);
                 })
             ]);
             $currentDay->addDay();
         }
-
         $nextShift= $schedule->shifts->filter(function ($shift) use ($user) {
             return in_array($user->id, $shift->users->pluck('id')->toArray());
         })->first(function ($shift) {

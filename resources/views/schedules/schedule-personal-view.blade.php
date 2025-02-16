@@ -30,7 +30,7 @@
                         $date = $day['date'];
                         $dayOfWeek = $day['day_of_week'];
                         $isPassed = $day['is_passed'];
-                        $isWorkingDay = $day['is_working_day'];
+                        $isWorkingDay = $day['shifts']->count() > 0;
                         $isCurrentMonth = $day['is_current_month'];
 
                         $bgColor = !$isCurrentMonth
@@ -42,21 +42,21 @@
                         $textColor = ($isWorkingDay) ? 'text-white' : 'text-gray-800';
 
                     @endphp
-                    <div class="relative border {{ $bgColor }} {{ $textColor }} rounded-lg p-5 h-24 shadow text-left">
+                    <div class="relative border {{ $bgColor }} {{ $textColor }} rounded-lg p-5 min-h-24 h-auto shadow text-left">
                         <span class="absolute top-0 left-0 m-2">{{ $date->format('d') }}</span>
 
                         @if ($isWorkingDay)
-                            <div class="absolute inset-0 flex items-center justify-center">
-
+                            <div class="inset-0 flex flex-col mt-5 items-center justify-start space-y-1 overflow-auto">
                                 @foreach($day['shifts'] as $shift)
-                                    <div class="bg-white text-sky-400 font-bold py-1 px-2 rounded mr-2">
-                                        {{ $shift['start'] }} - {{ $shift['end'] }}
+                                    <div class="bg-white text-sky-400 font-bold py-1 px-2 rounded ">
+                                        {{ \Carbon\Carbon::parse($shift['start'])->format('H:i') }} - {{ \Carbon\Carbon::parse($shift['end'])->format('H:i') }}
                                     </div>
                                 @endforeach
-
                             </div>
                         @endif
                     </div>
+
+
                 @endforeach
             </div>
             <div class="flex-1 mt-8 ml-10 p-4 shadow rounded-lg">
