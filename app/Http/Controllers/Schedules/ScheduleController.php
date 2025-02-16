@@ -35,94 +35,65 @@ class ScheduleController extends Controller
 
     }
 
+
     public function show($id)
     {
-        $schedule = Schedule::find($id);
+        $scheduleData = $this->prepareScheduleData($id);
 
-        // Determinar el mes del primer turno (shift) en el schedule
-        $firstShift = collect($schedule->shifts)->first();
-        if ($firstShift) {
-            $month = Carbon::parse($firstShift['start'])->startOfMonth();
-        } else {
-            $month = Carbon::now()->startOfMonth(); // Mes actual si no hay turnos
-        }
-        BrowserHistoryController::add(
-            "Horario " . $schedule->section->name, url()->current()
-        );
-        // Ajustar para que comience el calendario desde el lunes anterior
-        $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
-        $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
-
-        // Generar las fechas de todo el rango ajustado
-        $days = collect();
-        $currentDay = $startOfCalendar;
-
-        while ($currentDay <= $endOfCalendar) {
-            $days->push([
-                'date' => $currentDay->copy(),
-                'day_of_week' => $currentDay->dayOfWeek,
-                'is_current_month' => $currentDay->month === $month->month, // Identificar si pertenece al mes
-            ]);
-            $currentDay->addDay();
-        }
-        $user = auth()->user();
-        return view('schedules/single-schedule-view', compact('schedule', 'days', 'user'));
+        return view('schedules/single-schedule-view', $scheduleData);
     }
-
-
     public function showPersonal($id)
     {
-        BrowserHistoryController::add(
-            'Horario personal', url()->current()
-        );
-        $schedule = Schedule::find($id);
-        $user = auth()->user();
-        if (!$schedule and !$schedule->shifts->isEmpty()) {
-            $shifts = $schedule->shifts->filter(function ($shift) use ($user) {
-                return in_array($user->id, $shift->users->pluck('id')->toArray());            });
-        } else {
-            $shifts = collect(); // vacío
-        }
-        // Determinar el mes del primer turno (shift) en el schedule
-        $firstShift = collect($schedule->shifts)->first();
-        if ($firstShift) {
-            $month = Carbon::parse($firstShift['start'])->startOfMonth();
-        } else {
-            $month = Carbon::now()->startOfMonth(); // Mes actual si no hay turnos
-        }
+        $scheduleData = $this->preparePersonalScheduleData($id);
+        $nextShift = $scheduleData['shifts']->first(function ($shift) {
+            return Carbon::parse($shift['start'])->isAfter(now());
+        });
 
-        // Ajustar para que comience el calendario desde el lunes anterior
+        return view('schedules/schedule-personal-view', array_merge($scheduleData, compact('nextShift')));
+    }
+
+    public function showPersonalShift($id_schedule, $id_shift)
+    {
+        $scheduleData = $this->preparePersonalScheduleData($id_schedule);
+        $nextShift = $scheduleData['schedule']->shifts->find($id_shift);
+
+        return view('schedules/schedule-personal-view', array_merge($scheduleData, compact('nextShift')));
+    }
+
+    private function preparePersonalScheduleData($id)
+    {
+        BrowserHistoryController::add('Horario personal', url()->current());
+
+        $schedule = Schedule::findOrFail($id);
+        $user = auth()->user();
+
+        $shifts = $schedule->shifts->filter(fn($shift) => in_array($user->id, $shift->users->pluck('id')->toArray()));
+
+        $firstShift = $schedule->shifts->first();
+        $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
+
         $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
         $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
 
-        // Generar las fechas de todo el rango ajustado
         $days = collect();
-        $currentDay = $startOfCalendar;
+        for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+            $hasShift = $shifts->some(fn($shift) => $currentDay->between(
+                Carbon::parse($shift->start)->startOfDay(),
+                Carbon::parse($shift->end)->endOfDay()
+            ));
 
-        while ($currentDay <= $endOfCalendar) {
-            $hasShift = $shifts->some(function ($shift) use ($currentDay) {
-                return $currentDay->between($shift->start->startOfDay(), $shift->end->endOfDay());
-            });
             $days->push([
                 'date' => $currentDay->copy(),
                 'day_of_week' => $currentDay->dayOfWeek,
                 'is_current_month' => $currentDay->month === $month->month,
                 'is_passed' => $currentDay->isBefore(now()->startOfDay()),
                 'is_working_day' => !$currentDay->isWeekend() && $hasShift,
-                'shifts'=> $schedule->shifts->filter(function ($shift) use ($user, $currentDay) {
-                    return in_array($user->id, $shift->users->pluck('id')->toArray()) && Carbon::parse($shift->start)->isSameDay($currentDay);
-                })
+                'shifts' => $shifts->filter(fn($shift) => Carbon::parse($shift->start)->isSameDay($currentDay))
             ]);
-            $currentDay->addDay();
         }
-        $nextShift= $schedule->shifts->filter(function ($shift) use ($user) {
-            return in_array($user->id, $shift->users->pluck('id')->toArray());
-        })->first(function ($shift) {
-            return Carbon::parse($shift['start'])->isAfter(now());
-        });
-        return view('schedules/schedule-personal-view', compact('schedule','user', 'shifts', 'days', 'nextShift'));
-    }
 
+        return compact('schedule', 'user', 'shifts', 'days');
+    }
     public function stats()
     {
         $schedule = Schedule::find(1);
@@ -136,4 +107,45 @@ class ScheduleController extends Controller
         $imgUrl = 'data:image/png;base64,' . $img;
         return view('schedules/stats', compact('schedule','user', 'imgUrl'));
     }
+
+    public function showShift($id_schedule, $id_shift)
+    {
+        $scheduleData = $this->prepareScheduleData($id_schedule);
+        $shiftToView = $scheduleData['schedule']->shifts->find($id_shift);
+
+        return view('schedules/single-schedule-shift-view', array_merge($scheduleData, compact('shiftToView')));
+    }
+
+    private function prepareScheduleData($id)
+    {
+        $schedule = Schedule::findOrFail($id);
+
+        // Determinar el mes del primer turno (shift)
+        $firstShift = collect($schedule->shifts)->first();
+        $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
+
+        // Guardar en el historial del navegador
+        BrowserHistoryController::add("Horario " . $schedule->section->name, url()->current());
+
+        // Ajustar para que el calendario comience el lunes anterior
+        $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
+        $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+
+        // Generar las fechas dentro del rango
+        $days = collect();
+        for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+            $days->push([
+                'date' => $currentDay->copy(),
+                'day_of_week' => $currentDay->dayOfWeek,
+                'is_current_month' => $currentDay->month === $month->month,
+            ]);
+        }
+
+        return [
+            'schedule' => $schedule,
+            'days' => $days,
+            'user' => auth()->user()
+        ];
+    }
+
 }

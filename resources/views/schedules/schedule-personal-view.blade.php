@@ -49,7 +49,9 @@
                             <div class="inset-0 flex flex-col mt-5 items-center justify-start space-y-1 overflow-auto">
                                 @foreach($day['shifts'] as $shift)
                                     <div class="bg-white text-sky-400 font-bold py-1 px-2 rounded ">
+                                        <a href="{{ url('/horario/personal/' . $schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
                                         {{ \Carbon\Carbon::parse($shift['start'])->format('H:i') }} - {{ \Carbon\Carbon::parse($shift['end'])->format('H:i') }}
+                                        </a>
                                     </div>
                                 @endforeach
                             </div>
@@ -82,7 +84,7 @@
                             <p class="pb-2"><strong>Inicio:</strong> {{ \Carbon\Carbon::parse($nextShift->start)->format('H:i') }}  - {{ \Carbon\Carbon::parse($nextShift->start)->format('d/m/Y') }}</p>
                             <p class="pb-2"><strong>Fin:</strong> {{ \Carbon\Carbon::parse($nextShift->end)->format('H:i') }} - {{ \Carbon\Carbon::parse($nextShift->end)->format('d/m/Y') }} </p>
 
-                            <p class="pb-2"><strong>Notas:</strong> {{ $nextShift->notes ?? 'Sin notas' }}</p>
+                            <p class="pb-2 text-center"><strong>Notas:</strong> {{ $nextShift->notes ?? 'Sin notas' }}</p>
 
                             <p class="pb-2"><strong>Trabajadores ({{ $nextShift->users_needed }} usuarios necesarios):</strong></p>
                             <ul>

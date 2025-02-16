@@ -47,7 +47,11 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
+Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');
+
 Route::get('/horario/personal/{id}', [ScheduleController::class, 'showPersonal'])->middleware('auth');
+Route::get('/horario/personal/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showPersonalShift'])->middleware('auth');
+
 Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 
 Route::get('forms', function (){
