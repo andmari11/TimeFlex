@@ -72,7 +72,7 @@
                                             <tr>
                                                 <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">Juan Pérez</td>
                                                 <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">L 8:00-12:00</td>
-                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs font-bold py-1 px-2 rounded">M 12:00-16:00</td>
+                                                <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-bold py-1 px-2 rounded">M 12:00-16:00</td>
                                             </tr>
                                             <tr>
                                                 <td class="px-4 py-2 bg-blue-50 text-sky-900 text-xs text-center font-semibold py-1 px-2 rounded">María López</td>
