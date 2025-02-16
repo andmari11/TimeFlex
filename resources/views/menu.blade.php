@@ -71,14 +71,14 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">Juan Pérez</td>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">L13 8:00-12:00</td>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">M14 12:00-16:00</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">Juan Pérez</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">13/2/2024 <br> (8:00-12:00)</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">14/2/2024 <br> (12:00-16:00)</td>
                                             </tr>
                                             <tr>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">María López</td>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">X18 9:00-13:00</td>
-                                                <td class="px-2 py-1 bg-blue-50 text-sky-900 text-xs text-center font-bold rounded">J19 14:00-18:00</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-s text-center font-semibold rounded">María López</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">14/2/2024 <br> (12:00-16:00)</td>
+                                                <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">13/2/2024 <br> (8:00-12:00)</td>
                                             </tr>
                                         </tbody>
                                     </table>
