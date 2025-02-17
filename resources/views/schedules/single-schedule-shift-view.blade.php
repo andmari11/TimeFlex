@@ -2,8 +2,8 @@
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
     <div class="flex justify-between">
 
-    <x-schedules.single-schedule-calendar class="basis-[70%] flex-grow" :schedule="$schedule" :days="$days"></x-schedules.single-schedule-calendar>
-    <div class="basis-[30%] flex-grow mt-8 p-4 mr-10 w-30 shadow rounded-lg bg-white">
+    <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule" :days="$days"></x-schedules.single-schedule-calendar>
+    <div class="basis-[50%] flex-grow mt-8 p-4 mr-10 w-30 shadow rounded-lg bg-white">
         @if ($shiftToView)
             <div class="mx-auto mt-20 flex flex-col justify-center items-center">
                 <h3 class="text-xl font-bold mb-3">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3> <!-- Muestra el día de comienzo en español -->

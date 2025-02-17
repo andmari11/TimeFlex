@@ -55,7 +55,7 @@
                                     <a href="{{ url('/horario/' . $schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
 
                                     <strong>{{ $shiftStart->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
-                                    <span>({{ $shift['users_needed'] }} trabajadores)</span>
+                                    <span><br>({{ $shift['users_needed'] }} trabajadores)</span>
 
                                     <!-- Mostrar etiquetas para los trabajadores -->
                                     @if (isset($shift['users']) && count($shift['users']) > 0)
