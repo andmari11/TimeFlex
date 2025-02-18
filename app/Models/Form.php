@@ -17,7 +17,6 @@ class Form extends Model
         'id_user',
         'title',
         'summary',
-        'status',
         'start_date',
         'end_date',
     ];

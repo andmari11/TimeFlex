@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Form;
 use App\Models\QuestionType;
 use App\Models\Question;
+use App\Models\Option;
 use Illuminate\Support\Facades\DB;
 
 class FormsController extends Controller
@@ -33,30 +34,40 @@ class FormsController extends Controller
     // Guardar un nuevo formulario y sus preguntas
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'summary' => 'required|string',
-            'status' => 'required|boolean',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'questions' => 'required|array',
-            'questions.*.title' => 'required|string|max:255',
-            'questions.*.id_question_type' => 'required|integer|exists:question_type,id'
-        ]);
-
+       
         // Crear el formulario
-        $formulario = Form::create($request->only(['title', 'summary', 'status', 'start_date', 'end_date']));
+        $formulario = Form::create([
+            'id_user' => $request->user()->id,
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'status' => $request->status,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
 
         // Crear las preguntas del formulario
         foreach ($request->questions as $questionData) {
             $question = new Question($questionData);
             $question->id_form = $formulario->id;
             $question->save();
+
+            if (isset($questionData['options'])) {
+                foreach ($questionData['options'] as $option) {
+                    $questionOption = new Option([
+                        'id_question' => $question->id,
+                        'value' => $option
+                    ]);
+                    $questionOption->save();
+                }
+            }
         }
 
         return redirect()->route('forms.index')
             ->with('success', 'Formulario y preguntas creados exitosamente.');
     }
+
+
+
 
 
     // Mostrar formulario para agregar una nueva pregunta

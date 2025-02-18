@@ -4,6 +4,9 @@
             @csrf
             <div class="space-y-1 row">
 
+
+                <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
+
                 <x-forms.field class="col-12">
                     <x-forms.label for="title">Título</x-forms.label>
                     <x-forms.input name="title" id="title" :value="old('title')" required />
@@ -35,7 +38,6 @@
                 <div id="questions-container">
                     <div class="question-template">
                         <x-forms.field class="col-12">
-                            <!-- Revisar manejo ids -->
                             <x-forms.label for="questions[0][title]">Título de la Pregunta</x-forms.label>
                             <x-forms.input name="questions[0][title]" id="questions[0][title]" required />
                             <x-forms.error name="questions[0][title]" />

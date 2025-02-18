@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user'); // Foreign key -> Revisar para que varios users tengan acceso al mismo formulario
             $table->string('title'); // Título de la encuesta
             $table->text('summary'); // Resumen del contenido
-            $table->boolean('status')->default(false); // Estado de la encuesta (completada o no)
+            //$table->boolean('status')->default(false); // Estado de la encuesta (completada o no)
             $table->timestamp('start_date')->nullable(); // Fecha y hora de inicio de acceso
             $table->timestamp('end_date')->nullable(); // Fecha y hora de fin de acceso
 
