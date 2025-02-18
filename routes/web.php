@@ -49,6 +49,7 @@ Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth'
 Route::get('formularios/create', [FormsController::class, 'create'])->middleware('auth');
 Route::get('/register-form/', [FormsController::class, 'create'])->middleware('auth');
 Route::post('/register-form/', [FormsController::class, 'store'])->middleware('auth');
+Route::delete('/formularios/{id}/delete', [FormsController::class, 'destroy'])->middleware('auth')->name('forms.destroy');
 
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');

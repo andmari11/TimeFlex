@@ -66,42 +66,17 @@ class FormsController extends Controller
             ->with('success', 'Formulario y preguntas creados exitosamente.');
     }
 
-
-
-
-
-    // Mostrar formulario para agregar una nueva pregunta
-    public function createQuestion($formId) {
-        $formulario = Form::find($formId);
-        $tiposDePregunta = QuestionType::all();
-        return view('questions.create', compact('formulario', 'tiposDePregunta'));
-    }
-
-    // Guardar una nueva pregunta
-    public function storeQuestion(Request $request, $formId)
+    // Eliminar un formulario
+    public function destroy($id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'id_question_type' => 'required|integer|exists:question_types,id',
-            'options' => 'array',
-            'options.*' => 'string' // Cada opción debe ser una cadena de texto
-        ]);
+        // Encuentra el formulario por su ID
+        $formulario = Form::findOrFail($id);
 
-        $question = new Question($request->all());
-        $question->id_form = $formId;
-        $question->save();
+        // Elimina el formulario
+        $formulario->delete();
 
-        // Si el tipo de pregunta es "Opciones", agregar las opciones
-        if ($request->id_question_type == 1) { // Suponiendo que el tipo de pregunta "Opciones" tiene el ID 1
-            foreach ($request->options as $optionText) {
-                $option = new Option();
-                $option->id_question = $question->id;
-                $option->value = $optionText;
-                $option->save();
-            }
-        }
-
-        return redirect()->route('forms.show', $formId)
-            ->with('success', 'Pregunta creada exitosamente.');
+        // Redirige a la lista de formularios con un mensaje de éxito
+        return redirect()->route('forms.index')
+            ->with('success', 'Formulario eliminado exitosamente.');
     }
 }
