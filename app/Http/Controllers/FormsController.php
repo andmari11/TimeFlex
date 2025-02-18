@@ -34,7 +34,7 @@ class FormsController extends Controller
     // Guardar un nuevo formulario y sus preguntas
     public function store(Request $request)
     {
-       
+
         // Crear el formulario
         $formulario = Form::create([
             'id_user' => $request->user()->id,

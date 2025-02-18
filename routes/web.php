@@ -45,7 +45,7 @@ Route::get('/ayuda', function () {
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 
-Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth');
+Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth')->name('forms.index');
 Route::get('formularios/create', [FormsController::class, 'create'])->middleware('auth');
 Route::get('/register-form/', [FormsController::class, 'create'])->middleware('auth');
 Route::post('/register-form/', [FormsController::class, 'store'])->middleware('auth');
