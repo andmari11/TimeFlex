@@ -67,10 +67,30 @@ class FormsController extends Controller
     }
 
     // Guardar una nueva pregunta
-    public function storeQuestion(Request $request, $formId) {
+    public function storeQuestion(Request $request, $formId)
+    {
         $request->validate([
             'title' => 'required|string|max:255',
             'id_question_type' => 'required|integer|exists:question_types,id',
             'options' => 'array',
-            'options.*' => 'string' // Cada opción debe ser una cadena de texto ]); $question = new Question($request->all()); $question->id_form = $formId; $question->save(); // Si el tipo de pregunta es "Opciones", agregar las opciones if ($request->id_question_type == 1) { // Suponiendo que el tipo de pregunta "Opciones" tiene el ID 1 foreach ($request->options as $optionText) { $option = new Option(); $option->id_question = $question->id; $option->value = $optionText; $option->save(); } } return redirect()->route('forms.show', $formId) ->with('success', 'Pregunta creada exitosamente.'); }
+            'options.*' => 'string' // Cada opción debe ser una cadena de texto
+        ]);
+
+        $question = new Question($request->all());
+        $question->id_form = $formId;
+        $question->save();
+
+        // Si el tipo de pregunta es "Opciones", agregar las opciones
+        if ($request->id_question_type == 1) { // Suponiendo que el tipo de pregunta "Opciones" tiene el ID 1
+            foreach ($request->options as $optionText) {
+                $option = new Option();
+                $option->id_question = $question->id;
+                $option->value = $optionText;
+                $option->save();
+            }
+        }
+
+        return redirect()->route('forms.show', $formId)
+            ->with('success', 'Pregunta creada exitosamente.');
+    }
 }

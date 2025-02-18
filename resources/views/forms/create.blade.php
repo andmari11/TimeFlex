@@ -35,6 +35,7 @@
                 <div id="questions-container">
                     <div class="question-template">
                         <x-forms.field class="col-12">
+                            <!-- Revisar manejo ids -->
                             <x-forms.label for="questions[0][title]">Título de la Pregunta</x-forms.label>
                             <x-forms.input name="questions[0][title]" id="questions[0][title]" required />
                             <x-forms.error name="questions[0][title]" />
@@ -42,7 +43,7 @@
 
                         <x-forms.field class="col-12">
                             <x-forms.label for="questions[0][id_question_type]">Tipo de Pregunta</x-forms.label>
-                            <select name="questions[0][id_question_type]" id="questions[0][id_question_type]" required>
+                            <select name="questions[0][id_question_type]" id="questions[0][id_question_type]" required onchange="showQuestionFields(this, 0)">
                                 <option value="" disabled selected>Selecciona el tipo de pregunta</option>
                                 @foreach(\App\Models\QuestionType::all() as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -50,6 +51,8 @@
                             </select>
                             <x-forms.error name="questions[0][id_question_type]" />
                         </x-forms.field>
+
+                        <div id="question-fields-0"></div>
                     </div>
                 </div>
 
@@ -75,7 +78,44 @@
                 input.value = '';
             });
 
+            template.querySelector('select').setAttribute('onchange', `showQuestionFields(this, ${index})`);
+            template.querySelector('#question-fields-0').id = `question-fields-${index}`;
+
             container.appendChild(template);
         });
+
+        function showQuestionFields(select, index) {
+            const fieldsContainer = document.getElementById(`question-fields-${index}`);
+            fieldsContainer.innerHTML = '';
+
+            switch (select.value) {
+                case '2': // ID del tipo de pregunta 'Selector'
+                    fieldsContainer.innerHTML = `
+                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 1" required />
+                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 2" required />
+                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 3" required />
+                    `;
+                    const addButton = document.createElement('button');
+                    addButton.type = 'button';
+                    addButton.innerText = 'Agregar Opción';
+                    addButton.addEventListener('click', function() {
+                        addOption(index);
+                    });
+                    fieldsContainer.appendChild(addButton);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function addOption(index) {
+            const fieldsContainer = document.getElementById(`question-fields-${index}`);
+            const newOption = document.createElement('input');
+            newOption.type = 'text';
+            newOption.name = `questions[${index}][options][]`;
+            newOption.placeholder = `Opción ${fieldsContainer.querySelectorAll('input').length + 1}`;
+            newOption.required = true;
+            fieldsContainer.insertBefore(newOption, fieldsContainer.querySelector('button'));
+        }
     </script>
 </x-layout>
