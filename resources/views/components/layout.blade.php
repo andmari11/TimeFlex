@@ -25,7 +25,7 @@
             .catch(error => console.error('Error al obtener las notificaciones:', error));
     }
 
-    setInterval(checkUnreadNotifications, 5000);
+    setInterval(checkUnreadNotifications, 1000);
 
     checkUnreadNotifications();
 </script>

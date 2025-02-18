@@ -27,22 +27,22 @@ class FastApiController extends Controller
             [
                 "user_id" => auth()->user()->id,
                 "holidays" => json_encode([
-                    Carbon::now()->startOfMonth()->toDateTimeString(),  // Primer día del mes actual
-                    Carbon::now()->addDay()->startOfMonth()->toDateTimeString()  // Segundo día del mes actual
+//                    Carbon::now()->startOfMonth()->toDateTimeString(),  // Primer día del mes actual
+//                    Carbon::now()->addDay()->startOfMonth()->toDateTimeString()  // Segundo día del mes actual
                 ]),
             ],
             [
                 "user_id" => 2,
                 "holidays" => json_encode([
-                    Carbon::now()->addDays(4)->startOfMonth()->toDateTimeString(),  // Día 5 del mes actual
-                    Carbon::now()->addDays(5)->startOfMonth()->toDateTimeString()   // Día 6 del mes actual
+//                    Carbon::now()->addDays(4)->startOfMonth()->toDateTimeString(),  // Día 5 del mes actual
+//                    Carbon::now()->addDays(5)->startOfMonth()->toDateTimeString()   // Día 6 del mes actual
                 ])
             ],
             [
                 "user_id" => 3,
                 "holidays" => json_encode([
-                    Carbon::now()->addDays(2)->startOfMonth()->toDateTimeString(),  // Día 3 del mes actual
-                    Carbon::now()->addDays(3)->startOfMonth()->toDateTimeString()   // Día 4 del mes actual
+//                    Carbon::now()->addDays(2)->startOfMonth()->toDateTimeString(),  // Día 3 del mes actual
+//                    Carbon::now()->addDays(3)->startOfMonth()->toDateTimeString()   // Día 4 del mes actual
                 ])
             ]
         ];
@@ -51,11 +51,11 @@ class FastApiController extends Controller
         }
         $data['usersJSON'] =json_encode($worker_preferences);
 
-
-        $month = (Carbon::now()->month+1)%12;  // Obtener el mes actual
+        $day = Carbon::now()->day;  // Obtener el día actual
+        $month = (Carbon::now()->month)%12;  // Obtener el mes actual
         $year = Carbon::now()->year;    // Obtener el año actual
 
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = $day; $i <= $day+5; $i++) {
             // Crear el turno de mañana
             Shift::factory()->create([
                 'schedule_id' => $schedule->id,
