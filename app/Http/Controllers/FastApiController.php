@@ -56,6 +56,10 @@ class FastApiController extends Controller
         $year = Carbon::now()->year;    // Obtener el año actual
 
         for ($i = $day; $i <= $day+5; $i++) {
+            $currentDate = Carbon::createFromDate($year, $month, $i);
+            if ($currentDate->month != $month) {
+                break; // Salir del bucle si nos pasamos de mes
+            }
             // Crear el turno de mañana
             Shift::factory()->create([
                 'schedule_id' => $schedule->id,
