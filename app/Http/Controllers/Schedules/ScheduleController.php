@@ -116,6 +116,14 @@ class ScheduleController extends Controller
         return view('schedules/single-schedule-shift-view', array_merge($scheduleData, compact('shiftToView')));
     }
 
+    public function showUser($id_schedule, $id_user)
+    {
+        $scheduleData = $this->prepareScheduleData($id_schedule);
+        $userToView = $scheduleData['schedule']->shifts->find($id_user);
+
+        return view('schedules/single-schedule-user-view', array_merge($scheduleData, compact('userToView')));
+    }
+
     private function prepareScheduleData($id)
     {
         $schedule = Schedule::findOrFail($id);
