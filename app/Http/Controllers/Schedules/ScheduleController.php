@@ -6,6 +6,7 @@ use App\Http\Controllers\BrowserHistoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FastApiController;
 use App\Models\Schedule;
+use App\Models\User;
 use Carbon\Carbon;
 
 class ScheduleController extends Controller
@@ -119,7 +120,7 @@ class ScheduleController extends Controller
     public function showUser($id_schedule, $id_user)
     {
         $scheduleData = $this->prepareScheduleData($id_schedule);
-        $userToView = $scheduleData['schedule']->shifts->find($id_user);
+        $userToView = User::findOrFail($id_user);
 
         return view('schedules/single-schedule-user-view', array_merge($scheduleData, compact('userToView')));
     }
