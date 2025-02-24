@@ -30,8 +30,8 @@ class Question extends Model
     /**
      * Obtener el tipo de pregunta asociado.
      */
-    public function questionType()
+    public function options()
     {
-        return $this->belongsTo(QuestionType::class);
+        return $this->hasMany(Option::class, 'id_question');
     }
 }
