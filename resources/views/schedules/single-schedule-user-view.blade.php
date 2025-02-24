@@ -1,3 +1,4 @@
+
 <x-layout :title="'Calendario'">
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
     <div class="flex justify-between">
@@ -9,7 +10,7 @@
                 @if ($userToView->id !== auth()->user()->id)
                     <div class="m-6">
                         @foreach($usersShifts as $shift)
-                            <div class="p-4 bg-blue-50 mb-6 shadow rounded-xl my-1 relative w-full max-w-lg mx-auto">
+                            <div class="p-4 bg-blue-50 mb-6 shadow rounded-xl my-1 relative max-w-lg mx-auto">
                                 <div class="absolute top-2 right-2">
                                 </div>
 
