@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
 use Illuminate\Http\Request;
 use App\Models\Form;
 use App\Models\QuestionType;
@@ -22,7 +23,7 @@ class FormsController extends Controller
     public function show($id)
     {
         $formulario = Form::with('questions')->find($id);
-        return view('forms.index', compact('formulario'));
+        return view('forms.show', compact('formulario'));
     }
 
     // Mostrar formulario para crear un nuevo formulario
@@ -145,4 +146,42 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'Formulario actualizado exitosamente.');
     }
+
+    public function submit(Request $request, $id)
+    {
+        $formulario = Form::with('questions')->findOrFail($id);
+
+        // Validar las respuestas del formulario
+        $validatedData = $request->validate([
+            'answers' => 'required|array',
+            'answers.*' => 'required',
+        ]);
+
+        // Procesar y guardar las respuestas
+        foreach ($formulario->questions as $index => $question) {
+            $answer = $validatedData['answers'][$index];
+
+            if ($question->id_question_type == 2) {
+                // Para las preguntas tipo selector, buscar la opción correspondiente
+                $option = Option::where('id_question', $question->id)
+                    ->where('value', $answer)
+                    ->firstOrFail();
+                $optionId = $option->id;
+            } else {
+                // Para otros tipos de preguntas, usar el valor de la respuesta directamente
+                $optionId = Option::create([
+                    'id_question' => $question->id,
+                    'value' => $answer,
+                ])->id;
+            }
+
+            // Guardar la respuesta en la tabla results
+            Result::create([
+                'id_option' => $optionId,
+            ]);
+        }
+
+        return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
+    }
+
 }

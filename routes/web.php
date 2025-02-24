@@ -52,8 +52,8 @@ Route::post('/register-form/', [FormsController::class, 'store'])->middleware('a
 Route::delete('/formularios/{id}/delete', [FormsController::class, 'destroy'])->middleware('auth')->name('forms.destroy');
 Route::get('/formularios/{id}/edit', [FormsController::class, 'edit'])->middleware('auth')->name('forms.edit');
 Route::put('/formularios/{id}', [FormsController::class, 'update'])->middleware('auth')->name('forms.update');
-Route::get('/formularios/{id}', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
-
+Route::get('/formularios/{id}/show', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
+Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->middleware('auth')->name('forms.submit');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
