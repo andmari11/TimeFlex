@@ -121,8 +121,9 @@ class ScheduleController extends Controller
     {
         $scheduleData = $this->prepareScheduleData($id_schedule);
         $userToView = User::findOrFail($id_user);
+        $usersShifts = $scheduleData['schedule']->shifts->filter(fn($shift) => in_array($userToView->id, $shift->users->pluck('id')->toArray()));
 
-        return view('schedules/single-schedule-user-view', array_merge($scheduleData, compact('userToView')));
+        return view('schedules/single-schedule-user-view', array_merge($scheduleData, compact('userToView','usersShifts')));
     }
 
     private function prepareScheduleData($id)
