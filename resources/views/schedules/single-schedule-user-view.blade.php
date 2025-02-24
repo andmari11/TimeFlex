@@ -6,7 +6,9 @@
         <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule" :days="$days"></x-schedules.single-schedule-calendar>
         <div class="basis-[50%] flex-grow mb-10 flex-column align-items-center justify-content-center mt-8 p-4 mr-10 w-30 shadow rounded-lg bg-white">
             @if ($userToView)
-            <x-users.employee-section :employee="$userToView"></x-users.employee-section>
+                <div class="mx-auto w-full">
+                    <x-users.employee-section :employee="$userToView"></x-users.employee-section>
+                </div>
                 @if ($userToView->id !== auth()->user()->id)
                     <div class="m-6">
                         @foreach($usersShifts as $shift)

@@ -13,10 +13,11 @@
                 <p class="pb-2 text-center"><strong>Notas:</strong> {{ $shiftToView->notes ?? 'Sin notas' }}</p>
 
                 <p class="pb-2"><strong>Trabajadores ({{ $shiftToView->users_needed }} usuarios necesarios):</strong></p>
-                <div class="flex flex-col gap-2 mt-4">
+                <div class="flex flex-col gap-2 mt-4 w-full">
                     @foreach ($shiftToView->users as $user)
-                        <x-users.employee-section class="w-full pb-2" :employee="$user"></x-users.employee-section>
-
+                        <div class="w-full p-6 mb-6 bg-sky-50 rounded-2xl">
+                            <x-users.employee-item  :employee="$user"></x-users.employee-item>
+                        </div>
                     @endforeach
                 </div>
 
