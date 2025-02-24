@@ -87,11 +87,15 @@
                             <p class="pb-2 text-center"><strong>Notas:</strong> {{ $nextShift->notes ?? 'Sin notas' }}</p>
 
                             <p class="pb-2"><strong>Trabajadores ({{ $nextShift->users_needed }} usuarios necesarios):</strong></p>
-                            <ul>
-                                @foreach ($nextShift->users as $user)
-                                    <li class="ps-4 pb-2">- {{ $user->name }}</li>
-                                @endforeach
-                            </ul>
+                        <div class="flex flex-col gap-2 mt-4 w-full ">
+                            @foreach ($nextShift->users as $user)
+                                @if($user->id !== auth()->user()->id)
+                                    <x-users.employee-section class="w-full pb-2" :employee="$user"></x-users.employee-section>
+                                @endif
+
+                            @endforeach
+                        </div>
+
 
                     </div>
                 @endif

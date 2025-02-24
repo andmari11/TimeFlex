@@ -1,4 +1,4 @@
-<div class="p-4  bg-blue-50 shadow rounded-xl my-1 max-w-lg mx-auto">
+<div class="p-4  bg-blue-50 shadow rounded-xl my-1 max-w-lg">
     <div class="flex items-center justify-center">
         <img class="h-20 w-20 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
     </div>
