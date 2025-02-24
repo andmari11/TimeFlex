@@ -13,11 +13,12 @@
                 <p class="pb-2 text-center"><strong>Notas:</strong> {{ $shiftToView->notes ?? 'Sin notas' }}</p>
 
                 <p class="pb-2"><strong>Trabajadores ({{ $shiftToView->users_needed }} usuarios necesarios):</strong></p>
-                <ul>
+                <div class="flex flex-col gap-2 mt-4">
                     @foreach ($shiftToView->users as $user)
-                        <li class="ps-4 pb-2">- {{ $user->name }}</li>
+                        <x-users.employee-section class="w-full pb-2" :employee="$user"></x-users.employee-section>
+
                     @endforeach
-                </ul>
+                </div>
 
             </div>
         @endif

@@ -6,7 +6,12 @@
         <h3 class="text-xl text-gray-700 my-2 font-bold">{{$employee->name}}</h3>
         <h3 class="text-lg text-gray-700 my-2 bg-white/10 hover:bg-white/35 px-3 py-1 rounded-xl">{{$employee->section->name}}</h3>
         <a class="text-lg text-gray-700 my-2 hover:underline">{{$employee->email}}</a>
-        <a class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
+        @if($employee->section->schedules->isNotEmpty())
+            <a href="/horario/{{$employee->section->schedules->last()->id}}/usuario/{{auth()->user()->id}}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
+        @else
+            <p class="text-lg text-gray-700 my-2 rounded-xl ">No tiene horario asignado</p>
+        @endif
+
     </div>
     @if(auth()->user()->role === 'admin')
         <a href="/sections/{{$employee->section->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
