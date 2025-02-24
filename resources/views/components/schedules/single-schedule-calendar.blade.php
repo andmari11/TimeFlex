@@ -1,15 +1,14 @@
 <div class="p-4 m-10 bg-white shadow rounded-xl">
+    @if(!isset($showButtons) or $showButtons)
     <div class="flex justify-end">
         <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
         <div class="flex space-x-0">
             <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
             <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
             <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
-
         </div>
-
     </div>
-
+    @endif
 
     <!-- Contenedor del calendario -->
     <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center mt-8">

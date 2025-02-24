@@ -3,8 +3,17 @@
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
     <div class="flex justify-between">
 
-        <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule" :days="$days"></x-schedules.single-schedule-calendar>
-        <div class="basis-[50%] flex-grow mb-10 flex-column align-items-center justify-content-center mt-8 p-4 mr-10 w-30 shadow rounded-lg bg-white">
+        <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule" :days="$days" :showButtons="false"></x-schedules.single-schedule-calendar>
+        <div class="basis-[50%] flex-grow mb-10 flex-column align-items-center justify-content-center mt-10 p-4 mr-10 w-30 shadow rounded-lg bg-white">
+            <div class="flex justify-end">
+                <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
+                <div class="flex space-x-0 mb-8">
+                    <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
+                    <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                    <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
+
+                </div>
+            </div>
             @if ($userToView)
                 <div class="mx-auto w-full">
                     <x-users.employee-section :employee="$userToView"></x-users.employee-section>
@@ -12,7 +21,7 @@
                 @if ($userToView->id !== auth()->user()->id)
                     <div class="m-6">
                         @foreach($usersShifts as $shift)
-                            <div class="p-4 bg-blue-50 mb-6 shadow rounded-xl my-1 relative max-w-lg mx-auto">
+                            <div class="p-4 bg-blue-50 mb-4 shadow rounded-xl my-1 relative max-w-lg mx-auto">
                                 <div class="absolute top-2 right-2">
                                 </div>
 
