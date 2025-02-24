@@ -30,13 +30,14 @@
                             }
                         @endphp
                         @if(isset($nextShift))
-                            <nav class="py-5 border-b border-blue/10">
-                                <h3 class="font-bold text-xl hover:underline">Siguiente turno:</h3>
-                                <div class="py-2">
-                                    <p class="text-xl ps-4">- {{ ucfirst($formattedDate) }}:</p>
-                                    <p class="text-lg ps-6">{{ $startTime }} -> {{ $endTime }}</p>
+                            <nav class="py-6 border-b border-gray-300 bg-white shadow-sm">
+                                <h3 class="font-bold text-2xl text-gray-800 hover:underline transition duration-200">Siguiente turno:</h3>
+                                <div class="flex items-center space-x-3 mt-5 mb-4">
+                                    <p class="text-xl font-semibold text-sky-900">🕒 {{ ucfirst($formattedDate) }}</p>
+                                    <p class="text-xl font-semibold text-gray-600">({{ $startTime }} → {{ $endTime }})</p>
                                 </div>
                             </nav>
+
                         @else
                             <nav class="py-5 border-b border-blue/10">
                                 <h3 class="font-bold text-xl hover:underline">No hay turnos próximos</h3>

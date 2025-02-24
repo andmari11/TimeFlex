@@ -31,10 +31,10 @@
                     1 => 'bg-sky-400', // Lunes
                     2 => 'bg-sky-500', // Martes
                     3 => 'bg-sky-600', // Miércoles
-                    4 => 'bg-sky-500', // Jueves
-                    5 => 'bg-sky-700', // Viernes
-                    6 => 'bg-sky-800', // Sábado
-                    0 => 'bg-sky-900', // Domingo
+                    4 => 'bg-sky-700', // Jueves
+                    5 => 'bg-sky-800', // Viernes
+                    6 => 'bg-sky-900', // Sábado
+                    0 => 'bg-sky-950', // Domingo
                     default => 'bg-gray-100',
                 } : 'bg-gray-200'; // Color apagado para días fuera del mes
             @endphp
