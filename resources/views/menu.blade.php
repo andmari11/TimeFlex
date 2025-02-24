@@ -31,10 +31,12 @@
                         @endphp
                         @if(isset($nextShift))
                             <nav class="py-6 border-b border-gray-300 bg-white shadow-sm">
-                                <h3 class="font-bold text-2xl text-gray-800 hover:underline transition duration-200">Siguiente turno:</h3>
-                                <div class="flex items-center space-x-3 mt-5 mb-4">
-                                    <p class="text-xl font-semibold text-sky-900">🕒 {{ ucfirst($formattedDate) }}</p>
-                                    <p class="text-xl font-semibold text-gray-600">({{ $startTime }} → {{ $endTime }})</p>
+                                <h3 class="font-bold text-2xl text-gray-800 hover:underline transition duration-200">🕒 Siguiente turno:</h3>
+                                <div class="flex justify-center space-x-3 mt-5 mb-4">
+                                    <div class="flex flex-col">
+                                        <p class="text-2xl font-semibold text-sky-900 text-center"> {{ ucfirst($formattedDate) }}</p>
+                                        <p class="text-xl font-semibold text-gray-600 text-center">({{ $startTime }} → {{ $endTime }})</p>
+                                    </div>
                                 </div>
                             </nav>
 
