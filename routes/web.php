@@ -54,7 +54,7 @@ Route::get('/horario/{id_schedule}/user/{id_user}', [ScheduleController::class, 
 Route::get('/horario/personal/{id}', [ScheduleController::class, 'showPersonal'])->middleware('auth');
 Route::get('/horario/personal/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showPersonalShift'])->middleware('auth');
 
-Route::get('/register-shift-exchange/', [ShiftExchangeController::class, 'create'])->middleware('auth');
+Route::get('/register-shift-exchange', [ShiftExchangeController::class, 'create'])->middleware('auth');
 
 Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 

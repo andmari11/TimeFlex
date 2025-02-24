@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="flex flex-col gap-2 mt-4">
-                                    <a href="/" class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300">
+                                    <a href="/register-shift-exchange" class="w-full bg-blue-600 hover:bg-blue-500 text-center px-4 py-2 rounded-xl text-white text-bold transition-all duration-300">
                                         Solicitar cambio de turno
                                     </a>
                                 </div>
