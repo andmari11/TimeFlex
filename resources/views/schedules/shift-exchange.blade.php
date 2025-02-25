@@ -15,6 +15,11 @@
                     </select>
                     <x-forms.error name="shift" />
                 </x-forms.field>
+                <x-forms.field class="col-12">
+                    <x-forms.label for="reason">Motivo del cambio</x-forms.label>
+                    <textarea class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" name="reason" id="reason" required></textarea>
+                    <x-forms.error name="reason" />
+                </x-forms.field>
             </div>
 
             <div class="mt-6 flex items-center justify-between">
