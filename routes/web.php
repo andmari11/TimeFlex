@@ -3,7 +3,6 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\StatsController;
 use App\Http\Controllers\Schedules\ScheduleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Sections\SectionController;
