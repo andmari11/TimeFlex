@@ -111,7 +111,9 @@ async def send_schedule(data):
             response = await client.post("http://timeflex.test/fastapi-schedule", json=solution_to_send)
             #response = await client.post("http://127.0.0.1:8000/fastapi-schedule", json=solution_to_send)
 
-            print(response.json())
+            print(f"Response status code: {response.status_code}")
+            print(f"Response headers: {response.headers}")
+            print(f"Response content: {response.json()}")
         except Exception as e:
             print(f"Error during POST request: {e}")
             response = None

@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->boolean('read')->default(false);
             $table->string('tipo')->default('normal');
-            $table->foreignIdFor(\App\Models\ShiftExchange::class)->nullable();
-//            $table->foreignId('shift_exchange_id');
+            $table->foreignIdFor(\App\Models\ShiftExchange::class)->nullable()->constrained()->onDelete('cascade');
 
         });
     }

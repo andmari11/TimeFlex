@@ -51,8 +51,8 @@ class FastApiController extends Controller
         }
         $data['usersJSON'] =json_encode($worker_preferences);
 
-        $day = Carbon::now()->day;  // Obtener el día actual
-        $month = (Carbon::now()->month)%12;  // Obtener el mes actual
+        $day = Carbon::now()->addDays(2)->day;  // Obtener el día actual
+        $month = (Carbon::now()->addDays(2)->month)%12;  // Obtener el mes actual
         $year = Carbon::now()->year;    // Obtener el año actual
 
         for ($i = $day; $i <= $day+5; $i++) {
@@ -114,11 +114,13 @@ class FastApiController extends Controller
         foreach ($schedule->section->company->admins as $user) {
             Notification::create([
                 'user_id' => $user->id,
-                'message' => "Nuevo horario {$schedule->name} disponible. ($data[status])",
+                'message' => "Nuevo horario {$schedule->name} disponible.",
                 'url' => "/horario/{$schedule->id}",
                 'read' => false,
                 'tipo' => 'normal',
+                'shift_exchange_id' => $shiftExchange->id ?? null, // Asegurar que existe
             ]);
+
         }
         if($schedule) {
             $schedule->update([

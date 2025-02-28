@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ShiftExchange extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'demander_id',
-        'receiver_id',
-        'shift_receiver_id',
-        'shift_demander_id',
-    ];
+protected $fillable = [
+    'demander_id',
+    'receiver_id',
+    'shift_receiver_id',
+    'shift_demander_id',
+
+];
 
     public function demander()
     {

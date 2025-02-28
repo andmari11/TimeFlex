@@ -61,7 +61,7 @@ class ScheduleController extends Controller
         return view('schedules/schedule-personal-view', array_merge($scheduleData, compact('nextShift')));
     }
 
-    private function preparePersonalScheduleData($id)
+    public static function preparePersonalScheduleData($id)
     {
         BrowserHistoryController::add('Horario personal', url()->current());
 
@@ -126,7 +126,7 @@ class ScheduleController extends Controller
         return view('schedules/single-schedule-user-view', array_merge($scheduleData, compact('userToView','usersShifts')));
     }
 
-    private function prepareScheduleData($id)
+    public static function prepareScheduleData($id)
     {
         $schedule = Schedule::findOrFail($id);
 

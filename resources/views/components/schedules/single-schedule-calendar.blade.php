@@ -60,9 +60,14 @@
                                     @if (isset($shift['users']) && count($shift['users']) > 0)
                                         <div class="mt-2 flex flex-wrap gap-1">
                                             @foreach ($shift['users'] as $user)
-                                                <a href="{{url('/horario/' . $schedule->id . '/user/' . $user->id)}}" class="bg-blue-200 text-blue-800 text-xs font-semibold py-1 px-2 rounded">
+                                                    <a href="{{url('/horario/' . $schedule->id . '/user/' . $user->id)}}" class="bg-blue-200 text-blue-800 text-xs font-semibold py-1 px-2 rounded">
                                                         {{ $user['name'] }}
+                                                        @if(auth()->user()->id == $user->id)
+                                                            {{"(Tú)"}}
+                                                        @endif
                                                     </a>
+
+
                                             @endforeach
                                         </div>
                                         @else
