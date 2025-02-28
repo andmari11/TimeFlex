@@ -8,16 +8,16 @@
 <div class="flex ">
 
     <aside id="default-sidebar" class="min-w-[275px] top-12 left-0 z-40 w-64  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-        <div class=" px-3 overflow-y-auto bg-gray-50 dark:bg-gray-800 h-full">
+        <div class=" px-3 overflow-y-auto bg-gray-800 h-full">
             <div class="flex flex-col h-screen">
                 <!-- Sección principal -->
                 <ul class="space-y-4 font-medium pt-4">
                     <li>
                         <a href="/menu"
                            class="flex items-center p-2 rounded-lg group
-                                  {{ Request::is('menu') ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                                  {{ Request::is('menu') ? 'bg-gray-700 text-white' : 'text-white hover:bg-gray-700' }}">
                             <svg class="w-6 h-6 transition duration-75
-                                        {{ Request::is('menu') ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                                        {{ Request::is('menu') ? 'text-white' : 'text-gray-400 group-hover:text-white' }}"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
@@ -28,9 +28,9 @@
                         <li>
                             <a href="/menu/{{ $section->id }}"
                                class="flex items-center p-2 rounded-lg group
-                                      {{ Request::is('menu/' . $section->id) ? 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                                      {{ Request::is('menu/' . $section->id) ? 'bg-gray-700 text-white' : 'text-white hover:bg-gray-700' }}">
                                 <svg class="w-6 h-6 transition duration-75
-                                            {{ Request::is('menu/' . $section->id) ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                                            {{ Request::is('menu/' . $section->id) ? 'text-white' : 'text-gray-400 group-hover:text-white' }}"
                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -41,9 +41,9 @@
                 </ul>
 
                 @if(session('historial_accesos'))
-                    <ul class="mt-auto mb-20 pt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                    <ul class="mt-auto mb-20 pt-4 space-y-2 font-medium border-t border-gray-700">
                         <div class="text-white p-2 flex items-center">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
                             </svg>
@@ -52,8 +52,8 @@
 
                         @foreach(session('historial_accesos') as $item)
                             <li>
-                                <a href="{{ $item['link'] }}" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <a href="{{ $item['link'] }}" class="flex items-center p-2  transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
+                                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
                                     <span class="ms-3">{{ $item['titulo'] }}</span>
