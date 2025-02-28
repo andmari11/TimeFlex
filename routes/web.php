@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\Schedules\ScheduleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Sections\SectionController;
@@ -39,6 +40,11 @@ Route::get('/about-us', function () {
 // devolver la vista contact en contact
 Route::get('/contact', function () {
     return view('contact');
+});
+
+// devolver la vista contact en contact
+Route::get('/estadisticas', function () {
+    return view('estadisticas');
 });
 
 Route::get('/ayuda', function () {

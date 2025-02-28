@@ -348,9 +348,10 @@
                         <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Formularios
                         </button>
-                        <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                        <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Estadísticas
-                        </button>
+                        </a>
+
                         <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Satisfacción
                         </button>
