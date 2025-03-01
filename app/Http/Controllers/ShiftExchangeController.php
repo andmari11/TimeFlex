@@ -46,8 +46,8 @@ class ShiftExchangeController extends Controller
             'reason' => 'required',
         ]);
 
-        $user_receiver = Shift::find($data['shift_id_someone'])->user;
-
+        //$user_receiver = Shift::find($data['shift_id_someone'])->users->first();
+        $user_receiver= null;
         $exchange = ShiftExchange::create([
             'demander_id' => auth()->user()->id,
             'receiver_id' => $user_receiver->id ?? null,
@@ -78,7 +78,7 @@ class ShiftExchangeController extends Controller
         $notification->save();
 
 
-        return redirect('/horario/' . $data['schedule_id'] . '/turno/' . $data['shift_id_someone']);
+        return redirect('/menu');
     }
 
     public function cancelExchange($id)
@@ -87,20 +87,27 @@ class ShiftExchangeController extends Controller
         $exchange->delete();
 
         $notification = new Notification();
-        $notification->user_id = $exchange->receiver_id ?? null;
+        $notification->user_id = $exchange->demander_id ?? null;
         $notification->message = 'Han cancelado tu solicitud de cambio de turno';
         $notification->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
         $notification->save();
 
-        return redirect('/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id);
+        Notification::where('shift_exchange_id', $id)->delete();
+
+        return redirect('/menu');
 
     }
 
     public function acceptExchange($id)
     {
         $exchange = ShiftExchange::find($id);
+        if(auth()->user()->role == 'admin'){
+            $this->acceptExchangeAdmin($id);
+            return redirect('/menu');
+        }
+
+        //TODO: mirar config
         if(true){
-            $user_receiver = User::find($exchange->receiver_id);
             $user_demander = User::find($exchange->demander_id);
             $section =User::find($exchange->demander_id)->section;
             foreach ($section->company->admins as $user) {
@@ -115,7 +122,7 @@ class ShiftExchangeController extends Controller
         else{
             $this->acceptExchangeAdmin();
         }
-        return redirect('/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id);
+        return redirect('/menu');
 
     }
 
@@ -125,13 +132,25 @@ class ShiftExchangeController extends Controller
         $receiver = User::find($exchange->receiver_id);
         $emitent = User::find($exchange->demander_id);
 
-        $receiver->shifts()->attach($exchange->shift_demander_id);
+
+        if($receiver){
+            $receiver->shifts()->attach($exchange->shift_demander_id);
+            $receiver->shifts()->detach($exchange->shift_receiver_id);
+        }
         $emitent->shifts()->attach($exchange->shift_receiver_id);
+        $emitent->shifts()->detach($exchange->shift_demander_id);
+
+        $notification = new Notification();
+        $notification->user_id = $exchange->demander_id ?? null;
+        $notification->message = 'Han aceptado tu solicitud de cambio de turno';
+        $notification->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
+        $notification->save();
 
         $exchange->delete();
 
+        Notification::where('shift_exchange_id', $id)->delete();
 
-        return redirect('/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id);
+        return redirect('/menu');
 
     }
 }

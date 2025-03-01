@@ -15,7 +15,7 @@
                     <div class="ms-3 mt-5 text-2xl p-2 font-bold">
                         Bienvenido, Admin
                     </div>
-                    <section class="relative w-full bg-white px-8 rounded-lg shadow-md mt-5 ml-4">
+                    <section class="relative w-full bg-white px-5 rounded-lg shadow-md mt-5 ml-4">
                         <div class="absolute top-4 right-4">
                             <svg class="w-9 h-9 text-blue-500 transition duration-75 dark:text-blue-900 group-hover:text-blue-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
@@ -181,7 +181,7 @@
                 <div class="ms-3 mt-5 text-2xl p-2 font-bold">
                     Bienvenido, User
                 </div>
-                <section class="relative w-full bg-white px-8 rounded-lg mt-5 ml-4">
+                <section class="relative w-full bg-white px-5 rounded-lg mt-5 ml-4">
                     <div class="absolute top-4 right-4">
                         <svg class="w-9 h-9 text-blue-500 transition duration-75 dark:text-blue-900 group-hover:text-blue-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />

@@ -4,10 +4,16 @@
             <h3><strong>{{$notification->message}}</strong></h3>
         </div>
         <div class="flex-grow"></div> <!-- Espaciador flexible para empujar los botones a la derecha -->
-<div class="flex space-x-2"> <!-- Añadir espacio entre los botones -->
-            <a href="/" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white max-h-6">Aceptar</a>
-            <a href="/" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white max-h-6">Rechazar</a>
-        </div>
+    <div class="flex space-x-2"> <!-- Añadir espacio entre los botones -->
+        <form action="/shift-exchange/accept/{{ $notification->shiftExchange->id }}" method="POST">
+            @csrf
+            <button type="submit" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white max-h-6">Aceptar</button>
+        </form>
+        <form action="/shift-exchange/cancel/{{ $notification->shiftExchange->id }}" method="POST">
+                @csrf
+            <button type="submit" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white max-h-6">Rechazar</button>
+        </form>
+    </div>
     </div>
     <div class="w-full"> <!-- Contenedor de la tabla -->
         <table class="w-full border-collapse border-0">

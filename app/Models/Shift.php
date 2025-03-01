@@ -17,4 +17,8 @@ class Shift extends Model
     {
         return $this->belongsToMany(User::class, 'shift_user');
     }
+    public function hasUser($id_user)
+    {
+        return $this->users()->where('user_id', $id_user)->exists();
+    }
 }

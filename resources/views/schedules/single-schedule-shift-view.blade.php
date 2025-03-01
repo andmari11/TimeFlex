@@ -3,7 +3,7 @@
     <div class="flex justify-between">
 
     <x-schedules.single-schedule-calendar class="basis-[40%] flex-grow " :schedule="$schedule" :days="$days" :showButtons="false"></x-schedules.single-schedule-calendar>
-    <div class="basis-[70%] flex-grow mt-10 p-4 mr-10 w-30 shadow rounded-lg bg-white w-full">
+    <div class="flex-grow mt-10 p-4 max-w-xl mr-10 w-30 shadow rounded-lg bg-white w-full">
         <div class="flex justify-end">
             <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
             <div class="flex space-x-0 mb-8">
@@ -14,8 +14,23 @@
             </div>
         </div>
         @if ($shiftToView)
-            <div class="mx-auto mt-20 flex flex-col justify-center items-center">
-                <h3 class="text-xl font-bold mb-3">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3> <!-- Muestra el día de comienzo en español -->
+            <div class="mx-auto mt-y0 flex flex-col justify-center items-center">
+                @if(!$shiftToView->hasUser(Auth::user()->id))
+                    <div class="flex items-center justify-center w-full mb-3 px-4">
+                        <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
+                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shiftToView->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+                            Cambio de turno
+                        </a>
+                    </div>
+                @else
+                    <div class="flex items-center justify-center w-full mb-3 px-8">
+                        <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
+                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shiftToView->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+                            Cambio de turno
+                        </a>
+                    </div>
+                @endif
+
                 <p class="pb-2"><strong>Inicio:</strong> {{ \Carbon\Carbon::parse($shiftToView->start)->format('H:i') }}  - {{ \Carbon\Carbon::parse($shiftToView->start)->format('d/m/Y') }}</p>
                 <p class="pb-2"><strong>Fin:</strong> {{ \Carbon\Carbon::parse($shiftToView->end)->format('H:i') }} - {{ \Carbon\Carbon::parse($shiftToView->end)->format('d/m/Y') }} </p>
 

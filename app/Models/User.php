@@ -77,4 +77,5 @@ class User extends Authenticatable
         $ret= $this->hasMany(Notification::class);
         $ret->update(['read' => true]);
     }
+
 }
