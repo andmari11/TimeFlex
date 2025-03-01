@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shift_exchanges', function (Blueprint $table) {
             $table->id();
             $table->foreignId('demander_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade')->nullable();
+            $table->foreignId('receiver_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('shift_receiver_id')->constrained('shifts')->onDelete('cascade');
             $table->foreignId('shift_demander_id')->constrained('shifts')->onDelete('cascade');
             $table->timestamps();

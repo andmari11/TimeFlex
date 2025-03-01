@@ -1,6 +1,6 @@
 @props(['id_shift_mine', 'id_shift_someone', 'schedule', 'days', 'showButtons'])
 
-<div class="p-4 m-10 bg-white shadow rounded-xl">
+<div class="p-4 m-10 bg-white shadow rounded-xl w-full">
     @if(!isset($showButtons) or $showButtons)
         <div class="flex justify-end">
             <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
@@ -13,7 +13,7 @@
     @endif
 
     <!-- Contenedor del calendario -->
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center mt-8">
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center mt-8 w-full">
         <!-- Cabecera con nombres de los días -->
         <div class="font-bold hidden lg:block">Lunes</div>
         <div class="font-bold hidden lg:block">Martes</div>

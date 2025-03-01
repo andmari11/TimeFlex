@@ -4,7 +4,7 @@
     <div class="flex justify-between">
 
         <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule" :days="$days" :showButtons="false"></x-schedules.single-schedule-calendar>
-        <div class="basis-[50%] flex-grow mb-10 flex-column align-items-center justify-content-center mt-10 p-4 mr-10 w-30 shadow rounded-lg bg-white">
+        <div class="basis-[70%] flex-grow mb-10 flex-column align-items-center justify-content-center mt-10 p-4 mr-10 w-30 shadow rounded-lg bg-white">
             <div class="flex justify-end">
                 <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
                 <div class="flex space-x-0 mb-8">

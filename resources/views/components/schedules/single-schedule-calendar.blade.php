@@ -26,7 +26,8 @@
             @php
                 $date = $day['date'];
                 $dayOfWeek = $day['day_of_week'];
-                $isCurrentMonth = $day['is_current_month'];
+                $isCurrentMonth = $day['is_current_month'] && (!$date->isPast() or $date->isToday());
+                $isToday = $date->isToday();
                 $bgColor = $isCurrentMonth ? match ($dayOfWeek) {
                     1 => 'bg-sky-400', // Lunes
                     2 => 'bg-sky-500', // Martes
@@ -40,7 +41,7 @@
             @endphp
 
             <div class="border {{ $isCurrentMonth ? 'bg-gray-100' : 'bg-gray-200 hidden lg:block' }} rounded-lg p-2 shadow">
-                <h3 class="font-bold text-lg {{ $isCurrentMonth ? '' : 'text-gray-400' }}">
+                <h3 class="font-bold text-lg {{ $isCurrentMonth ? '' : 'text-gray-400' }} {{$isToday? 'underline': ''}}" >
                     {{ $date->format('d') }}
                 </h3>
                 @if ($isCurrentMonth)
