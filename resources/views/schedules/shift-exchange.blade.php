@@ -2,7 +2,7 @@
 @props([])
 
 <x-layout :title="'Calendario'">
-    <x-page-heading> Cambio de turno</x-page-heading>
+    <x-page-heading> Solicitud de cambio de turno</x-page-heading>
     <div class="flex justify-between">
 
         <x-schedules.shift-exchange-calendar class="basis-[50%] flex-grow w-full" :id_shift_mine="$id_shift_mine??null"  :id_shift_someone="$id_shift_someone" :schedule="$schedule" :days="$days" :showButtons="false"></x-schedules.shift-exchange-calendar>
@@ -67,6 +67,9 @@
                             <x-forms.button formaction="/shift-exchange">Registrar cambio de turno</x-forms.button>
                         @endif
                     </div>
+
+                <div class="col-12 px-4 pt-5 text-center text-sm text-gray-600">
+                    ¿No lo tienes claro? <a class="hover:underlined text-blue-400 hover:pointer hover:underline" href="/ayuda">Contacta con un responsable</a> que te ayude a encontrar el turno que te venga mejor.                </div>
             </form>
         </div>
         </div>

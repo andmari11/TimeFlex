@@ -21,7 +21,18 @@
                     <div class="m-6">
                         @foreach($usersShifts as $shift)
                             <div class="p-4 bg-blue-50 mb-4 shadow rounded-xl my-1 relative max-w-lg mx-auto">
-                                <div class="absolute top-2 right-2">
+                                <div class="absolute top-2 right-2 py-2">
+                                    @if($userToView->id!=auth()->user()->id)
+
+                                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shift->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+                                            Cambio de turno
+                                        </a>
+                                    @else
+                                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shift->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+                                            Cambio de turno
+                                        </a>
+                                    @endif
+
                                 </div>
 
                                 <h3 class="text-xl font-bold mb-3 ">

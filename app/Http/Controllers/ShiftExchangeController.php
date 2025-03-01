@@ -12,6 +12,24 @@ use Illuminate\Http\Request;
 
 class ShiftExchangeController extends Controller
 {
+    public function selectAdmin($id_schedule,$workerSelected_id, $id_shift_someone, $id_shift_mine)
+    {
+        $scheduleData = ScheduleController::prepareScheduleData($id_schedule);
+        $workerSelected = User::find($workerSelected_id);
+        if($workerSelected){
+            $userShifts = $workerSelected->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
+                return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
+            });
+        }
+        else{
+            $userShifts = [];
+        }
+
+        $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
+        $workers = Schedule::find($id_schedule)->section->users;
+        return view('schedules.shift-exchange-admin', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts', 'workers', 'workerSelected')));
+    }
+
     public function select($id_schedule, $id_shift_someone)
     {
 
@@ -153,4 +171,40 @@ class ShiftExchangeController extends Controller
         return redirect('/menu');
 
     }
+
+    public function createExchangeAdmin()
+    {
+        $data = request()->validate([
+            'schedule_id' => 'required',
+            'shift_id_someone' => 'required',
+            'shift_id_mine' => 'required',
+            'worker_id' => 'required',
+            'reason' => 'required',
+        ]);
+
+        //$user_receiver = Shift::find($data['shift_id_someone'])->users->first();
+        $user_receiver= null;
+
+        if ($user_receiver != null) {
+            $notification = new Notification();
+            $notification->user_id = $user_receiver->id;
+            $notification->tipo = 'exchange';
+            $notification->message = 'Administración ha cambiado un turno';
+            $notification->url = '/horario/' . $data['schedule_id'] . '/turno/' . $data['shift_id_mine'];
+            $notification->save();
+            $user_receiver->shifts()->attach($data['shift_id_mine']);
+            $user_receiver->shifts()->detach($data['shift_id_someone']);
+        }
+        $notification = new Notification();
+        $notification->user_id = $data['worker_id'];
+        $notification->message = 'Administración ha cambiado un turno';
+        $notification->url = '/horario/' . $data['schedule_id'] . '/turno/' . $data['shift_id_someone'];
+        $notification->save();
+        $emitent = User::find($data['worker_id']);
+        $emitent->shifts()->attach($data['shift_id_someone']);
+        $emitent->shifts()->detach($data['shift_id_mine']);
+
+        return redirect('/menu');
+    }
+
 }
