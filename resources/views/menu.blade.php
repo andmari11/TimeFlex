@@ -31,7 +31,7 @@
                         @endphp
                         @if(isset($nextShift))
                             <nav class="py-6 bg-white">
-                                <h3 class="font-bold text-2xl text-gray-800 hover:underline transition duration-200">🕒 Siguiente turno:</h3>
+                                <h3 class="font-bold text-2xl border-b border-blue/10 pb-5 text-gray-800 transition duration-200">🕒 Siguiente turno:</h3>
                                 <div class="flex justify-center space-x-3 mt-5 mb-4">
                                     <div class="flex flex-col">
                                         <p class="text-2xl font-semibold text-sky-900 text-center"> {{ ucfirst($formattedDate) }}</p>
@@ -179,24 +179,16 @@
         <div class="flex flex-wrap">
             <div class="flex flex-col w-1/3 px-8">
                 <div class="ms-3 mt-5 text-2xl p-2 font-bold">
-                    Bienvenido, User
+                    Bienvenido, {{ auth()->user()->name ?? 'Empleado' }}
                 </div>
                 <section class="relative w-full bg-white px-5 rounded-lg mt-5 ml-4">
-                    <div class="absolute top-4 right-4">
+                    <div class="absolute top-6 right-4">
                         <svg class="w-9 h-9 text-blue-500 transition duration-75 dark:text-blue-900 group-hover:text-blue-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
                         </svg>
                     </div>
-                    <nav class="py-5 border-b border-blue/10">
-                        <h3 class="font-bold text-xl hover:underline">Siguiente turno:</h3>
-                        <div class="py-2">
-                            <p class="text-xl ps-4">- Jueves 18:</p>
-                            <p class="text-lg ps-6">10:00 -> 14:00</p>
-                        </div>
-
-                    </nav>
                     <nav class="py-6 bg-white">
-                        <h3 class="font-bold text-2xl text-gray-800 hover:underline transition duration-200">🕒 Siguiente turno:</h3>
+                        <h3 class="font-bold text-2xl border-b border-blue/10 pb-5 text-gray-800 transition duration-200">🕒 Siguiente turno:</h3>
                         <div class="flex justify-center space-x-3 mt-5 mb-4">
                             <div class="flex flex-col">
                                 <p class="text-2xl font-semibold text-sky-900 text-center"> {{ "Jueves 18:" }}</p>
@@ -225,56 +217,6 @@
                     <!-- Lista de notificaciones -->
                     <ul class="mt-4 space-y-2">
 
-                        <li class="flex flex-col items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <div class="flex justify-between w-full mb-4">
-                                <div>
-                                    <h3><strong>Cambio de turno con María</strong></h3>
-                                </div>
-                                <div class="flex-grow"></div> <!-- Espaciador flexible para empujar los botones a la derecha -->
-                                <div class="flex space-x-2"> <!-- Añadir espacio entre los botones -->
-                                    <a href="/" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Aceptar</a>
-                                    <a href="/" class="bg-red-500 px-2 py-1 rounded-xl text-xs text-white">Rechazar</a>
-                                </div>
-                            </div>
-                            <div class="w-full"> <!-- Contenedor de la tabla -->
-                                <table class="w-full border-collapse border-0">
-                                    <thead>
-                                    <tr>
-                                        <th class="px-2 py-1 text-center">Turno Actual</th>
-                                        <th class="px-2 py-1 text-center">Posible turno</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr>
-                                        <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">14/2/2024 <br> (12:00-16:00)</td>
-                                        <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">13/2/2024 <br> (8:00-12:00)</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Formularios a rellenar de Diciembre</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Encuesta de satisfacción Noviembre</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Solicitud de día libre aceptada</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Encuesta de satisfacción Octubre</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Encuesta de satisfacción Septiembre</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Baja por maternidad Agustina</span>
-                        </li>
-                        <li class="flex items-center px-4 py-4 bg-blue-50 rounded-lg">
-                            <span class="text-md text-gray-700">Encuesta de satisfacción Agosto</span>
-                        </li>
                         @if(auth()->user()->notifications->isEmpty())
                             <li class="px-4 py-4 text-center text-gray-500">
                                 No hay nuevas notificaciones.
@@ -286,17 +228,22 @@
                                     $bgColor = $isUnread ? 'bg-blue-100' : 'bg-blue-50';
                                 @endphp
 
-                                <li class="flex items-center px-4 py-4 rounded-lg {{ $bgColor }}">
-                                    @if($notification->url)
-                                        <a href="{{ $notification->url }}" class="text-md text-blue-700 font-semibold hover:underline">
-                                            {{ $notification->message }}
-                                        </a>
-                                    @else
-                                        <span class="text-md text-gray-700">{{ $notification->message }}</span>
-                                    @endif
-                                </li>
-                    @endforeach
-                    @endif
+                                @if($notification->shiftExchange==null)
+                                    <li class="flex items-center px-4 py-4 rounded-lg {{ $bgColor }}">
+                                        @if($notification->url)
+                                            <a href="{{ $notification->url }}" class="text-md text-blue-700 font-semibold hover:underline">
+                                                {{ $notification->message }}
+                                            </a>
+                                        @else
+                                            <span class="text-md text-gray-700">{{ $notification->message }}</span>
+                                        @endif
+                                    </li>
+                                @else
+                                    <x-notifications.exchange-shift-bonif :notification="$notification"></x-notifications.exchange-shift-bonif>
+
+                                @endif
+                            @endforeach
+                        @endif
                     </ul>
 
                 </section>

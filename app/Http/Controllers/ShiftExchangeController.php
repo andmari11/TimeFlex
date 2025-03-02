@@ -64,8 +64,7 @@ class ShiftExchangeController extends Controller
             'reason' => 'required',
         ]);
 
-        //$user_receiver = Shift::find($data['shift_id_someone'])->users->first();
-        $user_receiver= null;
+        $user_receiver = Shift::find($data['shift_id_someone'])->users->first();
         $exchange = ShiftExchange::create([
             'demander_id' => auth()->user()->id,
             'receiver_id' => $user_receiver->id ?? null,
@@ -123,7 +122,7 @@ class ShiftExchangeController extends Controller
             $this->acceptExchangeAdmin($id);
             return redirect('/menu');
         }
-
+        auth()->user()->notifications->where('shift_exchange_id', $id)->each->delete();
         //TODO: mirar config
         if(true){
             $user_demander = User::find($exchange->demander_id);
@@ -182,8 +181,7 @@ class ShiftExchangeController extends Controller
             'reason' => 'required',
         ]);
 
-        //$user_receiver = Shift::find($data['shift_id_someone'])->users->first();
-        $user_receiver= null;
+        $user_receiver = Shift::find($data['shift_id_someone'])->users->first();
 
         if ($user_receiver != null) {
             $notification = new Notification();

@@ -147,7 +147,7 @@ s.minimize(Sum(deviations))
 shift_types = {0: 'm', 1: 't', 2: 'n'}
 if s.check() == sat:
     m = s.model()
-    print("---------- Horario por empleado ----------\n")
+    print("\n---------- Horario por empleado ----------\n")
     for i in range(n_workers):
         worker_schedule = []
         for j in range(n_shifts):
@@ -156,14 +156,14 @@ if s.check() == sat:
                 
         print(f"Worker {workers[i].user_id} works shifts {worker_schedule}")
 
-    print("---------- Horario por turno ----------\n")
+    print("\n---------- Horario por turno ----------\n")
     for j in range(n_shifts):
         workers_in_shift = []
         for i in range(n_workers):
             workers_in_shift.append(m.eval(all_workers_shifts[i][j]))
         print(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
 
-    print("---------- Satisfacción ----------\n")
+    print("\n---------- Satisfacción ----------\n")
     this_satisfaction_score=satisfaction_score(all_workers_shifts, workers, shifts)
     print("Satisfaction score this calendar: ", this_satisfaction_score)
     last_calendar_scores = [sum(workers[i].past_satisfaction) / len(workers[i].past_satisfaction) for i in range(n_workers)]
