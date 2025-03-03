@@ -104,10 +104,14 @@ class FormsController extends Controller
 
         // Actualizar las preguntas del formulario
         foreach ($request->questions as $index => $questionData) {
+
             if (isset($questionData['id'])) {
                 // Actualizar pregunta existente
                 $question = Question::findOrFail($questionData['id']);
-                $question->update($questionData);
+                $question->update([
+                    'title' => $questionData['title'],
+                    'id_question_type' => $questionData['id_question_type'],
+                ]);
 
                 if (isset($questionData['options'])) {
                     foreach ($questionData['options'] as $optionIndex => $optionValue) {
@@ -119,7 +123,7 @@ class FormsController extends Controller
                             // Crear nueva opción
                             $questionOption = new Option([
                                 'id_question' => $question->id,
-                                'value' => $optionValue,
+                                'value' => $optionValue['value'],
                             ]);
                             $questionOption->save();
                         }
@@ -127,15 +131,18 @@ class FormsController extends Controller
                 }
             } else {
                 // Crear nueva pregunta
-                $question = new Question($questionData);
-                $question->id_form = $formulario->id;
+                $question = new Question([
+                    'id_form' => $formulario->id,
+                    'title' => $questionData['title'],
+                    'id_question_type' => $questionData['id_question_type'],
+                ]);
                 $question->save();
 
                 if (isset($questionData['options'])) {
                     foreach ($questionData['options'] as $option) {
                         $questionOption = new Option([
                             'id_question' => $question->id,
-                            'value' => $option,
+                            'value' => $option['value'],
                         ]);
                         $questionOption->save();
                     }
@@ -146,6 +153,7 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'Formulario actualizado exitosamente.');
     }
+
 
     public function submit(Request $request, $id)
     {

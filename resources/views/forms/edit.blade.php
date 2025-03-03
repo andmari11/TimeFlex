@@ -37,6 +37,9 @@
                     <div id="questions-container">
                         @foreach($formulario->questions as $index => $question)
                             <div class="question-template">
+                                <!-- Campo oculto para ID de la pregunta -->
+                                <input type="hidden" name="questions[{{ $index }}][id]" value="{{ $question->id }}">
+
                                 <x-forms.field class="col-12">
                                     <x-forms.label for="questions[{{ $index }}][title]">Título de la Pregunta</x-forms.label>
                                     <x-forms.input name="questions[{{ $index }}][title]" id="questions[{{ $index }}][title]" :value="old('questions.'.$index.'.title', $question->title)" required />
@@ -57,7 +60,8 @@
                                 <div id="question-fields-{{ $index }}">
                                     @if($question->id_question_type == 2)
                                         @foreach($question->options as $optionIndex => $option)
-                                            <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}]" value="{{ old('questions.'.$index.'.options.'.$optionIndex, $option->value) }}" placeholder="Opción {{ $optionIndex + 1 }}" required />
+                                            <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][id]" value="{{ $option->id }}" hidden>
+                                            <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][value]" value="{{ old('questions.'.$index.'.options.'.$optionIndex, $option->value) }}" placeholder="Opción {{ $optionIndex + 1 }}" required />
                                         @endforeach
                                         <button type="button" onclick="addOption({{ $index }})">Agregar Opción</button>
                                     @endif
