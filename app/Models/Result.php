@@ -14,14 +14,25 @@ class Result extends Model
 
     // Definir los campos que se pueden asignar en masa
     protected $fillable = [
-        'id_option',
+        'id_question',
+        'respuesta',
+        'id_question_type',
     ];
 
     /**
-     * Obtener la opción asociada al resultado.
+     * Obtener la pregunta asociada al resultado.
      */
-    public function option()
+    public function question()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Question::class, 'id_question');
     }
+
+    /**
+     * Obtener el tipo de pregunta asociada al resultado.
+     */
+    public function questionType()
+    {
+        return $this->belongsTo(QuestionType::class, 'id_question_type');
+    }
+
 }

@@ -151,37 +151,33 @@ class FormsController extends Controller
     {
         $formulario = Form::with('questions')->findOrFail($id);
 
-        // Validar las respuestas del formulario
+        // Validar los datos enviados
         $validatedData = $request->validate([
-            'answers' => 'required|array',
-            'answers.*' => 'required',
+            'questions' => 'required|array',
+            'questions.*.id_question' => 'required|integer|exists:questions,id',
+            'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
+            'questions.*.answer' => 'required',
         ]);
 
         // Procesar y guardar las respuestas
-        foreach ($formulario->questions as $index => $question) {
-            $answer = $validatedData['answers'][$index];
+        foreach ($validatedData['questions'] as $data) {
+            $id_question = $data['id_question'];
+            $answer = $data['answer'];
+            $id_question_type = $data['id_question_type'];
 
-            if ($question->id_question_type == 2) {
-                // Para las preguntas tipo selector, buscar la opción correspondiente
-                $option = Option::where('id_question', $question->id)
-                    ->where('value', $answer)
-                    ->firstOrFail();
-                $optionId = $option->id;
-            } else {
-                // Para otros tipos de preguntas, usar el valor de la respuesta directamente
-                $optionId = Option::create([
-                    'id_question' => $question->id,
-                    'value' => $answer,
-                ])->id;
-            }
 
             // Guardar la respuesta en la tabla results
             Result::create([
-                'id_option' => $optionId,
+                'id_question' => $id_question,
+                'respuesta' => $answer,
+                'id_question_type' => $id_question_type,
             ]);
         }
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
     }
+
+
+
 
 }

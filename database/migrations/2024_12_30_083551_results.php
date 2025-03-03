@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('results', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_question'); // Referencia a la tabla questions
+            $table->string('respuesta'); // Columna respuesta
+            $table->unsignedBigInteger('id_question_type'); // Referencia a la tabla question_type
 
-           $table->id();
-           $table->unsignedBigInteger('id_option');
+            $table->foreign('id_question')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('id_question_type')->references('id')->on('question_type')->onDelete('cascade');
 
-           $table->foreign('id_option')->references('id')->on('options')->onDelete('cascade');
-
-           $table->timestamps();
+            $table->timestamps();
         });
+
     }
 
     /**
