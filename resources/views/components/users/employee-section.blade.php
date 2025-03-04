@@ -1,3 +1,5 @@
+@vite(['resources/js/app.js'])
+
 <div class="p-4  bg-blue-50 shadow rounded-xl my-1 w-full max-w-sm mx-auto">
     <div class="flex items-center justify-center">
         <img class="h-20 w-20 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
@@ -17,7 +19,8 @@
         </form>
     @endif
 </div>
-
+<div id="statsuser" style="width: 100%; height: 400px;"></div>
+<div id="statsuser2" style="width: 100%; height: 400px;"></div>
 <script>
     function confirmDeleteSection(event, sectionID) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
