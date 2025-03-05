@@ -3,13 +3,20 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Schedules\ScheduleController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\TeamController;
-use App\Http\Controllers\FormsController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Sections\SectionController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ShiftExchangeController;
+use App\Http\Controllers\TeamController;
+
+use App\Http\Controllers\FormsController;
+//REVISAR SI SE PUEDE QUITAR
+use App\Http\Controllers\ScheduleController;
+
+
+use App\Http\Controllers\Users\UserController;
+use App\Http\Middleware\HistorialAccesosMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // devolver la vista de welcome en home
@@ -21,8 +28,10 @@ Route::get('/', function () {
 Route::get('/menu', [MenuController::class, 'index'])->middleware('auth');
 Route::get('/menu/{id}', [MenuController::class, 'indexAdmin'])->middleware('auth');
 
-Route::get('/pruebaAPI', [FastApiController::class, 'sendData']);
-Route::post('/pruebaAPI', [FastApiController::class, 'receiveData']);
+Route::get('/fastapi-schedule', [FastApiController::class, 'sendSchedule']);
+Route::get('/fastapi-stats', [FastApiController::class, 'sendStats']);
+Route::post('/fastapi-schedule', [FastApiController::class, 'receiveSchedule']);
+Route::post('/fastapi-stats', [FastApiController::class, 'receiveStats']);
 
 Route::get('/equipo', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/equipo/{id}', [TeamController::class, 'indexAdminTeam'])->middleware('auth');
@@ -41,7 +50,7 @@ Route::get('/contact', function () {
 
 Route::get('/ayuda', function () {
     return view('ayuda');
-});
+})->middleware(HistorialAccesosMiddleware::class)->name('Ayuda');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 
@@ -54,6 +63,26 @@ Route::get('/formularios/{id}/edit', [FormsController::class, 'edit'])->middlewa
 Route::put('/formularios/{id}', [FormsController::class, 'update'])->middleware('auth')->name('forms.update');
 Route::get('/formularios/{id}/show', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
 Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->middleware('auth')->name('forms.submit');
+
+Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
+Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');
+Route::get('/horario/{id_schedule}/user/{id_user}', [ScheduleController::class, 'showUser'])->middleware('auth');
+
+Route::get('/horario/personal/{id}', [ScheduleController::class, 'showPersonal'])->middleware('auth');
+Route::get('/horario/personal/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showPersonalShift'])->middleware('auth');
+
+Route::get('/shift-exchange/{id_schedule}/turno/{id_shift_someone}', [ShiftExchangeController::class, 'select'])->middleware('auth');
+Route::post('/shift-exchange', [ShiftExchangeController::class, 'createExchange'])->middleware('auth');
+Route::post('/shift-exchange/cancel/{id}', [ShiftExchangeController::class, 'cancelExchange'])->middleware('auth');
+Route::post('/shift-exchange/accept/{id}', [ShiftExchangeController::class, 'acceptExchange'])->middleware('auth');
+Route::get('/shift-exchange/{id_schedule}/turno/{id_shift_someone}/{id_shift_mine}', [ShiftExchangeController::class, 'exchange'])->middleware('auth');
+Route::post('/shift-exchange-admin', [ShiftExchangeController::class, 'createExchangeAdmin'])->middleware('auth');
+Route::get('/shift-exchange/{id_schedule}/worker/{workerSelected_id}/turno/{id_shift_someone}/{id_shift_mine}', [ShiftExchangeController::class, 'selectAdmin'])->middleware('auth');
+Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
+
+Route::get('forms', function (){
+    return view('forms');
+});
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
@@ -76,3 +105,7 @@ Route::post('/register-section/', [SectionController::class, 'store'])->middlewa
 Route::get('/sections/{id}/edit', [SectionController::class, 'edit'])->middleware('auth');
 Route::patch('/sections/{id}/edit', [SectionController::class, 'update'])->middleware('auth');
 Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->middleware('auth');
+
+Route::get('/unread-notifications', function () {
+    return auth()->user()->unreadNotifications->count();
+})->middleware('auth');

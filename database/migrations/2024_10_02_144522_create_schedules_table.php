@@ -13,25 +13,24 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Company::class);
+            $table->foreignIdFor(\App\Models\Section::class);
             $table->timestamps();
 
             $table->string("name");
             $table->string("description")->nullable();
-            $table->json("scheduleJSON")->nullable();
-            $table->string("status")->default("pending");
+            $table->string("status")->default("not_optimized");
 
 
 
         });
-        Schema::create('schedules_users', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(\App\Models\Schedule::class);;
-            $table->foreignIdFor(\App\Models\User::class);;
-            $table->timestamps();
-
-            $table->unique(['schedule_id', 'user_id']);
-        });
+//        Schema::create('schedules_users', function (Blueprint $table) {
+//            $table->id();
+//            $table->foreignIdFor(\App\Models\Schedule::class);;
+//            $table->foreignIdFor(\App\Models\User::class);;
+//            $table->timestamps();
+//
+//            $table->unique(['schedule_id', 'user_id']);
+//        });
     }
 
     /**

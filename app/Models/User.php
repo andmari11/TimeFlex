@@ -61,6 +61,26 @@ class User extends Authenticatable
     public function forms()
     {
         return $this->belongsTo(Form::class);
+
+    public function shifts()
+    {
+        return $this->belongsToMany(Shift::class);
+    }
+    public function notifications()
+    {
+        $this->updateReadNotifications();
+        return $this->hasMany(Notification::class)->latest()->take(10);
+    }
+    public function unreadNotifications()
+    {
+        return $this->hasMany(Notification::class)->where('read', false);
+    }
+
+    public function updateReadNotifications()
+    {
+        $ret= $this->hasMany(Notification::class);
+        $ret->update(['read' => true]);
+
     }
 
 }

@@ -10,11 +10,21 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'scheduleJSON',
         'name',
         'description',
-        'company_id',
+        'section_id',
         'usersJSON',
         'status'
     ];
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function shifts()
+    {
+        return $this->hasMany(Shift::class);
+    }
+
 }

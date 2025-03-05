@@ -19,11 +19,12 @@ class Section extends Model
 
         return $this->hasMany(User::class);
     }
-
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
-
+    public function schedules(){
+        return $this->hasMany(Schedule::class);
+    }
 }
