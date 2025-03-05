@@ -9,6 +9,12 @@ use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ShiftExchangeController;
 use App\Http\Controllers\TeamController;
+
+use App\Http\Controllers\FormsController;
+//REVISAR SI SE PUEDE QUITAR
+use App\Http\Controllers\ScheduleController;
+
+
 use App\Http\Controllers\Users\UserController;
 use App\Http\Middleware\HistorialAccesosMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +53,17 @@ Route::get('/ayuda', function () {
 })->middleware(HistorialAccesosMiddleware::class)->name('Ayuda');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
+
+Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth')->name('forms.index');
+Route::get('formularios/create', [FormsController::class, 'create'])->middleware('auth');
+Route::get('/register-form/', [FormsController::class, 'create'])->middleware('auth');
+Route::post('/register-form/', [FormsController::class, 'store'])->middleware('auth');
+Route::delete('/formularios/{id}/delete', [FormsController::class, 'destroy'])->middleware('auth')->name('forms.destroy');
+Route::get('/formularios/{id}/edit', [FormsController::class, 'edit'])->middleware('auth')->name('forms.edit');
+Route::put('/formularios/{id}', [FormsController::class, 'update'])->middleware('auth')->name('forms.update');
+Route::get('/formularios/{id}/show', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
+Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->middleware('auth')->name('forms.submit');
+
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');
 Route::get('/horario/{id_schedule}/user/{id_user}', [ScheduleController::class, 'showUser'])->middleware('auth');

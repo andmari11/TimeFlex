@@ -58,6 +58,10 @@ class User extends Authenticatable
         return $this->belongsTo(Section::class);
     }
 
+    public function forms()
+    {
+        return $this->belongsTo(Form::class);
+
     public function shifts()
     {
         return $this->belongsToMany(Shift::class);
@@ -76,6 +80,7 @@ class User extends Authenticatable
     {
         $ret= $this->hasMany(Notification::class);
         $ret->update(['read' => true]);
+
     }
 
 }
