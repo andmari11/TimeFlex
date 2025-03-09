@@ -2,7 +2,7 @@
     <x-page-heading>Mis Formularios</x-page-heading>
 
 
-    <div class="w-full max-w-xl bg-white p-8 rounded-lg shadow-md mt-10 mx-auto">
+    <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md mt-10 mx-auto">
         <div class="p-4 bg-gray-100 mb-6 shadow rounded-xl my-1 relative">
             <div class="absolute top-2 right-2">
             </div>

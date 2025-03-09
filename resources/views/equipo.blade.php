@@ -31,11 +31,13 @@
                     <input type="text" name="q" placeholder="Busca compañeros..." class="rounded-xl border px-5 py-4 w-full max-w-xl bg-white/25 focus:outline-none border-gray-300"/>
                 </form>
             </section>
-            <div class="flex flex-wrap gap-10">
-                @foreach(auth()->user()->company->employees as $employee)
+        <div class="flex flex-wrap -mx-3">
+            @foreach(auth()->user()->company->employees as $employee)
+                <div class="w-1/4 px-3">
                     <x-users.employee-section :employee="$employee"></x-users.employee-section>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
+        </div>
 
         </div>
     @endif

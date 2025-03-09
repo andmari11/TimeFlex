@@ -12,7 +12,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        VerifyCsrfToken::except([
+            'fastapi-schedule'
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         VerifyCsrfToken::except([
-            'pruebaAPI'
+            'fastapi-schedule'
         ]);
     }
 }

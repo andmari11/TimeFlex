@@ -10,7 +10,7 @@
             @endif
             @if(auth()->user()->role === 'admin')
                 @if($section)
-                    <h3 class="font-boldtext-xl hover:underline">{{$section->name}}</h3>
+                    <h3 class="font-bold text-xl hover:underline">{{$section->name}}</h3>
                 @else
                     <h3 class="font-bold text-xl hover:underline">Todos los empleados</h3>
                 @endif

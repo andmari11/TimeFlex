@@ -9,8 +9,7 @@ class BrowserHistoryController extends Controller
     public static function add(string $titulo, string $link){
         $historial = session()->get('historial_accesos', []);
 
-        if (empty($historial) || $historial[0]['link'] !== $link) {
-            // Agregar el nuevo acceso al principio del historial
+        if (empty($historial) || !collect($historial)->contains('titulo', $titulo)) {            
             array_unshift($historial, [
                 'titulo' => $titulo,
                 'link'   => $link
