@@ -61,7 +61,7 @@ class User extends Authenticatable
     public function forms()
     {
         return $this->belongsTo(Form::class);
-
+    }
     public function shifts()
     {
         return $this->belongsToMany(Shift::class);
