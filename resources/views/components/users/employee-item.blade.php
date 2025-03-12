@@ -32,6 +32,7 @@
         <x-users.employee-section :employee="$employee"></x-users.employee-section>
     </x-drawer>
 </div>
+
 <script>
     function confirmDeleteEmployee(event, employeeId) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente

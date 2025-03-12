@@ -1,11 +1,12 @@
 import './bootstrap';
 import Highcharts from 'highcharts';
-document.addEventListener("DOMContentLoaded", function () {
 
+window.Highcharts = Highcharts;
+
+document.addEventListener("DOMContentLoaded", function () {
 
     iniciarGraficosPaginaEstadisticas();
     iniciarGraficosBarraLateral();
-
 
 });
 
@@ -35,18 +36,18 @@ function iniciarGraficosPaginaEstadisticas(){
                 title: {
                     text: 'Nivel de Satisfacción'
                 },
-                min: 0, // Ajustar según sea necesario
-                max: 10 // Asumiendo que la satisfacción se mide en una escala de 0 a 10
+                min: 0,
+                max: 10
             },
             series: [{
                 name: 'Satisfacción del Empleado',
-                data: [2, 9, 6], // Ejemplo de datos reales
+                data: [2, 9, 6],
                 marker: {
                     symbol: 'circle'
                 }
             }, {
                 name: 'Media de la Unidad',
-                data: [5, 6.75, 4], // Ejemplo de datos reales
+                data: [5, 6.75, 4],
                 marker: {
                     symbol: 'square'
                 }

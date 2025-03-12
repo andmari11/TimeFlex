@@ -9,6 +9,7 @@ use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ShiftExchangeController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\StatsController;
 
 use App\Http\Controllers\FormsController;
 //REVISAR SI SE PUEDE QUITAR
@@ -52,6 +53,10 @@ Route::get('/contact', function () {
 Route::get('/estadisticas', function () {
     return view('estadisticas');
 });
+
+Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
+Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
+
 
 Route::get('/ayuda', function () {
     return view('ayuda');
