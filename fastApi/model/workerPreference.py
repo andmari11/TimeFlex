@@ -11,6 +11,9 @@ class WorkerPreference:
 
     def __repr__(self):
         return f"WorkerPreference(user_id={self.user_id}, holidays={self.holidays})"
+    
+    def __str__(self):
+        return f"WorkerPreference(user_id={self.user_id}, holidays={self.holidays}, preferred_shift_types={self.preferred_shift_types}, past_satisfaction={self.past_satisfaction})\n"
 
 def process_worker_preferences(data:json) -> List[WorkerPreference]:
 
@@ -21,8 +24,8 @@ def process_worker_preferences(data:json) -> List[WorkerPreference]:
         date_strings = json.loads(item.get('holidays'))
         # date_strings = item.get('holidays')
         holidays = [datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S") for date_str in date_strings]
-        preferred_shift_types = item.get('preferred_shift_types')
-        past_satisfaction = item.get('past_satisfaction')
+        preferred_shift_types = json.loads(item.get('preferred_shift_types'))
+        past_satisfaction = json.loads(item.get('past_satisfaction'))
         worker_preference = WorkerPreference(user_id=user_id, holidays=holidays, preferred_shift_types=preferred_shift_types, past_satisfaction=past_satisfaction)
         worker_preferences.append(worker_preference)
 

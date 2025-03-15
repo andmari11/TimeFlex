@@ -18,7 +18,8 @@ class Shift:
             f"Shift(id={self.shift_id}, schedule_id={self.schedule_id}, start={self.start}, "
             f"end={self.end}, users_needed={self.users_needed})"
         )
-
+    def __str__(self):
+        return f"Shift {self.shift_id} (Schedule {self.schedule_id}): {self.start} - {self.end}, Users Needed: {self.users_needed}, Type: {self.type}\n"
 
 
 def process_shifts_from_json(data:json) -> List[Shift]:
@@ -30,7 +31,7 @@ def process_shifts_from_json(data:json) -> List[Shift]:
             start=entry['start'],
             end=entry['end'],
             users_needed=entry['users_needed'],
-            type=entry.get('type',0)
+            type=entry.get('type',"0")
         )
         shifts.append(shift)
     return shifts

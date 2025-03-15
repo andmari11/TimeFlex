@@ -129,9 +129,9 @@ class ScheduleController extends Controller
     public static function prepareScheduleData($id)
     {
         $schedule = Schedule::findOrFail($id);
-
         // Determinar el mes del primer turno (shift)
         $firstShift = collect($schedule->shifts)->first();
+
         $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
 
         // Guardar en el historial del navegador
