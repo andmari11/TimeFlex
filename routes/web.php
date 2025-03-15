@@ -66,6 +66,10 @@ Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->mid
 Route::post('/formularios/{id}/duplicar', [FormsController::class, 'duplicate'])->name('forms.duplicate');
 Route::get('/formularios/respuestas', [FormsController::class, 'showAnswers'])->name('forms.answers');
 
+Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middleware('auth');
+Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');
+Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
+Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');
