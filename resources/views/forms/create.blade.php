@@ -29,13 +29,13 @@
                 <!-- Fechas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="start_date" class="block text-lg font-medium text-gray-700">Fecha de Inicio</label>
+                        <label for="start_date" class="block text-lg font-medium text-gray-700">Comienzo del plazo de respuesta</label>
                         <input type="text" name="start_date" id="start_date" value="{{ old('start_date') }}" required
                                class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <x-forms.error name="start_date" />
                     </div>
                     <div>
-                        <label for="end_date" class="block text-lg font-medium text-gray-700">Fecha de Finalización</label>
+                        <label for="end_date" class="block text-lg font-medium text-gray-700">Fin del plazo de respuesta</label>
                         <input type="text" name="end_date" id="end_date" value="{{ old('end_date') }}" required
                                class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <x-forms.error name="end_date" />

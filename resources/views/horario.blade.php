@@ -1,16 +1,28 @@
-<x-layout :title="'Mi horario'">
-    <x-page-heading>Tus horarios</x-page-heading>
 
+<x-layout :title="'Formularios disponibles'">
+    <div class="container mx-auto py-10 px-6">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-gray-800">Tus horarios</h1>
+            <p class="text-gray-600 mt-2">Consulta los horarios de forma fácil y rápida.</p>
+        </div>
 
+        @if(auth()->user()->role === 'admin')
+            <div class="text-right mb-6">
+                <a href="" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                    Crear nuevo horario
+                </a>
+            </div>
+        @endif
 
-    <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md mt-10 mx-auto">
-        <a class ="btn bg-red-500 p-1 rounded-lg text-white" href="/fastapi-schedule">Crear</a>
-        <a class ="btn bg-blue-500 p-1 rounded-lg text-white" href="">Refrescar</a>
+        @if($schedules->isEmpty())
+            <p class="text-center text-gray-500 text-lg">No hay horarios disponibles en este momento.</p>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($schedules as $schedule)
 
-        @foreach($schedules as $schedule)
-
-            <x-schedules.single-schedule-item :schedule="$schedule"></x-schedules.single-schedule-item>
-            <hr class="my-6">
-        @endforeach
+                    <x-schedules.single-schedule-item :schedule="$schedule"></x-schedules.single-schedule-item>
+                @endforeach
+            </div>
+        @endif
     </div>
 </x-layout>
