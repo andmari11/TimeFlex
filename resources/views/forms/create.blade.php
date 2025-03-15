@@ -31,6 +31,17 @@
                     <x-forms.error name="end_date" />
                 </x-forms.field>
 
+                <x-forms.field class="col-12">
+                    <x-forms.label for="id_section">Sección</x-forms.label>
+                    <select name="id_section" id="id_section" required>
+                        <option value="" disabled selected>Selecciona una sección</option>
+                        @foreach(\App\Models\Section::all() as $section)
+                            <option value="{{ $section->id }}">{{ $section->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-forms.error name="id_section" />
+                </x-forms.field>
+
             </div>
 
             <div class="mt-6">

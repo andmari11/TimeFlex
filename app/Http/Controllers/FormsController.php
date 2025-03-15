@@ -15,9 +15,19 @@ class FormsController extends Controller
     // Mostrar todos los formularios disponibles
     public function index()
     {
-        $formularios = Form::all();
+        $user = auth()->user();
+
+        // Si el usuario es administrador, mostramos todos los formularios
+        if ($user->role === 'admin') {
+            $formularios = Form::all();
+        } else {
+            // Si el usuario es empleado, mostrar formularios de su sección
+            $formularios = Form::where('id_section', $user->section_id)->get();
+        }
+
         return view('forms.index', compact('formularios'));
     }
+
 
     // Mostrar formulario específico junto con sus preguntas
     public function show($id)
@@ -35,15 +45,23 @@ class FormsController extends Controller
     // Guardar un nuevo formulario y sus preguntas
     public function store(Request $request)
     {
+        // Validar los datos del formulario
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'summary' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'id_section' => 'required|exists:sections,id', // Validar sección
+        ]);
 
         // Crear el formulario
         $formulario = Form::create([
             'id_user' => $request->user()->id,
             'title' => $request->title,
             'summary' => $request->summary,
-            'status' => $request->status,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'id_section' => $request->id_section, // Asignar la sección
         ]);
 
         // Crear las preguntas del formulario
@@ -64,8 +82,9 @@ class FormsController extends Controller
         }
 
         return redirect()->route('forms.index')
-            ->with('success', 'Formulario y preguntas creados exitosamente.');
+            ->with('success', 'Formulario, preguntas y sección asignados exitosamente.');
     }
+
 
     // Eliminar un formulario
     public function destroy($id)

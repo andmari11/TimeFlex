@@ -19,6 +19,7 @@ class Form extends Model
         'summary',
         'start_date',
         'end_date',
+        'id_section',
     ];
 
     /**
@@ -27,6 +28,10 @@ class Form extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 
     public function questions()
