@@ -296,4 +296,44 @@ class FormsController extends Controller
         return view('forms.showresult', compact('formulario', 'answers'));
     }
 
+    public function editResults($formId)
+    {
+        $userId = auth()->user()->id;
+
+        // Obtener el formulario con sus preguntas
+        $formulario = Form::with('questions')->findOrFail($formId);
+
+        // Obtener las respuestas del usuario actual
+        $answers = Result::where('id_form', $formId)
+            ->where('id_user', $userId)
+            ->with('question')
+            ->get();
+
+        return view('forms.editresults', compact('formulario', 'answers'));
+    }
+
+    public function updateResults(Request $request, $formId)
+    {
+        $userId = auth()->user()->id;
+
+        // Validar las respuestas recibidas
+        $request->validate([
+            'answers' => 'required|array',
+            'answers.*.respuesta' => 'required|string',
+        ]);
+
+        // Actualizar las respuestas en la base de datos
+        foreach ($request->answers as $answerId => $data) {
+            $result = Result::where('id', $answerId)
+                ->where('id_user', $userId)
+                ->where('id_form', $formId)
+                ->firstOrFail();
+
+            $result->update(['respuesta' => $data['respuesta']]);
+        }
+
+        return redirect()->route('forms.showresults', $formId)
+            ->with('success', 'Tus respuestas se han actualizado correctamente.');
+    }
+
 }

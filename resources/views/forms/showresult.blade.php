@@ -9,6 +9,9 @@
             </p>
         </div>
 
+        @if($answers->isEmpty())
+            <p class="text-center text-gray-500 text-lg">No has respondido este formulario.</p>
+        @else
             <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Respuestas</h2>
 
@@ -20,6 +23,22 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <!-- Botón Editar Respuestas -->
+                @php
+                    $currentDate = now(); // Fecha actual
+                    $endDate = \Carbon\Carbon::parse($formulario->end_date); // Fecha de finalización del formulario
+                @endphp
+
+                @if($currentDate->lessThanOrEqualTo($endDate))
+                    <div class="mt-6 text-right">
+                        <a href="{{ route('forms.editresults', $formulario->id) }}"
+                           class="btn bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                            Editar respuestas
+                        </a>
+                    </div>
+                @endif
             </div>
-        </div>
+        @endif
+    </div>
 </x-layout>

@@ -66,6 +66,8 @@ Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->mid
 Route::post('/formularios/{id}/duplicar', [FormsController::class, 'duplicate'])->name('forms.duplicate');
 Route::get('/formularios/respuestas', [FormsController::class, 'showAnswers'])->name('forms.answers');
 Route::get('/formularios/{formId}/resultados', [FormsController::class, 'showResults'])->name('forms.showresults');
+Route::get('/formularios/{id}/editar-respuestas', [FormsController::class, 'editResults'])->name('forms.editresults');
+Route::put('/formularios/{id}/actualizar-respuestas', [FormsController::class, 'updateResults'])->name('forms.updateresults');
 
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
