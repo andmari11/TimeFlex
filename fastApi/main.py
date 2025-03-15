@@ -1,15 +1,14 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from z3 import *
-from datetime import datetime, timedelta
 import httpx
 import asyncio
 import json
 from model.shift import *
 from model.workerPreference import *
 from stats import *
-from typing import List, Optional
 from optimize1 import *
+import logging
 
 
 app = FastAPI()
@@ -53,19 +52,25 @@ def nWork (i,j):
 async def send_schedule(data):
     async with httpx.AsyncClient() as client:
 
-        solution_to_send = optimize(data)
-
+        logging.basicConfig(filename="logs/app.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+        
         try:
-            print(json.dumps(solution_to_send, indent=4))
-
+            solution_to_send = optimize(data, logging)
+        except Exception as e:
+            logging.error(f"Error during optimization: {e}")
+            return None
+        try:
             response = await client.post("http://timeflex.test/fastapi-schedule", json=solution_to_send)
             #response = await client.post("http://127.0.0.1:8000/fastapi-schedule", json=solution_to_send)
 
-            print(f"Response status code: {response.status_code}")
-            print(f"Response headers: {response.headers}")
-            print(f"Response content: {response.json()}")
+            logging.debug(f"Solution to send: {json.dumps(solution_to_send, indent=4)}\n")
+            logging.info(
+                f"Response status code: {response.status_code}\n"
+                f"Response headers: {response.headers}\n"
+                f"Response content: {response.json()}"
+            )
         except Exception as e:
-            print(f"Error during POST request: {e}")
+            logging.error(f"Error during POST request: {e}")
             response = None
 
 

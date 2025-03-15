@@ -2,6 +2,7 @@ from z3 import *
 from model.shift import *
 from model.workerPreference import *
 import json
+import logging
 
 PREFERRED_SHIFTS_WEIGHT = 10
 HOLIDAYS_WEIGHT = -20
@@ -26,7 +27,7 @@ def satisfaction_score(all_assigned_shifts, workers, shifts, m):
                 for holiday in workers[i].holidays:
                     holidays_worked += (shifts[j].start.date() == holiday.date() or shifts[j].end.date() == holiday.date())
                     preferred_shifts += (shifts[j].type in workers[i].preferred_shift_types)
-        print(f"Worker {workers[i].user_id} worked {holidays_worked} holidays and {preferred_shifts} preferred shifts")
+        # print(f"Worker {workers[i].user_id} worked {holidays_worked} holidays and {preferred_shifts} preferred shifts")
         score = (holidays_worked * HOLIDAYS_WEIGHT) + (preferred_shifts * PREFERRED_SHIFTS_WEIGHT)
         scores.append(score)
 
@@ -49,7 +50,7 @@ def normalize_satisfaction(satisfaction_scores):
     
     return normalized_scores
 
-def optimize(data):
+def optimize(data, logging):
     # workers = process_worker_preferences(read_file('z3_pruebas/preferencias.txt'))
     # shifts = process_shifts_from_json(read_file("z3_pruebas/turnos.txt"))
     workers = process_worker_preferences(data.get("workers", []))
@@ -154,6 +155,7 @@ def optimize(data):
     #Imrpimir resultados TODO recibir de api
     solution_to_send={}
     solution_to_send['id']=data['id']
+    log=""
 
     shift_types = {0: 'm', 1: 't', 2: 'n'}
     if s.check() == sat:
@@ -162,28 +164,28 @@ def optimize(data):
         solution_to_send['satisfabilityJSON'] = {}
 
         m = s.model()
-        print("\n---------- Horario por empleado ----------\n")
+        log+=("\n---------- Horario por empleado ----------\n")
         for i in range(n_workers):
             worker_schedule = []
             for j in range(n_shifts):
                 if m.eval(all_workers_shifts[i][j]):
                     worker_schedule.append((shifts[j].start.date(), shift_types[shifts[j].type]))
                     
-            print(f"Worker {workers[i].user_id} works shifts {worker_schedule}")
+            log+=(f"Worker {workers[i].user_id} works shifts {worker_schedule}")
 
-        print("\n---------- Horario por turno ----------\n")
+        log+=("\n---------- Horario por turno ----------\n")
         for j in range(n_shifts):
             workers_in_shift = []
             for i in range(n_workers):
                 workers_in_shift.append(m.eval(all_workers_shifts[i][j]))
-            print(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
-        print("\n---------- Satisfacción ----------\n")
+            log+=(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
+        log+=("\n---------- Satisfacción ----------\n")
         this_satisfaction_score=satisfaction_score(all_workers_shifts, workers, shifts, m)
-        print("Satisfaction score this calendar: ", this_satisfaction_score)
+        log+=("Satisfaction score this calendar: " + str(this_satisfaction_score))
         last_calendar_scores = [sum(workers[i].past_satisfaction) / len(workers[i].past_satisfaction) for i in range(n_workers)]
-        print("Satisfaction score last calendars: ", last_calendar_scores)
+        log+=("Satisfaction score last calendars: " + str(last_calendar_scores))
         all_calendar_scores = [sum(workers[i].past_satisfaction)+ this_satisfaction_score[i] / len(workers[i].past_satisfaction)+1 for i in range(n_workers)]
-        print("Satisfaction score all calendars including last: ", all_calendar_scores)
+        log+=("Satisfaction score all calendars including last: " + str(all_calendar_scores))
 
         for i in range(n_workers):
             user_schedule = [] 
@@ -197,8 +199,9 @@ def optimize(data):
 
     else:
         solution_to_send['status'] = "failed"
-        print("No solution found")
+        log=("No solution found")
 
+    logging.debug(log)
     return solution_to_send
 
 
