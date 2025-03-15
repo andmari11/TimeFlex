@@ -6,7 +6,9 @@
       "2024-12-04 00:00:00",
       "2024-12-05 00:00:00"
     ],
+    "holidays_weight": 1,
     "preferred_shift_types":[0,1,2],
+    "preferred_shift_weight": 1, 
     "past_satisfaction": [0.5, 0.0, 2.5, 1.0, 3.0]
   },
   {
@@ -16,7 +18,9 @@
       "2024-12-03 00:00:00",
       "2024-12-02 00:00:00"
     ],
+    "holidays_weight": 1,
     "preferred_shift_types":[1,2],
+    "preferred_shift_weight": 1, 
     "past_satisfaction": [6.0, 7.5, 8.0, 1.5, 7.0]
   },
   {
@@ -25,7 +29,9 @@
       "2024-12-04 00:00:00",
       "2024-12-05 00:00:00"
     ],
+    "holidays_weight": 1,
     "preferred_shift_types":[2],
+    "preferred_shift_weight": 1, 
     "past_satisfaction": [1.5, 9.0, 7.5, 6.0, 8.0]
   },
   {
@@ -34,7 +40,9 @@
       "2024-12-05 00:00:00",
       "2024-12-01 00:00:00"
     ],
+    "holidays_weight": 1,
     "preferred_shift_types":[0,1],
+    "preferred_shift_weight": 1, 
     "past_satisfaction": [7.0, 2.5, 8.0, 1.5, 4.0]
   }
 ]

@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Shift extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'schedule_id',
+        'notes',
+        'start',
+        'end',
+        'type',
+        'users_needed',
+    ];
     public function schedule()
     {
         return $this->belongsTo(Schedule::class);

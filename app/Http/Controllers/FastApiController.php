@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Notification;
+use App\Models\Satisfaction;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\User;
@@ -18,69 +19,65 @@ class FastApiController extends Controller
     public function sendSchedule(){
         $data=[
             "name" => "hola",
-            "section_id" => auth()->user()->section->id,
+            "section_id" => 1,
         ];
 
         $schedule=Schedule::create($data);
         $data['id'] = $schedule->id;
+        $now = Carbon::now()->addDays(2);
+        $day = $now->day;  // Obtener el día actual
+        $month = ($now->month)%12;  // Obtener el mes actual
+        $year = $now->year;    // Obtener el año actual
+
+
         $worker_preferences = [
             [
-                "user_id" => auth()->user()->id,
-                "holidays" => json_encode([
-//                    Carbon::now()->startOfMonth()->toDateTimeString(),  // Primer día del mes actual
-//                    Carbon::now()->addDay()->startOfMonth()->toDateTimeString()  // Segundo día del mes actual
-                ]),
+                "user_id" => 1,
+                'form_id' => 123,
+                "holidays" => json_encode(["2024-12-01 00:00:00", "2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
+                "holidays_weight" => 1,
+                "preferred_shift_types" => json_encode([0, 1, 2]),
+                "preferred_shift_types_weight" => 1,
+                "past_satisfaction" => json_encode([0.5, 0.0, 2.5, 1.0, 3.0])
             ],
             [
                 "user_id" => 2,
-                "holidays" => json_encode([
-//                    Carbon::now()->addDays(4)->startOfMonth()->toDateTimeString(),  // Día 5 del mes actual
-//                    Carbon::now()->addDays(5)->startOfMonth()->toDateTimeString()   // Día 6 del mes actual
-                ])
+                'form_id' => 123,
+                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-03 00:00:00", "2024-12-02 00:00:00"]),
+                "holidays_weight" => 1,
+                "preferred_shift_types" => json_encode([1, 2]),
+                "preferred_shift_types_weight" => 1,
+                "past_satisfaction" => json_encode([6.0, 7.5, 8.0, 1.5, 7.0])
             ],
             [
                 "user_id" => 3,
-                "holidays" => json_encode([
-//                    Carbon::now()->addDays(2)->startOfMonth()->toDateTimeString(),  // Día 3 del mes actual
-//                    Carbon::now()->addDays(3)->startOfMonth()->toDateTimeString()   // Día 4 del mes actual
-                ])
+                'form_id' => 123,
+                "holidays" => json_encode(["2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
+                "holidays_weight" => 1,
+                "preferred_shift_types" => json_encode([2]),
+                "preferred_shift_types_weight" => 1,
+                "past_satisfaction" => json_encode([1.5, 9.0, 7.5, 6.0, 8.0])
+            ],
+            [
+                "user_id" => 4,
+                'form_id' => 123,
+                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-01 00:00:00"]),
+                "holidays_weight" => 1,
+                "preferred_shift_types" => json_encode([0, 1]),
+                "preferred_shift_types_weight" => 1,
+                "past_satisfaction" => json_encode([7.0, 2.5, 8.0, 1.5, 4.0])
             ]
         ];
+
+
+
+
         foreach ($worker_preferences as $worker_preference) {
             WorkerPreference::create($worker_preference);
         }
         $data['usersJSON'] =json_encode($worker_preferences);
 
-        $day = Carbon::now()->addDays(2)->day;  // Obtener el día actual
-        $month = (Carbon::now()->addDays(2)->month)%12;  // Obtener el mes actual
-        $year = Carbon::now()->year;    // Obtener el año actual
-
-        for ($i = $day; $i <= $day+5; $i++) {
-            $currentDate = Carbon::createFromDate($year, $month, $i);
-            if ($currentDate->month != $month) {
-                break; // Salir del bucle si nos pasamos de mes
-            }
-            // Crear el turno de mañana
-            Shift::factory()->create([
-                'schedule_id' => $schedule->id,
-                'start' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 09:00:00")->toDateTimeString(),
-                'end' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 15:00:00")->toDateTimeString(),
-            ]);
-
-            // Crear el turno de tarde
-            Shift::factory()->create([
-                'schedule_id' => $schedule->id,
-                'start' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 15:00:00")->toDateTimeString(),
-                'end' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 21:00:00")->toDateTimeString(),
-            ]);
-
-            // Crear el turno de noche
-            Shift::factory()->create([
-                'schedule_id' => $schedule->id,
-                'start' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 21:00:00")->toDateTimeString(),
-                'end' => Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$i 04:00:00")->toDateTimeString(),
-            ]);
-        }
+        $schedule->shifts = json_decode($this->generateShifts($schedule, $year, $month, $day, 5), true);
         $data['shiftsJSON'] = json_encode($schedule->shifts);
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
@@ -108,6 +105,7 @@ class FastApiController extends Controller
         $data=request()->validate([
             "id"=>"required",
             "scheduleJSON"=>"array",
+            "satisfabilityJSON"=>"array",
             "status"=>"required",
         ]);
         $schedule = Schedule::find($data['id']);
@@ -146,9 +144,34 @@ class FastApiController extends Controller
                     }
                 }
             }
-            return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
+            else{
+                return response()->json(['message' => 'Se ha producido un error no hay Schedule json'], 404);
+            }
         }
-        return response()->json(['message' => 'Se ha producido un error'], 404);
+        else{
+            return response()->json(['message' => 'Se ha producido un error schedule no encontrado'], 404);
+
+        }
+        if(isset($data['satisfabilityJSON'])){
+            foreach ($data['satisfabilityJSON'] as $userId => $satisfability) {
+                $user = User::find($userId);
+                if ($user) {
+                    Satisfaction::create([
+                        'user_id' => $user->id,
+                        'score' => $satisfability
+                    ]);
+                } else {
+                    return response()->json(['message' => "Usuario con ID {$userId} no encontrado."], 404);
+
+                }
+            }
+        }
+        else{
+            return response()->json(['message' => 'Se ha producido un error no hay satisfability json'], 404);
+        }
+
+        return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
+
     }
 
     public static function sendStats(){
@@ -168,5 +191,47 @@ class FastApiController extends Controller
         }
 
         return $response;
+    }
+
+
+    function generateShifts($schedule, $year, $month, $day, $daysToGenerate = 5) {
+        $shifts = [];
+        $shiftTypes = [
+            ['start' => '09:00:00', 'end' => '15:00:00', 'type' => 0], // Mañana
+            ['start' => '15:00:00', 'end' => '21:00:00', 'type' => 1], // Tarde
+            ['start' => '21:00:00', 'end' => '04:00:00', 'type' => 2], // Noche
+        ];
+
+        for ($i = 0; $i < $daysToGenerate; $i++) {
+            $currentDate = Carbon::createFromDate($year, $month, $day);
+
+            if ($currentDate->month != $month) {
+                break;
+            }
+
+            $scheduleId = $schedule->id;
+
+            foreach ($shiftTypes as $shift) {
+                $start = Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$day {$shift['start']}")->toDateTimeString();
+
+                $end = Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-$day {$shift['end']}")->toDateTimeString();
+                if ($shift['end'] == '04:00:00') {
+                    $end = Carbon::createFromFormat('Y-m-d H:i:s', "$year-$month-" . ($day + 1) . " {$shift['end']}")->toDateTimeString();
+                }
+
+                $shift = Shift::create([
+                    "schedule_id" => $scheduleId,
+                    "start" => $start,
+                    "end" => $end,
+                    "users_needed" => 1,
+                    "type" => $shift['type']
+                ]);
+                $shifts[] = $shift->toArray();
+            }
+            $day++;
+
+        }
+
+        return json_encode($shifts, JSON_PRETTY_PRINT);
     }
 }
