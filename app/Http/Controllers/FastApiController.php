@@ -105,6 +105,7 @@ class FastApiController extends Controller
         $data=request()->validate([
             "id"=>"required",
             "scheduleJSON"=>"array",
+            "satisfabilityJSON"=>"array",
             "status"=>"required",
         ]);
         $schedule = Schedule::find($data['id']);

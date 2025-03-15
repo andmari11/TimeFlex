@@ -62,22 +62,6 @@ class DatabaseSeeder extends Seeder
             'section_id' => 0
         ]);
         Schedule::factory(2)->create();
-        for ($i = 0; $i < 5; $i++) {
-            Shift::factory()->create([
-                'start' => now()->addDays($i)->setTime(9, 0),
-                'end' => now()->addDays($i)->setTime(15, 0),
-            ]);
-
-            Shift::factory()->create([
-                'start' => now()->addDays($i)->setTime(15, 0),
-                'end' => now()->addDays($i)->setTime(21, 0),
-            ]);
-
-            Shift::factory()->create([
-                'start' => now()->addDays($i)->setTime(21, 0),
-                'end' => now()->addDays($i + 1)->setTime(4, 0),
-            ]);
-        }
 
         QuestionType::create([ 'name' => 'Calendario', 'description' => 'Pregunta basada en una fecha seleccionable mediante un calendario.' ]);
         QuestionType::create([ 'name' => 'Selector', 'description' => 'Pregunta con múltiples opciones seleccionables a través de un menú desplegable.' ]);

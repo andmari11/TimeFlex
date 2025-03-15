@@ -101,7 +101,7 @@ class ShiftExchangeController extends Controller
     public function cancelExchange($id)
     {
         $exchange = ShiftExchange::find($id);
-        $exchange->delete();
+        $exchange->update(['status' => 'accepted']);
 
         $notification = new Notification();
         $notification->user_id = $exchange->demander_id ?? null;
@@ -163,7 +163,7 @@ class ShiftExchangeController extends Controller
         $notification->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
         $notification->save();
 
-        $exchange->delete();
+        $exchange->update(['status' => 'accepted']);
 
         Notification::where('shift_exchange_id', $id)->delete();
 

@@ -15,8 +15,8 @@
                 </div>
             </div>
             @if ($userToView)
-                <div class="mx-auto w-full">
-                    <x-users.employee-section :employee="$userToView"></x-users.employee-section>
+                <div class="px-4 w-full">
+                    <x-users.employee-section  :employee="$userToView"></x-users.employee-section>
                 </div>
                     <div class="m-6">
                         @foreach($usersShifts as $shift)
