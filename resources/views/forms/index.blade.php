@@ -6,9 +6,15 @@
         </div>
 
         @if(auth()->user()->role === 'admin')
-            <div class="text-right mb-6">
+            <div class="flex justify-end space-x-4 mb-6">
+                <!-- Botón Crear Formulario -->
                 <a href="/formularios/create" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-md shadow-md">
                     + Crear nuevo formulario
+                </a>
+
+                <!-- Botón Ver Respuestas -->
+                <a href="{{ route('forms.answers') }}" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md shadow-md">
+                    Ver respuestas de formularios
                 </a>
             </div>
         @endif
@@ -140,7 +146,6 @@
         @endif
     </div>
 </x-layout>
-
 <script>
     function showDuplicatePopup(formId) {
         document.getElementById(`duplicate-modal-${formId}`).classList.remove('hidden');
@@ -160,4 +165,3 @@
         document.getElementById(`delete-modal-${formId}`).classList.add('hidden');
     }
 </script>
-

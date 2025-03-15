@@ -88,4 +88,8 @@ class User extends Authenticatable
         return $this->HasMany(Satisfaction::class);
     }
 
+    public function results()
+    {
+        return $this->HasMany(Result::class);
+    }
 }

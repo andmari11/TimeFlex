@@ -265,4 +265,18 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'El formulario ha sido duplicado exitosamente.');
     }
+
+    public function showAnswers()
+    {
+        // Filtrar los formularios para que se incluyan solo aquellos con respuestas
+        $formularios = Form::whereHas('questions.results')
+            ->with([
+                'questions' => function ($query) {
+                    $query->whereHas('results');
+                },
+                'questions.results.user'
+            ])->get();
+
+        return view('forms.answers', compact('formularios'));
+    }
 }
