@@ -126,12 +126,11 @@ class FormsController extends Controller
             'summary' => $request->summary,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            // Otros campos si es necesario
+            'id_section' => $request->id_section
         ]);
 
         // Actualizar las preguntas del formulario
         foreach ($request->questions as $index => $questionData) {
-
             if (isset($questionData['id'])) {
                 // Actualizar pregunta existente
                 $question = Question::findOrFail($questionData['id']);

@@ -47,7 +47,7 @@
                             @auth
                                 <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                             @endauth
@@ -127,7 +127,7 @@
                 @auth
                     <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                 @endauth

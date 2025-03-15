@@ -31,7 +31,7 @@ class Form extends Model
     }
     public function section()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Section::class, 'id_section');
     }
 
     public function questions()

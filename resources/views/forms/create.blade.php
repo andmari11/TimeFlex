@@ -1,84 +1,113 @@
 <x-layout :title="'Crear Nuevo Formulario'">
-    <div class="flex items-center justify-center">
-        <form action="/register-form" method="POST" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
-            @csrf
-            <div class="space-y-1 row">
+    <div class="container mx-auto py-10 px-6">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-gray-800">Crear Nuevo Formulario</h1>
+            <p class="text-gray-600 mt-2">Configura los detalles del formulario y agrega preguntas dinámicamente.</p>
+        </div>
 
-
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+            <form action="/register-form" method="POST">
+                @csrf
                 <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
 
-                <x-forms.field class="col-12">
-                    <x-forms.label for="title">Título</x-forms.label>
-                    <x-forms.input name="title" id="title" :value="old('title')" required />
+                <!-- Título -->
+                <div class="mb-6">
+                    <label for="title" class="block text-lg font-medium text-gray-700">Título del Formulario</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" required
+                           class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
                     <x-forms.error name="title" />
-                </x-forms.field>
+                </div>
 
-                <x-forms.field class="col-12">
-                    <x-forms.label for="summary">Resumen</x-forms.label>
-                    <x-forms.input name="summary" id="summary" required>{{ old('summary') }}</x-forms.input>
+                <!-- Resumen -->
+                <div class="mb-6">
+                    <label for="summary" class="block text-lg font-medium text-gray-700">Resumen del Formulario</label>
+                    <textarea name="summary" id="summary" rows="3" required
+                              class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">{{ old('summary') }}</textarea>
                     <x-forms.error name="summary" />
-                </x-forms.field>
+                </div>
 
-                <x-forms.field class="col-12">
-                    <x-forms.label for="start_date">Fecha de Inicio</x-forms.label>
-                    <x-forms.input type="datetime-local" name="start_date" id="start_date" :value="old('start_date')" required />
-                    <x-forms.error name="start_date" />
-                </x-forms.field>
+                <!-- Fechas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="start_date" class="block text-lg font-medium text-gray-700">Fecha de Inicio</label>
+                        <input type="text" name="start_date" id="start_date" value="{{ old('start_date') }}" required
+                               class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <x-forms.error name="start_date" />
+                    </div>
+                    <div>
+                        <label for="end_date" class="block text-lg font-medium text-gray-700">Fecha de Finalización</label>
+                        <input type="text" name="end_date" id="end_date" value="{{ old('end_date') }}" required
+                               class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <x-forms.error name="end_date" />
+                    </div>
+                </div>
 
-                <x-forms.field class="col-12">
-                    <x-forms.label for="end_date">Fecha de Finalización</x-forms.label>
-                    <x-forms.input type="datetime-local" name="end_date" id="end_date" :value="old('end_date')" required />
-                    <x-forms.error name="end_date" />
-                </x-forms.field>
-
-                <x-forms.field class="col-12">
-                    <x-forms.label for="id_section">Sección</x-forms.label>
-                    <select name="id_section" id="id_section" required>
+                <!-- Sección -->
+                <div class="mb-6 mt-6">
+                    <label for="id_section" class="block text-lg font-medium text-gray-700">Sección del Formulario</label>
+                    <select name="id_section" id="id_section" required
+                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <option value="" disabled selected>Selecciona una sección</option>
                         @foreach(\App\Models\Section::all() as $section)
                             <option value="{{ $section->id }}">{{ $section->name }}</option>
                         @endforeach
                     </select>
                     <x-forms.error name="id_section" />
-                </x-forms.field>
-
-            </div>
-
-            <div class="mt-6">
-                <h2 class="text-xl font-bold">Preguntas</h2>
-                <div id="questions-container">
-                    <div class="question-template">
-                        <x-forms.field class="col-12">
-                            <x-forms.label for="questions[0][title]">Título de la Pregunta</x-forms.label>
-                            <x-forms.input name="questions[0][title]" id="questions[0][title]" required />
-                            <x-forms.error name="questions[0][title]" />
-                        </x-forms.field>
-
-                        <x-forms.field class="col-12">
-                            <x-forms.label for="questions[0][id_question_type]">Tipo de Pregunta</x-forms.label>
-                            <select name="questions[0][id_question_type]" id="questions[0][id_question_type]" required onchange="showQuestionFields(this, 0)">
-                                <option value="" disabled selected>Selecciona el tipo de pregunta</option>
-                                @foreach(\App\Models\QuestionType::all() as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                @endforeach
-                            </select>
-                            <x-forms.error name="questions[0][id_question_type]" />
-                        </x-forms.field>
-
-                        <div id="question-fields-0"></div>
-                    </div>
                 </div>
 
-                <button type="button" id="add-question" class="btn bg-blue-500 p-2 rounded-lg text-white mt-4 inline-block">Agregar Pregunta</button>
-            </div>
+                <!-- Contenedor de Preguntas -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Preguntas</h2>
+                    <div id="questions-container">
+                        <div class="question-template bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+                            <div class="mb-4">
+                                <label for="questions[0][title]" class="block text-lg font-medium text-gray-700">Título de la Pregunta</label>
+                                <input type="text" name="questions[0][title]" id="questions[0][title]" required
+                                       class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <x-forms.error name="questions[0][title]" />
+                            </div>
 
-            <div class="mt-6 flex items-center justify-between">
-                <a href="/formularios" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
-                <x-forms.button>Crear</x-forms.button>
-            </div>
-        </form>
+                            <div>
+                                <label for="questions[0][id_question_type]" class="block text-lg font-medium text-gray-700">Tipo de Pregunta</label>
+                                <select name="questions[0][id_question_type]" id="questions[0][id_question_type]" required
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                        onchange="showQuestionFields(this, 0)">
+                                    <option value="" disabled selected>Selecciona el tipo de pregunta</option>
+                                    @foreach(\App\Models\QuestionType::all() as $type)
+                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-forms.error name="questions[0][id_question_type]" />
+                            </div>
+
+                            <!-- Contenedor dinámico para las opciones -->
+                            <div id="question-fields-0" class="mt-4"></div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="add-question"
+                            class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md mt-4">
+                        + Agregar Pregunta
+                    </button>
+                </div>
+
+                <!-- Botones -->
+                <div class="mt-10 flex justify-between">
+                    <a href="/formularios" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
+                        Cancelar
+                    </a>
+                    <button type="submit"
+                            class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                        Crear Formulario
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Script para manejo dinámico de preguntas -->
     <script>
         document.getElementById('add-question').addEventListener('click', function() {
             const container = document.getElementById('questions-container');
@@ -91,44 +120,72 @@
                 input.value = '';
             });
 
-            template.querySelector('select').setAttribute('onchange', `showQuestionFields(this, ${index})`);
             template.querySelector('#question-fields-0').id = `question-fields-${index}`;
+            template.querySelector('select').setAttribute('onchange', `showQuestionFields(this, ${index})`);
 
             container.appendChild(template);
         });
 
         function showQuestionFields(select, index) {
             const fieldsContainer = document.getElementById(`question-fields-${index}`);
-            fieldsContainer.innerHTML = '';
+            fieldsContainer.innerHTML = ''; // Limpiar cualquier contenido previo
 
             switch (select.value) {
-                case '2': // ID del tipo de pregunta 'Selector'
+                case '2': // Tipo "Selector"
                     fieldsContainer.innerHTML = `
-                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 1" required />
-                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 2" required />
-                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 3" required />
-                    `;
-                    const addButton = document.createElement('button');
-                    addButton.type = 'button';
-                    addButton.innerText = 'Agregar Opción';
-                    addButton.addEventListener('click', function() {
-                        addOption(index);
-                    });
-                    fieldsContainer.appendChild(addButton);
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 1"
+                            class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                        <button type="button" onclick="addOption(${index})"
+                            class="text-blue-500 hover:text-blue-700 font-semibold">
+                            + Agregar
+                        </button>
+                    </div>
+                </div>
+            `;
                     break;
                 default:
+                    // Si no se requiere campo dinámico, no se genera contenido
+                    fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;
                     break;
             }
         }
 
+
         function addOption(index) {
             const fieldsContainer = document.getElementById(`question-fields-${index}`);
-            const newOption = document.createElement('input');
-            newOption.type = 'text';
-            newOption.name = `questions[${index}][options][]`;
-            newOption.placeholder = `Opción ${fieldsContainer.querySelectorAll('input').length + 1}`;
-            newOption.required = true;
-            fieldsContainer.insertBefore(newOption, fieldsContainer.querySelector('button'));
+            const optionCount = fieldsContainer.querySelectorAll('input').length + 1;
+            const newOption = document.createElement('div');
+            newOption.classList.add('flex', 'items-center', 'gap-2', 'mb-2');
+            newOption.innerHTML = `
+                <input type="text" name="questions[${index}][options][]" placeholder="Opción ${optionCount}"
+                    class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">
+                    Eliminar
+                </button>
+            `;
+            fieldsContainer.appendChild(newOption);
         }
+
+        function removeOption(button) {
+            button.parentElement.remove();
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#start_date", {
+                enableTime: true, // Habilitar selección de tiempo
+                dateFormat: "Y-m-d H:i", // Formato de fecha y hora (datetime)
+                time_24hr: true // Usar formato de 24 horas
+            });
+
+            flatpickr("#end_date", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true
+            });
+        });
     </script>
+
 </x-layout>
