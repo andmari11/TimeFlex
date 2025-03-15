@@ -2,7 +2,6 @@ from z3 import *
 from model.shift import *
 from model.workerPreference import *
 import json
-import logging
 
 PREFERRED_SHIFTS_WEIGHT = 10
 HOLIDAYS_WEIGHT = -20
@@ -116,12 +115,12 @@ def optimize(data, logging):
                 holiday_shift=(Or(
                     shifts[j].start.date() == holiday.date(), 
                     shifts[j].end.date() == holiday.date()))
-                s.add_soft(Or(all_workers_shifts[i][j]==False, And(all_workers_shifts[i][j], Not(holiday_shift))))
+                s.add_soft(Or(all_workers_shifts[i][j]==False, And(all_workers_shifts[i][j], Not(holiday_shift))), weight = workers[i].holidays_weight)
 
     #tipo de turno ej:(mañana:0, tarde:1, noche:2)
     for i in range(n_workers):
         for j in range(n_shifts):
-            s.add_soft(Implies(all_workers_shifts[i][j], shifts[j].type in workers[i].preferred_shift_types))
+            s.add_soft(Implies(all_workers_shifts[i][j], shifts[j].type in workers[i].preferred_shift_types), weight = workers[i].preferred_shift_weight)
 
 
     # calcular la satisfacción de cada trabajador
