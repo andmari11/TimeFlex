@@ -42,17 +42,19 @@
                     </div>
                 </div>
 
-                <!-- Sección -->
+                <!-- Secciones -->
                 <div class="mb-6 mt-6">
-                    <label for="id_section" class="block text-lg font-medium text-gray-700">Sección del Formulario</label>
-                    <select name="id_section" id="id_section" required
+                    <label for="id_sections" class="block text-lg font-medium text-gray-700">Secciones del Formulario</label>
+                    <select name="id_sections[]" id="id_sections" multiple required
                             class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="" disabled>Selecciona una sección</option>
                         @foreach(\App\Models\Section::all() as $section)
-                            <option value="{{ $section->id }}" @if($formulario->id_section == $section->id) selected @endif>{{ $section->name }}</option>
+                            <option value="{{ $section->id }}" @if(in_array($section->id, $formulario->sections->pluck('id')->toArray())) selected @endif>
+                                {{ $section->name }}
+                            </option>
                         @endforeach
                     </select>
-                    <x-forms.error name="id_section" />
+                    <p class="text-sm text-gray-500 mt-2">* Mantén presionada la tecla Ctrl (o Cmd en Mac) para seleccionar múltiples secciones.</p>
+                    <x-forms.error name="id_sections" />
                 </div>
 
                 <!-- Preguntas -->

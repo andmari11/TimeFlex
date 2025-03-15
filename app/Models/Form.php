@@ -38,4 +38,10 @@ class Form extends Model
     {
         return $this->hasMany(Question::class, 'id_form');
     }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'form_section', 'form_id', 'section_id');
+    }
+
 }

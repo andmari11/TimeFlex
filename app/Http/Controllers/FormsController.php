@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Result;
 use Illuminate\Http\Request;
+use App\Models\Section;
 use App\Models\Form;
 use App\Models\QuestionType;
 use App\Models\Question;
@@ -17,12 +18,14 @@ class FormsController extends Controller
     {
         $user = auth()->user();
 
-        // Si el usuario es administrador, mostramos todos los formularios
         if ($user->role === 'admin') {
-            $formularios = Form::all();
+            // Obtener formularios únicos de todas las secciones
+            $formularios = Form::with('sections')->distinct()->get();
         } else {
-            // Si el usuario es empleado, mostrar formularios de su sección
-            $formularios = Form::where('id_section', $user->section_id)->get();
+            // Obtener formularios de la sección asignada al usuario, únicos
+            $formularios = Form::whereHas('sections', function ($query) use ($user) {
+                $query->where('sections.id', $user->section_id);
+            })->with('sections')->distinct()->get();
         }
 
         return view('forms.index', compact('formularios'));
@@ -59,7 +62,8 @@ class FormsController extends Controller
             'summary' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'id_section' => 'required|exists:sections,id', // Validar sección
+            'id_sections' => 'required|array', // Validar que es un array
+            'id_sections.*' => 'exists:sections,id', // Validar que cada sección exista en la tabla sections
         ]);
 
         // Crear el formulario
@@ -69,20 +73,26 @@ class FormsController extends Controller
             'summary' => $request->summary,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'id_section' => $request->id_section, // Asignar la sección
         ]);
+
+        // Asociar las secciones seleccionadas con el formulario
+        $formulario->sections()->sync($request->id_sections);
 
         // Crear las preguntas del formulario
         foreach ($request->questions as $questionData) {
-            $question = new Question($questionData);
-            $question->id_form = $formulario->id;
+            $question = new Question([
+                'id_form' => $formulario->id,
+                'title' => $questionData['title'],
+                'id_question_type' => $questionData['id_question_type'],
+            ]);
             $question->save();
 
+            // Crear las opciones si existen
             if (isset($questionData['options'])) {
                 foreach ($questionData['options'] as $option) {
                     $questionOption = new Option([
                         'id_question' => $question->id,
-                        'value' => $option
+                        'value' => $option,
                     ]);
                     $questionOption->save();
                 }
@@ -90,8 +100,9 @@ class FormsController extends Controller
         }
 
         return redirect()->route('forms.index')
-            ->with('success', 'Formulario, preguntas y sección asignados exitosamente.');
+            ->with('success', 'Formulario, preguntas y secciones asignados exitosamente.');
     }
+
 
 
     // Eliminar un formulario
@@ -120,14 +131,27 @@ class FormsController extends Controller
     {
         $formulario = Form::findOrFail($id);
 
-        // Actualizar los datos del formulario
+        // Validar los datos del formulario
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'summary' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'id_sections' => 'required|array',
+            'id_sections.*' => 'exists:sections,id',
+            'questions' => 'required|array',
+        ]);
+
+        // Actualizar los datos generales del formulario
         $formulario->update([
             'title' => $request->title,
             'summary' => $request->summary,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'id_section' => $request->id_section
         ]);
+
+        // Sincronizar las secciones seleccionadas
+        $formulario->sections()->sync($request->id_sections);
 
         // Actualizar las preguntas del formulario
         foreach ($request->questions as $index => $questionData) {
@@ -139,6 +163,7 @@ class FormsController extends Controller
                     'id_question_type' => $questionData['id_question_type'],
                 ]);
 
+                // Actualizar o agregar opciones de la pregunta existente
                 if (isset($questionData['options'])) {
                     foreach ($questionData['options'] as $optionIndex => $optionValue) {
                         if (isset($optionValue['id'])) {
@@ -164,6 +189,7 @@ class FormsController extends Controller
                 ]);
                 $question->save();
 
+                // Crear nuevas opciones para la pregunta
                 if (isset($questionData['options'])) {
                     foreach ($questionData['options'] as $option) {
                         $questionOption = new Option([
@@ -179,6 +205,7 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'Formulario actualizado exitosamente.');
     }
+
 
 
     public function submit(Request $request, $id)
