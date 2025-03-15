@@ -69,6 +69,10 @@ Route::get('/formularios/{formId}/resultados', [FormsController::class, 'showRes
 Route::get('/formularios/{id}/editar-respuestas', [FormsController::class, 'editResults'])->name('forms.editresults');
 Route::put('/formularios/{id}/actualizar-respuestas', [FormsController::class, 'updateResults'])->name('forms.updateresults');
 
+Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middleware('auth');
+Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');
+Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
+Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');

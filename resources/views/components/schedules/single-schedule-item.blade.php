@@ -4,6 +4,9 @@
         <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/0/0" class="bg-gray-300 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm transition-all duration-300">
             Cambio de turno
         </a>
+        <a href="/horario/{{$schedule->id}}/edit" class="bg-gray-300 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm transition-all duration-300 ms-2">
+            Editar
+        </a>
         <button
             class="bg-gray-300 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm transition-all duration-300 ms-2">
             Eliminar

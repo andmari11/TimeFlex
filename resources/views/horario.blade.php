@@ -8,7 +8,7 @@
 
         @if(auth()->user()->role === 'admin')
             <div class="text-right mb-6">
-                <a href="" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                <a href="/horario-registrar" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md">
                     Crear nuevo horario
                 </a>
             </div>
