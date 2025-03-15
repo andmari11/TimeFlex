@@ -279,4 +279,21 @@ class FormsController extends Controller
 
         return view('forms.answers', compact('formularios'));
     }
+
+    public function showResults($formId)
+    {
+        $userId = auth()->user()->id;
+
+        // Obtener el formulario
+        $formulario = Form::with('questions')->findOrFail($formId);
+
+        // Obtener las respuestas del usuario actual para ese formulario
+        $answers = Result::where('id_form', $formId)
+            ->where('id_user', $userId)
+            ->with('question')
+            ->get();
+
+        return view('forms.showresult', compact('formulario', 'answers'));
+    }
+
 }
