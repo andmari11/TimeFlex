@@ -62,19 +62,77 @@
 
                             <!-- Opciones de administración -->
                             @if(auth()->user()->role === 'admin')
-                                <div class="mt-4 flex justify-between items-center border-t border-gray-300 pt-4">
-                                    <a href="{{ route('forms.edit', $formulario->id) }}" class="btn text-blue-500 hover:text-blue-700 font-semibold text-sm">
+                                <div class="mt-4 flex justify-between items-center border-t border-gray-300 pt-4 space-x-4">
+                                    <!-- Botón Editar -->
+                                    <a href="{{ route('forms.edit', $formulario->id) }}" class="text-blue-500 hover:text-blue-700 font-semibold text-sm">
                                         Editar
                                     </a>
-                                    <form action="{{ route('forms.destroy', $formulario->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este formulario?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn text-red-500 hover:text-red-700 font-semibold text-sm">
-                                            Eliminar
-                                        </button>
-                                    </form>
+
+                                    <!-- Botón Duplicar -->
+                                    <button type="button" onclick="showDuplicatePopup({{ $formulario->id }})"
+                                            class="text-purple-500 hover:text-purple-700 font-semibold text-sm">
+                                        Duplicar
+                                    </button>
+
+                                    <!-- Botón Eliminar -->
+                                    <button type="button" onclick="showDeletePopup({{ $formulario->id }})"
+                                            class="text-red-500 hover:text-red-700 font-semibold text-sm">
+                                        Eliminar
+                                    </button>
+                                </div>
+
+                                <!-- Modal para Duplicar -->
+                                <div id="duplicate-modal-{{ $formulario->id }}" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+                                    <div class="bg-white w-96 rounded-lg shadow-lg p-6">
+                                        <h2 class="text-lg font-semibold text-gray-800">Duplicar Formulario</h2>
+                                        <p class="text-gray-600 mt-2">¿Estás seguro de que deseas duplicar este formulario? Se creará una copia con un nuevo ID.</p>
+
+                                        <div class="mt-4 flex justify-between">
+                                            <!-- Botón Cancelar -->
+                                            <button onclick="closeDuplicatePopup({{ $formulario->id }})"
+                                                    class="btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
+                                                Cancelar
+                                            </button>
+
+                                            <!-- Botón Confirmar Duplicación -->
+                                            <form action="{{ route('forms.duplicate', $formulario->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                        class="btn bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                                                    Duplicar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal para Eliminar -->
+                                <div id="delete-modal-{{ $formulario->id }}" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+                                    <div class="bg-white w-96 rounded-lg shadow-lg p-6">
+                                        <h2 class="text-lg font-semibold text-gray-800">Eliminar Formulario</h2>
+                                        <p class="text-gray-600 mt-2">¿Estás seguro de que deseas eliminar este formulario? Esta acción no se puede deshacer.</p>
+
+                                        <div class="mt-4 flex justify-between">
+                                            <!-- Botón Cancelar -->
+                                            <button onclick="closeDeletePopup({{ $formulario->id }})"
+                                                    class="btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
+                                                Cancelar
+                                            </button>
+
+                                            <!-- Botón Confirmar Eliminación -->
+                                            <form action="{{ route('forms.destroy', $formulario->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                        class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                                                    Eliminar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             @endif
+
                         </div>
                     </div>
                 @endforeach
@@ -82,3 +140,24 @@
         @endif
     </div>
 </x-layout>
+
+<script>
+    function showDuplicatePopup(formId) {
+        document.getElementById(`duplicate-modal-${formId}`).classList.remove('hidden');
+    }
+
+    function closeDuplicatePopup(formId) {
+        document.getElementById(`duplicate-modal-${formId}`).classList.add('hidden');
+    }
+
+    // Mostrar el modal de confirmación para eliminar
+    function showDeletePopup(formId) {
+        document.getElementById(`delete-modal-${formId}`).classList.remove('hidden');
+    }
+
+    // Ocultar el modal de confirmación para eliminar
+    function closeDeletePopup(formId) {
+        document.getElementById(`delete-modal-${formId}`).classList.add('hidden');
+    }
+</script>
+

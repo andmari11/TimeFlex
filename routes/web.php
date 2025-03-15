@@ -63,6 +63,7 @@ Route::get('/formularios/{id}/edit', [FormsController::class, 'edit'])->middlewa
 Route::put('/formularios/{id}', [FormsController::class, 'update'])->middleware('auth')->name('forms.update');
 Route::get('/formularios/{id}/show', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
 Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->middleware('auth')->name('forms.submit');
+Route::post('/formularios/{id}/duplicar', [FormsController::class, 'duplicate'])->name('forms.duplicate');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');

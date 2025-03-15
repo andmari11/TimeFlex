@@ -235,9 +235,34 @@ class FormsController extends Controller
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
     }
+    public function duplicate(Request $request, $id)
+    {
+        $originalForm = Form::with('questions.options', 'sections')->findOrFail($id);
 
+        // Clonar el formulario
+        $newForm = $originalForm->replicate(); // Clona los datos principales
+        $newForm->title = $originalForm->title . ' (Copia)';
+        $newForm->save();
 
+        // Clonar las relaciones (secciones, preguntas y opciones)
+        // 1. Relación con secciones
+        $newForm->sections()->sync($originalForm->sections->pluck('id')->toArray());
 
+        // 2. Relación con preguntas
+        foreach ($originalForm->questions as $question) {
+            $newQuestion = $question->replicate();
+            $newQuestion->id_form = $newForm->id;
+            $newQuestion->save();
 
+            // 3. Relación con opciones
+            foreach ($question->options as $option) {
+                $newOption = $option->replicate();
+                $newOption->id_question = $newQuestion->id;
+                $newOption->save();
+            }
+        }
 
+        return redirect()->route('forms.index')
+            ->with('success', 'El formulario ha sido duplicado exitosamente.');
+    }
 }
