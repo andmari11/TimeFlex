@@ -159,6 +159,7 @@ def optimize(data):
     if s.check() == sat:
         solution_to_send['status'] = "success"
         solution_to_send['scheduleJSON'] = {}
+        solution_to_send['satisfabilityJSON'] = {}
 
         m = s.model()
         print("\n---------- Horario por empleado ----------\n")
@@ -176,14 +177,6 @@ def optimize(data):
             for i in range(n_workers):
                 workers_in_shift.append(m.eval(all_workers_shifts[i][j]))
             print(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
-
-        for i in range(n_workers):
-            user_schedule = [] 
-            for j in range(n_shifts):
-                if m.eval(all_workers_shifts[i][j]):
-                    user_schedule.append(shifts[j].shift_id) 
-                    
-            solution_to_send['scheduleJSON'][workers[i].user_id] = user_schedule
         print("\n---------- Satisfacción ----------\n")
         this_satisfaction_score=satisfaction_score(all_workers_shifts, workers, shifts, m)
         print("Satisfaction score this calendar: ", this_satisfaction_score)
@@ -191,6 +184,16 @@ def optimize(data):
         print("Satisfaction score last calendars: ", last_calendar_scores)
         all_calendar_scores = [sum(workers[i].past_satisfaction)+ this_satisfaction_score[i] / len(workers[i].past_satisfaction)+1 for i in range(n_workers)]
         print("Satisfaction score all calendars including last: ", all_calendar_scores)
+
+        for i in range(n_workers):
+            user_schedule = [] 
+            solution_to_send['satisfabilityJSON'][workers[i].user_id] = this_satisfaction_score[i]
+            for j in range(n_shifts):
+                if m.eval(all_workers_shifts[i][j]):
+                    user_schedule.append(shifts[j].shift_id) 
+                    
+            solution_to_send['scheduleJSON'][workers[i].user_id] = user_schedule
+        
 
     else:
         solution_to_send['status'] = "failed"

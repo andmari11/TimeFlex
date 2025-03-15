@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Notification;
+use App\Models\Satisfaction;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\User;
@@ -142,9 +143,34 @@ class FastApiController extends Controller
                     }
                 }
             }
-            return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
+            else{
+                return response()->json(['message' => 'Se ha producido un error no hay Schedule json'], 404);
+            }
         }
-        return response()->json(['message' => 'Se ha producido un error'], 404);
+        else{
+            return response()->json(['message' => 'Se ha producido un error schedule no encontrado'], 404);
+
+        }
+        if(isset($data['satisfabilityJSON'])){
+            foreach ($data['satisfabilityJSON'] as $userId => $satisfability) {
+                $user = User::find($userId);
+                if ($user) {
+                    Satisfaction::create([
+                        'user_id' => $user->id,
+                        'score' => $satisfability
+                    ]);
+                } else {
+                    return response()->json(['message' => "Usuario con ID {$userId} no encontrado."], 404);
+
+                }
+            }
+        }
+        else{
+            return response()->json(['message' => 'Se ha producido un error no hay satisfability json'], 404);
+        }
+
+        return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
+
     }
 
     public static function sendStats(){
