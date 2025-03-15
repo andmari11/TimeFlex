@@ -32,9 +32,17 @@ class FormsController extends Controller
     // Mostrar formulario específico junto con sus preguntas
     public function show($id)
     {
-        $formulario = Form::with('questions')->find($id);
-        return view('forms.show', compact('formulario'));
+        $formulario = Form::with('questions')->findOrFail($id);
+        $userId = auth()->user()->id;
+
+        // Verificar si el usuario ya respondió el formulario
+        $hasAnswered = Result::where('id_user', $userId)
+            ->where('id_form', $id)
+            ->exists();
+
+        return view('forms.show', compact('formulario', 'hasAnswered'));
     }
+
 
     // Mostrar formulario para crear un nuevo formulario
     public function create()
@@ -184,25 +192,24 @@ class FormsController extends Controller
             'questions.*.id_question' => 'required|integer|exists:questions,id',
             'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
             'questions.*.answer' => 'required',
+            'id_user' => 'required|integer|exists:users,id',
+            'id_form' => 'required|integer|exists:forms,id',
         ]);
 
         // Procesar y guardar las respuestas
         foreach ($validatedData['questions'] as $data) {
-            $id_question = $data['id_question'];
-            $answer = $data['answer'];
-            $id_question_type = $data['id_question_type'];
-
-
-            // Guardar la respuesta en la tabla results
             Result::create([
-                'id_question' => $id_question,
-                'respuesta' => $answer,
-                'id_question_type' => $id_question_type,
+                'id_question' => $data['id_question'],
+                'respuesta' => $data['answer'],
+                'id_question_type' => $data['id_question_type'],
+                'id_user' => $validatedData['id_user'],
+                'id_form' => $validatedData['id_form'],
             ]);
         }
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
     }
+
 
 
 

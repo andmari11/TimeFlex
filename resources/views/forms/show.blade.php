@@ -16,29 +16,28 @@
                 <h2 class="text-xl font-bold">Preguntas</h2>
                 @foreach($formulario->questions as $index => $question)
                     <div class="mt-4">
-                        <x-forms.label for="questions[{{ $index }}][answer]">{{ $question->title }} (ID Tipo Pregunta: {{ $question->id_question_type }})</x-forms.label>
+                        <x-forms.label for="questions[{{ $index }}][answer]">{{ $question->title }}</x-forms.label>
 
-                        <!-- Campos ocultos para id_question y id_question_type -->
+                        <!-- Campos ocultos para id_question, id_question_type, id_form -->
                         <input type="hidden" name="questions[{{ $index }}][id_question]" value="{{ $question->id }}">
                         <input type="hidden" name="questions[{{ $index }}][id_question_type]" value="{{ $question->id_question_type }}">
+                        <input type="hidden" name="id_form" value="{{ $formulario->id }}">
+                        <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
 
                         @switch($question->id_question_type)
-                            @case(1)
-                                <x-forms.input type="date" name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" required />
-                                @break
-
-                            @case(2)
-                                <select name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" required>
-                                    @foreach($question->options as $option)
-                                        <option value="{{ $option->value }}">{{ $option->value }}</option>
-                                    @endforeach
-                                </select>
-                                @break
-
-                            @case(3)
-                                <input type="range" name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" min="0" max="100" step="1" required>
-                                @break
-
+                            @case(1) <!-- Pregunta de tipo fecha -->
+                            <x-forms.input type="date" name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" required />
+                            @break
+                            @case(2) <!-- Pregunta de selección -->
+                            <select name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" required>
+                                @foreach($question->options as $option)
+                                    <option value="{{ $option->value }}">{{ $option->value }}</option>
+                                @endforeach
+                            </select>
+                            @break
+                            @case(3) <!-- Pregunta tipo deslizador -->
+                            <input type="range" name="questions[{{ $index }}][answer]" id="questions[{{ $index }}][answer]" min="0" max="100" step="1" required />
+                            @break
                         @endswitch
 
                         <x-forms.error name="questions[{{ $index }}][answer]" />

@@ -10,6 +10,13 @@
     @else
         <ul class="list-disc list-inside">
             @foreach($formularios as $formulario)
+                @php
+                    $userId = auth()->user()->id;
+                    $hasAnswered = \App\Models\Result::where('id_user', $userId)
+                        ->where('id_form', $formulario->id)
+                        ->exists();
+                @endphp
+
                 <li class="mb-6">
                     <h2 class="text-xl font-semibold">{{ $formulario->title }}</h2>
                     <p>{{ $formulario->summary }}</p>
@@ -22,8 +29,10 @@
                         $endDate = \Carbon\Carbon::parse($formulario->end_date);
                     @endphp
 
-                    @if($currentDate->between($startDate, $endDate))
+                    @if(!$hasAnswered && $currentDate->between($startDate, $endDate))
                         <a href="{{ route('forms.show', $formulario->id) }}" class="btn bg-green-500 text-white p-2 rounded-lg mt-2 inline-block">Contestar formulario</a>
+                    @elseif($hasAnswered)
+                        <p class="text-green-700">Ya has respondido este formulario. ¡Gracias!</p>
                     @endif
 
                     @if(auth()->user()->role === 'admin')

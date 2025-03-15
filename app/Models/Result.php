@@ -17,6 +17,8 @@ class Result extends Model
         'id_question',
         'respuesta',
         'id_question_type',
+        'id_user',
+        'id_form'
     ];
 
     /**
@@ -25,6 +27,15 @@ class Result extends Model
     public function question()
     {
         return $this->belongsTo(Question::class, 'id_question');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_question');
+    }
+
+    public function form()
+    {
+        return $this->belongsTo(Form::class, 'id_form');
     }
 
     /**
