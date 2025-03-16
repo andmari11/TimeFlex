@@ -361,8 +361,15 @@ class FormsController extends Controller
         // Validar las respuestas recibidas
         $request->validate([
             'answers' => 'required|array',
-            'answers.*.respuesta' => 'required|string',
+            'answers.*.id_question' => 'required|integer|exists:questions,id',
+            'answers.*.id_question_type' => 'required|integer|exists:question_type,id',
+            'answers.*.respuesta' => 'required',
+        ], [
+            'answers.*.respuesta.required' => 'Por favor, completa todas las respuestas.',
+        ], [
+            'answers.*.respuesta' => 'la respuesta a la pregunta'
         ]);
+
 
         // Actualizar las respuestas en la base de datos
         foreach ($request->answers as $answerId => $data) {
