@@ -10,6 +10,7 @@ use App\Models\QuestionType;
 use App\Models\Question;
 use App\Models\Option;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class FormsController extends Controller
 {
@@ -266,18 +267,56 @@ class FormsController extends Controller
             ->with('success', 'El formulario ha sido duplicado exitosamente.');
     }
 
-    public function showAnswers()
+    public function showAnswers(Request $request)
     {
-        // Filtrar los formularios para que se incluyan solo aquellos con respuestas
-        $formularios = Form::whereHas('questions.results')
-            ->with([
-                'questions' => function ($query) {
-                    $query->whereHas('results');
-                },
-                'questions.results.user'
-            ])->get();
+        // Query base para los formularios
+        $query = Form::query();
 
-        return view('forms.answers', compact('formularios'));
+        // Filtro por título
+        if ($request->has('title') && $request->title) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filtro por rango de fechas
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('start_date', '>=', $request->date_from);
+        }
+
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('end_date', '<=', $request->date_to);
+        }
+
+        // Filtro por usuario
+        if ($request->has('user_id') && $request->user_id) {
+            $query->whereHas('questions.results', function ($q) use ($request) {
+                $q->where('id_user', $request->user_id);
+            });
+        }
+
+        // Filtro por sección
+        if ($request->has('section_id') && $request->section_id !== null) {
+
+                // Formularios con una sección específica
+            $query->whereHas('sections', function ($q) use ($request) {
+                $q->where('sections.id', $request->section_id);
+            });
+        }
+
+        // Filtro por formularios activos
+        if ($request->has('active') && $request->active) {
+            $query->whereDate('end_date', '>=', now());
+        }
+
+        // Obtener los formularios con preguntas, resultados y usuarios
+        $formularios = $query->with(['questions.results.user'])->get();
+
+        // Obtener todas las secciones para el filtro
+        $sections = Section::all()->toArray();
+
+        // Obtener todos los usuarios para el filtro
+        $users = User::all();
+
+        return view('forms.answers', compact('formularios', 'sections', 'users'));
     }
 
     public function showResults($formId)
