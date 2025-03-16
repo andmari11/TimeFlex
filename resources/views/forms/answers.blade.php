@@ -25,7 +25,7 @@
                                                 <li class="bg-gray-50 p-3 rounded-md shadow-sm">
                                                     <p class="text-gray-800">{{ $result->respuesta }}</p>
                                                     <p class="text-sm text-gray-500 mt-1">
-                                                        Respondido por: {{ $result->user->name}}
+                                                        Respondido por: {{ $result->user->name }}
                                                     </p>
                                                 </li>
                                             @endforeach
@@ -38,5 +38,13 @@
                 @endforeach
             </div>
         @endif
+
+        <!-- Botón Volver -->
+        <div class="mt-10 text-center">
+            <a href="{{ route('forms.index') }}"
+               class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
+                Volver
+            </a>
+        </div>
     </div>
 </x-layout>
