@@ -24,20 +24,23 @@
                     @endforeach
                 </ul>
 
-                <!-- Botón Editar Respuestas -->
-                @php
-                    $currentDate = now(); // Fecha actual
-                    $endDate = \Carbon\Carbon::parse($formulario->end_date); // Fecha de finalización del formulario
-                @endphp
+                <div class="mt-6 flex justify-between items-center">
+                    <a href="{{ route('forms.index') }}"
+                       class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
+                        Volver
+                    </a>
+                    @php
+                        $currentDate = now(); // Fecha actual
+                        $endDate = \Carbon\Carbon::parse($formulario->end_date); // Fecha de finalización del formulario
+                    @endphp
 
-                @if($currentDate->lessThanOrEqualTo($endDate))
-                    <div class="mt-6 text-right">
+                    @if($currentDate->lessThanOrEqualTo($endDate))
                         <a href="{{ route('forms.editresults', $formulario->id) }}"
                            class="btn bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded shadow-md">
-                            Editar respuestas
+                            Editar Respuestas
                         </a>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         @endif
     </div>

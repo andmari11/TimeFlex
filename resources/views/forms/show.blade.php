@@ -83,7 +83,7 @@
                 @error("questions.$index.answer")
                 <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                 @enderror
-                
+
                 <!-- Botones de Acción -->
                 <div class="mt-8 flex justify-between">
                     <button type="button" id="open-cancel-modal" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
