@@ -52,7 +52,7 @@ def nWork (i,j):
 async def send_schedule(data):
     async with httpx.AsyncClient() as client:
 
-        logging.basicConfig(filename="logs/app.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+        logging.basicConfig(filename="logs/app.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
         
         try:
             solution_to_send = optimize(data, logging)

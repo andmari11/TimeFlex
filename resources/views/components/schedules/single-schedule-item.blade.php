@@ -14,10 +14,27 @@
     </div>
     <div class="flex flex-col gap-2">
         <p class="text-black text-bold text-l"><strong>ID:</strong> {{ $schedule->name }}</p>
-        <p class="text-{{ $schedule->status == 'success' ? 'green' : ($schedule->status == 'not_optimized' ? 'blue' : ($schedule->status == 'finalized' ? 'red' : 'black')) }}-600 text-bold text-l">
+        <p class="text-{{
+            $schedule->status == 'success' ? 'green' :
+            ($schedule->status == 'not_optimized' ? 'blue' :
+            ($schedule->status == 'finalized' ? 'orange' :
+            ($schedule->status == 'failed' ? 'red' : 'black')))
+        }}-600 text-bold text-l">
             <strong>Estado:</strong>
-            {{ $schedule->status == 'success' ? 'Éxito' : ($schedule->status == 'not_optimized' ? 'No optimizado' : ($schedule->status == 'finalized' ? 'Finalizado' : 'Desconocido')) }}
+            {{
+                $schedule->status == 'success' ? 'Éxito' :
+                ($schedule->status == 'not_optimized' ? 'No optimizado' :
+                ($schedule->status == 'finalized' ? 'Finalizado' :
+                ($schedule->status == 'failed' ? 'Fallido' : 'Desconocido')))
+            }}
         </p>
+        @if($schedule->status == 'failed' && $schedule->simulation_message )
+            <p class="text-black text-l">
+                {!! nl2br(e(\Illuminate\Support\Str::limit($schedule->simulation_message, 200, '...'))) !!}
+            </p>
+        @endif
+
+
     </div>
     <div class="flex justify-center mt-4">
         <a

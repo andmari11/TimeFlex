@@ -104,11 +104,22 @@ class FastApiController extends Controller
 
         $data=request()->validate([
             "id"=>"required",
-            "scheduleJSON"=>"array",
-            "satisfabilityJSON"=>"array",
+            "scheduleJSON"=>"array | nullable",
+            "satisfabilityJSON"=>"array | nullable",
             "status"=>"required",
+            "message"=>"nullable",
         ]);
         $schedule = Schedule::find($data['id']);
+
+        if($data['status'] == 'failed'){
+            $message= FastApiController::formatMessage($data['message'], $schedule->section->users, $schedule->shifts);
+            $schedule->update([
+                'status' => $data['status'],
+                'simulation_message' => $message
+            ]);
+            return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
+        }
+
         foreach ($schedule->section->company->admins as $user) {
             Notification::create([
                 'user_id' => $user->id,
@@ -233,5 +244,29 @@ class FastApiController extends Controller
         }
 
         return json_encode($shifts, JSON_PRETTY_PRINT);
+    }
+
+
+    static function formatMessage ($messages, $workers, $shifts) {
+        $formattedMessages = [];
+
+        foreach ($messages as $message) {
+            $message = preg_replace_callback('/%worker_(\d+)%/', function($matches) use ($workers) {
+                $workerId = $matches[1];
+                $worker = User::find($workerId);
+                return $worker ? $worker->name : '%worker_' . $workerId . '%';
+            }, $message);
+
+            $message = preg_replace_callback('/%shift_(\d+)%/', function($matches) use ($shifts) {
+                $shiftId = $matches[1];
+                $shift = Shift::find($shiftId);
+                return $shift ? ("El turno del " . Carbon::parse($shift->start)->format('Y-m-d')) : '%shift_' . $shiftId . '%';
+            }, $message);
+
+            $formattedMessages[] = $message;
+        }
+
+        return implode(". \n", $formattedMessages);
+
     }
 }

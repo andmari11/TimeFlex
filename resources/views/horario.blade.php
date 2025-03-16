@@ -5,6 +5,7 @@
             <h1 class="text-4xl font-bold text-gray-800">Tus horarios</h1>
             <p class="text-gray-600 mt-2">Consulta los horarios de forma fácil y rápida.</p>
         </div>
+        <a class ="btn bg-red-500 p-1 rounded-lg text-white" href="/fastapi-schedule">Prueba api</a>
 
         @if(auth()->user()->role === 'admin')
             <div class="text-right mb-6">

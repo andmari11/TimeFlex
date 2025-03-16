@@ -14,7 +14,8 @@ class Schedule extends Model
         'description',
         'section_id',
         'usersJSON',
-        'status'
+        'status',
+        'simulation_message',
     ];
 
     public function section()

@@ -90,7 +90,7 @@ def optimize(data, logging):
         worker_takes_shift=[]
         for j in range(n_shifts):
             worker_takes_shift.append(bool2int(all_workers_shifts[i][j]))
-        s.add(addsum(worker_takes_shift) <= N_MAX_SHIFTS_PER_WORKER)
+        s.assert_and_track(addsum(worker_takes_shift) <= N_MAX_SHIFTS_PER_WORKER, f"%worker_{workers[i].user_id}% supera el máximo de turnos {N_MAX_SHIFTS_PER_WORKER} a trabajar")	
 
 
     #comprobamos cuantos horas trabaja cada trabajador
@@ -98,14 +98,14 @@ def optimize(data, logging):
         worker_hours=[]
         for j in range(n_shifts):
             worker_hours.append(If(all_workers_shifts[i][j], countHours(shifts[j]), 0))
-        s.add(addsum(worker_hours) <= N_MAX_HOURS_PER_WORKER)
+        s.assert_and_track(addsum(worker_hours) <= N_MAX_HOURS_PER_WORKER, f"%worker_{workers[i].user_id}% supera el máximo de horas {N_MAX_HOURS_PER_WORKER} a trabajar")
 
     #comprobamos que cada turno tiene suficientes trabajadores
     for i in range(n_shifts):
         workers_in_shift = []
         for j in range(n_workers):
             workers_in_shift.append(bool2int(all_workers_shifts[j][i]))
-        s.add(addsum(workers_in_shift) >= shifts[i].users_needed)
+        s.assert_and_track(addsum(workers_in_shift) >= shifts[i].users_needed, f"%shift_{shifts[i].shift_id}% no alcanza el mínimo de {shifts[i].users_needed} trabajadores")
 
 
     #comprobamos que los trabajadores no trabajen en sus días de vacaciones
@@ -197,8 +197,12 @@ def optimize(data, logging):
         
 
     else:
+
         solution_to_send['status'] = "failed"
-        log=("No solution found")
+        unsat_core_str = [str(c) for c in s.unsat_core()]
+        solution_to_send['message'] = unsat_core_str
+
+        log=("No solution found", unsat_core_str)
 
     logging.debug(log)
     return solution_to_send
