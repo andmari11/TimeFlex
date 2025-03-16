@@ -6,7 +6,7 @@
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-            <form action="{{ route('forms.update', $formulario->id) }}" method="POST">
+            <form id="edit-form" action="{{ route('forms.update', $formulario->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -84,7 +84,6 @@
                                     </select>
                                     <x-forms.error name="questions[{{ $index }}][id_question_type]" />
                                 </div>
-
                                 <div id="question-fields-{{ $index }}">
                                     @if($question->id_question_type == 2)
                                         @foreach($question->options as $optionIndex => $option)
@@ -105,10 +104,52 @@
 
                 <!-- Botones -->
                 <div class="mt-10 flex justify-between">
-                    <a href="/formularios" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">Cancelar</a>
-                    <button type="submit" class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md">Actualizar Formulario</button>
+                    <button type="button" id="open-cancel-modal"
+                            class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
+                        Cancelar
+                    </button>
+                    <button type="button" id="open-update-modal"
+                            class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                        Actualizar Formulario
+                    </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación para Actualizar -->
+    <div id="update-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de actualizar este formulario?</h2>
+            <p class="text-gray-600 mt-2">Los cambios realizados se guardarán permanentemente.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-update-modal"
+                        class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Cancelar
+                </button>
+                <button id="confirm-update"
+                        class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación para Cancelar -->
+    <div id="cancel-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de que deseas cancelar?</h2>
+            <p class="text-gray-600 mt-2">Todos los cambios no guardados se perderán.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-cancel-modal"
+                        class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Volver
+                </button>
+                <a href="/formularios"
+                   class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+                    Salir
+                </a>
+            </div>
         </div>
     </div>
 
@@ -195,5 +236,44 @@
         function removeOption(button) {
             button.parentElement.remove(); // Eliminar el contenedor de la opción
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Variables del DOM
+            const updateModal = document.getElementById('update-modal');
+            const openUpdateModalButton = document.getElementById('open-update-modal');
+            const closeUpdateModalButton = document.getElementById('close-update-modal');
+            const confirmUpdateButton = document.getElementById('confirm-update');
+            const editForm = document.getElementById('edit-form');
+
+            const cancelModal = document.getElementById('cancel-modal');
+            const openCancelModalButton = document.getElementById('open-cancel-modal');
+            const closeCancelModalButton = document.getElementById('close-cancel-modal');
+
+            // Abrir el modal para Actualizar
+            openUpdateModalButton.addEventListener('click', () => {
+                updateModal.classList.remove('hidden'); // Mostrar el modal
+            });
+
+            // Cerrar el modal para Actualizar
+            closeUpdateModalButton.addEventListener('click', () => {
+                updateModal.classList.add('hidden'); // Ocultar el modal
+            });
+
+            // Confirmar la acción de Actualizar
+            confirmUpdateButton.addEventListener('click', () => {
+                editForm.submit(); // Enviar el formulario
+            });
+
+            // Abrir el modal para Cancelar
+            openCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.remove('hidden'); // Mostrar el modal
+            });
+
+            // Cerrar el modal para Cancelar
+            closeCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.add('hidden'); // Ocultar el modal
+            });
+        });
     </script>
 </x-layout>
