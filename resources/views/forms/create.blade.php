@@ -6,8 +6,8 @@
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-            <form action="/register-form" method="POST">
-                @csrf
+            <form id="create-form" action="/register-form" method="POST">
+            @csrf
                 <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
 
                 <!-- Título -->
@@ -93,10 +93,11 @@
 
                 <!-- Botones -->
                 <div class="mt-10 flex justify-between">
-                    <a href="/formularios" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
+                    <button type="button" id="open-cancel-modal"
+                            class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
                         Cancelar
-                    </a>
-                    <button type="submit"
+                    </button>
+                    <button type="button" id="open-create-modal"
                             class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md">
                         Crear Formulario
                     </button>
@@ -105,10 +106,43 @@
         </div>
     </div>
 
+    <!-- Modal de Confirmación para Crear -->
+    <div id="create-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de crear este formulario?</h2>
+            <p class="text-gray-600 mt-2">Una vez creado, no podrás editar la configuración inicial del formulario.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-create-modal" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Cancelar
+                </button>
+                <button id="confirm-create" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación para Cancelar -->
+    <div id="cancel-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de que deseas cancelar?</h2>
+            <p class="text-gray-600 mt-2">Se perderán todos los cambios realizados en el formulario.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-cancel-modal" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Volver
+                </button>
+                <a href="/formularios" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+                    Salir
+                </a>
+            </div>
+        </div>
+    </div>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- Script para manejo dinámico de preguntas -->
     <script>
+
         document.getElementById('add-question').addEventListener('click', function() {
             const container = document.getElementById('questions-container');
             const index = container.children.length;
@@ -188,4 +222,39 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Modal para Crear
+            const createModal = document.getElementById('create-modal');
+            const openCreateModalButton = document.getElementById('open-create-modal');
+            const closeCreateModalButton = document.getElementById('close-create-modal');
+            const confirmCreateButton = document.getElementById('confirm-create');
+            const createForm = document.getElementById('create-form');
+
+            openCreateModalButton.addEventListener('click', () => {
+                createModal.classList.remove('hidden');
+            });
+
+            closeCreateModalButton.addEventListener('click', () => {
+                createModal.classList.add('hidden');
+            });
+
+            confirmCreateButton.addEventListener('click', () => {
+                createForm.submit();
+            });
+
+            // Modal para Cancelar
+            const cancelModal = document.getElementById('cancel-modal');
+            const openCancelModalButton = document.getElementById('open-cancel-modal');
+            const closeCancelModalButton = document.getElementById('close-cancel-modal');
+
+            openCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.remove('hidden');
+            });
+
+            closeCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.add('hidden');
+            });
+        });
+    </script>
 </x-layout>
