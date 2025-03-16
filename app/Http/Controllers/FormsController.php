@@ -221,6 +221,9 @@ class FormsController extends Controller
             'questions.*.answer' => 'required',
             'id_user' => 'required|integer|exists:users,id',
             'id_form' => 'required|integer|exists:forms,id',
+        ], [
+            'questions.required' => 'Debes responder al menos una pregunta.',
+            'questions.*.answer.required' => 'Por favor, completa todas las preguntas antes de enviar el formulario.',
         ]);
 
         // Procesar y guardar las respuestas

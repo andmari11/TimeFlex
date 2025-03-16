@@ -12,7 +12,7 @@
 
         <!-- Contenedor del Formulario -->
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
-            <form action="{{ route('forms.submit', $formulario->id) }}" method="POST">
+            <form id="submit-form" action="{{ route('forms.submit', $formulario->id) }}" method="POST">
                 @csrf
 
                 <!-- Preguntas -->
@@ -37,9 +37,6 @@
                                     <div class="relative mt-2">
                                         <input type="text" name="questions[{{ $index }}][answer]" id="date-range-picker-{{ $index }}"
                                                class="date-range-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
-                                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <i class="fas fa-calendar text-blue-500"></i>
-                                        </span>
                                     </div>
                                     @break
 
@@ -72,9 +69,6 @@
                                     <div class="relative mt-2">
                                         <input type="text" name="questions[{{ $index }}][answer]" id="multi-date-picker-{{ $index }}"
                                                class="multi-date-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
-                                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <i class="fas fa-calendar text-blue-500"></i>
-                                        </span>
                                     </div>
                                     @break
                             @endswitch
@@ -85,16 +79,53 @@
                     @endforeach
                 </div>
 
+                <!-- Mostrar errores debajo del campo -->
+                @error("questions.$index.answer")
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
+                
                 <!-- Botones de Acción -->
                 <div class="mt-8 flex justify-between">
-                    <a href="/formularios" class="btn text-gray-600 bg-gray-200 hover:bg-gray-300 font-semibold py-2 px-4 rounded shadow-md">
+                    <button type="button" id="open-cancel-modal" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow-md">
                         Cancelar
-                    </a>
-                    <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md">
+                    </button>
+                    <button type="button" id="open-submit-modal" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md">
                         Enviar
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación para Enviar -->
+    <div id="submit-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de enviar este formulario?</h2>
+            <p class="text-gray-600 mt-2">No podrás modificar las respuestas después de enviarlas.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-submit-modal" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Cancelar
+                </button>
+                <button id="confirm-submit" class="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación para Cancelar -->
+    <div id="cancel-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de que deseas cancelar?</h2>
+            <p class="text-gray-600 mt-2">Se perderán todas las respuestas realizadas en el formulario.</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="close-cancel-modal" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
+                    Volver
+                </button>
+                <a href="/formularios" class="btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+                    Salir
+                </a>
+            </div>
         </div>
     </div>
 
@@ -126,6 +157,41 @@
                     const valueDisplay = document.getElementById(`slider-value-${slider.id.split('-')[1]}`);
                     valueDisplay.textContent = `${slider.value}%`;
                 });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Modal de Confirmación para Enviar
+            const submitModal = document.getElementById('submit-modal');
+            const openSubmitModalButton = document.getElementById('open-submit-modal');
+            const closeSubmitModalButton = document.getElementById('close-submit-modal');
+            const confirmSubmitButton = document.getElementById('confirm-submit');
+            const submitForm = document.getElementById('submit-form');
+
+            openSubmitModalButton.addEventListener('click', () => {
+                submitModal.classList.remove('hidden');
+            });
+
+            closeSubmitModalButton.addEventListener('click', () => {
+                submitModal.classList.add('hidden');
+            });
+
+            confirmSubmitButton.addEventListener('click', () => {
+                submitForm.submit();
+            });
+
+            // Modal de Confirmación para Cancelar
+            const cancelModal = document.getElementById('cancel-modal');
+            const openCancelModalButton = document.getElementById('open-cancel-modal');
+            const closeCancelModalButton = document.getElementById('close-cancel-modal');
+
+            openCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.remove('hidden');
+            });
+
+            closeCancelModalButton.addEventListener('click', () => {
+                cancelModal.classList.add('hidden');
             });
         });
     </script>
