@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp("start");
             $table->timestamp("end");
             $table->integer("users_needed");
-            $table->string("type");
+            $table->foreignIdFor(\App\Models\ShiftType::class, 'type');
         });
         Schema::create('shift_user', function (Blueprint $table) {
             $table->id();

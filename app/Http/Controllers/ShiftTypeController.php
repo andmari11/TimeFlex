@@ -26,7 +26,7 @@ class ShiftTypeController extends Controller
             'end' => 'required|date|after:start_date',
             'users_needed' => 'required|numeric',
             'period' => 'required|numeric',
-            'weekends_excepted' => 'boolean|default:false',
+            'weekends_excepted' => 'boolean',
             ], [        ], [
             'notes.required' => 'El campo notas es obligatorio',
             'start.required' => 'El campo inicio es obligatorio',
