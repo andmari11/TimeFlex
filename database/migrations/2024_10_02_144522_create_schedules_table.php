@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->string("name");
             $table->string("description")->nullable();
+            $table->timestamp('start_date')->nullable(); // Fecha y hora de inicio de acceso
+            $table->timestamp('end_date')->nullable();
             $table->string("status")->default("not_optimized");
             $table->string("simulation_message")->nullable();
 

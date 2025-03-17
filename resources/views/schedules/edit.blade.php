@@ -24,6 +24,16 @@
                     <x-forms.error name="section_id" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
+                    <x-forms.label for="start_date">Fecha de inicio</x-forms.label>
+                    <input type="text" name="start_date" id="start_date" value="{{ old('start_date') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <x-forms.error name="start_date" />
+                </x-forms.field>
+                <x-forms.field class="col-12">
+                    <x-forms.label for="end_date">Fecha de fin</x-forms.label>
+                    <input type="text" name="end_date" id="end_date" value="{{ old('end_date') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <x-forms.error name="end_date" />
+                </x-forms.field>
+                <x-forms.field class="col-12">
                     <a href="/shifts-create" class="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Añadir turnos</a>
                 </x-forms.field>
             </div>
@@ -33,4 +43,14 @@
             </div>
         </form>
     </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#start_date");
+
+            flatpickr("#end_date");
+        });
+    </script>
 </x-layout>

@@ -172,6 +172,8 @@ class ScheduleController extends Controller
             'name' => ['required', 'unique:schedules,name'],
             'description' => ['required'],
             'section_id' => ['required', 'exists:sections,id'],
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
         ], [
             'name.required' => 'Es necesario introducir el nombre del horario a registrar',
             'name.unique' => 'Ya existe un horario con este nombre',
@@ -214,6 +216,9 @@ class ScheduleController extends Controller
             'name' => ['required'],
             'description' => ['required'],
             'section_id' => ['required', 'exists:sections,id'],
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+
         ]);
 
         // Encontrar el horario y actualizarlo
@@ -222,6 +227,8 @@ class ScheduleController extends Controller
             'name' => request('name'),
             'description' => request('description'),
             'section_id' => request('section_id'),
+            'start_date' => request('start_date'),
+            'end_date' => request('end_date')
         ]);
 
         // Redirigir al menú principal

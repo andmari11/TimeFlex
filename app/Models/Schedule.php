@@ -15,6 +15,8 @@ class Schedule extends Model
         'section_id',
         'usersJSON',
         'status',
+        'start_date',
+        'end_date',
         'simulation_message',
     ];
 
