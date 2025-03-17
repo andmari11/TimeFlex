@@ -16,7 +16,7 @@
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <x-forms.label for="section_id">Sección</x-forms.label>
-                    <select name="section_id" id="section_id" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <select name="section_id" id="section_id" class="w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
                         @foreach($sections as $section)
                             <option value="{{ $section->id }}" {{ $section->id == old('section_id', $schedule->section_id) ? 'selected' : '' }}>{{ $section->name }}</option>
                         @endforeach
@@ -25,12 +25,12 @@
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <x-forms.label for="start_date">Fecha de inicio</x-forms.label>
-                    <input type="text" name="start_date" id="start_date" value="{{ old('start_date') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <input type="text" name="start_date" id="start_date" value="{{ $schedule->start_date}}" class="w-full  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
                     <x-forms.error name="start_date" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <x-forms.label for="end_date">Fecha de fin</x-forms.label>
-                    <input type="text" name="end_date" id="end_date" value="{{ old('end_date') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <input type="text" name="end_date" id="end_date" value="{{ $schedule->end_date }}" class="w-full  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
                     <x-forms.error name="end_date" />
                 </x-forms.field>
                 <x-forms.field class="col-12">

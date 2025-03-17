@@ -15,6 +15,7 @@ class ShiftType extends Model
         'end',
         'period',
         'users_needed',
+        'weekends_excepted',
     ];
     public function schedule()
     {

@@ -6,32 +6,54 @@
 
 
 
+
+                <x-forms.field class="col-12">
+                    <x-forms.label for="start">Día y hora de inicio de turno</x-forms.label>
+                    <input type="text" name="start" id="start" value="{{ old('start') ?? $schedule->start}}" class="w-full  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600  py-1.5 px-3" required>
+                    <x-forms.error name="start" />
+                </x-forms.field>
+                <x-forms.field class="col-12">
+                    <x-forms.label for="end">Día y hora de fin de turno</x-forms.label>
+                    <input type="text" name="end" id="end" value="{{ old('end')?? $schedule->end }}" class="w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <x-forms.error name="end" />
+                </x-forms.field>
                 <x-forms.field class="col-12">
                     <x-forms.label for="notes">Descripción de turno</x-forms.label>
                     <textarea class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" name="notes" id="notes" required></textarea>
                     <x-forms.error name="notes" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="start">Día y hora de inicio de turno</x-forms.label>
-                    <input type="text" name="start" id="start" value="{{ old('start') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
-                    <x-forms.error name="start" />
-                </x-forms.field>
-                <x-forms.field class="col-12">
-                    <x-forms.label for="end">Día y hora de fin de turno</x-forms.label>
-                    <input type="text" name="end" id="end" value="{{ old('end') }}" class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
-                    <x-forms.error name="end" />
-                </x-forms.field>
-                <x-forms.field class="col-12">
                     <x-forms.label for="users_needed">Trabajadores necesarios</x-forms.label>
-                    <x-forms.input name="users_needed" id="users_needed" :value="old('users_needed')" required />
+                    <x-forms.input name="users_needed" id="users_needed" :value="old('users_needed') ?? $schedule->users_needed" required />
                     <x-forms.error name="users_needed" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <x-forms.label for="period">Periodo</x-forms.label>
-                    <x-forms.input name="period" id="period" :value="old('period')" required />
+                    <select class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 py-1.5 px-3"
+                            name="period"
+                            id="period"
+                            required>
+                        @foreach([0 => 'Una sola vez', 1 => 'Diario', 2 => 'Semanal', 3 => 'Mensual', 4 => 'Anual'] as $key => $label)
+                            <option value="{{ $key }}" {{ $key == (old('period') ?? $schedule->period) ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
                     <x-forms.error name="period" />
                 </x-forms.field>
+                <x-forms.field class="col-12">
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox"
+                               name="weekends_excepted"
+                               id="weekends_excepted"
+                               class="w-4 h-4 rounded border-gray-400 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                               value="1"
+                            {{ (old('weekends_excepted') ?? $schedule->weekends_excepted) ? 'checked' : '' }}>
+                        <label for="weekends_excepted" class="text-md font-semibold text-gray-700">Evitar fines de semana</label>
+                    </div>
 
+                    <x-forms.error name="weekends_excepted" />
+                </x-forms.field>
             </div>
 
             <div class="mt-6 flex items-center justify-between">

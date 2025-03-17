@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp("end");
             $table->integer("users_needed");
             $table->integer("period");
+            $table->boolean("weekends_excepted");
         });
 
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shift_type');
+        Schema::dropIfExists('shift_types');
     }
 };

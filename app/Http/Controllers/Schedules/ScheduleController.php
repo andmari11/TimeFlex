@@ -199,7 +199,7 @@ class ScheduleController extends Controller
         $schedule = Schedule::create($attributesSchedule);
 
         // Redirigir al menú principal
-        return redirect('/horario');
+        return redirect('/horario/'. $schedule->id . '/edit');
     }
 
     public function edit($id)
