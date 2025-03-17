@@ -202,14 +202,14 @@ class ScheduleController extends Controller
         return redirect('/horario');
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         $sections = Section::all();
         $schedule = Schedule::findOrFail($id);
         return view('schedules.edit', compact('schedule', 'sections'));
     }
 
-    public function update(int $id)
+    public function update($id)
     {
         // Validar los atributos del horario
         request()->validate([

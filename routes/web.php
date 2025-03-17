@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ShiftExchangeController;
+use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
 
 use App\Http\Controllers\FormsController;
@@ -68,6 +69,9 @@ Route::get('/formularios/respuestas', [FormsController::class, 'showAnswers'])->
 Route::get('/formularios/{formId}/resultados', [FormsController::class, 'showResults'])->name('forms.showresults');
 Route::get('/formularios/{id}/editar-respuestas', [FormsController::class, 'editResults'])->name('forms.editresults');
 Route::put('/formularios/{id}/actualizar-respuestas', [FormsController::class, 'updateResults'])->name('forms.updateresults');
+
+Route::post('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'store'])->middleware('auth');
+Route::get('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'create'])->middleware('auth');
 
 Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middleware('auth');
 Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');
