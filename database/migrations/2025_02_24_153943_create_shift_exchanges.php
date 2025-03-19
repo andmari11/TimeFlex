@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('receiver_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('shift_receiver_id')->constrained('shifts')->onDelete('cascade');
             $table->foreignId('shift_demander_id')->constrained('shifts')->onDelete('cascade');
+            $table->text('reason')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

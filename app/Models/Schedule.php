@@ -14,7 +14,10 @@ class Schedule extends Model
         'description',
         'section_id',
         'usersJSON',
-        'status'
+        'status',
+        'start_date',
+        'end_date',
+        'simulation_message',
     ];
 
     public function section()
@@ -27,4 +30,8 @@ class Schedule extends Model
         return $this->hasMany(Shift::class);
     }
 
+    public function shiftTypes()
+    {
+        return $this->hasMany(ShiftType::class);
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Sections\SectionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ShiftExchangeController;
+use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\StatsController;
 
@@ -77,6 +78,19 @@ Route::get('/formularios/{id}/edit', [FormsController::class, 'edit'])->middlewa
 Route::put('/formularios/{id}', [FormsController::class, 'update'])->middleware('auth')->name('forms.update');
 Route::get('/formularios/{id}/show', [FormsController::class, 'show'])->middleware('auth')->name('forms.show');
 Route::post('/formularios/{id}/submit', [FormsController::class, 'submit'])->middleware('auth')->name('forms.submit');
+Route::post('/formularios/{id}/duplicar', [FormsController::class, 'duplicate'])->name('forms.duplicate');
+Route::get('/formularios/respuestas', [FormsController::class, 'showAnswers'])->name('forms.answers');
+Route::get('/formularios/{formId}/resultados', [FormsController::class, 'showResults'])->name('forms.showresults');
+Route::get('/formularios/{id}/editar-respuestas', [FormsController::class, 'editResults'])->name('forms.editresults');
+Route::put('/formularios/{id}/actualizar-respuestas', [FormsController::class, 'updateResults'])->name('forms.updateresults');
+
+Route::post('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'store'])->middleware('auth');
+Route::get('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'create'])->middleware('auth');
+
+Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middleware('auth');
+Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');
+Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
+Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');

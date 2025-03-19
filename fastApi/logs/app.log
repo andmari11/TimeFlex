@@ -1,0 +1,634 @@
+2025-03-16 13:45:23,453 - ERROR - Error during optimization: name 'solver' is not defined
+2025-03-16 13:45:32,886 - DEBUG - No solution found
+2025-03-16 13:45:32,891 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 13:45:32,896 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002C724F16F60>
+2025-03-16 13:45:32,896 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 13:45:32,897 - DEBUG - send_request_headers.complete
+2025-03-16 13:45:32,897 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 13:45:32,897 - DEBUG - send_request_body.complete
+2025-03-16 13:45:32,897 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 13:45:32,920 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 12:45:32 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ik1TcXJXNDRBVkVsQ0ZHREFyMGxBMlE9PSIsInZhbHVlIjoiWTR2UVM0YTQ4dUF0NURDamtNZkJUcGFBOURvS1ZZd1RkQ2xTT2tNTDRQaWZQRVR6Z29hNVoyYUt1eGlmcG5kRDlTMVBjTUVxZmtlZ0NpV3lNM2lhNys0dEZnUTBmWnl2SmlUSVBsdWVJNWNqa2dkaXJNUjduK3RUdmluYWRQd3AiLCJtYWMiOiIzYzYyMDk1YWE1MjYyMTU2ZjFlYzk1ODBkYTk4NDBkZWFlZWI1MTgxMTlkNjZmNzdmMTdhZDgxOGY3OGM3YzhkIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 14:45:32 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlJJNkdldTNEUEkxQnRzc1ZjbnNONUE9PSIsInZhbHVlIjoiU3MyN1VMLzdSOFpZK2g1RktZbno3bGVxVjdoRHZqTnBKVjhIZUFId3RyNEczK0lRMGpCc0dLdVk2T0Q1UHhzMUcxWHBiajNOSFU1YW1pZTZuRkhtdEN0WU9uWHRRSWx1VXhrOUViNlMrQVF5bXhvL3BoTi9ka2Mva2ZMM2RmYVIiLCJtYWMiOiI2NzllZGUxOGY4MjVkZGNiMDJjODVjOWNmMWRlMjkzNDA5MmQyZTViNTdhMzczZDk3ZTc5MzUwYTQyZThlMjRlIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 14:45:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 13:45:32,921 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 404 Not Found"
+2025-03-16 13:45:32,921 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 13:45:32,921 - DEBUG - receive_response_body.complete
+2025-03-16 13:45:32,921 - DEBUG - response_closed.started
+2025-03-16 13:45:32,921 - DEBUG - response_closed.complete
+2025-03-16 13:45:32,921 - DEBUG - Solution to send: {
+    "id": 7,
+    "status": "failed"
+}
+
+2025-03-16 13:45:32,922 - INFO - Response status code: 404
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 12:45:32 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ik1TcXJXNDRBVkVsQ0ZHREFyMGxBMlE9PSIsInZhbHVlIjoiWTR2UVM0YTQ4dUF0NURDamtNZkJUcGFBOURvS1ZZd1RkQ2xTT2tNTDRQaWZQRVR6Z29hNVoyYUt1eGlmcG5kRDlTMVBjTUVxZmtlZ0NpV3lNM2lhNys0dEZnUTBmWnl2SmlUSVBsdWVJNWNqa2dkaXJNUjduK3RUdmluYWRQd3AiLCJtYWMiOiIzYzYyMDk1YWE1MjYyMTU2ZjFlYzk1ODBkYTk4NDBkZWFlZWI1MTgxMTlkNjZmNzdmMTdhZDgxOGY3OGM3YzhkIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 14:45:32 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlJJNkdldTNEUEkxQnRzc1ZjbnNONUE9PSIsInZhbHVlIjoiU3MyN1VMLzdSOFpZK2g1RktZbno3bGVxVjdoRHZqTnBKVjhIZUFId3RyNEczK0lRMGpCc0dLdVk2T0Q1UHhzMUcxWHBiajNOSFU1YW1pZTZuRkhtdEN0WU9uWHRRSWx1VXhrOUViNlMrQVF5bXhvL3BoTi9ka2Mva2ZMM2RmYVIiLCJtYWMiOiI2NzllZGUxOGY4MjVkZGNiMDJjODVjOWNmMWRlMjkzNDA5MmQyZTViNTdhMzczZDk3ZTc5MzUwYTQyZThlMjRlIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 14:45:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Se ha producido un error no hay Schedule json'}
+2025-03-16 13:45:32,922 - DEBUG - close.started
+2025-03-16 13:45:32,922 - DEBUG - close.complete
+2025-03-16 13:52:28,490 - DEBUG - No solution found
+2025-03-16 13:52:28,491 - ERROR - Error during POST request: Object of type AstVector is not JSON serializable
+2025-03-16 13:57:35,663 - DEBUG - ('No solution found', [%worker_0% supera el máximo de turnos 4 a trabajar If(worker1works76, 1, 0) turnos,
+ %worker_2% supera el máximo de turnos 4 a trabajar If(worker3works76, 1, 0) turnos,
+ %worker_3% supera el máximo de turnos 4 a trabajar If(worker4works76, 1, 0) turnos,
+ %worker_1% supera el máximo de horas 0 a trabajar If(worker2works76, 6, ToReal(0)) horas,
+ Turno 76 necesita 1 trabajadores y solo puede asignar If(worker1works76, 1, 0),
+ Turno 77 necesita 1 trabajadores y solo puede asignar If(worker1works77, 1, 0),
+ Turno 78 necesita 1 trabajadores y solo puede asignar If(worker1works78, 1, 0),
+ Turno 79 necesita 1 trabajadores y solo puede asignar If(worker1works79, 1, 0),
+ Turno 80 necesita 1 trabajadores y solo puede asignar If(worker1works80, 1, 0),
+ Turno 81 necesita 1 trabajadores y solo puede asignar If(worker1works81, 1, 0),
+ Turno 82 necesita 1 trabajadores y solo puede asignar If(worker1works82, 1, 0),
+ Turno 83 necesita 1 trabajadores y solo puede asignar If(worker1works83, 1, 0),
+ Turno 84 necesita 1 trabajadores y solo puede asignar If(worker1works84, 1, 0),
+ Turno 85 necesita 1 trabajadores y solo puede asignar If(worker1works85, 1, 0),
+ Turno 86 necesita 1 trabajadores y solo puede asignar If(worker1works86, 1, 0),
+ Turno 87 necesita 1 trabajadores y solo puede asignar If(worker1works87, 1, 0),
+ Turno 88 necesita 1 trabajadores y solo puede asignar If(worker1works88, 1, 0),
+ Turno 89 necesita 1 trabajadores y solo puede asignar If(worker1works89, 1, 0),
+ Turno 90 necesita 1 trabajadores y solo puede asignar If(worker1works90, 1, 0)])
+2025-03-16 13:57:35,665 - ERROR - Error during POST request: Object of type AstVector is not JSON serializable
+2025-03-16 14:03:26,772 - DEBUG - ('No solution found', [%worker_0% supera el máximo de turnos 10 a trabajar,
+ %worker_1% supera el máximo de horas 0 a trabajar,
+ %worker_2% supera el máximo de horas 0 a trabajar,
+ %worker_3% supera el máximo de horas 0 a trabajar,
+ %shift_91% no alcanza el mínimo de 1 trabajadores,
+ %shift_92% no alcanza el mínimo de 1 trabajadores,
+ %shift_93% no alcanza el mínimo de 1 trabajadores,
+ %shift_94% no alcanza el mínimo de 1 trabajadores,
+ %shift_95% no alcanza el mínimo de 1 trabajadores,
+ %shift_96% no alcanza el mínimo de 1 trabajadores,
+ %shift_97% no alcanza el mínimo de 1 trabajadores,
+ %shift_98% no alcanza el mínimo de 1 trabajadores,
+ %shift_99% no alcanza el mínimo de 1 trabajadores,
+ %shift_100% no alcanza el mínimo de 1 trabajadores,
+ %shift_101% no alcanza el mínimo de 1 trabajadores,
+ %shift_102% no alcanza el mínimo de 1 trabajadores,
+ %shift_103% no alcanza el mínimo de 1 trabajadores,
+ %shift_104% no alcanza el mínimo de 1 trabajadores,
+ %shift_105% no alcanza el mínimo de 1 trabajadores])
+2025-03-16 14:03:26,774 - ERROR - Error during POST request: Object of type AstVector is not JSON serializable
+2025-03-16 14:05:45,345 - DEBUG - ('No solution found', ['%worker_0% supera el máximo de turnos 10 a trabajar', '%worker_1% supera el máximo de horas 0 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_106% no alcanza el mínimo de 1 trabajadores', '%shift_107% no alcanza el mínimo de 1 trabajadores', '%shift_108% no alcanza el mínimo de 1 trabajadores', '%shift_109% no alcanza el mínimo de 1 trabajadores', '%shift_110% no alcanza el mínimo de 1 trabajadores', '%shift_111% no alcanza el mínimo de 1 trabajadores', '%shift_112% no alcanza el mínimo de 1 trabajadores', '%shift_113% no alcanza el mínimo de 1 trabajadores', '%shift_114% no alcanza el mínimo de 1 trabajadores', '%shift_115% no alcanza el mínimo de 1 trabajadores', '%shift_116% no alcanza el mínimo de 1 trabajadores', '%shift_117% no alcanza el mínimo de 1 trabajadores', '%shift_118% no alcanza el mínimo de 1 trabajadores', '%shift_119% no alcanza el mínimo de 1 trabajadores', '%shift_120% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:05:45,350 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:05:45,355 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001E57B443860>
+2025-03-16 14:05:45,355 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:05:45,355 - DEBUG - send_request_headers.complete
+2025-03-16 14:05:45,355 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:05:45,355 - DEBUG - send_request_body.complete
+2025-03-16 14:05:45,355 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:05:45,384 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:05:45 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImgvRG9sNVdTMG05Y01ueVF1d3Q3N2c9PSIsInZhbHVlIjoiNFY1Q3NJd2lJdDRqN1VuZ1lUSzZrclNRV1JWY0VPK2UyTmxSc1ZGcUp0S2FkQTdMek5xM3RQazRGMzdnc0N5TXJEUVNMNHdKeG93MERCZzhCSTVUOW5zMGlsa3lZem0wSXN5dHUwallLSUxSczZnbTBwN2xIU0ZNd21CWjJXZkkiLCJtYWMiOiJjYzFmZDU0ZjVlZmE1Y2QzMjQ4NWI5NWNhZTkwMDE0ZmFlY2E0NDZiY2IzMGY5YWFiNjY5OWMxYmIxNTE4NDdiIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:05:45 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IkFLQlA5MVFUQjRDQ3lGZFVvMkhxeEE9PSIsInZhbHVlIjoibmRjK1lsRStPOWN3SjZRUWJKU1hHV3VmTEsvZXJxcFFXV0NpL2NmMk0vd3NXa2NDUW51ZkptYzFCWkhrMUJsazc2YThBKzZVdDZRcTM0Sm1SNUFzTU9Ia2VXNUsrQzR6NTJhSHF4NzFkajVReFFuUFA3Y1M4R1NZQ3lseGNydGoiLCJtYWMiOiI1NjAxM2NjMmUwZDFjZGNhNWExYTljMzRjMjI0ZTI1OTg2MjQ5ZDM2NGJiNzUzYTVjMTA5YWI0MzVlNjNlZjg1IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:05:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:05:45,384 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 404 Not Found"
+2025-03-16 14:05:45,384 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:05:45,385 - DEBUG - receive_response_body.complete
+2025-03-16 14:05:45,385 - DEBUG - response_closed.started
+2025-03-16 14:05:45,385 - DEBUG - response_closed.complete
+2025-03-16 14:05:45,385 - DEBUG - Solution to send: {
+    "id": 11,
+    "status": "failed",
+    "message": [
+        "%worker_0% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_106% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_107% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_108% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_109% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_110% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_111% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_112% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_113% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_114% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_115% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_116% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_117% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_118% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_119% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_120% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:05:45,385 - INFO - Response status code: 404
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:05:45 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImgvRG9sNVdTMG05Y01ueVF1d3Q3N2c9PSIsInZhbHVlIjoiNFY1Q3NJd2lJdDRqN1VuZ1lUSzZrclNRV1JWY0VPK2UyTmxSc1ZGcUp0S2FkQTdMek5xM3RQazRGMzdnc0N5TXJEUVNMNHdKeG93MERCZzhCSTVUOW5zMGlsa3lZem0wSXN5dHUwallLSUxSczZnbTBwN2xIU0ZNd21CWjJXZkkiLCJtYWMiOiJjYzFmZDU0ZjVlZmE1Y2QzMjQ4NWI5NWNhZTkwMDE0ZmFlY2E0NDZiY2IzMGY5YWFiNjY5OWMxYmIxNTE4NDdiIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:05:45 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IkFLQlA5MVFUQjRDQ3lGZFVvMkhxeEE9PSIsInZhbHVlIjoibmRjK1lsRStPOWN3SjZRUWJKU1hHV3VmTEsvZXJxcFFXV0NpL2NmMk0vd3NXa2NDUW51ZkptYzFCWkhrMUJsazc2YThBKzZVdDZRcTM0Sm1SNUFzTU9Ia2VXNUsrQzR6NTJhSHF4NzFkajVReFFuUFA3Y1M4R1NZQ3lseGNydGoiLCJtYWMiOiI1NjAxM2NjMmUwZDFjZGNhNWExYTljMzRjMjI0ZTI1OTg2MjQ5ZDM2NGJiNzUzYTVjMTA5YWI0MzVlNjNlZjg1IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:05:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Se ha producido un error no hay Schedule json'}
+2025-03-16 14:05:45,385 - DEBUG - close.started
+2025-03-16 14:05:45,385 - DEBUG - close.complete
+2025-03-16 14:15:23,567 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:15:23,567 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:15:24,041 - DEBUG - ('No solution found', ['%worker_0% supera el máximo de turnos 10 a trabajar', '%worker_1% supera el máximo de horas 0 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%shift_127% no alcanza el mínimo de 1 trabajadores', '%shift_126% no alcanza el mínimo de 1 trabajadores', '%shift_134% no alcanza el mínimo de 1 trabajadores', '%shift_125% no alcanza el mínimo de 1 trabajadores', '%shift_124% no alcanza el mínimo de 1 trabajadores', '%shift_123% no alcanza el mínimo de 1 trabajadores', '%shift_133% no alcanza el mínimo de 1 trabajadores', '%shift_122% no alcanza el mínimo de 1 trabajadores', '%shift_121% no alcanza el mínimo de 1 trabajadores', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_128% no alcanza el mínimo de 1 trabajadores', '%shift_129% no alcanza el mínimo de 1 trabajadores', '%shift_130% no alcanza el mínimo de 1 trabajadores', '%shift_131% no alcanza el mínimo de 1 trabajadores', '%shift_132% no alcanza el mínimo de 1 trabajadores', '%shift_135% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:15:24,042 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:15:24,043 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001E57B58F560>
+2025-03-16 14:15:24,044 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:15:24,044 - DEBUG - send_request_headers.complete
+2025-03-16 14:15:24,044 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:15:24,044 - DEBUG - send_request_body.complete
+2025-03-16 14:15:24,044 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:15:25,191 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 500, b'Internal Server Error', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'text/html; charset=UTF-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'date', b'Sun, 16 Mar 2025 13:15:25 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IkNtR1RoLytRWXFzYjA3ZEJUNEUvbkE9PSIsInZhbHVlIjoiY00wbWxqSmFzNFR2a3d0Q1g1SzM3a0UxZFl3bnFXWW1wNkxvUmRjVmVkdXJ4SjIwWnNtZFljcWZXOW1zTmRnMlFiaWgvTlNmK3pKblpaS1ZsSzRqMTB2MlRKcDh2a0FQRXdZVnp2SC9QNTlYUkowSWpSSkV5TFI4QjUwNzcxbmYiLCJtYWMiOiJmMTYyMDA2MzM1Njk4NDNiM2E1MTVjZjQ0MmQ4ZTNhYjFhZjVlOWZjMDg0ZmFiNzk4OTg2MDk3Yzk2NTAwMGExIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:25 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InB5bjlxd21CbmJBbUJxZkZRYk15L3c9PSIsInZhbHVlIjoiY0NUTStyVmQybnNCUTFocWdUWStFRlNqYllScktqKzFmMUhlTUd5bnY5MHlQUVNITStCdytoajFyWGI0VGswOVRaT1I2cVZqdnduN2ljSjFBQjhMUFcxZ0ZLajFYMmFERXNwcHV3V054ZlZvcDlIVjRDd0pzdzNsK1dwNHpOTC8iLCJtYWMiOiIzZWI5YmQ3YjBiMWRlNTY2ZDI1ZjRlMzIxYWQ2MzExZWZjYjQxOWE5ZTdlMDA1ZjRmYzFhZTJiYWY4NzVlOTVmIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax')])
+2025-03-16 14:15:25,191 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 500 Internal Server Error"
+2025-03-16 14:15:25,191 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:15:25,192 - DEBUG - receive_response_body.complete
+2025-03-16 14:15:25,192 - DEBUG - response_closed.started
+2025-03-16 14:15:25,192 - DEBUG - response_closed.complete
+2025-03-16 14:15:25,192 - DEBUG - Solution to send: {
+    "id": 12,
+    "status": "failed",
+    "message": [
+        "%worker_0% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_127% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_126% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_134% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_125% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_124% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_123% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_133% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_122% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_121% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_128% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_129% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_130% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_131% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_132% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_135% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:15:25,192 - ERROR - Error during POST request: Expecting value: line 1 column 1 (char 0)
+2025-03-16 14:15:25,192 - DEBUG - close.started
+2025-03-16 14:15:25,192 - DEBUG - close.complete
+2025-03-16 14:15:51,840 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:15:51,840 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:15:52,308 - DEBUG - ('No solution found', ['%worker_1% supera el máximo de horas 0 a trabajar', '%shift_9% no alcanza el mínimo de 1 trabajadores', '%shift_10% no alcanza el mínimo de 1 trabajadores', '%shift_11% no alcanza el mínimo de 1 trabajadores', '%shift_12% no alcanza el mínimo de 1 trabajadores', '%shift_5% no alcanza el mínimo de 1 trabajadores', '%shift_4% no alcanza el mínimo de 1 trabajadores', '%shift_3% no alcanza el mínimo de 1 trabajadores', '%worker_2% supera el máximo de horas 0 a trabajar', '%shift_14% no alcanza el mínimo de 1 trabajadores', '%worker_0% supera el máximo de turnos 10 a trabajar', '%shift_15% no alcanza el mínimo de 1 trabajadores', '%shift_13% no alcanza el mínimo de 1 trabajadores', '%shift_2% no alcanza el mínimo de 1 trabajadores', '%shift_1% no alcanza el mínimo de 1 trabajadores', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_8% no alcanza el mínimo de 1 trabajadores', '%shift_7% no alcanza el mínimo de 1 trabajadores', '%shift_6% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:15:52,309 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:15:52,311 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001E57B5AD730>
+2025-03-16 14:15:52,311 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:15:52,311 - DEBUG - send_request_headers.complete
+2025-03-16 14:15:52,311 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:15:52,311 - DEBUG - send_request_body.complete
+2025-03-16 14:15:52,311 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:15:52,336 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:15:52 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImM2NGZiQ0JNQzNDdHNzRVNyWGV0elE9PSIsInZhbHVlIjoiblZzSEdmNjhtVWhibFhCSHZ4UVA0QWxVeWRCQnJVUVBCMW1rYkoxNi9CVEJ5cnMrc1pLaTVJdHdTSExwcmxBME45SHY3eldSN21MZmlqYi9PelAwRHUwaFpXUnM0UyszUUhMRG9GYWFqL0pNamtqaytYbVhyTTViQ1k0QmNSYXoiLCJtYWMiOiJjNTZkNzQxYmYzMWMzZGZhZTUxODY3YmIxMmYxNTI1YTA0NWU1ODcwZTEzNGQ0YjlmYTJhZTE3ZWMwM2Q1OGRkIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:52 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IkVGcDBwK1d0QzZyYnZFcWhUMTdFd1E9PSIsInZhbHVlIjoiQXlvT2F1UDRoY0w2Q29hUndHbUJPSlA3SnBZK1l4MDVBZFJ1TTZuSURPdFBYNXhmSmgrKytxYVdSV3pIU00wY0hyL3o4WHRUK1U3ZXJ6OUZBK2Jod3NZTVRxNHRwRUVWZGwySDJEeG1wK2hZREZvYlpSL0k5WUQ5TU9SWmNldkMiLCJtYWMiOiJiOTBjMzEzZjg5OTQ1NThiYzEwYzI2OGMyYzdhOGI2NGI2NDFmYzA5ODc0NTc1YWRlNGYyODcxZWQ2NDVhODY4IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:52 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:15:52,336 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:15:52,336 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:15:52,336 - DEBUG - receive_response_body.complete
+2025-03-16 14:15:52,336 - DEBUG - response_closed.started
+2025-03-16 14:15:52,336 - DEBUG - response_closed.complete
+2025-03-16 14:15:52,337 - DEBUG - Solution to send: {
+    "id": 3,
+    "status": "failed",
+    "message": [
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_9% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_10% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_11% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_12% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_5% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_4% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_3% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_14% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_0% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%shift_15% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_13% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_2% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_1% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_8% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_7% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_6% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:15:52,337 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:15:52 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImM2NGZiQ0JNQzNDdHNzRVNyWGV0elE9PSIsInZhbHVlIjoiblZzSEdmNjhtVWhibFhCSHZ4UVA0QWxVeWRCQnJVUVBCMW1rYkoxNi9CVEJ5cnMrc1pLaTVJdHdTSExwcmxBME45SHY3eldSN21MZmlqYi9PelAwRHUwaFpXUnM0UyszUUhMRG9GYWFqL0pNamtqaytYbVhyTTViQ1k0QmNSYXoiLCJtYWMiOiJjNTZkNzQxYmYzMWMzZGZhZTUxODY3YmIxMmYxNTI1YTA0NWU1ODcwZTEzNGQ0YjlmYTJhZTE3ZWMwM2Q1OGRkIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:52 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IkVGcDBwK1d0QzZyYnZFcWhUMTdFd1E9PSIsInZhbHVlIjoiQXlvT2F1UDRoY0w2Q29hUndHbUJPSlA3SnBZK1l4MDVBZFJ1TTZuSURPdFBYNXhmSmgrKytxYVdSV3pIU00wY0hyL3o4WHRUK1U3ZXJ6OUZBK2Jod3NZTVRxNHRwRUVWZGwySDJEeG1wK2hZREZvYlpSL0k5WUQ5TU9SWmNldkMiLCJtYWMiOiJiOTBjMzEzZjg5OTQ1NThiYzEwYzI2OGMyYzdhOGI2NGI2NDFmYzA5ODc0NTc1YWRlNGYyODcxZWQ2NDVhODY4IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:15:52 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:15:52,337 - DEBUG - close.started
+2025-03-16 14:15:52,337 - DEBUG - close.complete
+2025-03-16 14:24:28,079 - DEBUG - ('No solution found', ['%worker_0% supera el mÃ¡ximo de turnos 10 a trabajar', '%worker_1% supera el mÃ¡ximo de horas 0 a trabajar', '%worker_2% supera el mÃ¡ximo de horas 0 a trabajar', '%worker_3% supera el mÃ¡ximo de horas 0 a trabajar', '%shift_16% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_17% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_18% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_19% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_20% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_21% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_22% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_23% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_24% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_25% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_26% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_27% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_28% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_29% no alcanza el mÃ\xadnimo de 1 trabajadores', '%shift_30% no alcanza el mÃ\xadnimo de 1 trabajadores'])
+2025-03-16 14:24:28,084 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:24:28,089 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000020C7F465130>
+2025-03-16 14:24:28,089 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:24:28,089 - DEBUG - send_request_headers.complete
+2025-03-16 14:24:28,089 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:24:28,089 - DEBUG - send_request_body.complete
+2025-03-16 14:24:28,089 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:24:28,115 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:24:28 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InRkMVBVamxsb2RVS2tORDdocGhoZEE9PSIsInZhbHVlIjoiemUxTWhKV0NhU3ZlTUR0L1dMZnYxVzlOT3NVOFJWKzJxRzlnWGdhTzZCUk9JYWtKUUljdGhMeXJob0tOcFVlSjVsSkdoM05hVEsrcVlBWmhlOGFDckVGN1c1UkQ3M0xhK2VxWCtnaGFNSGRzU2NZbTl4eVlnVm9GUllQVGVRNG8iLCJtYWMiOiIzYmYyNDYzMzYyNjU4YTk2NmFlNGFiZGRmODQ0YTU3OTRkMzA1MzQzMWZiMDgwZWQ0ZjUzOTQ2ZWY3NTFjMjliIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:24:28 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IjFHeU5QUDAvSjdJdTlSUmxXTVZSakE9PSIsInZhbHVlIjoiUGtwTVJMdnZlM0xEenNxblZVeGUyM2c0ZXZiSTdIZWtoWTE4Y1lsREJ1OFJibDBCYlhYYnY3YnR6RUdKbjQ2KzdZK0xnTXBJMFFqcmdibi9iR1FQTHA0L0lrdjU4RmpsMFdvUXNWMnpZVzJjaWhrbFhjT1l1cm5wRzZvekVVQW4iLCJtYWMiOiJkYjMyNTQ1Y2Q1Y2I5ZDM4ODU5Zjc5NDcwMjQ3OTMzOTAyNTU0ZDFmMmM4MmFhNmZiZDFjMWI1NzNmNDlmOTUxIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:24:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:24:28,115 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:24:28,116 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:24:28,116 - DEBUG - receive_response_body.complete
+2025-03-16 14:24:28,116 - DEBUG - response_closed.started
+2025-03-16 14:24:28,116 - DEBUG - response_closed.complete
+2025-03-16 14:24:28,116 - DEBUG - Solution to send: {
+    "id": 4,
+    "status": "failed",
+    "message": [
+        "%worker_0% supera el m\u00c3\u00a1ximo de turnos 10 a trabajar",
+        "%worker_1% supera el m\u00c3\u00a1ximo de horas 0 a trabajar",
+        "%worker_2% supera el m\u00c3\u00a1ximo de horas 0 a trabajar",
+        "%worker_3% supera el m\u00c3\u00a1ximo de horas 0 a trabajar",
+        "%shift_16% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_17% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_18% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_19% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_20% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_21% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_22% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_23% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_24% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_25% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_26% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_27% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_28% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_29% no alcanza el m\u00c3\u00adnimo de 1 trabajadores",
+        "%shift_30% no alcanza el m\u00c3\u00adnimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:24:28,116 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:24:28 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InRkMVBVamxsb2RVS2tORDdocGhoZEE9PSIsInZhbHVlIjoiemUxTWhKV0NhU3ZlTUR0L1dMZnYxVzlOT3NVOFJWKzJxRzlnWGdhTzZCUk9JYWtKUUljdGhMeXJob0tOcFVlSjVsSkdoM05hVEsrcVlBWmhlOGFDckVGN1c1UkQ3M0xhK2VxWCtnaGFNSGRzU2NZbTl4eVlnVm9GUllQVGVRNG8iLCJtYWMiOiIzYmYyNDYzMzYyNjU4YTk2NmFlNGFiZGRmODQ0YTU3OTRkMzA1MzQzMWZiMDgwZWQ0ZjUzOTQ2ZWY3NTFjMjliIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:24:28 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IjFHeU5QUDAvSjdJdTlSUmxXTVZSakE9PSIsInZhbHVlIjoiUGtwTVJMdnZlM0xEenNxblZVeGUyM2c0ZXZiSTdIZWtoWTE4Y1lsREJ1OFJibDBCYlhYYnY3YnR6RUdKbjQ2KzdZK0xnTXBJMFFqcmdibi9iR1FQTHA0L0lrdjU4RmpsMFdvUXNWMnpZVzJjaWhrbFhjT1l1cm5wRzZvekVVQW4iLCJtYWMiOiJkYjMyNTQ1Y2Q1Y2I5ZDM4ODU5Zjc5NDcwMjQ3OTMzOTAyNTU0ZDFmMmM4MmFhNmZiZDFjMWI1NzNmNDlmOTUxIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:24:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:24:28,116 - DEBUG - close.started
+2025-03-16 14:24:28,116 - DEBUG - close.complete
+2025-03-16 14:34:43,135 - DEBUG - ('No solution found', ['%worker_0% supera el máximo de turnos 10 a trabajar', '%worker_1% supera el máximo de horas 0 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_31% no alcanza el mínimo de 1 trabajadores', '%shift_32% no alcanza el mínimo de 1 trabajadores', '%shift_33% no alcanza el mínimo de 1 trabajadores', '%shift_34% no alcanza el mínimo de 1 trabajadores', '%shift_35% no alcanza el mínimo de 1 trabajadores', '%shift_36% no alcanza el mínimo de 1 trabajadores', '%shift_37% no alcanza el mínimo de 1 trabajadores', '%shift_38% no alcanza el mínimo de 1 trabajadores', '%shift_39% no alcanza el mínimo de 1 trabajadores', '%shift_40% no alcanza el mínimo de 1 trabajadores', '%shift_41% no alcanza el mínimo de 1 trabajadores', '%shift_42% no alcanza el mínimo de 1 trabajadores', '%shift_43% no alcanza el mínimo de 1 trabajadores', '%shift_44% no alcanza el mínimo de 1 trabajadores', '%shift_45% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:34:43,140 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:34:43,144 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001E81B2E4C80>
+2025-03-16 14:34:43,145 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:34:43,145 - DEBUG - send_request_headers.complete
+2025-03-16 14:34:43,145 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:34:43,145 - DEBUG - send_request_body.complete
+2025-03-16 14:34:43,145 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:34:43,170 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:34:43 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InBwamFkM1FhQ2NFQ1VaMUVEUzl0Y2c9PSIsInZhbHVlIjoic2hEaFJCb0tsZ3lBMW0wdjdSN2U5TlVvREtNckQrM2pwTk1MYTdwY04vcGI1ZFZCLzJPcFBhdFlMNFhVcC9HZC82dmhMRnVYd1pGREpXZFZNVFMrSWFTOUFJaCtlam5kaUdPdnFkRjVzcVlYVnJpcU5XN0s5elVnRHZuQ3dzOFoiLCJtYWMiOiJjNmJkMzdiYWY3ZDJlY2Y4MDg1N2QwZTVkYzAzNTk2OGI5NGVkMTdmMTc2ZTY2M2FkMTYwZTJhYTAxZDA1ODY3IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:34:43 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlpWR1l0cmYzeEovVmc0RmlERTFXMnc9PSIsInZhbHVlIjoiZFd3bTJQaTgxZnBHY1JDcEp4cVBPUkRWc25YQ1cxbHo0L2tXTjhTTWY3OUpSeVluTlVPQjJkZjN5aEZJRC9ES3BwdnpCVkNsRFh0YUpDSkVLM0JWZlJUTmVuVVMwTURUcXZzenAwQXRTTCtybGd3U1BDdzJqQXBLSTFXcTJ1Y1kiLCJtYWMiOiI0MDk2ZTk2ZTk4M2M4Nzk3ZWVmYzBkOWMzOWUwNDE1N2M2YzcxMWQ3YjI4NWQ5YThlMjA4Mjc4NTA5MjBiNTEwIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:34:43 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:34:43,170 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:34:43,171 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:34:43,171 - DEBUG - receive_response_body.complete
+2025-03-16 14:34:43,171 - DEBUG - response_closed.started
+2025-03-16 14:34:43,171 - DEBUG - response_closed.complete
+2025-03-16 14:34:43,171 - DEBUG - Solution to send: {
+    "id": 5,
+    "status": "failed",
+    "message": [
+        "%worker_0% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_31% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_32% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_33% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_34% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_35% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_36% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_37% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_38% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_39% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_40% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_41% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_42% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_43% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_44% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_45% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:34:43,171 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:34:43 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InBwamFkM1FhQ2NFQ1VaMUVEUzl0Y2c9PSIsInZhbHVlIjoic2hEaFJCb0tsZ3lBMW0wdjdSN2U5TlVvREtNckQrM2pwTk1MYTdwY04vcGI1ZFZCLzJPcFBhdFlMNFhVcC9HZC82dmhMRnVYd1pGREpXZFZNVFMrSWFTOUFJaCtlam5kaUdPdnFkRjVzcVlYVnJpcU5XN0s5elVnRHZuQ3dzOFoiLCJtYWMiOiJjNmJkMzdiYWY3ZDJlY2Y4MDg1N2QwZTVkYzAzNTk2OGI5NGVkMTdmMTc2ZTY2M2FkMTYwZTJhYTAxZDA1ODY3IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:34:43 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlpWR1l0cmYzeEovVmc0RmlERTFXMnc9PSIsInZhbHVlIjoiZFd3bTJQaTgxZnBHY1JDcEp4cVBPUkRWc25YQ1cxbHo0L2tXTjhTTWY3OUpSeVluTlVPQjJkZjN5aEZJRC9ES3BwdnpCVkNsRFh0YUpDSkVLM0JWZlJUTmVuVVMwTURUcXZzenAwQXRTTCtybGd3U1BDdzJqQXBLSTFXcTJ1Y1kiLCJtYWMiOiI0MDk2ZTk2ZTk4M2M4Nzk3ZWVmYzBkOWMzOWUwNDE1N2M2YzcxMWQ3YjI4NWQ5YThlMjA4Mjc4NTA5MjBiNTEwIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:34:43 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:34:43,171 - DEBUG - close.started
+2025-03-16 14:34:43,171 - DEBUG - close.complete
+2025-03-16 14:35:43,827 - ERROR - Error during optimization: 'WorkerPreference' object has no attribute 'id'
+2025-03-16 14:36:17,150 - DEBUG - ('No solution found', ['%worker_1% supera el máximo de turnos 10 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%worker_3% supera el máximo de horas 0 a trabajar', '%worker_4% supera el máximo de horas 0 a trabajar', '%shift_61% no alcanza el mínimo de 1 trabajadores', '%shift_62% no alcanza el mínimo de 1 trabajadores', '%shift_63% no alcanza el mínimo de 1 trabajadores', '%shift_64% no alcanza el mínimo de 1 trabajadores', '%shift_65% no alcanza el mínimo de 1 trabajadores', '%shift_66% no alcanza el mínimo de 1 trabajadores', '%shift_67% no alcanza el mínimo de 1 trabajadores', '%shift_68% no alcanza el mínimo de 1 trabajadores', '%shift_69% no alcanza el mínimo de 1 trabajadores', '%shift_70% no alcanza el mínimo de 1 trabajadores', '%shift_71% no alcanza el mínimo de 1 trabajadores', '%shift_72% no alcanza el mínimo de 1 trabajadores', '%shift_73% no alcanza el mínimo de 1 trabajadores', '%shift_74% no alcanza el mínimo de 1 trabajadores', '%shift_75% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:36:17,155 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:36:17,159 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E826FAD0>
+2025-03-16 14:36:17,160 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:36:17,160 - DEBUG - send_request_headers.complete
+2025-03-16 14:36:17,160 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:36:17,160 - DEBUG - send_request_body.complete
+2025-03-16 14:36:17,160 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:36:17,186 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:36:17 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Inlua1h0SEdqUEI2VTBhTk1VblBjRWc9PSIsInZhbHVlIjoiMDFoNi9VcHJWbEV1ZTd1SUZqb1cwbWNmTVNqT0JLajFTZm9wOVBDZ1NNNU8zbU9YbnptcG9QMU9YZlRNaGRqQ01ZVFVXemVQamdoY3hyNWtYb1lLTld6WWQ1UUt3QWRuMkhvMUxUQ25KSnhLa0t3czBvb0V5MDJtYjBjeGtxbmciLCJtYWMiOiI0ZjkwYWVhNDhlODQzOTQ0NWY3OGM5YjA3MDFmMDFlN2U3ZWMxOWUxYWFmZTMxYWU0MWQ4OWY2NjMwNGZiNGI0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:36:17 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6ImkvRWY0RlV3bDdzZWpxNThjaUhSSGc9PSIsInZhbHVlIjoiN0FVMEZRZjBveUNCb1V2QUNSc3ppUTlLSnAyMXd0YnROTUJGaUQwa004NDBwaHpGOTlsNWFVZ0Nqb3lDdEl3b09PQUs5ZC9rNkkrc0JVRm9BeENUZ1g1QjhITlNZNjNvMWpuUFY1V3VrMmVoUVREVkljeiszaW0yZkJjNlh5Z0siLCJtYWMiOiJhY2IxMjBlMTgxYTdlMTdiNjdiNjhiMGNkODVhYzI5YWEzY2Y1NDI2OTA4NThhZjFiMGM4OTViZmFjMDgxYTc0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:36:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:36:17,187 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:36:17,187 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:36:17,187 - DEBUG - receive_response_body.complete
+2025-03-16 14:36:17,187 - DEBUG - response_closed.started
+2025-03-16 14:36:17,187 - DEBUG - response_closed.complete
+2025-03-16 14:36:17,187 - DEBUG - Solution to send: {
+    "id": 7,
+    "status": "failed",
+    "message": [
+        "%worker_1% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_4% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_61% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_62% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_63% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_64% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_65% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_66% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_67% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_68% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_69% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_70% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_71% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_72% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_73% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_74% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_75% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:36:17,187 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:36:17 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Inlua1h0SEdqUEI2VTBhTk1VblBjRWc9PSIsInZhbHVlIjoiMDFoNi9VcHJWbEV1ZTd1SUZqb1cwbWNmTVNqT0JLajFTZm9wOVBDZ1NNNU8zbU9YbnptcG9QMU9YZlRNaGRqQ01ZVFVXemVQamdoY3hyNWtYb1lLTld6WWQ1UUt3QWRuMkhvMUxUQ25KSnhLa0t3czBvb0V5MDJtYjBjeGtxbmciLCJtYWMiOiI0ZjkwYWVhNDhlODQzOTQ0NWY3OGM5YjA3MDFmMDFlN2U3ZWMxOWUxYWFmZTMxYWU0MWQ4OWY2NjMwNGZiNGI0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:36:17 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6ImkvRWY0RlV3bDdzZWpxNThjaUhSSGc9PSIsInZhbHVlIjoiN0FVMEZRZjBveUNCb1V2QUNSc3ppUTlLSnAyMXd0YnROTUJGaUQwa004NDBwaHpGOTlsNWFVZ0Nqb3lDdEl3b09PQUs5ZC9rNkkrc0JVRm9BeENUZ1g1QjhITlNZNjNvMWpuUFY1V3VrMmVoUVREVkljeiszaW0yZkJjNlh5Z0siLCJtYWMiOiJhY2IxMjBlMTgxYTdlMTdiNjdiNjhiMGNkODVhYzI5YWEzY2Y1NDI2OTA4NThhZjFiMGM4OTViZmFjMDgxYTc0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:36:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:36:17,187 - DEBUG - close.started
+2025-03-16 14:36:17,187 - DEBUG - close.complete
+2025-03-16 14:41:42,288 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:41:42,288 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:41:42,790 - DEBUG - ('No solution found', ['%worker_4% supera el máximo de turnos 10 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%worker_1% supera el máximo de horas 0 a trabajar', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_7% no alcanza el mínimo de 1 trabajadores', '%shift_6% no alcanza el mínimo de 1 trabajadores', '%shift_14% no alcanza el mínimo de 1 trabajadores', '%shift_5% no alcanza el mínimo de 1 trabajadores', '%shift_4% no alcanza el mínimo de 1 trabajadores', '%shift_3% no alcanza el mínimo de 1 trabajadores', '%shift_13% no alcanza el mínimo de 1 trabajadores', '%shift_2% no alcanza el mínimo de 1 trabajadores', '%shift_1% no alcanza el mínimo de 1 trabajadores', '%shift_8% no alcanza el mínimo de 1 trabajadores', '%shift_9% no alcanza el mínimo de 1 trabajadores', '%shift_10% no alcanza el mínimo de 1 trabajadores', '%shift_11% no alcanza el mínimo de 1 trabajadores', '%shift_12% no alcanza el mínimo de 1 trabajadores', '%shift_15% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:41:42,792 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:41:42,793 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E82D2120>
+2025-03-16 14:41:42,793 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:41:42,793 - DEBUG - send_request_headers.complete
+2025-03-16 14:41:42,793 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:41:42,793 - DEBUG - send_request_body.complete
+2025-03-16 14:41:42,793 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:41:42,819 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:41:42 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IklvUFp2U1hkRTRKWkJQRW5iQXE0M0E9PSIsInZhbHVlIjoiMFhtVUNGNzVrU3ZjTHlJWGZ2eEI1TFZ5bGQ1Q2dlc0had1JWL1k3dGdueDhFRVdPc3VHTndhQ0FMbS9NMjNISHNodDl0enc2R296bU9QMXlUVVdWaGFWTTh3YVFxeWdoUkxPQS9qT0oyL1Q1TFRwd2hsWTd6UWdReEJESkFNb2QiLCJtYWMiOiIzNzI1MmFmOTFmYTViMjI1YTRjYzM0NTNkMjkwMmY2ZTRmMmIzNzg5MTUxMTBjODM3YTg2MGJhNTM0NDM3MDkzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:41:42 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlhmVFNLclV0Nm15TDQrMkI1SnRCQ1E9PSIsInZhbHVlIjoicDdCaGhxVFhuclpXRG5qdHJoUlU3RDlzWnJyNFNKM0NTWHJseEk0R0EwZkFjQkxneE1DTHA2Q0gzb2FlaG5vNjJNdlc0THZSYzhhZWY1L1E1WkJOMysrbVZJZ2dIUDk2SHllT0FxSjY0b0U2VEZtT01TVzUxTnh2dUxYN2EyRmMiLCJtYWMiOiJjMjMwZGZjOWQ3NzUwZDdmMGQwYTllMzliZDQ4NzRmMmI2ZjQ0YTliMTE3NGNlZjQ2ZTA4YThiOTZmOTZiNjhjIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:41:42 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:41:42,820 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:41:42,820 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:41:42,820 - DEBUG - receive_response_body.complete
+2025-03-16 14:41:42,820 - DEBUG - response_closed.started
+2025-03-16 14:41:42,820 - DEBUG - response_closed.complete
+2025-03-16 14:41:42,820 - DEBUG - Solution to send: {
+    "id": 3,
+    "status": "failed",
+    "message": [
+        "%worker_4% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_7% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_6% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_14% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_5% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_4% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_3% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_13% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_2% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_1% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_8% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_9% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_10% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_11% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_12% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_15% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:41:42,821 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:41:42 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IklvUFp2U1hkRTRKWkJQRW5iQXE0M0E9PSIsInZhbHVlIjoiMFhtVUNGNzVrU3ZjTHlJWGZ2eEI1TFZ5bGQ1Q2dlc0had1JWL1k3dGdueDhFRVdPc3VHTndhQ0FMbS9NMjNISHNodDl0enc2R296bU9QMXlUVVdWaGFWTTh3YVFxeWdoUkxPQS9qT0oyL1Q1TFRwd2hsWTd6UWdReEJESkFNb2QiLCJtYWMiOiIzNzI1MmFmOTFmYTViMjI1YTRjYzM0NTNkMjkwMmY2ZTRmMmIzNzg5MTUxMTBjODM3YTg2MGJhNTM0NDM3MDkzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:41:42 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlhmVFNLclV0Nm15TDQrMkI1SnRCQ1E9PSIsInZhbHVlIjoicDdCaGhxVFhuclpXRG5qdHJoUlU3RDlzWnJyNFNKM0NTWHJseEk0R0EwZkFjQkxneE1DTHA2Q0gzb2FlaG5vNjJNdlc0THZSYzhhZWY1L1E1WkJOMysrbVZJZ2dIUDk2SHllT0FxSjY0b0U2VEZtT01TVzUxTnh2dUxYN2EyRmMiLCJtYWMiOiJjMjMwZGZjOWQ3NzUwZDdmMGQwYTllMzliZDQ4NzRmMmI2ZjQ0YTliMTE3NGNlZjQ2ZTA4YThiOTZmOTZiNjhjIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:41:42 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:41:42,821 - DEBUG - close.started
+2025-03-16 14:41:42,821 - DEBUG - close.complete
+2025-03-16 14:43:37,250 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:43:37,250 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:43:37,728 - DEBUG - ('No solution found', ['%worker_4% supera el máximo de turnos 10 a trabajar', '%worker_1% supera el máximo de horas 0 a trabajar', '%worker_2% supera el máximo de horas 0 a trabajar', '%shift_24% no alcanza el mínimo de 1 trabajadores', '%shift_22% no alcanza el mínimo de 1 trabajadores', '%shift_21% no alcanza el mínimo de 1 trabajadores', '%shift_29% no alcanza el mínimo de 1 trabajadores', '%shift_20% no alcanza el mínimo de 1 trabajadores', '%shift_19% no alcanza el mínimo de 1 trabajadores', '%shift_25% no alcanza el mínimo de 1 trabajadores', '%shift_23% no alcanza el mínimo de 1 trabajadores', '%shift_18% no alcanza el mínimo de 1 trabajadores', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_26% no alcanza el mínimo de 1 trabajadores', '%shift_27% no alcanza el mínimo de 1 trabajadores', '%shift_30% no alcanza el mínimo de 1 trabajadores', '%shift_28% no alcanza el mínimo de 1 trabajadores', '%shift_17% no alcanza el mínimo de 1 trabajadores', '%shift_16% no alcanza el mínimo de 1 trabajadores'])
+2025-03-16 14:43:37,729 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:43:37,730 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E826F080>
+2025-03-16 14:43:37,730 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:43:37,730 - DEBUG - send_request_headers.complete
+2025-03-16 14:43:37,730 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:43:37,731 - DEBUG - send_request_body.complete
+2025-03-16 14:43:37,731 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:43:38,050 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 500, b'Internal Server Error', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'text/html; charset=UTF-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'date', b'Sun, 16 Mar 2025 13:43:38 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ii9Db1Rqa3VsVVRRUjkyMklnOUo2OHc9PSIsInZhbHVlIjoiaGZmcnlUTC9BbWY1QXNSM0VyTGhiU21ScVFORjJKcmpZbWF4UFpxc2Q3dnVuRjVmVmhtVzROMDlRckpQSTAyd1EyWnJsZzJURWZzRmkzUVdqd1dyclhYZU5kQTlUWnA5N2JKZ1pBeUhUSzhuZ1U5UEFLTXJDczNxaVBWYTNEM1kiLCJtYWMiOiJjZDA4NzIwM2ZlYThjZjZkOTc3NTg2MDNmNDBjOWMyOThmYjVlNmZhY2ZmNjQ5YWZiOTE5ZTU1ZDM0YzYzZTBhIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:43:38 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InAvZzhZUXEycHpmS1o4cE5DbmwzRFE9PSIsInZhbHVlIjoic05HZU1BbWtoTmw0eGRPYVRMWktpRGlBSGZjRjF3UmNyWEZnQmI1S29waktleEo2NlhxNnJYdm52WUd5OENKWkJsaE5lWTlTQVQ4S1BPVzl3U3BDejhoNlFiQ1ZQck9oQjYzaHdaNjZyanQ3NEcxcjU2VUVVRFUwdWJLSUFFWTAiLCJtYWMiOiIzODAwZjkyYjU3M2RjZDUzNjc2ZTlmMzkzNDY2ODc2ZGI1MGYwYTA2NWVmMWZiMDAyOTRjZmZiYTk2OTkzMWJhIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:43:38 GMT; Max-Age=7200; path=/; httponly; samesite=lax')])
+2025-03-16 14:43:38,050 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 500 Internal Server Error"
+2025-03-16 14:43:38,050 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:43:38,051 - DEBUG - receive_response_body.complete
+2025-03-16 14:43:38,051 - DEBUG - response_closed.started
+2025-03-16 14:43:38,051 - DEBUG - response_closed.complete
+2025-03-16 14:43:38,051 - DEBUG - Solution to send: {
+    "id": 4,
+    "status": "failed",
+    "message": [
+        "%worker_4% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_1% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_24% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_22% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_21% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_29% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_20% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_19% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_25% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_23% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_18% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_26% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_27% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_30% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_28% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_17% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_16% no alcanza el m\u00ednimo de 1 trabajadores"
+    ]
+}
+
+2025-03-16 14:43:38,051 - ERROR - Error during POST request: Expecting value: line 1 column 1 (char 0)
+2025-03-16 14:43:38,051 - DEBUG - close.started
+2025-03-16 14:43:38,051 - DEBUG - close.complete
+2025-03-16 14:44:17,331 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:44:17,332 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:44:17,832 - DEBUG - ('No solution found', ['%shift_42% no alcanza el mínimo de 1 trabajadores', '%shift_32% no alcanza el mínimo de 1 trabajadores', '%shift_37% no alcanza el mínimo de 1 trabajadores', '%shift_43% no alcanza el mínimo de 1 trabajadores', '%worker_1% supera el máximo de turnos 10 a trabajar', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_34% no alcanza el mínimo de 1 trabajadores', '%shift_35% no alcanza el mínimo de 1 trabajadores', '%shift_44% no alcanza el mínimo de 1 trabajadores', '%shift_36% no alcanza el mínimo de 1 trabajadores', '%shift_45% no alcanza el mínimo de 1 trabajadores', '%worker_2% supera el máximo de horas 0 a trabajar', '%shift_31% no alcanza el mínimo de 1 trabajadores', '%shift_39% no alcanza el mínimo de 1 trabajadores', '%shift_40% no alcanza el mínimo de 1 trabajadores', '%shift_41% no alcanza el mínimo de 1 trabajadores', '%shift_38% no alcanza el mínimo de 1 trabajadores', '%shift_33% no alcanza el mínimo de 1 trabajadores', '%worker_4% supera el máximo de horas 0 a trabajar'])
+2025-03-16 14:44:17,833 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:44:17,834 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E82D3920>
+2025-03-16 14:44:17,835 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:44:17,835 - DEBUG - send_request_headers.complete
+2025-03-16 14:44:17,835 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:44:17,835 - DEBUG - send_request_body.complete
+2025-03-16 14:44:17,835 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:44:17,860 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:44:17 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IktmcFczUTVWUW9FTUhwOEtHS0tNamc9PSIsInZhbHVlIjoiYTJIZkxmS29MM1o1US9yV0RQcWQ0Rk5pM0tuVEk0cDZUeVBWMnRxbldBYmhSbC9xZzVkNnl3L1o0UzJ0NFNmdUtXUlE4SExRSFhiU0U5T1kvdHZDbG1vVVN4VmdlQ0tSUUlsdmx4VmwzbXYxOFdHemNjTzVHMGZobzRLUzRtTVEiLCJtYWMiOiJmYjRkM2I2ZDQ2ZGRjM2JjOGQwMmQ0NmFjZTdmMDAzMGI2MDYyMGRlZjUyOWZkMTYyZmFiNGM3NWI3ZjU3ZDMzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:44:17 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlVzekpSQUpqaTlpaUdOTVdQazVYNmc9PSIsInZhbHVlIjoiQWpMWDlrMXBqZktSSzYxeXhMVW0zcURvK0hiTkF2ZWVQU2NkUVZCdVJQdFBaMHltMG1Fdm1kZ3M5UUtjL1BVYmVob0pLN2lQU0NXMGpua3VZQ0REeVRiRWxWWnRoYjJPOEkzaXZjY2NZZEMvZU1MTFhEN1N6YTdNM1A4K01PeDkiLCJtYWMiOiI4NjdmNDVkOTMxMjUyMjQ2MzNlNGU3NDJjOTRiMWNlOTJkOWFlYzdlYjhjMTUzMTEyNGM2YTBiY2FhYTQzNTUzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:44:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:44:17,860 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:44:17,860 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:44:17,861 - DEBUG - receive_response_body.complete
+2025-03-16 14:44:17,861 - DEBUG - response_closed.started
+2025-03-16 14:44:17,861 - DEBUG - response_closed.complete
+2025-03-16 14:44:17,861 - DEBUG - Solution to send: {
+    "id": 5,
+    "status": "failed",
+    "message": [
+        "%shift_42% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_32% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_37% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_43% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_1% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_34% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_35% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_44% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_36% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_45% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_31% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_39% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_40% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_41% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_38% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_33% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_4% supera el m\u00e1ximo de horas 0 a trabajar"
+    ]
+}
+
+2025-03-16 14:44:17,861 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:44:17 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IktmcFczUTVWUW9FTUhwOEtHS0tNamc9PSIsInZhbHVlIjoiYTJIZkxmS29MM1o1US9yV0RQcWQ0Rk5pM0tuVEk0cDZUeVBWMnRxbldBYmhSbC9xZzVkNnl3L1o0UzJ0NFNmdUtXUlE4SExRSFhiU0U5T1kvdHZDbG1vVVN4VmdlQ0tSUUlsdmx4VmwzbXYxOFdHemNjTzVHMGZobzRLUzRtTVEiLCJtYWMiOiJmYjRkM2I2ZDQ2ZGRjM2JjOGQwMmQ0NmFjZTdmMDAzMGI2MDYyMGRlZjUyOWZkMTYyZmFiNGM3NWI3ZjU3ZDMzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:44:17 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlVzekpSQUpqaTlpaUdOTVdQazVYNmc9PSIsInZhbHVlIjoiQWpMWDlrMXBqZktSSzYxeXhMVW0zcURvK0hiTkF2ZWVQU2NkUVZCdVJQdFBaMHltMG1Fdm1kZ3M5UUtjL1BVYmVob0pLN2lQU0NXMGpua3VZQ0REeVRiRWxWWnRoYjJPOEkzaXZjY2NZZEMvZU1MTFhEN1N6YTdNM1A4K01PeDkiLCJtYWMiOiI4NjdmNDVkOTMxMjUyMjQ2MzNlNGU3NDJjOTRiMWNlOTJkOWFlYzdlYjhjMTUzMTEyNGM2YTBiY2FhYTQzNTUzIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:44:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:44:17,861 - DEBUG - close.started
+2025-03-16 14:44:17,861 - DEBUG - close.complete
+2025-03-16 14:45:26,733 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:45:26,733 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:45:27,210 - DEBUG - ('No solution found', ['%shift_58% no alcanza el mínimo de 1 trabajadores', '%shift_49% no alcanza el mínimo de 1 trabajadores', '%shift_47% no alcanza el mínimo de 1 trabajadores', '%shift_48% no alcanza el mínimo de 1 trabajadores', '%shift_59% no alcanza el mínimo de 1 trabajadores', '%shift_50% no alcanza el mínimo de 1 trabajadores', '%shift_46% no alcanza el mínimo de 1 trabajadores', '%worker_3% supera el máximo de horas 0 a trabajar', '%shift_60% no alcanza el mínimo de 1 trabajadores', '%worker_4% supera el máximo de horas 0 a trabajar', '%shift_53% no alcanza el mínimo de 1 trabajadores', '%shift_57% no alcanza el mínimo de 1 trabajadores', '%shift_55% no alcanza el mínimo de 1 trabajadores', '%shift_56% no alcanza el mínimo de 1 trabajadores', '%shift_54% no alcanza el mínimo de 1 trabajadores', '%worker_1% supera el máximo de turnos 10 a trabajar', '%shift_51% no alcanza el mínimo de 1 trabajadores', '%shift_52% no alcanza el mínimo de 1 trabajadores', '%worker_2% supera el máximo de horas 0 a trabajar'])
+2025-03-16 14:45:27,211 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:45:27,212 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E82E0FE0>
+2025-03-16 14:45:27,212 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:45:27,212 - DEBUG - send_request_headers.complete
+2025-03-16 14:45:27,212 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:45:27,212 - DEBUG - send_request_body.complete
+2025-03-16 14:45:27,213 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:45:27,237 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:45:27 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IlV0eDJYb0VtRlFpblZSTTNVcGFzSHc9PSIsInZhbHVlIjoiUUMyUmowbTM3RVF5dzU0YkF6bjUvT0pqaWdFM3V5WTI0SkNRS3hMbmc1UkFqWDgxcDhCc0I2bU0vVjFmeE9vWHhzaXRnS1pVeHY5TnJSNlNlbjNmeWF4N1BydDM5TjIzbk14THdkNlc4Y0VwbTdkUGFuYUdNaVdpS0xOVmNUeUsiLCJtYWMiOiJiMmUxYmQzZDUwZTg0MWE4YTNlMjBhZjAzM2FjMWY3ZjkxOWViMjJmNzZhZmFiOGEwOGZiNzQyMDMxNmYxODZjIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:45:27 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InRDQzVWMWQ2bGUwckEvc2xtNGE1U3c9PSIsInZhbHVlIjoiL2dHTkl6NldRN3B1MUgrV2RJZlRiaGJCb1N3UytjTWNIOUNPQzU4MExsdzJreXF0aUpzSloxY1oxVklQcEFTT0Z6OHAxRnhoYUwrVXNid2F5M2ZrZElOM1hPVnhva3MySCtpemd5c01VZnBKVGFyM2JKT1FQdU5tczNIcksxQWkiLCJtYWMiOiI1YzI3MTQwZWUwNGU2YzVmMDcwN2JiYjBkZDBmY2QyYmExZjY1ZWNmODVlMWM5OTM1ZTBmZmMxZDlkNjY3MDM4IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:45:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:45:27,238 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:45:27,238 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:45:27,238 - DEBUG - receive_response_body.complete
+2025-03-16 14:45:27,238 - DEBUG - response_closed.started
+2025-03-16 14:45:27,238 - DEBUG - response_closed.complete
+2025-03-16 14:45:27,239 - DEBUG - Solution to send: {
+    "id": 6,
+    "status": "failed",
+    "message": [
+        "%shift_58% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_49% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_47% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_48% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_59% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_50% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_46% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_60% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_4% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_53% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_57% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_55% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_56% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_54% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_1% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%shift_51% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_52% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar"
+    ]
+}
+
+2025-03-16 14:45:27,239 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:45:27 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IlV0eDJYb0VtRlFpblZSTTNVcGFzSHc9PSIsInZhbHVlIjoiUUMyUmowbTM3RVF5dzU0YkF6bjUvT0pqaWdFM3V5WTI0SkNRS3hMbmc1UkFqWDgxcDhCc0I2bU0vVjFmeE9vWHhzaXRnS1pVeHY5TnJSNlNlbjNmeWF4N1BydDM5TjIzbk14THdkNlc4Y0VwbTdkUGFuYUdNaVdpS0xOVmNUeUsiLCJtYWMiOiJiMmUxYmQzZDUwZTg0MWE4YTNlMjBhZjAzM2FjMWY3ZjkxOWViMjJmNzZhZmFiOGEwOGZiNzQyMDMxNmYxODZjIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:45:27 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6InRDQzVWMWQ2bGUwckEvc2xtNGE1U3c9PSIsInZhbHVlIjoiL2dHTkl6NldRN3B1MUgrV2RJZlRiaGJCb1N3UytjTWNIOUNPQzU4MExsdzJreXF0aUpzSloxY1oxVklQcEFTT0Z6OHAxRnhoYUwrVXNid2F5M2ZrZElOM1hPVnhva3MySCtpemd5c01VZnBKVGFyM2JKT1FQdU5tczNIcksxQWkiLCJtYWMiOiI1YzI3MTQwZWUwNGU2YzVmMDcwN2JiYjBkZDBmY2QyYmExZjY1ZWNmODVlMWM5OTM1ZTBmZmMxZDlkNjY3MDM4IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:45:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:45:27,239 - DEBUG - close.started
+2025-03-16 14:45:27,239 - DEBUG - close.complete
+2025-03-16 14:46:07,621 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-03-16 14:46:07,622 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-03-16 14:46:08,125 - DEBUG - ('No solution found', ['%shift_72% no alcanza el mínimo de 1 trabajadores', '%shift_67% no alcanza el mínimo de 1 trabajadores', '%worker_2% supera el máximo de horas 0 a trabajar', '%shift_75% no alcanza el mínimo de 1 trabajadores', '%shift_70% no alcanza el mínimo de 1 trabajadores', '%worker_4% supera el máximo de horas 0 a trabajar', '%shift_66% no alcanza el mínimo de 1 trabajadores', '%shift_65% no alcanza el mínimo de 1 trabajadores', '%shift_73% no alcanza el mínimo de 1 trabajadores', '%shift_62% no alcanza el mínimo de 1 trabajadores', '%shift_69% no alcanza el mínimo de 1 trabajadores', '%worker_1% supera el máximo de turnos 10 a trabajar', '%shift_61% no alcanza el mínimo de 1 trabajadores', '%shift_64% no alcanza el mínimo de 1 trabajadores', '%shift_68% no alcanza el mínimo de 1 trabajadores', '%shift_74% no alcanza el mínimo de 1 trabajadores', '%shift_63% no alcanza el mínimo de 1 trabajadores', '%shift_71% no alcanza el mínimo de 1 trabajadores', '%worker_3% supera el máximo de horas 0 a trabajar'])
+2025-03-16 14:46:08,126 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:46:08,127 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000208E82E1760>
+2025-03-16 14:46:08,127 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:46:08,127 - DEBUG - send_request_headers.complete
+2025-03-16 14:46:08,127 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:46:08,128 - DEBUG - send_request_body.complete
+2025-03-16 14:46:08,128 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:46:08,154 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:46:08 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IkhEUXFXSEZLakJDUXdJZzNGQThlZWc9PSIsInZhbHVlIjoiM3p1Ulk5TGhwT2U2RkdYMUR6SFpYL0RsV05kb0VLMTZPWDVtL1dRM0FrN0hGZDdPVUdPN0EydzRiZjZPbVVFY053OUxadTEyR3NpR2Q0Zndvb2kwOHV6N2Y0KzNxZUluS3NpL2J2czRGTU4zRTVTZXU0QXZSVFZuOGN5a0pFYU4iLCJtYWMiOiIxNzI3ZmQwNjc3N2YxZjE5MDVmYmMwMzcwZGUwYTY4NDI3MzdmMTI2MmU1NTlhMWJhMzMzYzYwMWM0MjFkZDJmIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:46:08 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6Ill2ME01S3Njb3VPRytPc3hnQlRhTmc9PSIsInZhbHVlIjoidWJvU01qTHlrQjlnU0RkWUFoVDBZeFhwakhkYzNvQVd0Mmxjd1hxYXZvRXZwYmlPaWdJaWF5VjlTdk9rWDNKNTh2Si9VSEpYSkhtY0h6U0txK0pVUGRlYUtjcmpTMk5MOFEvclAxZjVUWDB5V0JTd2Qyd1VFcERVSVZ1NmJIeWoiLCJtYWMiOiJhYTFjNWMzYjllNTM3MmQ4ZjY3YWZjMjM1MzE0NjFkM2QwM2MzYTJmYmUzM2VhYjJiMjUxMDkwOTZmNDkxOTY0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:46:08 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:46:08,154 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:46:08,155 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:46:08,155 - DEBUG - receive_response_body.complete
+2025-03-16 14:46:08,155 - DEBUG - response_closed.started
+2025-03-16 14:46:08,155 - DEBUG - response_closed.complete
+2025-03-16 14:46:08,155 - DEBUG - Solution to send: {
+    "id": 7,
+    "status": "failed",
+    "message": [
+        "%shift_72% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_67% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_2% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_75% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_70% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_4% supera el m\u00e1ximo de horas 0 a trabajar",
+        "%shift_66% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_65% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_73% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_62% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_69% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_1% supera el m\u00e1ximo de turnos 10 a trabajar",
+        "%shift_61% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_64% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_68% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_74% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_63% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%shift_71% no alcanza el m\u00ednimo de 1 trabajadores",
+        "%worker_3% supera el m\u00e1ximo de horas 0 a trabajar"
+    ]
+}
+
+2025-03-16 14:46:08,155 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:46:08 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IkhEUXFXSEZLakJDUXdJZzNGQThlZWc9PSIsInZhbHVlIjoiM3p1Ulk5TGhwT2U2RkdYMUR6SFpYL0RsV05kb0VLMTZPWDVtL1dRM0FrN0hGZDdPVUdPN0EydzRiZjZPbVVFY053OUxadTEyR3NpR2Q0Zndvb2kwOHV6N2Y0KzNxZUluS3NpL2J2czRGTU4zRTVTZXU0QXZSVFZuOGN5a0pFYU4iLCJtYWMiOiIxNzI3ZmQwNjc3N2YxZjE5MDVmYmMwMzcwZGUwYTY4NDI3MzdmMTI2MmU1NTlhMWJhMzMzYzYwMWM0MjFkZDJmIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:46:08 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6Ill2ME01S3Njb3VPRytPc3hnQlRhTmc9PSIsInZhbHVlIjoidWJvU01qTHlrQjlnU0RkWUFoVDBZeFhwakhkYzNvQVd0Mmxjd1hxYXZvRXZwYmlPaWdJaWF5VjlTdk9rWDNKNTh2Si9VSEpYSkhtY0h6U0txK0pVUGRlYUtjcmpTMk5MOFEvclAxZjVUWDB5V0JTd2Qyd1VFcERVSVZ1NmJIeWoiLCJtYWMiOiJhYTFjNWMzYjllNTM3MmQ4ZjY3YWZjMjM1MzE0NjFkM2QwM2MzYTJmYmUzM2VhYjJiMjUxMDkwOTZmNDkxOTY0IiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:46:08 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:46:08,155 - DEBUG - close.started
+2025-03-16 14:46:08,155 - DEBUG - close.complete
+2025-03-16 14:58:44,465 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 3, 18), 'm'), (datetime.date(2025, 3, 20), 't'), (datetime.date(2025, 3, 21), 'n'), (datetime.date(2025, 3, 22), 'm')]Worker 2 works shifts [(datetime.date(2025, 3, 18), 't'), (datetime.date(2025, 3, 19), 't'), (datetime.date(2025, 3, 19), 'n'), (datetime.date(2025, 3, 22), 't')]Worker 3 works shifts [(datetime.date(2025, 3, 18), 'n'), (datetime.date(2025, 3, 20), 'n'), (datetime.date(2025, 3, 22), 'n')]Worker 4 works shifts [(datetime.date(2025, 3, 19), 'm'), (datetime.date(2025, 3, 20), 'm'), (datetime.date(2025, 3, 21), 'm'), (datetime.date(2025, 3, 21), 't')]
+---------- Horario por turno ----------
+Shift 2025-03-18 (m) has workers [True, False, False, False]Shift 2025-03-18 (t) has workers [False, True, False, False]Shift 2025-03-18 (n) has workers [False, False, True, False]Shift 2025-03-19 (m) has workers [False, False, False, True]Shift 2025-03-19 (t) has workers [False, True, False, False]Shift 2025-03-19 (n) has workers [False, True, False, False]Shift 2025-03-20 (m) has workers [False, False, False, True]Shift 2025-03-20 (t) has workers [True, False, False, False]Shift 2025-03-20 (n) has workers [False, False, True, False]Shift 2025-03-21 (m) has workers [False, False, False, True]Shift 2025-03-21 (t) has workers [False, False, False, True]Shift 2025-03-21 (n) has workers [True, False, False, False]Shift 2025-03-22 (m) has workers [True, False, False, False]Shift 2025-03-22 (t) has workers [False, True, False, False]Shift 2025-03-22 (n) has workers [False, False, True, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100.0, 100.0, 0.0, 33.333333333333336]Satisfaction score last calendars: [1.4, 6.0, 6.4, 4.6]Satisfaction score all calendars including last: [28.0, 51.0, 33.0, 30.666666666666668]
+2025-03-16 14:58:44,471 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-03-16 14:58:44,476 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000174A4CBE450>
+2025-03-16 14:58:44,476 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-03-16 14:58:44,477 - DEBUG - send_request_headers.complete
+2025-03-16 14:58:44,477 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-03-16 14:58:44,477 - DEBUG - send_request_body.complete
+2025-03-16 14:58:44,477 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-03-16 14:58:44,588 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.4'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 16 Mar 2025 13:58:44 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IkdZU2h4czR0cG5ZZkNwOHZSVVdKUWc9PSIsInZhbHVlIjoiOU9RUkxlcmhuWlBZcTdFdkFqT0Vwb21pZHBsam5GYXY3S1lwUVFQbnVxcHlSTEtRRTdNYnRMdkVqeGhLUHN3NVl1QVVCS204OXlOTi9WMG5kb3Z0TDl5QzVtQklYWERTK3FPUkI5clV3TUhsVW1JbWhudC8yK1FnSm5JMWdheHMiLCJtYWMiOiI3YmQ3NWZmMGE5NDc5ZWEwY2RjY2M3YzViNDljZDkwYmU5NjZmNmNkOGQ0NTE4M2JhNGVlYzFkYWZlNWNjMzYwIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:58:44 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6ImFsMko4Y0Q5UjJUQjE4SUhnMkVHT3c9PSIsInZhbHVlIjoiL0JvRmduTlQ0cmFTek05ZEd4SnZJRmJBZEZCek5YRy9xVW9XUFUwTVJSc1dvWUwxTGFQYnlreDM3VXJ2N3N0N3pVU1VJOUVGV2NuOE1nTFdjOEFZcjdveG96ZWQwL0xiNDh2bHQyYTVTeERmOTV5SEQyWGNpdWF4UzkvOGx3MnQiLCJtYWMiOiI5ZWQ2Mjg0ZTcyN2U0YTU4MGMxMjVkNDFkYmNiMjZkNTY1YTczYmViNDVjNmYxMTJjOWVmMTdjMjJlNzdkNmJhIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:58:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-03-16 14:58:44,588 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-03-16 14:58:44,588 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-03-16 14:58:44,589 - DEBUG - receive_response_body.complete
+2025-03-16 14:58:44,589 - DEBUG - response_closed.started
+2025-03-16 14:58:44,589 - DEBUG - response_closed.complete
+2025-03-16 14:58:44,589 - DEBUG - Solution to send: {
+    "id": 8,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            76,
+            83,
+            87,
+            88
+        ],
+        "2": [
+            77,
+            80,
+            81,
+            89
+        ],
+        "3": [
+            78,
+            84,
+            90
+        ],
+        "4": [
+            79,
+            82,
+            85,
+            86
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 0.0,
+        "4": 33.333333333333336
+    }
+}
+
+2025-03-16 14:58:44,589 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.4'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 16 Mar 2025 13:58:44 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IkdZU2h4czR0cG5ZZkNwOHZSVVdKUWc9PSIsInZhbHVlIjoiOU9RUkxlcmhuWlBZcTdFdkFqT0Vwb21pZHBsam5GYXY3S1lwUVFQbnVxcHlSTEtRRTdNYnRMdkVqeGhLUHN3NVl1QVVCS204OXlOTi9WMG5kb3Z0TDl5QzVtQklYWERTK3FPUkI5clV3TUhsVW1JbWhudC8yK1FnSm5JMWdheHMiLCJtYWMiOiI3YmQ3NWZmMGE5NDc5ZWEwY2RjY2M3YzViNDljZDkwYmU5NjZmNmNkOGQ0NTE4M2JhNGVlYzFkYWZlNWNjMzYwIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:58:44 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6ImFsMko4Y0Q5UjJUQjE4SUhnMkVHT3c9PSIsInZhbHVlIjoiL0JvRmduTlQ0cmFTek05ZEd4SnZJRmJBZEZCek5YRy9xVW9XUFUwTVJSc1dvWUwxTGFQYnlreDM3VXJ2N3N0N3pVU1VJOUVGV2NuOE1nTFdjOEFZcjdveG96ZWQwL0xiNDh2bHQyYTVTeERmOTV5SEQyWGNpdWF4UzkvOGx3MnQiLCJtYWMiOiI5ZWQ2Mjg0ZTcyN2U0YTU4MGMxMjVkNDFkYmNiMjZkNTY1YTczYmViNDVjNmYxMTJjOWVmMTdjMjJlNzdkNmJhIiwidGFnIjoiIn0%3D; expires=Sun, 16 Mar 2025 15:58:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: {'message': 'Datos recibidos y guardados correctamente'}
+2025-03-16 14:58:44,589 - DEBUG - close.started
+2025-03-16 14:58:44,589 - DEBUG - close.complete

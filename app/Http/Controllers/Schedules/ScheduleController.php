@@ -8,7 +8,7 @@ use App\Http\Controllers\FastApiController;
 use App\Models\Schedule;
 use App\Models\User;
 use Carbon\Carbon;
-
+use App\Models\Section;
 class ScheduleController extends Controller
 {
     public function index(){
@@ -129,9 +129,9 @@ class ScheduleController extends Controller
     public static function prepareScheduleData($id)
     {
         $schedule = Schedule::findOrFail($id);
-
         // Determinar el mes del primer turno (shift)
         $firstShift = collect($schedule->shifts)->first();
+
         $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
 
         // Guardar en el historial del navegador
@@ -157,5 +157,86 @@ class ScheduleController extends Controller
             'user' => auth()->user()
         ];
     }
+
+    public function create()
+    {
+        $sections = Section::all();
+        return view('schedules.register', compact('sections'));
+    }
+    public function store()
+    {
+        // TODO: comprobar que sea admin de la empresa
+
+        // Validar los atributos del horario
+        $attributesSchedule = request()->validate([
+            'name' => ['required', 'unique:schedules,name'],
+            'description' => ['required'],
+            'section_id' => ['required', 'exists:sections,id'],
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+        ], [
+            'name.required' => 'Es necesario introducir el nombre del horario a registrar',
+            'name.unique' => 'Ya existe un horario con este nombre',
+            'description.required' => 'Es necesario introducir una descripción',
+            'section_id.required' => 'Es necesario seleccionar una sección',
+            'section_id.exists' => 'La sección seleccionada no es válida',
+        ]);
+
+        // Obtener el último ID de la base de datos y sumarle 1
+        $lastId = Schedule::max('id');
+        $newId = $lastId + 1;
+
+        // Obtener el company_id del usuario autenticado
+        $companyId = auth()->user()->company->id;
+
+        // Combinar el nuevo ID, company_id y los atributos validados
+        $attributesSchedule = array_merge($attributesSchedule, [
+            'id' => $newId,
+            'company_id' => $companyId,
+        ]);
+
+        // Crear un nuevo horario con los atributos combinados
+        $schedule = Schedule::create($attributesSchedule);
+
+        // Redirigir al menú principal
+        return redirect('/horario/'. $schedule->id . '/edit');
+    }
+
+    public function edit($id)
+    {
+        $sections = Section::all();
+        $schedule = Schedule::findOrFail($id);
+        return view('schedules.edit', compact('schedule', 'sections'));
+    }
+
+    public function update($id)
+    {
+        // Validar los atributos del horario
+        request()->validate([
+            'name' => ['required'],
+            'description' => ['required'],
+            'section_id' => ['required', 'exists:sections,id'],
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
+
+        ]);
+
+        // Encontrar el horario y actualizarlo
+        $schedule = Schedule::findOrFail($id);
+        $schedule->update([
+            'name' => request('name'),
+            'description' => request('description'),
+            'section_id' => request('section_id'),
+            'start_date' => request('start_date'),
+            'end_date' => request('end_date')
+        ]);
+
+        // Redirigir al menú principal
+        return redirect('/horario');
+
+
+    }
+
+
 
 }

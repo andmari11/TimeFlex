@@ -19,7 +19,6 @@ return new class extends Migration
             //$table->boolean('status')->default(false); // Estado de la encuesta (completada o no)
             $table->timestamp('start_date')->nullable(); // Fecha y hora de inicio de acceso
             $table->timestamp('end_date')->nullable(); // Fecha y hora de fin de acceso
-
             // Definir la foreign key
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
 

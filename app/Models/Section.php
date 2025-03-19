@@ -27,4 +27,9 @@ class Section extends Model
     public function schedules(){
         return $this->hasMany(Schedule::class);
     }
+
+    public function forms()
+    {
+        return $this->belongsToMany(Form::class, 'form_section', 'section_id', 'form_id');
+    }
 }

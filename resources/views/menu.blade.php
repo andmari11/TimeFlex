@@ -41,7 +41,7 @@
                             </nav>
 
                         @else
-                            <nav class="py-5 border-b border-blue/10">
+                            <nav class="py-5 pe-5 border-b border-blue/10">
                                 <h3 class="font-bold text-xl hover:underline">No hay turnos próximos</h3>
                             </nav>
                         @endif

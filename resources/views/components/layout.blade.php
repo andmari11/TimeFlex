@@ -7,7 +7,7 @@
     <title>{{$title ?? "TimeFlex"}}</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="//unpkg.com/alpinejs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <!-- llamadas para ver el numero de notificaciones -->
 <script>
@@ -47,7 +47,7 @@
                             @auth
                                 <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
-                                <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
+                                <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                             @endauth
@@ -127,7 +127,7 @@
                 @auth
                     <x-nav-link-mobile ref="/menu">Mi área </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/horario">Mis horarios </x-nav-link-mobile>
-                    <x-nav-link-mobile ref="/forms">Mis formularios </x-nav-link-mobile>
+                    <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
                 @endauth

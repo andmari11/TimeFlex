@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('worker_preferences', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            //foreing id de formulario TODO
+            $table->foreignIdFor(\App\Models\Form::class);
             $table->foreignIdFor(\App\Models\User::class );
             $table->json('holidays')->nullable();
+            $table->integer('holidays_weight')->nullable();
+            $table->json('preferred_shift_types')->nullable();
+            $table->integer('preferred_shift_types_weight')->nullable();
+            $table->json('past_satisfaction')->nullable();
         });
     }
     /**

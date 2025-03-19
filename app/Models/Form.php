@@ -19,6 +19,7 @@ class Form extends Model
         'summary',
         'start_date',
         'end_date',
+        'id_section',
     ];
 
     /**
@@ -28,9 +29,19 @@ class Form extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'id_section');
+    }
 
     public function questions()
     {
         return $this->hasMany(Question::class, 'id_form');
     }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'form_section', 'form_id', 'section_id');
+    }
+
 }

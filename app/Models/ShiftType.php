@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Shift extends Model
+class ShiftType extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -13,8 +13,9 @@ class Shift extends Model
         'notes',
         'start',
         'end',
-        'type',
+        'period',
         'users_needed',
+        'weekends_excepted',
     ];
     public function schedule()
     {

@@ -16,13 +16,17 @@ return new class extends Migration
             $table->unsignedBigInteger('id_question'); // Referencia a la tabla questions
             $table->string('respuesta'); // Columna respuesta
             $table->unsignedBigInteger('id_question_type'); // Referencia a la tabla question_type
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_form');
 
+            // Claves foráneas
             $table->foreign('id_question')->references('id')->on('questions')->onDelete('cascade');
             $table->foreign('id_question_type')->references('id')->on('question_type')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_form')->references('id')->on('forms')->onDelete('cascade');
 
             $table->timestamps();
         });
-
     }
 
     /**

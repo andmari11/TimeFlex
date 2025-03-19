@@ -83,4 +83,13 @@ class User extends Authenticatable
 
     }
 
+    public function satisfactions()
+    {
+        return $this->HasMany(Satisfaction::class);
+    }
+
+    public function results()
+    {
+        return $this->HasMany(Result::class);
+    }
 }

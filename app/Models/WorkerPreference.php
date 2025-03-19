@@ -11,9 +11,14 @@ class WorkerPreference extends Model
 
     protected $fillable = [
         'user_id',
-        'holidays'
+        'holidays',
+        'form_id',
+        'holidays_weight',
+        'preferred_shift_types',
+        'preferred_shift_types_weight',
+        'past_satisfaction',
     ];
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
