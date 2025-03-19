@@ -1,6 +1,6 @@
 import './bootstrap';
 import Highcharts from 'highcharts';
-
+import heatmap from 'highcharts/modules/heatmap';
 window.Highcharts = Highcharts;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -240,7 +240,7 @@ function iniciarGraficosBarraLateral(){
             }]
         });
     }
-    // Data retrieved from https://netmarketshare.com/
+
     if (document.getElementById('statsuser2')){
         Highcharts.chart('statsuser2', {
             chart: {

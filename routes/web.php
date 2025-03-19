@@ -54,6 +54,10 @@ Route::get('/estadisticas', function () {
     return view('estadisticas');
 });
 
+Route::get('/estadisticashorario', function () {
+    return view('estadisticashorario');
+});
+
 Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
 Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
 

@@ -1,4 +1,8 @@
 @vite(['resources/js/app.js'])
+@props(['employee', 'showGraphs' => true])
+<script>
+    console.log('El valor de showGraphs es', {{ $showGraphs ? 'true' : 'false' }});
+</script>
 
 <div class="p-4  bg-blue-50 shadow rounded-xl my-1 w-full max-w-sm mx-auto">
     <div class="flex items-center justify-center">
@@ -19,8 +23,138 @@
         </form>
     @endif
 </div>
-<div id="statsuser" style="width: 100%; height: 400px;"></div>
-<div id="statsuser2" style="width: 100%; height: 400px;"></div>
+@if ($showGraphs)
+    <div id="statsuser-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Highcharts.chart('statsuser-{{ $employee->id }}', {
+                    chart: {
+                        type: 'pie',
+                        backgroundColor: '#f0f9ff',
+                        events: {
+                            render() {
+                                const chart = this,
+                                    series = chart.series[0];
+                                let customLabel = chart.renderer.label(
+                                    'Total<br/><strong>2 877 820</strong>'
+                                )
+                                    .css({
+                                        color: '#000',
+                                        textAnchor: 'middle'
+                                    })
+                                    .add();
+
+                                const x = series.center[0] + chart.plotLeft,
+                                    y = series.center[1] + chart.plotTop - (customLabel.attr('height') / 2);
+
+                                customLabel.attr({x, y});
+                                customLabel.css({
+                                    fontSize: `${series.center[2] / 12}px`
+                                });
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Distribución de turnos',
+                        align: 'center',
+                        verticalAlign: 'top',
+                        y:60
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+                    },
+                    plotOptions: {
+                        series: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: [{
+                                enabled: true,
+                                distance: 20,
+                                format: '{point.name}'
+                            }, {
+                                enabled: true,
+                                distance: -15,
+                                format: '{point.percentage:.0f}%',
+                                style: {
+                                    fontSize: '0.9em'
+                                }
+                            }]
+                        }
+                    },
+                    series: [{
+                        name: 'Turnos',
+                        colorByPoint: true,
+                        innerSize: '75%',
+                        data: [{
+                            name: '8:00-11:00',
+                            y: 23.9
+                        }, {
+                            name: '11:00-14:00',
+                            y: 42.6
+                        }, {
+                            name: '14:00-17:00',
+                            y: 7.2
+                        }, {
+                            name: '17:00-20:00',
+                            y: 26.3
+                        }]
+                    }]
+                });
+            });
+    </script>
+    <div id="statsuser2-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Highcharts.chart('statsuser2-{{ $employee->id }}', {
+                chart: {
+                    type: 'column',
+                    backgroundColor: '#f0f9ff',
+                },
+                title: {
+                    text: 'Horas trabajadas vs esperadas'
+                },
+                xAxis: {
+                    categories: [
+                        'Mañana',
+                        'Tarde',
+                    ]
+                },
+                yAxis: [{
+                    min: 0,
+                    title: {
+                        text: 'Horas'
+                    }
+                }],
+                legend: {
+                    shadow: false
+                },
+                tooltip: {
+                    shared: true
+                },
+                plotOptions: {
+                    column: {
+                        grouping: false,
+                        shadow: false,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Esperadas',
+                    color: 'rgba(165,170,217,1)',
+                    data: [170, 73],
+                    pointPadding: 0.3,
+                    pointPlacement: -0.2
+                }, {
+                    name: 'Trabajadas',
+                    color: 'rgba(126,86,134,.9)',
+                    data: [145, 50],
+                    pointPadding: 0.4,
+                    pointPlacement: -0.2
+                }]
+            });
+        });
+    </script>
+@endif
 <script>
     function confirmDeleteSection(event, sectionID) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente
