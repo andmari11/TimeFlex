@@ -65,5 +65,6 @@
                     .catch(error => console.error('Error loading the data: ', error));
             });
         </script>
+
     </div>
 </x-layout>

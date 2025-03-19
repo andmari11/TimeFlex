@@ -1,6 +1,7 @@
 import './bootstrap';
 import Highcharts from 'highcharts';
 import heatmap from 'highcharts/modules/heatmap';
+import Timeline from 'highcharts/modules/timeline';
 window.Highcharts = Highcharts;
 
 document.addEventListener("DOMContentLoaded", function () {

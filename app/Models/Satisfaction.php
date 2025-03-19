@@ -11,5 +11,6 @@ class Satisfaction extends Model
     protected $fillable = [
         'user_id',
         'score',
+        'schedule_id'
     ];
 }

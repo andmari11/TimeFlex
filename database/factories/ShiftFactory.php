@@ -33,6 +33,7 @@ class ShiftFactory extends Factory
                 $date->copy()->addDay()->setTimeFromTimeString($shift['end']) :
                 $date->copy()->setTimeFromTimeString($shift['end']),
             'users_needed' => $this->faker->numberBetween(1, 3),
+            'type' => $this->faker->numberBetween(0, 2),
         ];
 
 
