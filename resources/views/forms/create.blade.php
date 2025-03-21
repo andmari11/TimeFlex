@@ -178,6 +178,20 @@
                 </div>
             `;
                     break;
+                case '7': //tipo opción múltiple
+                    fieldsContainer.innerHTML = `
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <input type="text" name="questions[${index}][options][]" placeholder="Opción 1"
+                            class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                        <button type="button" onclick="addOption(${index})"
+                            class="text-blue-500 hover:text-blue-700 font-semibold">
+                            + Agregar
+                        </button>
+                    </div>
+                </div>
+            `;
+                    break;
                 default:
                     // Si no se requiere campo dinámico, no se genera contenido
                     fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;

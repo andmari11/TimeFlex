@@ -207,38 +207,74 @@ class FormsController extends Controller
             ->with('success', 'Formulario actualizado exitosamente.');
     }
 
-
-
     public function submit(Request $request, $id)
     {
         $formulario = Form::with('questions')->findOrFail($id);
 
-        // Validar los datos enviados
+        // Validación de los datos que llegan del formulario.
         $validatedData = $request->validate([
             'questions' => 'required|array',
             'questions.*.id_question' => 'required|integer|exists:questions,id',
-            'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
-            'questions.*.answer' => 'required',
+            'questions.*.id_question_type' => 'required|integer|exists:question_type,id', // nombre correcto de la tabla
             'id_user' => 'required|integer|exists:users,id',
             'id_form' => 'required|integer|exists:forms,id',
+            // Para respuestas simples se utiliza "answer"
+            'questions.*.answer' => 'sometimes|required',
         ], [
             'questions.required' => 'Debes responder al menos una pregunta.',
             'questions.*.answer.required' => 'Por favor, completa todas las preguntas antes de enviar el formulario.',
         ]);
 
-        // Procesar y guardar las respuestas
-        foreach ($validatedData['questions'] as $data) {
+        // Procesamiento y guardado de cada respuesta.
+        foreach ($validatedData['questions'] as $index => $data) {
+            $questionType = $data['id_question_type'];
+
+            switch ($questionType) {
+                case 2:
+                    // Tipo Selector: espere una respuesta simple, no un array
+                    $answer = $data['answer'] ?? "";
+                    break;
+
+                case 7:
+                    // Tipo Opción múltiple: aquí se espera un array.
+                    // Si la respuesta es un array con elementos, la codificamos a JSON,
+                    // de lo contrario guardamos una cadena vacía.
+                    if (isset($data['answer']) && is_array($data['answer']) && count($data['answer']) > 0) {
+                        $answer = json_encode($data['answer']);
+                    } else {
+                        $answer = "";
+                    }
+                    break;
+
+                case 9:
+                    // Tipo Carga de Archivo
+                    if ($request->hasFile("questions.$index.answer")) {
+                        $file = $request->file("questions.$index.answer");
+                        $path = $file->store('answers', 'public');
+                        $answer = $path;
+                    } else {
+                        $answer = "";
+                    }
+                    break;
+
+                default:
+                    // Para el resto de tipos se utiliza el valor de "answer"
+                    $answer = $data['answer'] ?? "";
+                    break;
+            }
+
             Result::create([
-                'id_question' => $data['id_question'],
-                'respuesta' => $data['answer'],
-                'id_question_type' => $data['id_question_type'],
-                'id_user' => $validatedData['id_user'],
-                'id_form' => $validatedData['id_form'],
+                'id_question'      => $data['id_question'],
+                'respuesta'        => $answer,
+                'id_question_type' => $questionType,
+                'id_user'          => $validatedData['id_user'],
+                'id_form'          => $validatedData['id_form'],
             ]);
         }
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
     }
+
     public function duplicate(Request $request, $id)
     {
         // Opcional: Validar los datos recibidos

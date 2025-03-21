@@ -32,8 +32,9 @@
 
                             <!-- Tipos de Pregunta -->
                             @switch($question->id_question_type)
+
                                 @case(1)
-                                    <!-- Pregunta Rango de Fechas -->
+                                    <!-- Pregunta Rango de Fechas (Calendario básico) -->
                                     <div class="relative mt-2">
                                         <input type="text" name="questions[{{ $index }}][answer]" id="date-range-picker-{{ $index }}"
                                                class="date-range-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
@@ -41,7 +42,7 @@
                                     @break
 
                                 @case(2)
-                                    <!-- Pregunta de Selección -->
+                                    <!-- Pregunta de Selección (Radio buttons) -->
                                     <div class="mt-2">
                                         @foreach($question->options as $optionIndex => $option)
                                             <div class="flex items-center mb-2">
@@ -56,7 +57,7 @@
                                     @break
 
                                 @case(3)
-                                    <!-- Pregunta Tipo Deslizador -->
+                                    <!-- Pregunta Tipo Deslizador (Slider) -->
                                     <div class="slider-container mt-4 flex items-center gap-4">
                                         <input type="range" name="questions[{{ $index }}][answer]" id="slider-{{ $index }}" min="0" max="100" step="1"
                                                value="50" class="slider w-full" />
@@ -71,6 +72,55 @@
                                                class="multi-date-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
                                     </div>
                                     @break
+
+                                @case(6)
+                                    <!-- Pregunta Texto Libre -->
+                                    <div class="mt-2">
+                                        <label for="text-{{ $index }}" class="block text-sm font-medium text-gray-800">Respuesta</label>
+                                        <textarea name="questions[{{ $index }}][answer]" id="text-{{ $index }}" rows="4"
+                                                  placeholder="Escribe tu respuesta aquí"
+                                                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required></textarea>
+                                    </div>
+                                    @break
+
+                                @case(7)
+                                    <!-- Pregunta de Opción Múltiple (Checkboxes) -->
+                                    <div class="mt-2">
+                                        @foreach($question->options as $optionIndex => $option)
+                                            <div class="flex items-center mb-2">
+                                                <input type="checkbox" name="questions[{{ $index }}][answer][]" id="checkbox-{{ $index }}-{{ $optionIndex }}"
+                                                       value="{{ $option->value }}" class="form-checkbox text-blue-500 focus:ring-blue-500">
+                                                <label for="checkbox-{{ $index }}-{{ $optionIndex }}" class="ml-2 text-gray-700">
+                                                    {{ $option->value }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @break
+
+                                @case(8)
+                                    <!-- Pregunta Numérica -->
+                                    <div class="mt-2">
+                                        <label for="number-{{ $index }}" class="block text-sm font-medium text-gray-800">Número</label>
+                                        <input type="number" name="questions[{{ $index }}][answer]" id="number-{{ $index }}"
+                                               placeholder="Ingrese un número"
+                                               class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                                    </div>
+                                    @break
+
+                                @case(9)
+                                    <!-- Pregunta de Carga de Archivo -->
+                                    <div class="mt-2">
+                                        <label for="file-{{ $index }}" class="block text-sm font-medium text-gray-800">Subir Archivo</label>
+                                        <input type="file" name="questions[{{ $index }}][answer]" id="file-{{ $index }}"
+                                               class="mt-1 block w-full" required>
+                                    </div>
+                                    @break
+                                @default
+                                    <!-- Tipo de pregunta no definido -->
+                                    <div class="mt-2 text-red-600">
+                                        El tipo de pregunta no está configurado correctamente.
+                                    </div>
                             @endswitch
 
                             <!-- Mostrar errores -->
