@@ -241,24 +241,32 @@ class FormsController extends Controller
     }
     public function duplicate(Request $request, $id)
     {
+        // Opcional: Validar los datos recibidos
+        $validatedData = $request->validate([
+            'start_date' => 'required|date',
+            'end_date'   => 'required|date|after_or_equal:start_date',
+        ]);
+
         $originalForm = Form::with('questions.options', 'sections')->findOrFail($id);
 
         // Clonar el formulario
         $newForm = $originalForm->replicate(); // Clona los datos principales
         $newForm->title = $originalForm->title . ' (Copia)';
+
+        // Asignar las nuevas fechas al formulario duplicado
+        $newForm->start_date = $validatedData['start_date'];
+        $newForm->end_date   = $validatedData['end_date'];
+
         $newForm->save();
 
         // Clonar las relaciones (secciones, preguntas y opciones)
-        // 1. Relación con secciones
         $newForm->sections()->sync($originalForm->sections->pluck('id')->toArray());
 
-        // 2. Relación con preguntas
         foreach ($originalForm->questions as $question) {
             $newQuestion = $question->replicate();
             $newQuestion->id_form = $newForm->id;
             $newQuestion->save();
 
-            // 3. Relación con opciones
             foreach ($question->options as $option) {
                 $newOption = $option->replicate();
                 $newOption->id_question = $newQuestion->id;

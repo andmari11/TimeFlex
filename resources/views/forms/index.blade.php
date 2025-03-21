@@ -95,24 +95,42 @@
                                 <div id="duplicate-modal-{{ $formulario->id }}" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
                                     <div class="bg-white w-96 rounded-lg shadow-lg p-6">
                                         <h2 class="text-lg font-semibold text-gray-800">Duplicar Formulario</h2>
-                                        <p class="text-gray-600 mt-2">¿Estás seguro de que deseas duplicar este formulario? Se creará una copia con un nuevo ID.</p>
+                                        <p class="text-gray-600 mt-2">
+                                            ¿Estás seguro de que deseas duplicar este formulario? Se creará una copia con un nuevo ID.
+                                        </p>
 
-                                        <div class="mt-4 flex justify-between">
-                                            <!-- Botón Cancelar -->
-                                            <button onclick="closeDuplicatePopup({{ $formulario->id }})"
-                                                    class="btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
-                                                Cancelar
-                                            </button>
+                                        <!-- Formulario para duplicar, se incluyen los campos para las fechas -->
+                                        <form action="{{ route('forms.duplicate', $formulario->id) }}" method="POST">
+                                            @csrf
 
-                                            <!-- Botón Confirmar Duplicación -->
-                                            <form action="{{ route('forms.duplicate', $formulario->id) }}" method="POST">
-                                                @csrf
+                                            <!-- Campo para Fecha de Inicio -->
+                                            <div class="mt-4">
+                                                <label for="start_date" class="block text-sm font-medium text-gray-800">Fecha de inicio</label>
+                                                <input id="start_date" name="start_date" type="date"
+                                                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                            </div>
+
+                                            <!-- Campo para Fecha de Fin -->
+                                            <div class="mt-4">
+                                                <label for="end_date" class="block text-sm font-medium text-gray-800">Fecha de fin</label>
+                                                <input id="end_date" name="end_date" type="date"
+                                                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                            </div>
+
+                                            <div class="mt-4 flex justify-between">
+                                                <!-- Botón Cancelar -->
+                                                <button onclick="closeDuplicatePopup({{ $formulario->id }})" type="button"
+                                                        class="btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
+                                                    Cancelar
+                                                </button>
+
+                                                <!-- Botón Confirmar Duplicación -->
                                                 <button type="submit"
                                                         class="btn bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded shadow-md">
                                                     Duplicar
                                                 </button>
-                                            </form>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
 

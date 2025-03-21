@@ -110,7 +110,6 @@
     <div id="create-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
             <h2 class="text-lg font-semibold text-gray-800">¿Estás seguro de crear este formulario?</h2>
-            <p class="text-gray-600 mt-2">Una vez creado, no podrás editar la configuración inicial del formulario.</p>
             <div class="mt-6 flex justify-end space-x-4">
                 <button id="close-create-modal" class="btn bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded">
                     Cancelar
