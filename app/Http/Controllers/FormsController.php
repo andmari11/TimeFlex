@@ -419,30 +419,70 @@ class FormsController extends Controller
         $userId = auth()->user()->id;
 
         // Validar las respuestas recibidas
-        $request->validate([
+        $validatedData = $request->validate([
             'answers' => 'required|array',
             'answers.*.id_question' => 'required|integer|exists:questions,id',
             'answers.*.id_question_type' => 'required|integer|exists:question_type,id',
-            'answers.*.respuesta' => 'required',
+            'answers.*.respuesta' => 'sometimes|required', // Respuesta requerida para tipos simples
+            'answers.*.file' => 'sometimes|file|max:2048', // Para preguntas tipo archivo, límite de tamaño de 2MB
         ], [
             'answers.*.respuesta.required' => 'Por favor, completa todas las respuestas.',
-        ], [
-            'answers.*.respuesta' => 'la respuesta a la pregunta'
+            'answers.*.file.file' => 'El archivo debe ser válido.',
+            'answers.*.file.max' => 'El archivo no puede superar los 2MB.',
         ]);
 
-
-        // Actualizar las respuestas en la base de datos
-        foreach ($request->answers as $answerId => $data) {
+        // Procesar y actualizar las respuestas en la base de datos
+        foreach ($validatedData['answers'] as $answerId => $data) {
             $result = Result::where('id', $answerId)
                 ->where('id_user', $userId)
                 ->where('id_form', $formId)
                 ->firstOrFail();
 
-            $result->update(['respuesta' => $data['respuesta']]);
+            switch ($data['id_question_type']) {
+                case 7: // Tipo Opción Múltiple
+                    if (isset($data['respuesta']) && is_array($data['respuesta'])) {
+                        $result->update([
+                            'respuesta' => json_encode($data['respuesta']), // Guardar como JSON
+                        ]);
+                    } else {
+                        $result->update([
+                            'respuesta' => "", // Si no hay opciones seleccionadas, vacío
+                        ]);
+                    }
+                    break;
+
+                case 9: // Tipo Archivo
+                    if ($request->hasFile("answers.$answerId.file")) {
+                        $file = $request->file("answers.$answerId.file");
+
+                        // Si hay un archivo actual asociado, eliminarlo
+                        if ($result->file) {
+                            $result->file->delete();
+                        }
+
+                        // Guardar el nuevo archivo en la tabla files
+                        $fileData = \App\Models\File::create([
+                            'name' => $file->getClientOriginalName(),
+                            'mime' => $file->getMimeType(),
+                            'data' => file_get_contents($file->getRealPath()),
+                        ]);
+
+                        // Actualizar el resultado con el ID del nuevo archivo
+                        $result->update([
+                            'respuesta' => $fileData->id,
+                        ]);
+                    }
+                    break;
+
+                default: // Otros tipos de preguntas
+                    $result->update([
+                        'respuesta' => $data['respuesta'] ?? "",
+                    ]);
+                    break;
+            }
         }
 
         return redirect()->route('forms.showresults', $formId)
             ->with('success', 'Tus respuestas se han actualizado correctamente.');
     }
-
 }

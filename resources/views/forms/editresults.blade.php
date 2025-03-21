@@ -12,7 +12,7 @@
 
         <!-- Contenedor del Formulario -->
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
-            <form id="edit-form" action="{{ route('forms.updateresults', $formulario->id) }}" method="POST">
+            <form id="edit-form" action="{{ route('forms.updateresults', $formulario->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -73,6 +73,59 @@
                                                value="{{ $answer->respuesta }}" required />
                                     </div>
                                     @break
+                                @case(6)
+                                    <!-- Pregunta Texto Libre -->
+                                    <div class="mt-2">
+                                        <textarea name="answers[{{ $answer->id }}][respuesta]" id="text-{{ $answer->id }}" rows="4"
+                                                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>{{ $answer->respuesta }}</textarea>
+                                    </div>
+                                    @break
+
+                                @case(7)
+                                    <!-- Pregunta de Opción Múltiple -->
+                                    <div class="mt-2">
+                                        @foreach($answer->question->options as $option)
+                                            <div class="flex items-center mb-2">
+                                                <input type="checkbox" name="answers[{{ $answer->id }}][respuesta][]" id="checkbox-{{ $answer->id }}-{{ $option->id }}"
+                                                       value="{{ $option->value }}" class="form-checkbox text-blue-500 focus:ring-blue-500"
+                                                       @if(in_array($option->value, json_decode($answer->respuesta, true))) checked @endif>
+                                                <label for="checkbox-{{ $answer->id }}-{{ $option->id }}" class="ml-2 text-gray-700">
+                                                    {{ $option->value }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @break
+
+                                @case(8)
+                                    <!-- Pregunta Numérica -->
+                                    <div class="mt-2">
+                                        <input type="number" name="answers[{{ $answer->id }}][respuesta]" id="number-{{ $answer->id }}"
+                                               class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                               value="{{ $answer->respuesta }}" required />
+                                    </div>
+                                    @break
+
+                                @case(9)
+                                    <!-- Pregunta de Carga de Archivo -->
+                                    <div class="mt-2">
+                                        @if($answer->file)
+                                            <p class="text-gray-600">
+                                                Archivo Actual: <a href="{{ route('file.show', $answer->file->id) }}" class="text-blue-500 hover:underline">
+                                                    {{ $answer->file->name }}
+                                                </a>
+                                            </p>
+                                        @endif
+                                        <label for="file-{{ $answer->id }}" class="block text-sm font-medium text-gray-800 mt-4">Actualizar Archivo</label>
+                                        <input type="file" name="answers[{{ $answer->id }}][file]" id="file-{{ $answer->id }}"
+                                               class="mt-1 block w-full">
+                                    </div>
+                                    @break
+
+                                @default
+                                    <!-- Tipo de pregunta no definido -->
+                                    <p class="text-red-500 text-sm mt-2">Tipo de pregunta no definido.</p>
+                                    @break
                             @endswitch
 
                             <!-- Mostrar errores debajo de cada pregunta -->
@@ -97,7 +150,7 @@
             </form>
         </div>
     </div>
-
+    
     <!-- Modal de Confirmación para Guardar Cambios -->
     <div id="save-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
