@@ -110,7 +110,12 @@ class FormsController extends Controller
     public function destroy($id)
     {
         // Encuentra el formulario por su ID
-        $formulario = Form::findOrFail($id);
+        $formulario = Form::with('results')->findOrFail($id); // Incluye los resultados relacionados
+
+        // Eliminar los resultados relacionados
+        foreach ($formulario->results as $result) {
+            $result->delete();
+        }
 
         // Elimina el formulario
         $formulario->delete();
@@ -119,6 +124,7 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'Formulario eliminado exitosamente.');
     }
+
 
     // Función para mostrar el formulario de edición
     public function edit($id)
@@ -231,14 +237,12 @@ class FormsController extends Controller
 
             switch ($questionType) {
                 case 2:
-                    // Tipo Selector: espere una respuesta simple, no un array
+                    // Tipo Selector: espera una respuesta simple (string)
                     $answer = $data['answer'] ?? "";
                     break;
 
                 case 7:
-                    // Tipo Opción múltiple: aquí se espera un array.
-                    // Si la respuesta es un array con elementos, la codificamos a JSON,
-                    // de lo contrario guardamos una cadena vacía.
+                    // Tipo Opción múltiple: se espera que 'answer' sea un array.
                     if (isset($data['answer']) && is_array($data['answer']) && count($data['answer']) > 0) {
                         $answer = json_encode($data['answer']);
                     } else {
@@ -247,11 +251,22 @@ class FormsController extends Controller
                     break;
 
                 case 9:
-                    // Tipo Carga de Archivo
+                    // Tipo Carga de Archivo: guardar el archivo en la nueva tabla "files"
                     if ($request->hasFile("questions.$index.answer")) {
                         $file = $request->file("questions.$index.answer");
-                        $path = $file->store('answers', 'public');
-                        $answer = $path;
+                        // Obtiene el contenido binario del archivo
+                        $fileData = file_get_contents($file->getRealPath());
+
+                        // Crear registro en la tabla files usando el modelo File
+                        $fileRecord = \App\Models\File::create([
+                            'name' => $file->getClientOriginalName(),
+                            'mime' => $file->getMimeType(),
+                            'data' => $fileData,
+                        ]);
+
+                        // Guardamos el ID del archivo en la columna "respuesta"
+                        // (se almacena como string, ya que la columna es de tipo string)
+                        $answer = $fileRecord->id;
                     } else {
                         $answer = "";
                     }
@@ -265,7 +280,7 @@ class FormsController extends Controller
 
             Result::create([
                 'id_question'      => $data['id_question'],
-                'respuesta'        => $answer,
+                'respuesta'        => $answer, // Para archivos, este campo contendrá el ID del registro en "files"
                 'id_question_type' => $questionType,
                 'id_user'          => $validatedData['id_user'],
                 'id_form'          => $validatedData['id_form'],
@@ -274,6 +289,7 @@ class FormsController extends Controller
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');
     }
+
 
     public function duplicate(Request $request, $id)
     {

@@ -46,4 +46,21 @@ class Result extends Model
         return $this->belongsTo(QuestionType::class, 'id_question_type');
     }
 
+    public function file()
+    {
+        return $this->belongsTo(File::class, 'respuesta', 'id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($result) {
+            // Verifica si el registro tiene un archivo asociado
+            if ($result->id_question_type == 9 && $result->file) {
+                $result->file->delete();
+            }
+        });
+    }
+
 }

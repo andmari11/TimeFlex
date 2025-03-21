@@ -10,7 +10,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ShiftExchangeController;
 use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
-
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\FormsController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
@@ -69,6 +69,9 @@ Route::get('/formularios/respuestas', [FormsController::class, 'showAnswers'])->
 Route::get('/formularios/{formId}/resultados', [FormsController::class, 'showResults'])->name('forms.showresults');
 Route::get('/formularios/{id}/editar-respuestas', [FormsController::class, 'editResults'])->name('forms.editresults');
 Route::put('/formularios/{id}/actualizar-respuestas', [FormsController::class, 'updateResults'])->name('forms.updateresults');
+
+Route::get('/file/{id}/download', [FileController::class, 'download'])->name('file.download');
+Route::get('/file/{id}/show', [FileController::class, 'show'])->name('file.show');
 
 Route::post('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'store'])->middleware('auth');
 Route::get('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'create'])->middleware('auth');

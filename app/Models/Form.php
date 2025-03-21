@@ -29,6 +29,7 @@ class Form extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function section()
     {
         return $this->belongsTo(Section::class, 'id_section');
@@ -44,4 +45,9 @@ class Form extends Model
         return $this->belongsToMany(Section::class, 'form_section', 'form_id', 'section_id');
     }
 
+
+    public function results()
+    {
+        return $this->hasMany(Result::class, 'id_form', 'id');
+    }
 }

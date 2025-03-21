@@ -12,7 +12,7 @@
 
         <!-- Contenedor del Formulario -->
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
-            <form id="submit-form" action="{{ route('forms.submit', $formulario->id) }}" method="POST">
+            <form id="submit-form" action="{{ route('forms.submit', $formulario->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Preguntas -->

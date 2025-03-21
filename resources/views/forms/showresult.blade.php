@@ -19,7 +19,23 @@
                     @foreach($answers as $answer)
                         <li class="py-4">
                             <p class="font-medium text-gray-700">{{ $answer->question->title }}</p>
-                            <p class="text-gray-800 mt-1">{{ $answer->respuesta }}</p>
+
+                            @if($answer->id_question_type == 9 && $answer->file)
+                                <!-- Mostrar archivo si es tipo "Carga de Archivo" -->
+                                <p class="text-gray-800 mt-1">
+                                    <a href="{{ route('file.download', $answer->file->id) }}" class="text-blue-500 hover:underline">
+                                        Descargar archivo: {{ $answer->file->name }}
+                                    </a>
+                                </p>
+
+                                @if(Str::startsWith($answer->file->mime, 'image/'))
+                                    <!-- Previsualización de imagen -->
+                                    <img src="{{ route('file.show', $answer->file->id) }}" alt="{{ $answer->file->name }}" class="mt-4 max-w-full h-auto rounded-lg shadow-md">
+                                @endif
+                            @else
+                                <!-- Mostrar texto normal -->
+                                <p class="text-gray-800 mt-1">{{ $answer->respuesta }}</p>
+                            @endif
                         </li>
                     @endforeach
                 </ul>
