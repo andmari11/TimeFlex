@@ -6,7 +6,7 @@
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-            <form id="edit-form" action="{{ route('forms.update', $formulario->id) }}" method="POST">
+            <form id="edit-form" action="{{ route('forms.update', $formulario->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

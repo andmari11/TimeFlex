@@ -150,7 +150,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Modal de Confirmación para Guardar Cambios -->
     <div id="save-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">

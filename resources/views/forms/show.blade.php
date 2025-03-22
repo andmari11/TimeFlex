@@ -76,21 +76,20 @@
                                 @case(6)
                                     <!-- Pregunta Texto Libre -->
                                     <div class="mt-2">
-                                        <label for="text-{{ $index }}" class="block text-sm font-medium text-gray-800">Respuesta</label>
                                         <textarea name="questions[{{ $index }}][answer]" id="text-{{ $index }}" rows="4"
-                                                  placeholder="Escribe tu respuesta aquí"
-                                                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required></textarea>
+                                                  class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                                  placeholder="Escribe tu respuesta aquí..." required></textarea>
                                     </div>
                                     @break
 
                                 @case(7)
-                                    <!-- Pregunta de Opción Múltiple (Checkboxes) -->
+                                    <!-- Pregunta de Opción Múltiple -->
                                     <div class="mt-2">
                                         @foreach($question->options as $optionIndex => $option)
-                                            <div class="flex items-center mb-2">
+                                            <div class="flex items-center mb-3">
                                                 <input type="checkbox" name="questions[{{ $index }}][answer][]" id="checkbox-{{ $index }}-{{ $optionIndex }}"
-                                                       value="{{ $option->value }}" class="form-checkbox text-blue-500 focus:ring-blue-500">
-                                                <label for="checkbox-{{ $index }}-{{ $optionIndex }}" class="ml-2 text-gray-700">
+                                                       value="{{ $option->value }}" class="form-checkbox text-indigo-600 focus:ring-indigo-500">
+                                                <label for="checkbox-{{ $index }}-{{ $optionIndex }}" class="ml-3 text-gray-700">
                                                     {{ $option->value }}
                                                 </label>
                                             </div>
@@ -101,10 +100,9 @@
                                 @case(8)
                                     <!-- Pregunta Numérica -->
                                     <div class="mt-2">
-                                        <label for="number-{{ $index }}" class="block text-sm font-medium text-gray-800">Número</label>
                                         <input type="number" name="questions[{{ $index }}][answer]" id="number-{{ $index }}"
-                                               placeholder="Ingrese un número"
-                                               class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                                               class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                               placeholder="Introduce un número" required />
                                     </div>
                                     @break
 
@@ -113,7 +111,7 @@
                                     <div class="mt-2">
                                         <label for="file-{{ $index }}" class="block text-sm font-medium text-gray-800">Subir Archivo</label>
                                         <input type="file" name="questions[{{ $index }}][answer]" id="file-{{ $index }}"
-                                               class="mt-1 block w-full" required>
+                                               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                     </div>
                                     @break
                                 @default

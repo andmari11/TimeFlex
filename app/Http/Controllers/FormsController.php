@@ -38,7 +38,6 @@ class FormsController extends Controller
     {
         $formulario = Form::with('questions')->findOrFail($id);
         $userId = auth()->user()->id;
-
         // Verificar si el usuario ya respondió el formulario
         $hasAnswered = Result::where('id_user', $userId)
             ->where('id_form', $id)
@@ -147,6 +146,10 @@ class FormsController extends Controller
             'id_sections' => 'required|array',
             'id_sections.*' => 'exists:sections,id',
             'questions' => 'required|array',
+            'questions.*.id' => 'nullable|integer|exists:questions,id',
+            'questions.*.title' => 'required|string|max:255',
+            'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
+            'questions.*.file' => 'sometimes|file|max:2048', // Archivos con máximo 2MB
         ]);
 
         // Actualizar los datos generales del formulario
