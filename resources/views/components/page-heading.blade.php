@@ -1,7 +1,9 @@
-<header class="bg-white shadow">
-    <div class="mx-auto text-left px-4 py-6 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$slot}}</h1>
-    </div>
+<header>
+    <div class="container mx-auto py-10 px-6">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-800">{{$slot}}</h1>
+            <p class="text-gray-600 mt-2">{{$description??"Toda la información que necesitas para optimizar tu tiempo"}}</p>
+        </div>
 </header>
 
 
