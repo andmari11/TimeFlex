@@ -129,35 +129,90 @@ class ScheduleController extends Controller
     public static function prepareScheduleData($id)
     {
         $schedule = Schedule::findOrFail($id);
-        // Determinar el mes del primer turno (shift)
-        $firstShift = collect($schedule->shifts)->first();
+        $shifts = collect($schedule->shifts);
 
-        $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
+// Obtener los meses en los que hay turnos
+        $months = $shifts->map(function ($shift) {
+            return Carbon::parse($shift['start'])->startOfMonth();
+        })->unique()->sort();
 
-        // Guardar en el historial del navegador
+// Guardar en el historial del navegador
         BrowserHistoryController::add("Horario " . $schedule->section->name, url()->current());
 
-        // Ajustar para que el calendario comience el lunes anterior
-        $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
-        $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+        $calendars = collect();
 
-        // Generar las fechas dentro del rango
-        $days = collect();
-        for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
-            $days->push([
-                'date' => $currentDay->copy(),
-                'day_of_week' => $currentDay->dayOfWeek,
-                'is_current_month' => $currentDay->month === $month->month,
+        foreach ($months as $month) {
+            // Ajustar para que el calendario comience el lunes anterior
+            $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
+            $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+
+            // Generar las fechas dentro del rango
+            $days = collect();
+            for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+                $days->push([
+                    'date' => $currentDay->copy(),
+                    'day_of_week' => $currentDay->dayOfWeek,
+                    'is_current_month' => $currentDay->month === $month->month,
+                ]);
+            }
+
+            $calendars->push([
+                'month' => self::monthToSpanish($month->format('m')),
+                'days' => $days
             ]);
-        }
-
+         }
         return [
             'schedule' => $schedule,
-            'days' => $days,
+            'months' => $calendars,
             'user' => auth()->user()
         ];
     }
 
+    public static function monthToSpanish($monthName){
+        $monthNameInSpanish = "";
+        switch($monthName) {
+            case 1:
+                $monthNameInSpanish = "Enero";
+                break;
+            case 2:
+                $monthNameInSpanish = "Febrero";
+                break;
+            case 3:
+                $monthNameInSpanish = "Marzo";
+                break;
+            case 4:
+                $monthNameInSpanish = "Abril";
+                break;
+            case 5:
+                $monthNameInSpanish = "Mayo";
+                break;
+            case 6:
+                $monthNameInSpanish = "Junio";
+                break;
+            case 7:
+                $monthNameInSpanish = "Julio";
+                break;
+            case 8:
+                $monthNameInSpanish = "Agosto";
+                break;
+            case 9:
+                $monthNameInSpanish = "Septiembre";
+                break;
+            case 10:
+                $monthNameInSpanish = "Octubre";
+                break;
+            case 11:
+                $monthNameInSpanish = "Noviembre";
+                break;
+            case 12:
+                $monthNameInSpanish = "Diciembre";
+                break;
+            default:
+                $monthNameInSpanish = "Mes inválido";
+                break;
+        }
+        return $monthNameInSpanish;
+    }
     public function create()
     {
         $sections = Section::all();

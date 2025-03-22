@@ -1,4 +1,8 @@
-<div class="p-10 w-full">
+
+<div class="p-10 w-full" x-data="{
+        currentPage: {{ $currentPage ?? 1}},
+        totalPages: {{ $months->count() }},
+    }">
     <div class="p-4  bg-white shadow rounded-xl ">
         @if(!isset($showButtons) or $showButtons)
             <div class="flex justify-end">
@@ -10,6 +14,37 @@
                 </div>
             </div>
         @endif
+
+        @foreach($months as $index=>$month)
+        <div x-show="currentPage == {{ $index + 1 }}">
+
+                @php
+                $monthName = $month["month"];
+                $days = $month['days'];
+            @endphp
+            <div class="py-2 ps-2 d-flex justify-between items-center">
+                <div class="flex items-center gap-2 text-2xl font-bold">
+                    <div class="pe-2">
+                        Calendario de {{$monthName}}
+                    </div>
+                    <button
+                        x-on:click="if (currentPage != 1) currentPage = currentPage - 1"
+                        :disabled="currentPage == 1"
+                        class="px-4 py-1 rounded-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 disabled:bg-gray-200 transition-all duration-200 ease-in-out"
+                        :class="{ 'opacity-50': currentPage == 1 }">
+                        &larr;
+                    </button>
+
+                    <!-- Botón de mes siguiente -->
+                    <button
+                        x-on:click="if (currentPage != totalPages) currentPage = currentPage + 1"
+                        :disabled="currentPage == totalPages"
+                        class="px-4 py-1 rounded-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 disabled:bg-gray-200 transition-all duration-200 ease-in-out"
+                        :class="{ 'opacity-50': currentPage == totalPages }">
+                        &rarr;
+                    </button>
+                </div>
+            </div>
 
         <!-- Contenedor del calendario -->
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-2 text-center mt-8">
@@ -87,6 +122,12 @@
                     @endif
                 </div>
             @endforeach
+
         </div>
+        </div>
+
+            @endforeach
+
     </div>
 </div>
+
