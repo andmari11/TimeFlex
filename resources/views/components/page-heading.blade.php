@@ -4,6 +4,7 @@
             <h1 class="text-4xl font-bold text-gray-800">{{$slot}}</h1>
             <p class="text-gray-600 mt-2">{{$description??"Toda la información que necesitas para optimizar tu tiempo"}}</p>
         </div>
+    </div>
 </header>
 
 
