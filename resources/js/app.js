@@ -2,6 +2,8 @@ import './bootstrap';
 import Highcharts from 'highcharts';
 import heatmap from 'highcharts/modules/heatmap';
 import Timeline from 'highcharts/modules/timeline';
+import Gantt from 'highcharts/modules/gantt';
+import Accessibility from 'highcharts/modules/accessibility';
 window.Highcharts = Highcharts;
 
 document.addEventListener("DOMContentLoaded", function () {

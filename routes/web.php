@@ -55,12 +55,19 @@ Route::get('/estadisticas', function () {
     return view('estadisticas');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::get('/estadisticashorario', function () {
     return view('estadisticashorario');
 });
 
 Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
+Route::get('/shifthours-per-section-2025', [StatsController::class, 'getShiftsHoursPerSection2025']);
 Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
+Route::get('/satisfaction-per-section-per-month', [StatsController::class, 'satisfactionPerSectionPerMonth']);
+Route::get('/satisfaccion', [StatsController::class, 'getSatisfaccion']);
 
 
 Route::get('/ayuda', function () {

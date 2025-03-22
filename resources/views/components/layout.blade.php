@@ -50,6 +50,9 @@
                                 <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
+                                    @if(auth()->user()->role === 'admin')
+                                        <x-nav-link-mobile ref="/dashboard">Dashboard </x-nav-link-mobile>
+                                    @endif
                             @endauth
                         </div>
                     </div>
@@ -130,6 +133,9 @@
                     <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
+                        @if(auth()->user()->role === 'admin')
+                            <x-nav-link-mobile ref="/dashboard">Dashboard </x-nav-link-mobile>
+                        @endif
                 @endauth
             </div>
             <div class="border-t border-gray-700 pb-3 pt-4" >

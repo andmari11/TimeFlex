@@ -65,6 +65,75 @@
                     .catch(error => console.error('Error loading the data: ', error));
             });
         </script>
+        <div id="satisfaccion" style="width:100%; height:500px;"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (document.getElementById('satisfaccion')) {
+                    console.log("Iniciando grafico2...");
+
+                    // Datos de ejemplo
+                    const inflationData = [4, 7, 5, 10, 6, 9, 8, 3, 7];
+                    const historicalAverage = [5, 6, 6, 7, 6, 7, 6, 5, 6];
+
+                    Highcharts.chart('satisfaccion', {
+                        chart: {
+                            type: 'spline',
+                            animation: {
+                                duration: 1000 // duracion animacion
+                            }
+                        },
+
+                        title: {
+                            text: 'Evolución de la Satisfacción'
+                        },
+
+                        subtitle: {
+                            text: 'Empleado vs Sección'
+                        },
+
+                        xAxis: {
+                            categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre']
+                        },
+
+                        yAxis: {
+                            title: {
+                                text: 'Satisfacción'
+                            }
+                        },
+
+                        plotOptions: {
+                            series: {
+                                animation: {
+                                    duration: 1500
+                                },
+                                marker: {
+                                    enabled: true,
+                                    symbol: 'circle'
+                                },
+                                lineWidth: 2
+                            }
+                        },
+
+                        series: [{
+                            name: 'Empleado',
+                            data: inflationData,
+                            animation: {
+                                duration: 1500
+                            }
+                        }, {
+                            name: 'Media de la sección',
+                            data: historicalAverage,
+                            animation: {
+                                duration: 1500,
+                                defer: 1000 // retraso de la animacion
+                            }
+                        }]
+                    });
+                } else {
+                    console.error("No ha cargado el div satisfaccion");
+                }
+            });
+        </script>
 
     </div>
 </x-layout>
