@@ -86,16 +86,21 @@
                                 $isPassed = $day['is_passed'];
                                 $isWorkingDay = $day['shifts']->count() > 0;
                                 $isCurrentMonth = $day['is_current_month'];
-
+                                $shiftToView = isset($nextShift) && $date->isSameDay($nextShift->start);
                                 $bgColor = !$isCurrentMonth
-                                    ?  'bg-gray-200'
+                                    ? 'bg-gray-200'
                                     : ($isPassed
                                         ? 'bg-sky-200'
                                         : ($isWorkingDay ? 'bg-sky-600' : 'bg-sky-400'));
 
-                                $textColor = ($isWorkingDay) ? 'text-white' : 'text-gray-800';
+                                $textColor = $isWorkingDay ? 'text-white' : 'text-gray-800';
 
+                                if ($shiftToView) {
+                                    $bgColor = 'bg-sky-800';
+                                    $textColor = 'text-white';
+                                }
                             @endphp
+
                             <div class="relative border {{ $bgColor }} {{ $textColor }} rounded-lg p-5 min-h-24 h-auto shadow text-left">
                                 <span class="absolute top-0 left-0 m-2">{{ $date->format('d') }}</span>
 

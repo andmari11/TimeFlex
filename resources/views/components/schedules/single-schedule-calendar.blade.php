@@ -87,9 +87,12 @@
                         0 => 'bg-sky-950', // Domingo
                         default => 'bg-gray-100',
                     } : 'bg-gray-200'; // Color apagado para días fuera del mes
+
+                    $borderShiftToView = (isset($nextShift) && $date->isSameDay($nextShift->start))? 'border-1 border-sky-900' : '';
+
                 @endphp
 
-                <div class="border {{ $isCurrentMonth ? 'bg-gray-100' : 'bg-gray-200 hidden lg:block' }} rounded-lg p-2 shadow">
+                <div class="border {{$borderShiftToView}} {{ $isCurrentMonth ? 'bg-gray-100' : 'bg-gray-200 hidden lg:block' }} rounded-lg p-2 shadow">
                     <h3 class="font-bold text-lg {{ $isCurrentMonth ? '' : 'text-gray-400' }} {{$isToday? 'underline': ''}}" >
                         {{ $date->format('d') }}
                     </h3>

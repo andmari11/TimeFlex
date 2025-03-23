@@ -57,8 +57,12 @@ class ScheduleController extends Controller
     {
         $scheduleData = $this->preparePersonalScheduleData($id_schedule);
         $nextShift = $scheduleData['schedule']->shifts->find($id_shift);
-
-        return view('schedules/schedule-personal-view', array_merge($scheduleData, compact('nextShift')));
+        $nextShiftMonth = Carbon::parse($nextShift->start)->format('m');
+        $currentPage = $scheduleData['calendars']->search(function ($calendar) use ($nextShiftMonth) {
+            return $calendar['month_id']==($nextShiftMonth);
+        });
+        $currentPage=($currentPage+1);
+        return view('schedules/schedule-personal-view', array_merge($scheduleData, compact('nextShift', 'currentPage')));
     }
 
     public static function preparePersonalScheduleData($id)
@@ -104,6 +108,7 @@ class ScheduleController extends Controller
                 ]);
             }
             $calendars->push([
+                'month_id' => $month->format('m'),
                 'month' => self::monthToSpanish($month->format('m')),
                 'days' => $days
             ]);
@@ -129,8 +134,13 @@ class ScheduleController extends Controller
     {
         $scheduleData = $this->prepareScheduleData($id_schedule);
         $shiftToView = $scheduleData['schedule']->shifts->find($id_shift);
+        $nextShiftMonth = Carbon::parse($shiftToView->start)->format('m');
 
-        return view('schedules/single-schedule-shift-view', array_merge($scheduleData, compact('shiftToView')));
+        $currentPage = $scheduleData['months']->search(function ($calendar) use ($nextShiftMonth) {
+            return $calendar['month_id']==($nextShiftMonth);
+        });
+        $currentPage=($currentPage+1);
+        return view('schedules/single-schedule-shift-view', array_merge($scheduleData, compact('shiftToView', 'currentPage')));
     }
 
     public function showUser($id_schedule, $id_user)
@@ -172,6 +182,7 @@ class ScheduleController extends Controller
             }
 
             $calendars->push([
+                'month_id' => $month->format('m'),
                 'month' => self::monthToSpanish($month->format('m')),
                 'days' => $days
             ]);
