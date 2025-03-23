@@ -70,30 +70,46 @@ class ScheduleController extends Controller
 
         $shifts = $schedule->shifts->filter(fn($shift) => in_array($user->id, $shift->users->pluck('id')->toArray()));
 
+        $months = $shifts->map(function ($shift) {
+            return Carbon::parse($shift['start'])->startOfMonth();
+        })->unique()->sort();
+
+        if($months->isEmpty()) {
+            $months=[(Carbon::now()->startOfMonth())];
+        }
+
         $firstShift = $schedule->shifts->first();
-        $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
+//        $month = $firstShift ? Carbon::parse($firstShift['start'])->startOfMonth() : Carbon::now()->startOfMonth();
 
-        $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
-        $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+//        $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
+//        $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+        $calendars = collect();
+        foreach($months as $month) {
+            $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
+            $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+            $days = collect();
+            for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+                $hasShift = $shifts->some(fn($shift) => $currentDay->between(
+                    Carbon::parse($shift->start)->startOfDay(),
+                    Carbon::parse($shift->end)->endOfDay()
+                ));
 
-        $days = collect();
-        for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
-            $hasShift = $shifts->some(fn($shift) => $currentDay->between(
-                Carbon::parse($shift->start)->startOfDay(),
-                Carbon::parse($shift->end)->endOfDay()
-            ));
-
-            $days->push([
-                'date' => $currentDay->copy(),
-                'day_of_week' => $currentDay->dayOfWeek,
-                'is_current_month' => $currentDay->month === $month->month,
-                'is_passed' => $currentDay->isBefore(now()->startOfDay()),
-                'is_working_day' => !$currentDay->isWeekend() && $hasShift,
-                'shifts' => $shifts->filter(fn($shift) => Carbon::parse($shift->start)->isSameDay($currentDay))
+                $days->push([
+                    'date' => $currentDay->copy(),
+                    'day_of_week' => $currentDay->dayOfWeek,
+                    'is_current_month' => $currentDay->month === $month->month,
+                    'is_passed' => $currentDay->isBefore(now()->startOfDay()),
+                    'is_working_day' => !$currentDay->isWeekend() && $hasShift,
+                    'shifts' => $shifts->filter(fn($shift) => Carbon::parse($shift->start)->isSameDay($currentDay))
+                ]);
+            }
+            $calendars->push([
+                'month' => self::monthToSpanish($month->format('m')),
+                'days' => $days
             ]);
         }
 
-        return compact('schedule', 'user', 'shifts', 'days');
+        return compact('schedule', 'user', 'shifts', 'calendars');
     }
     public function stats()
     {
@@ -131,22 +147,21 @@ class ScheduleController extends Controller
         $schedule = Schedule::findOrFail($id);
         $shifts = collect($schedule->shifts);
 
-// Obtener los meses en los que hay turnos
         $months = $shifts->map(function ($shift) {
             return Carbon::parse($shift['start'])->startOfMonth();
         })->unique()->sort();
 
-// Guardar en el historial del navegador
+        // guardar en el historial del navegador
         BrowserHistoryController::add("Horario " . $schedule->section->name, url()->current());
 
         $calendars = collect();
 
         foreach ($months as $month) {
-            // Ajustar para que el calendario comience el lunes anterior
+            // ajustar para que el calendario comience el lunes anterior
             $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
             $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
 
-            // Generar las fechas dentro del rango
+            // generar las fechas dentro del rango
             $days = collect();
             for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
                 $days->push([

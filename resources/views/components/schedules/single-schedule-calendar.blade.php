@@ -1,5 +1,5 @@
 
-<div class="p-10 w-full" x-data="{
+<div class="px-10  w-full" x-data="{
         currentPage: {{ $currentPage ?? 1}},
         totalPages: {{ $months->count() }},
     }">
@@ -12,38 +12,50 @@
                     $monthName = $month["month"];
                     $days = $month['days'];
                 @endphp
+
                 <div class="ps-2 d-flex justify-between items-center">
-                    <div class="flex items-center gap-2 text-2xl font-bold">
-                        <div class="pe-2">
+                    <div class="flex justify-between gap-2 text-2xl font-bold">
+                        <div class="pe-4">
                             Calendario de {{$monthName}}
                         </div>
-                        <button
-                            x-on:click="if (currentPage != 1) currentPage = currentPage - 1"
-                            :disabled="currentPage == 1"
-                            class="px-4 py-1 rounded-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 disabled:bg-gray-200 transition-all duration-200 ease-in-out"
-                            :class="{ 'opacity-50': currentPage == 1 }">
-                            &larr;
-                        </button>
 
-                        <!-- Botón de mes siguiente -->
-                        <button
-                            x-on:click="if (currentPage != totalPages) currentPage = currentPage + 1"
-                            :disabled="currentPage == totalPages"
-                            class="px-4 py-1 rounded-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 disabled:bg-gray-200 transition-all duration-200 ease-in-out"
-                            :class="{ 'opacity-50': currentPage == totalPages }">
-                            &rarr;
-                        </button>
                     </div>
                 </div>
-                <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
-                @if(!isset($showButtons) or $showButtons)
+                <div class="ps-2 d-flex flex items-center space-x-4">
+                    @if($months->count() > 1)
+                        <div class="flex">
+                            <!-- Botón de mes anterior -->
+                            <button
+                                x-on:click="if (currentPage != 1) currentPage = currentPage - 1"
+                                :disabled="currentPage == 1"
+                                class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-l-md flex items-center justify-center w-10 h-10 border-r-2 border-white"
+                                :class="{ 'opacity-50': currentPage == 1 }">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                    <path d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
 
-                <div class="flex space-x-0">
-                    <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
-                    <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
-                    <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
+                            <!-- Botón de mes siguiente -->
+                            <button
+                                x-on:click="if (currentPage != totalPages) currentPage = currentPage + 1"
+                                :disabled="currentPage == totalPages"
+                                class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-r-md flex items-center justify-center w-10 h-10"
+                                :class="{ 'opacity-50': currentPage == totalPages }">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if(!isset($showButtons) or $showButtons)
+                        <div class="flex space-x-0">
+                            <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
+                            <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                            <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
+                        </div>
+                    @endif
                 </div>
-                @endif
 
             </div>
 
@@ -98,7 +110,7 @@
                                             @if (isset($shift['users']) && count($shift['users']) > 0)
                                                 <div class="mt-2 flex flex-wrap gap-1">
                                                     @foreach ($shift['users'] as $user)
-                                                        <a href="{{url('/horario/' . $schedule->id . '/user/' . $user->id)}}" class="bg-blue-200 text-blue-800 text-xs font-semibold py-1 px-2 rounded">
+                                                        <a href="{{url('/horario/' . $schedule->id . '/user/' . $user->id)}}" class="bg-sky-200 text-sky-800 text-xs font-semibold py-1 px-2 rounded">
                                                             {{ $user['name'] }}
                                                             @if(auth()->user()->id == $user->id)
                                                                 {{"(Tú)"}}
@@ -110,7 +122,7 @@
                                                 </div>
                                             @else
                                                 <div class="flex justify-start">
-                                                    <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Ver trabajadores</span>
+                                                    <span class="bg-sky-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Ver trabajadores</span>
                                                 </div>
                                             @endif
 
