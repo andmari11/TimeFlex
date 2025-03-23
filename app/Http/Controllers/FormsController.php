@@ -244,6 +244,13 @@ class FormsController extends Controller
                     $answer = $data['answer'] ?? "";
                     break;
 
+                case 4:
+                    $shiftId = $data['answer'];
+                    $shift = \App\Models\ShiftType::find($shiftId);
+                    $scheduleId = $shift ? $shift->schedule_id : null;
+                    $answer = $shiftId;
+                    break;
+
                 case 7:
                     // Tipo Opción múltiple: se espera que 'answer' sea un array.
                     if (isset($data['answer']) && is_array($data['answer']) && count($data['answer']) > 0) {
@@ -287,7 +294,10 @@ class FormsController extends Controller
                 'id_question_type' => $questionType,
                 'id_user'          => $validatedData['id_user'],
                 'id_form'          => $validatedData['id_form'],
+                'id_schedule'      => $scheduleId ?? null,
             ]);
+
+            $scheduleId = null;
         }
 
         return redirect()->route('forms.index')->with('success', 'Formulario enviado correctamente.');

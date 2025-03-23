@@ -18,7 +18,8 @@ class Result extends Model
         'respuesta',
         'id_question_type',
         'id_user',
-        'id_form'
+        'id_form',
+        'id_schedule'
     ];
 
     /**
@@ -51,6 +52,10 @@ class Result extends Model
         return $this->belongsTo(File::class, 'respuesta', 'id');
     }
 
+    public function schedule(){
+
+        return $this->belongsTo(Schedule::class, 'id_schedule', 'id');
+    }
     protected static function boot()
     {
         parent::boot();
