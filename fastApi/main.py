@@ -54,11 +54,8 @@ async def send_schedule(data):
 
         logging.basicConfig(filename="logs/app.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
         
-        try:
-            solution_to_send = optimize(data, logging)
-        except Exception as e:
-            logging.error(f"Error during optimization: {e}")
-            return None
+        solution_to_send = optimize(data, logging)
+
         try:
             response = await client.post("http://timeflex.test/fastapi-schedule", json=solution_to_send)
             #response = await client.post("http://127.0.0.1:8000/fastapi-schedule", json=solution_to_send)

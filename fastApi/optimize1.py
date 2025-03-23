@@ -140,6 +140,15 @@ def optimize(data, logging):
         worker_satisfaction=(addsum(holidays_worked) * HOLIDAYS_WEIGHT + addsum(preferred_shifts) * PREFERRED_SHIFTS_WEIGHT)
         this_calendar_satisfaction.append(worker_satisfaction)
 
+    #solo puedes trabajar un turno diario
+    for i in range(n_workers):
+        for day in set(shift.start for shift in shifts):  # dias de turnos
+            daily_shifts = [all_workers_shifts[i][j] for j in range(n_shifts) if shifts[j].start.date() == day.date()]
+            s.assert_and_track(Sum([If(shift, 1, 0) for shift in daily_shifts]) <= 1, f"%worker_{workers[i].user_id}% trabaja más de un turno en el día {day.date()}")
+
+
+
+
     #calcular la satisfacción media teniendo en cuenta calendarios anteriores
     all_averages=[]
     for i in range(n_workers):
@@ -155,10 +164,8 @@ def optimize(data, logging):
     s.maximize(avg_satisfaction)
     s.minimize(Sum(deviations))
 
-    #solo puedes trabajar un turno diario
 
     #horas equilibradas entre usuarios
-
 
     #Imrpimir resultados TODO recibir de api
     solution_to_send={}
