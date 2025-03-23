@@ -65,6 +65,60 @@
                                     </div>
                                     @break
 
+                                @case(4)
+                                    <!-- Pregunta de Turnos en un Desplegable -->
+                                    <div class="mt-2">
+                                        @php
+                                            // Obtener el último schedule de la sección del usuario
+                                            $userSectionId = auth()->user()->section_id; // Suponiendo que existe esta relación
+                                            $latestSchedule = \App\Models\Schedule::where('section_id', $userSectionId)
+                                                                ->latest('created_at') // Ordena por la fecha de creación más reciente
+                                                                ->first();
+
+                                            $shifts = $latestSchedule ? $latestSchedule->shiftTypes : []; // Relación con shift_types
+                                        @endphp
+
+                                        @if($latestSchedule && $shifts->isNotEmpty())
+                                            <label for="shift-select-{{ $index }}" class="block text-sm font-medium text-gray-800">Selecciona un turno</label>
+                                            <select name="questions[{{ $index }}][answer]" id="shift-select-{{ $index }}"
+                                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                                                @foreach($shifts as $shift)
+                                                    <option value="{{ $shift->id }}">
+                                                        @if($shift->period === 0)
+                                                            ({{ \Carbon\Carbon::parse($shift->start)->format('d/m/Y H:i') }} - {{ \Carbon\Carbon::parse($shift->end)->format('d/m/Y H:i') }}) -
+                                                        @else
+                                                            ({{ \Carbon\Carbon::parse($shift->start)->format('H:i') }} - {{ \Carbon\Carbon::parse($shift->end)->format('H:i') }}) -
+                                                        @endif
+                                                        @switch($shift->period)
+                                                                @case(0)
+                                                                Una sola vez
+                                                                @break
+                                                                @case(1)
+                                                                    Diaria
+                                                                    @break
+                                                                @case(2)
+                                                                    Semanal
+                                                                    @break
+                                                                @case(3)
+                                                                    Mensual
+                                                                    @break
+                                                                @case(4)
+                                                                    Anual
+                                                                    @break
+                                                                @default
+                                                                    Periodo no definido
+                                                            @endswitch
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <div class="mt-2 text-red-600">
+                                                No hay turnos disponibles para la sección del usuario.
+                                            </div>
+                                        @endif
+                                    </div>
+                                    @break
+
                                 @case(5)
                                     <!-- Pregunta Calendario Múltiple -->
                                     <div class="relative mt-2">
