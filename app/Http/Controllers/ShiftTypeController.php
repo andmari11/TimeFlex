@@ -89,7 +89,7 @@ class ShiftTypeController extends Controller
 
             switch ($period) {
                 case 0: // Único
-                    break;
+                    return;
                 case 1: // Diario
                     $currentDate->addDay();
                     break;

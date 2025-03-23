@@ -88,11 +88,10 @@
                         default => 'bg-gray-100',
                     } : 'bg-gray-200'; // Color apagado para días fuera del mes
 
-                    $borderShiftToView = (isset($nextShift) && $date->isSameDay($nextShift->start))? 'border-1 border-sky-900' : '';
 
                 @endphp
 
-                <div class="border {{$borderShiftToView}} {{ $isCurrentMonth ? 'bg-gray-100' : 'bg-gray-200 hidden lg:block' }} rounded-lg p-2 shadow">
+                <div class="border {{ $isCurrentMonth ? 'bg-gray-100' : 'bg-gray-200 hidden lg:block' }} rounded-lg p-2 shadow">
                     <h3 class="font-bold text-lg {{ $isCurrentMonth ? '' : 'text-gray-400' }} {{$isToday? 'underline': ''}}" >
                         {{ $date->format('d') }}
                     </h3>
@@ -100,10 +99,11 @@
                         <ul class="mt-2">
                             @foreach ($schedule->shifts as $shift)
                                 @php
+                                    $shiftToView = isset($nextShift) && $nextShift->id == $shift['id'] && $nextShift->start== $shift['start'];
                                     $shiftStart = Carbon\Carbon::parse($shift['start']);
                                 @endphp
                                 @if ($shiftStart->isSameDay($date))
-                                    <li class="{{ $bgColor }} text-white rounded p-1 mb-1" >
+                                    <li class="{{ $shiftToView?'border border-5 border-red-500':''}} {{$bgColor }} text-white rounded p-1 mb-1" >
                                         <a href="{{ url('/horario/' . $schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
 
                                             <strong>{{ $shiftStart->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
