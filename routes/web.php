@@ -81,6 +81,9 @@ Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middlew
 Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
 Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 
+Route::get('/horario/{id}/optimize', [FastApiController::class, 'sendSchedule'])->middleware('auth');
+
+
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');
 Route::get('/horario/{id_schedule}/user/{id_user}', [ScheduleController::class, 'showUser'])->middleware('auth');

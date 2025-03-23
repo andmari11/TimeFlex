@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Form;
 use App\Models\Notification;
+use App\Models\Result;
 use App\Models\Satisfaction;
 use App\Models\Schedule;
 use App\Models\Shift;
@@ -16,68 +18,81 @@ use Illuminate\Support\Facades\Log;
 
 class FastApiController extends Controller
 {
-    public function sendSchedule(){
+    public function sendSchedule($id){
+
+        $form_id = 1;
+
+        $schedule = Schedule::find($id);
         $data=[
-            "name" => "hola",
-            "section_id" => 1,
+            "name" => $schedule->name,
+            "section_id" => $schedule->section->id,
+            "id" => $schedule->id,
         ];
 
-        $schedule=Schedule::create($data);
-        $data['id'] = $schedule->id;
-        $now = Carbon::now()->addDays(2);
-        $day = $now->day;  // Obtener el día actual
-        $month = ($now->month)%12;  // Obtener el mes actual
-        $year = $now->year;    // Obtener el año actual
+        $worker_preferences = [];
 
-
-        $worker_preferences = [
-            [
-                "user_id" => 1,
-                'form_id' => 123,
-                "holidays" => json_encode(["2024-12-01 00:00:00", "2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
+        foreach($schedule->section->users as $user){
+            $turnoFav = $schedule->results()->where('id_user', $user->id)->where('id_question_type', 4)->first()->respuesta ?? null;
+            $holidays = explode(', ', Result::all()->where('id_user', $user->id)->where('id_question_type', 5)->first()->respuesta ?? null);
+            $holidays = $this->formatHolidaysWithTime($holidays);
+            $satisfactions = $user->satisfactions->pluck('score')->toArray();
+            $worker_preference = [
+                "form_id" => $form_id,
+                "user_id" => $user->id,
+                "holidays" => $holidays != null ? json_encode($holidays) : json_encode([]),
                 "holidays_weight" => 1,
-                "preferred_shift_types" => json_encode([0, 1, 2]),
+                "preferred_shift_types" => $turnoFav != null ? json_encode([$turnoFav]) : json_encode([]),
                 "preferred_shift_types_weight" => 1,
-                "past_satisfaction" => json_encode([0.5, 0.0, 2.5, 1.0, 3.0])
-            ],
-            [
-                "user_id" => 2,
-                'form_id' => 123,
-                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-03 00:00:00", "2024-12-02 00:00:00"]),
-                "holidays_weight" => 1,
-                "preferred_shift_types" => json_encode([1, 2]),
-                "preferred_shift_types_weight" => 1,
-                "past_satisfaction" => json_encode([6.0, 7.5, 8.0, 1.5, 7.0])
-            ],
-            [
-                "user_id" => 3,
-                'form_id' => 123,
-                "holidays" => json_encode(["2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
-                "holidays_weight" => 1,
-                "preferred_shift_types" => json_encode([2]),
-                "preferred_shift_types_weight" => 1,
-                "past_satisfaction" => json_encode([1.5, 9.0, 7.5, 6.0, 8.0])
-            ],
-            [
-                "user_id" => 4,
-                'form_id' => 123,
-                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-01 00:00:00"]),
-                "holidays_weight" => 1,
-                "preferred_shift_types" => json_encode([0, 1]),
-                "preferred_shift_types_weight" => 1,
-                "past_satisfaction" => json_encode([7.0, 2.5, 8.0, 1.5, 4.0])
-            ]
-        ];
-
-
-
-
-        foreach ($worker_preferences as $worker_preference) {
+                "past_satisfaction" => $satisfactions != null ? json_encode($satisfactions) : json_encode([]),
+            ];
             WorkerPreference::create($worker_preference);
+            $worker_preferences[] = $worker_preference;
         }
-        $data['usersJSON'] =json_encode($worker_preferences);
 
-        $schedule->shifts = json_decode($this->generateShifts($schedule, $year, $month, $day, 5), true);
+//        $worker_preferences = [
+//            [
+//                "user_id" => 1,
+//                'form_id' => 123,
+//                "holidays" => json_encode(["2024-12-01 00:00:00", "2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
+//                "holidays_weight" => 1,
+//                "preferred_shift_types" => json_encode([0, 1, 2]),
+//                "preferred_shift_types_weight" => 1,
+//                "past_satisfaction" => json_encode([0.5, 0.0, 2.5, 1.0, 3.0])
+//            ],
+//            [
+//                "user_id" => 2,
+//                'form_id' => 123,
+//                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-03 00:00:00", "2024-12-02 00:00:00"]),
+//                "holidays_weight" => 1,
+//                "preferred_shift_types" => json_encode([1, 2]),
+//                "preferred_shift_types_weight" => 1,
+//                "past_satisfaction" => json_encode([6.0, 7.5, 8.0, 1.5, 7.0])
+//            ],
+//            [
+//                "user_id" => 3,
+//                'form_id' => 123,
+//                "holidays" => json_encode(["2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
+//                "holidays_weight" => 1,
+//                "preferred_shift_types" => json_encode([2]),
+//                "preferred_shift_types_weight" => 1,
+//                "past_satisfaction" => json_encode([1.5, 9.0, 7.5, 6.0, 8.0])
+//            ],
+//            [
+//                "user_id" => 4,
+//                'form_id' => 123,
+//                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-01 00:00:00"]),
+//                "holidays_weight" => 1,
+//                "preferred_shift_types" => json_encode([0, 1]),
+//                "preferred_shift_types_weight" => 1,
+//                "past_satisfaction" => json_encode([7.0, 2.5, 8.0, 1.5, 4.0])
+//            ]
+//        ];
+
+
+
+
+
+        $data['usersJSON'] =json_encode($worker_preferences);
         $data['shiftsJSON'] = json_encode($schedule->shifts);
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
@@ -86,7 +101,7 @@ class FastApiController extends Controller
                 return redirect('/horario')->withErrors(['message' => 'Error sending data.']);
             }
         }
-         catch (\Illuminate\Http\Client\ConnectionException $e) {
+        catch (\Illuminate\Http\Client\ConnectionException $e) {
             // errores de conexion
             return redirect('/horario')->withErrors(['message' => 'Request timed out. Please try again later.']);
         }
@@ -98,6 +113,13 @@ class FastApiController extends Controller
         return redirect('/horario');
 
     }
+    function formatHolidaysWithTime($holidays)
+    {
+        return collect($holidays)->map(function ($date) {
+            return Carbon::parse($date)->startOfDay()->toDateTimeString();
+        });
+    }
+
     public function receiveSchedule(): \Illuminate\Http\JsonResponse
     {
         Log::info('Datos recibidos:', request()->all()); // Verifica lo que está llegando

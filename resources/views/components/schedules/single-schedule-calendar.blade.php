@@ -103,11 +103,10 @@
                                     $shiftStart = Carbon\Carbon::parse($shift['start']);
                                 @endphp
                                 @if ($shiftStart->isSameDay($date))
-                                    <li class="{{ $shiftToView?'border border-5 border-red-500':''}} {{$bgColor }} text-white rounded p-1 mb-1" >
+                                    <li class="{{ $shiftToView?'border border-4 border-white':''}} {{$bgColor }} text-white rounded p-1 mb-1" >
                                         <a href="{{ url('/horario/' . $schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
 
-                                            <strong>{{ $shiftStart->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
-                                            <span><br>({{ $shift['users_needed'] }} trabajadores)</span>
+                                            <strong class="mb-3">{{ $shiftStart->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
 
                                             <!-- Mostrar etiquetas para los trabajadores -->
                                             @if (isset($shift['users']) && count($shift['users']) > 0)
@@ -124,8 +123,8 @@
                                                     @endforeach
                                                 </div>
                                             @else
-                                                <div class="flex justify-start">
-                                                    <span class="bg-sky-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Ver trabajadores</span>
+                                                <div class="flex justify-center">
+                                                    <span class="bg-sky-50 text-sky-800 text-xs font-semibold py-1 mt-4 mb-2 px-2 rounded">Ver trabajadores</span>
                                                 </div>
                                             @endif
 

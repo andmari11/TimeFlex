@@ -5,7 +5,7 @@ import json
 
 PREFERRED_SHIFTS_WEIGHT = 10
 HOLIDAYS_WEIGHT = -20
-N_MAX_SHIFTS_PER_WORKER = 4
+N_MAX_SHIFTS_PER_WORKER = 200
 N_MAX_HOURS_PER_WORKER = 5000
 
 
@@ -60,6 +60,10 @@ def optimize(data, logging):
 
     def nWork (i,j):
         return "worker"+str(i)+"works"+str(j)
+    def satisfaction_desviation (i):
+        return "satisfaction_desviation"+str(i)
+    def satisfaction (i):
+        return "satisfaction"+str(i)
     def bool2int(b):
         return If(b, 1, 0)
     def addsum(a):
@@ -140,15 +144,20 @@ def optimize(data, logging):
     all_averages=[]
     for i in range(n_workers):
         all_averages.append((sum(workers[i].past_satisfaction) + this_calendar_satisfaction[i]) / (len(workers[i].past_satisfaction) + 1))
-        
+
 
     #calcular la desviación de la satisfacción media
     avg_satisfaction = Sum(all_averages) / n_workers
     deviations=[]
     for i in range(n_workers):
-        deviations.append(avg_satisfaction-all_averages[i])
+        
+        deviations.append(Real(satisfaction_desviation(i)) == all_averages[i] - avg_satisfaction)
+    s.maximize(avg_satisfaction)
     s.minimize(Sum(deviations))
 
+    #solo puedes trabajar un turno diario
+
+    #horas equilibradas entre usuarios
 
 
     #Imrpimir resultados TODO recibir de api
@@ -156,7 +165,6 @@ def optimize(data, logging):
     solution_to_send['id']=data['id']
     log=""
 
-    shift_types = {0: 'm', 1: 't', 2: 'n'}
     if s.check() == sat:
         solution_to_send['status'] = "success"
         solution_to_send['scheduleJSON'] = {}
@@ -168,7 +176,7 @@ def optimize(data, logging):
             worker_schedule = []
             for j in range(n_shifts):
                 if m.eval(all_workers_shifts[i][j]):
-                    worker_schedule.append((shifts[j].start.date(), shift_types[shifts[j].type]))
+                    worker_schedule.append((shifts[j].start.date(),shifts[j].type ))
                     
             log+=(f"Worker {workers[i].user_id} works shifts {worker_schedule}")
 
@@ -177,14 +185,14 @@ def optimize(data, logging):
             workers_in_shift = []
             for i in range(n_workers):
                 workers_in_shift.append(m.eval(all_workers_shifts[i][j]))
-            log+=(f"Shift {shifts[j].start.date()} ({shift_types[shifts[j].type]}) has workers {workers_in_shift}")
+            log+=(f"Shift {shifts[j].start.date()} ({shifts[j].type}) has workers {workers_in_shift}")
         log+=("\n---------- Satisfacción ----------\n")
         this_satisfaction_score=satisfaction_score(all_workers_shifts, workers, shifts, m)
         log+=("Satisfaction score this calendar: " + str(this_satisfaction_score))
-        last_calendar_scores = [sum(workers[i].past_satisfaction) / len(workers[i].past_satisfaction) for i in range(n_workers)]
-        log+=("Satisfaction score last calendars: " + str(last_calendar_scores))
-        all_calendar_scores = [sum(workers[i].past_satisfaction)+ this_satisfaction_score[i] / len(workers[i].past_satisfaction)+1 for i in range(n_workers)]
-        log+=("Satisfaction score all calendars including last: " + str(all_calendar_scores))
+        # last_calendar_scores = [sum(workers[i].past_satisfaction) / len(workers[i].past_satisfaction) for i in range(n_workers)]
+        # log+=("Satisfaction score last calendars: " + str(last_calendar_scores))
+        # all_calendar_scores = [sum(workers[i].past_satisfaction)+ this_satisfaction_score[i] / len(workers[i].past_satisfaction)+1 for i in range(n_workers)]
+        # log+=("Satisfaction score all calendars including last: " + str(all_calendar_scores))
 
         for i in range(n_workers):
             user_schedule = [] 

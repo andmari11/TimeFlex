@@ -35,7 +35,8 @@ def process_worker_preferences(data:json) -> List[WorkerPreference]:
     for item in data:
         user_id = item.get("user_id")
         date_strings = json.loads(item.get('holidays'))
-        holidays = [datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S") for date_str in date_strings]
+        holidays = [datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S") for date_str in date_strings if date_str]
+        holidays = holidays if holidays else None
         preferred_shift_types = json.loads(item.get('preferred_shift_types'))
         past_satisfaction = json.loads(item.get('past_satisfaction'))
         holidays_weight = item.get('holidays_weight', DEFAULT_HOLIDAYS_WEIGHT)

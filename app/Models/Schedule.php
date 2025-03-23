@@ -34,4 +34,9 @@ class Schedule extends Model
     {
         return $this->hasMany(ShiftType::class);
     }
+
+    public function results()
+    {
+        return Result::all()->where('id_schedule', $this->id);
+    }
 }

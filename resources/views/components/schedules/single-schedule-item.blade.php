@@ -11,6 +11,10 @@
             class="bg-gray-300 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm transition-all duration-300 ms-2">
             Eliminar
         </button>
+        <a href="/horario/{{$schedule->id}}/optimize" class="bg-gray-300 hover:bg-gray-200 text-gray-800 px-2 py-1 rounded text-sm transition-all duration-300 ms-2">
+            Optimizar
+        </a>
+
     </div>
     <div class="flex flex-col gap-2">
         <p class="text-black text-bold text-l"><strong>ID:</strong> {{ $schedule->name }}</p>
