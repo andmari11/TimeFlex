@@ -25,7 +25,7 @@
     @endif
 </div>
 
-@if ($showGraphs) 
+@if ($showGraphs)
     <div id="statsuser-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
     <script>
         window.cargarGraficoEmpleado = function (id) {
