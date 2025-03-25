@@ -81,118 +81,70 @@ function iniciarGraficosPaginaEstadisticas(){
     if (document.getElementById('grafico3')) {
         Highcharts.chart('grafico3', {
             chart: {
-                type: 'bar'
+                type: 'column'
             },
             title: {
                 text: 'Evolución de las solicitudes de cambio de turno por mes'
             },
             xAxis: {
-                categories: ['Enero', 'Febrero', 'Marzo', 'Abril'],
-                title: {
-                    text: null
-                },
-                gridLineWidth: 1,
-                lineWidth: 0
+                categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                crosshair: true,
+                gridLineWidth: 0
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Número de cambios de turno',
-                    align: 'high'
+                    text: 'Número de cambios de turno'
                 },
-                labels: {
-                    overflow: 'justify'
-                },
-                gridLineWidth: 0
+                gridLineWidth: 1
             },
             tooltip: {
+                shared: true,
                 valueSuffix: ' cambios de turno'
             },
             plotOptions: {
-                bar: {
-                    borderRadius: '50%',
+                column: {
+                    borderRadius: 5,
                     dataLabels: {
                         enabled: true
                     },
-                    groupPadding: 0.1
+                    groupPadding: 0.1,
+                    pointPadding: 0.1
                 }
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 80,
-                floating: true,
-                borderWidth: 1,
-                shadow: true
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom',
+                borderWidth: 0
             },
             credits: {
                 enabled: false
             },
             series: [{
                 name: 'Cambios de turno solicitados',
-                data: [12, 6, 3, 10]
+                data: [12, 6, 3, 10, 8, 9, 7, 11, 6, 4, 5, 8]
             }, {
                 name: 'Cambios de turno obtenidos',
-                data: [5, 2, 3, 5]
+                data: [5, 2, 3, 5, 6, 6, 5, 7, 3, 3, 4, 6]
             }]
         });
-        if (document.getElementById('grafico4')) {
-            Highcharts.chart('grafico4', {
-                chart: {type: 'column'},
-                title: {text: 'Días de vacaciones obtenidos por mes'},
-                xAxis: {categories: ['Enero', 'Febrero', 'Marzo']},
-                yAxis: { title: { text: 'Días' } },
-                series: [{name: 'Días', data: [7, 1, 4]}]
-            });
-        }
     }
 }
-function iniciarGraficosBarraLateral(){
-    if (document.getElementById('statsuser')){
+async function iniciarGraficosBarraLateral() {
+    if (document.getElementById('statsuser')) {
+        const res = await fetch('/shift-distribution');
+        const data = await res.json();
+
+        const seriesData = Object.entries(data).map(([label, count]) => ({
+            name: label,
+            y: count
+        }));
+
         Highcharts.chart('statsuser', {
             chart: {
-                type: 'pie',
-                custom: {},
-                events: {
-                    render() {
-                        const chart = this,
-                            series = chart.series[0];
-                        let customLabel = chart.options.chart.custom.label;
-
-                        if (!customLabel) {
-                            customLabel = chart.options.chart.custom.label =
-                                chart.renderer.label(
-                                    'Total<br/>' +
-                                    '<strong>2 877 820</strong>'
-                                )
-                                    .css({
-                                        color: '#000',
-                                        textAnchor: 'middle'
-                                    })
-                                    .add();
-                        }
-
-                        const x = series.center[0] + chart.plotLeft,
-                            y = series.center[1] + chart.plotTop -
-                                (customLabel.attr('height') / 2);
-
-                        customLabel.attr({
-                            x,
-                            y
-                        });
-                        // Set font size based on chart diameter
-                        customLabel.css({
-                            fontSize: `${series.center[2] / 12}px`
-                        });
-                    }
-                }
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
-                }
+                type: 'pie'
             },
             title: {
                 text: 'Distribución de turnos'
@@ -200,98 +152,26 @@ function iniciarGraficosBarraLateral(){
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
             },
-            legend: {
-                enabled: false
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
             },
             plotOptions: {
-                series: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    borderRadius: 8,
-                    dataLabels: [{
+                pie: {
+                    innerSize: '75%',
+                    dataLabels: {
                         enabled: true,
-                        distance: 20,
-                        format: '{point.name}'
-                    }, {
-                        enabled: true,
-                        distance: -15,
-                        format: '{point.percentage:.0f}%',
-                        style: {
-                            fontSize: '0.9em'
-                        }
-                    }],
-                    showInLegend: true
+                        format: '{point.name}: {point.y}'
+                    }
                 }
             },
             series: [{
                 name: 'Turnos',
                 colorByPoint: true,
-                innerSize: '75%',
-                data: [{
-                    name: '8:00-11:00',
-                    y: 23.9
-                }, {
-                    name: '11:00-14:00',
-                    y: 42.6
-                }, {
-                    name: '14:00-17:00',
-                    y: 7.2
-                }, {
-                    name: '17:00-20:00',
-                    y: 26.3
-                }]
+                data: seriesData
             }]
         });
     }
-
-    if (document.getElementById('statsuser2')){
-        Highcharts.chart('statsuser2', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Horas trabajadas vs esperadas'
-            },
-            xAxis: {
-                categories: [
-                    'Mañana',
-                    'Tarde',
-                ]
-            },
-            yAxis: [{
-                min: 0,
-                title: {
-                    text: 'Horas'
-                }
-            }],
-            legend: {
-                shadow: false
-            },
-            tooltip: {
-                shared: true
-            },
-            plotOptions: {
-                column: {
-                    grouping: false,
-                    shadow: false,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Esperadas',
-                color: 'rgba(165,170,217,1)',
-                data: [170, 73],
-                pointPadding: 0.3,
-                pointPlacement: -0.2
-            }, {
-                name: 'Trabajadas',
-                color: 'rgba(126,86,134,.9)',
-                data: [145, 50],
-                pointPadding: 0.4,
-                pointPlacement: -0.2
-            }]
-        });
-    }
-
-
 }
+

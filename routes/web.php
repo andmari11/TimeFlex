@@ -68,6 +68,9 @@ Route::get('/shifthours-per-section-2025', [StatsController::class, 'getShiftsHo
 Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
 Route::get('/satisfaction-per-section-per-month', [StatsController::class, 'satisfactionPerSectionPerMonth']);
 Route::get('/satisfaccion', [StatsController::class, 'getSatisfaccion']);
+Route::get('/total-employees', [StatsController::class, 'getTotalEmployees']);
+Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalShiftHours']);
+Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
 
 
 Route::get('/ayuda', function () {

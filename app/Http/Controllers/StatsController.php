@@ -92,7 +92,7 @@ class StatsController
             )
             ->groupBy('section_name', 'month')
             ->get();
-        
+
         $finalResults = [];
         foreach ($results as $result) {
             if (!isset($finalResults[$result->section_name])) {
@@ -104,8 +104,62 @@ class StatsController
         return response()->json($finalResults);
     }
 
+    public function getTotalEmployees()
+    {
+        $total = DB::table('users')->count();
+        return response()->json(['total_employees' => $total]);
+    }
+    public function getTotalShiftHours()
+    {
+        $users = User::with('shifts')->get();
+        $totalHours = 0;
 
+        foreach ($users as $user) {
+            foreach ($user->shifts as $shift) {
+                $start = Carbon::parse($shift->start);
+                $end = Carbon::parse($shift->end);
 
+                $hours = $start->diffInHours($end);
+                $totalHours += $hours;
+            }
+        }
+
+        return response()->json(['total_shift_hours' => $totalHours]);
+    }
+
+    public function getShiftDistribution($id)
+    {
+        $userId = intval($id);
+
+        $franjas = [
+            '9:00 - 15:00' => 0,
+            '15:00 - 21:00' => 0,
+            '21:00 - 04:00' => 0
+        ];
+
+        $shifts = DB::table('shift_user')
+            ->join('shifts', 'shifts.id', '=', 'shift_user.shift_id')
+            ->where('shift_user.user_id', $userId)
+            ->whereYear('shifts.start', now()->year)
+            ->whereMonth('shifts.start', now()->month)
+            ->get(['shifts.start', 'shifts.end']);
+
+        foreach ($shifts as $shift) {
+            $start = \Carbon\Carbon::parse($shift->start);
+            $end = \Carbon\Carbon::parse($shift->end);
+            $hour = (int) $start->format('H');
+
+            if ($hour >= 9 && $hour < 15) {
+                $franjas['9:00 - 15:00']++;
+            } elseif ($hour >= 15 && $hour < 21) {
+                $franjas['15:00 - 21:00']++;
+            } else {
+                $franjas['21:00 - 04:00']++;
+            }
+        }
+
+        return response()->json($franjas);
+    }
 
     public function getSatisfaccion()
     {
