@@ -46,6 +46,7 @@ return new class extends Migration
         Schema::create('satisfactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('schedule_id')->constrained()->onDelete('cascade');
             $table->integer('score')->default(5);
             $table->timestamps();
         });

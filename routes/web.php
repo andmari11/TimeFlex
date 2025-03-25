@@ -11,6 +11,8 @@ use App\Http\Controllers\ShiftExchangeController;
 use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\StatsController;
+
 use App\Http\Controllers\FormsController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
@@ -48,6 +50,29 @@ Route::get('/about-us', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+// devolver la vista contact en contact
+Route::get('/estadisticas', function () {
+    return view('estadisticas');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/estadisticashorario', function () {
+    return view('estadisticashorario');
+});
+
+Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
+Route::get('/shifthours-per-section-2025', [StatsController::class, 'getShiftsHoursPerSection2025']);
+Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
+Route::get('/satisfaction-per-section-per-month', [StatsController::class, 'satisfactionPerSectionPerMonth']);
+Route::get('/satisfaccion', [StatsController::class, 'getSatisfaccion']);
+Route::get('/total-employees', [StatsController::class, 'getTotalEmployees']);
+Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalShiftHours']);
+Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
+
 
 Route::get('/ayuda', function () {
     return view('ayuda');
