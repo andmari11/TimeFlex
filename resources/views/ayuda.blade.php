@@ -317,7 +317,8 @@
                 <h2 class="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">¿Sigues con dudas? Contáctanos</h2>
                 <p class="mt-2 text-lg/8 text-gray-600">¿Necesitas ayuda adicional para entender alguna de las funcionalidades de TimeFlex? Escríbenos y descubre cómo podemos ayudarte.</p>
             </div>
-            <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+            <form action="{{ route('ayuda.store') }}" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+                @csrf
                 <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div>
                         <label for="first-name" class="block text-sm/6 font-semibold text-gray-900">Nombre</label>
@@ -379,7 +380,7 @@
                         </div>
                         <label class="text-sm/6 text-gray-600" id="switch-1-label">
                             Confirme que ha leído y acepta nuestra
-                            <a href="#" class="font-semibold text-indigo-600">política&nbsp;de privacidad</a>.
+                            <a href="{{ asset('politica_privacidad_timeflex.pdf') }}" class="font-semibold text-indigo-600">política&nbsp;de privacidad</a>.
                         </label>
                     </div>
                 </div>
@@ -387,7 +388,11 @@
                     <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enviar</button>
                 </div>
             </form>
+            @if(session('success'))
+                <div class="mt-4 text-green-600 font-medium">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
-
     </div>
 </x-layout>

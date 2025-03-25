@@ -12,7 +12,7 @@ use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\StatsController;
-
+use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\FormsController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
@@ -128,6 +128,8 @@ Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 Route::get('forms', function (){
     return view('forms');
 });
+
+Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
