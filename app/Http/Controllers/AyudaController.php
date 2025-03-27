@@ -7,6 +7,7 @@ class AyudaController
 {
     public function store(Request $request)
     {
+        $request->merge(['privacy' => $request->has('privacy')]);
         $validated = $request->validate([
             'first-name' => 'required|string|max:255',
             'last-name' => 'required|string|max:255',
@@ -14,20 +15,30 @@ class AyudaController
             'company' => 'nullable|string|max:255',
             'phone-number' => 'nullable|string|max:20',
             'message' => 'required|string',
+            'privacy' => 'accepted'
         ]);
 
-        // Puedes guardar en base de datos, enviar un email, etc.
-        // Mail::to('admin@empresa.com')->send(new MensajeContacto($validated));
-        $notification = new Notification();
-        $notification->user_id = auth()->user()->id;
-        $notification->tipo = 'duda';
-        $notification->message = 'Se ha solicitado ayuda a Administración';
-        $notification->save();
+        // notificación para el usuario
+        $notificacionUsuario = new Notification();
+        $notificacionUsuario->user_id = auth()->user()->id;
+        $notificacionUsuario->tipo = 'ayuda';
+        $notificacionUsuario->message = 'Has solicitado ayuda a Administración';
+        $notificacionUsuario->email = $validated['email'];
+        $notificacionUsuario->nombre = $validated['first-name'];
+        $notificacionUsuario->apellidos = $validated['last-name'];
+        $notificacionUsuario->duda = $validated['message'];
+        $notificacionUsuario->save();
 
-        $notification = new Notification();
-        $notification->user_id = '11';
-        $notification->message = 'Recibida nueva petición de ayuda';
-        $notification->save();
-        return back()->with('success', 'Gracias por contactarnos. Te responderemos en el menor tiempo posible a tu consulta.');
+        // notificación para el admin (ID 11)
+        $notificacionAdmin = new Notification();
+        $notificacionAdmin->user_id = 11;
+        $notificacionAdmin->tipo = 'ayuda';
+        $notificacionAdmin->message = 'Se ha recibido una nueva petición de ayuda del usuario con ID ' . auth()->user()->id . ' (' . $validated['first-name'] . ' ' . $validated['last-name'] . ').';
+        $notificacionAdmin->email = $validated['email'];
+        $notificacionAdmin->nombre = $validated['first-name'];
+        $notificacionAdmin->apellidos = $validated['last-name'];
+        $notificacionAdmin->duda = $validated['message'];
+        $notificacionAdmin->save();
+        return back()->with('success', 'Gracias por contactarnos. Responderemos a tu consulta cuanto antes');
     }
 }
