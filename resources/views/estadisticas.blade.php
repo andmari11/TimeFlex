@@ -6,7 +6,9 @@
         <div id="totalShiftsHours" style="width:50%; height:400px;"></div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                fetch('/total-shifts-hours')
+                fetch('/total-shifts-hours', {
+                    credentials: 'same-origin'
+                })
                     .then(response => response.json())
                     .then(data => {
 

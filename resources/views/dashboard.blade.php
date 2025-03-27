@@ -26,11 +26,11 @@
                 sectionSatisfactionRes,
                 employeesPerSectionRes
             ] = await Promise.all([
-                fetch('/total-employees'),
-                fetch('/total-shift-hours-accumulated'),
-                fetch('/shifthours-per-section-2025'),
-                fetch('/satisfaction-per-section-per-month'),
-                fetch('/employees-per-section')
+                fetch('/total-employees', { credentials: 'same-origin' }),
+                fetch('/total-shift-hours-accumulated', { credentials: 'same-origin' }),
+                fetch('/shifthours-per-section-2025', { credentials: 'same-origin' }),
+                fetch('/satisfaction-per-section-per-month', { credentials: 'same-origin' }),
+                fetch('/employees-per-section', { credentials: 'same-origin' })
             ]);
 
             const totalEmployees = await empRes.json();
@@ -48,6 +48,7 @@
                 employeesPerSection
             };
         }
+
 
         document.addEventListener("DOMContentLoaded", async function () {
             const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
