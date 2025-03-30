@@ -98,7 +98,7 @@
 
         function fetchExpectedHours() {
             const sectionId = sectionSelect.value;
-            const month = monthSelect.selectedIndex + 1;
+            const month = monthSelect.value;
 
             fetch(`/expected-hours/section?section_id=${sectionId}&month=${month}`, {
                 method: 'GET',
@@ -106,29 +106,32 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    tableBody.innerHTML = ''; // Limpiar tabla actual
+                    console.log("Datos recibidos correctamente:", data);
+                    tableBody.innerHTML = '';
 
                     data.forEach(item => {
                         const row = document.createElement('tr');
                         row.classList.add('border');
 
                         row.innerHTML = `
-                        <td class="p-2 font-semibold">${item.name}</td>
-                        <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" disabled /></td>
-                        <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" disabled /></td>
-                        <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" disabled /></td>
-                    `;
+                            <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
+                            <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" disabled /></td>
+                            <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" disabled /></td>
+                            <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" disabled /></td>
+                        `;
                         tableBody.appendChild(row);
                     });
+                })
+                .catch(error => {
+                    console.error("Error al hacer fetch:", error);
                 });
         }
 
-        // recarga
         sectionSelect.addEventListener('change', fetchExpectedHours);
         monthSelect.addEventListener('change', fetchExpectedHours);
 
-        // carga
         fetchExpectedHours();
     });
 </script>
+
 

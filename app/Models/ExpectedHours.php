@@ -8,10 +8,9 @@ class ExpectedHours extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'month', 'year',
+        'user_id', 'section_id', 'month', 'year',
         'morning_hours', 'afternoon_hours', 'night_hours',
     ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
