@@ -14,6 +14,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\StatsController;
 use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\ExpectedHoursController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
 
@@ -129,6 +130,8 @@ Route::get('forms', function (){
     return view('forms');
 });
 
+Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
+Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySection']);
 Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');

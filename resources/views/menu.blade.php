@@ -95,7 +95,7 @@
                             @endif
                         </ul>
                     </section>
-                    <x-sections.all-sections></x-sections.all-sections>
+                    <x-expected-hours-table />
 
                 </div>
                 <div class="flex flex-col w-2/3 mt-20 pe-12">
@@ -366,5 +366,4 @@
             </div>
         </div>
     @endif
-
 </x-layout>
