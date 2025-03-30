@@ -132,6 +132,7 @@ Route::get('forms', function (){
 
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
 Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySection']);
+Route::post('/expected-hours/store-or-update', [ExpectedHoursController::class, 'storeOrUpdate']);
 Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
