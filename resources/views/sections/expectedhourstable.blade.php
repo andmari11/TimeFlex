@@ -113,10 +113,10 @@
                         row.classList.add('border');
 
                         row.innerHTML = `
-                        <td class="p-2 font-semibold">${item.user.name}</td>
-                        <td><input type="number" value="${item.hours_morning}" class="input-morning text-center border rounded w-20" disabled /></td>
-                        <td><input type="number" value="${item.hours_afternoon}" class="input-afternoon text-center border rounded w-20" disabled /></td>
-                        <td><input type="number" value="${item.hours_night}" class="input-night text-center border rounded w-20" disabled /></td>
+                        <td class="p-2 font-semibold">${item.name}</td>
+                        <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" disabled /></td>
+                        <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" disabled /></td>
+                        <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" disabled /></td>
                     `;
                         tableBody.appendChild(row);
                     });

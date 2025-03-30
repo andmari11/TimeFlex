@@ -40,12 +40,25 @@ class ExpectedHoursController
     {
         $sectionId = $request->input('section_id');
         $month = $request->input('month');
+        $year = now()->year;
 
+        $users = User::where('section_id', $sectionId)->get();
         $expectedHours = ExpectedHours::where('section_id', $sectionId)
             ->where('month', $month)
-            ->with('user:id,name')
+            ->where('year', $year)
             ->get();
 
-        return response()->json($expectedHours);
+        $data = $users->map(function ($user) use ($expectedHours) {
+            $hours = $expectedHours->firstWhere('user_id', $user->id);
+            return [
+                'name' => $user->name,
+                'morning_hours' => $hours->morning_hours ?? 0,
+                'afternoon_hours' => $hours->afternoon_hours ?? 0,
+                'night_hours' => $hours->night_hours ?? 0,
+            ];
+        });
+
+        return response()->json($data);
     }
+
 }
