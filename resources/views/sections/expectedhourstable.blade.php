@@ -21,10 +21,14 @@
 
     <div class="flex justify-end gap-4 mt-4">
         <select id="seccionSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm">
-@foreach ($sections as $section)
-    <option value="{{ $section->id }}">{{ $section->name }}</option>
-    @endforeach
-    </select>
+            @foreach ($sections as $section)
+                @if ($section->name !== 'Sin sección')
+                    <option value="{{ $section->id }}" {{ $section->id == $defaultSectionId ? 'selected' : '' }}>
+                        {{ $section->name }}
+                    </option>
+                @endif
+            @endforeach
+        </select>
 
     <select id="mesSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm">
         @for ($i = 1; $i <= 12; $i++)
@@ -99,7 +103,7 @@
         function fetchExpectedHours() {
             const sectionId = sectionSelect.value;
             const month = monthSelect.value;
-
+            if (!sectionId) return;
             fetch(`/expected-hours/section?section_id=${sectionId}&month=${month}`, {
                 method: 'GET',
                 credentials: 'same-origin',

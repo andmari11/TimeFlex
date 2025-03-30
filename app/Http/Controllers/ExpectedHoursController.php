@@ -6,6 +6,7 @@ use App\Models\ExpectedHours;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 class ExpectedHoursController
 {
     // guarda/actualiza las horas esperadas trabajadas de un usuario
@@ -39,9 +40,9 @@ class ExpectedHoursController
     public function getBySection(Request $request)
     {
         $sectionId = $request->get('section_id');
-        $monthNumber = $request->get('month');
-        $month = \Carbon\Carbon::create()->month($monthNumber)->locale('es')->monthName;
-        $month = ucfirst($month); // ponemos la primera letra en mayusc
+        // conversion mes entero a string
+        $monthNumber = (int) $request->get('month');
+        $month = ucfirst(\Carbon\Carbon::create()->locale('es')->month($monthNumber)->monthName);
         $year = now()->year;
 
         $expectedHours = ExpectedHours::with('user')
@@ -52,6 +53,10 @@ class ExpectedHoursController
 
         return response()->json($expectedHours);
     }
+
+
+
+
 
 
 }

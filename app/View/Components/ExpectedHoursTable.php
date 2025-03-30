@@ -18,17 +18,22 @@ class ExpectedHoursTable extends Component
         $this->sections = Section::all(); // Para el select
         $this->currentMonth = now()->month;
         $this->currentYear = now()->year;
-        $defaultSectionId = Section::first()?->id;
+        $defaultSection = Section::where('name', 'Administradores')->first();
+        $defaultSectionId = $defaultSection?->id;
 
         $this->expectedHours = ExpectedHours::where('section_id', $defaultSectionId)
             ->where('month', $this->currentMonth)
             ->where('year', $this->currentYear)
             ->with('user')
             ->get();
+
+        $this->defaultSectionId = $defaultSectionId;
     }
 
     public function render()
     {
-        return view('sections.expectedhourstable');
+        return view('sections.expectedhourstable', [
+            'defaultSectionId' => $this->defaultSectionId,
+        ]);
     }
 }
