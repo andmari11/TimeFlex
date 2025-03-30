@@ -1,60 +1,76 @@
-<!-- usamos alpine.js definiendo editMode como variable y las funciones setGlobalHours y saveChanges -->
-<section x-data="{
-    editMode: false,
-    setGlobalHours() {
-        const morning = document.getElementById('global-morning').value;
-        const afternoon = document.getElementById('global-afternoon').value;
-        const night = document.getElementById('global-night').value;
+<!-- cargamos alpine con defer -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-        document.querySelectorAll('.input-morning').forEach(input => input.value = morning);
-        document.querySelectorAll('.input-afternoon').forEach(input => input.value = afternoon);
-        document.querySelectorAll('.input-night').forEach(input => input.value = night);
+<script>
+    function expectedHoursComponent() {
+        return {
+            editMode: false,
 
-        document.getElementById('global-morning').value = '';
-        document.getElementById('global-afternoon').value = '';
-        document.getElementById('global-night').value = '';
-    },
-    saveChanges() {
-        const sectionId = document.getElementById('seccionSelect').value;
-        const month = document.getElementById('mesSelect').value;
-        const year = new Date().getFullYear();
+            setGlobalHours() {
+                const morning = document.getElementById('global-morning').value;
+                const afternoon = document.getElementById('global-afternoon').value;
+                const night = document.getElementById('global-night').value;
 
-        const rows = document.querySelectorAll('#expectedHoursTable tr');
+                document.querySelectorAll('.input-morning').forEach(input => input.value = morning);
+                document.querySelectorAll('.input-afternoon').forEach(input => input.value = afternoon);
+                document.querySelectorAll('.input-night').forEach(input => input.value = night);
 
-        rows.forEach(row => {
-            const userId = row.querySelector('.input-morning')?.dataset?.userId;
-            if (!userId) return;
+                document.getElementById('global-morning').value = '';
+                document.getElementById('global-afternoon').value = '';
+                document.getElementById('global-night').value = '';
+            },
 
-            const morning = row.querySelector('.input-morning').value;
-            const afternoon = row.querySelector('.input-afternoon').value;
-            const night = row.querySelector('.input-night').value;
+            saveChanges() {
+                const sectionId = document.getElementById('seccionSelect').value;
+                const month = document.getElementById('mesSelect').value;
+                const year = new Date().getFullYear();
+                const rows = document.querySelectorAll('#expectedHoursTable tr');
 
-            fetch('/expected-hours/store-or-update', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name=\'csrf-token\']').content
-                },
-                body: JSON.stringify({
-                    user_id: userId,
-                    section_id: sectionId,
-                    month: month,
-                    year: year,
-                    morning_hours: morning,
-                    afternoon_hours: afternoon,
-                    night_hours: night
-                })
-            })
-                .then(res => res.json())
-                .then(data => console.log(`Guardado user ${userId}`, data))
-                .catch(err => console.error(`Error al guardar user ${userId}`, err));
-        });
+                rows.forEach(row => {
+                    const userId = row.querySelector('.input-morning')?.dataset?.userId;
+                    if (!userId) return;
 
-        alert('Cambios guardados con éxito.');
+                    const morning = row.querySelector('.input-morning').value;
+                    const afternoon = row.querySelector('.input-afternoon').value;
+                    const night = row.querySelector('.input-night').value;
+
+                    fetch('/expected-hours/store-or-update', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            user_id: userId,
+                            section_id: sectionId,
+                            month: month,
+                            year: year,
+                            morning_hours: morning,
+                            afternoon_hours: afternoon,
+                            night_hours: night
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => console.log(`Guardado user ${userId}`, data))
+                        .catch(err => console.error(`Error al guardar user ${userId}`, err));
+                });
+
+                alert('Cambios guardados con éxito.');
+            },
+
+            init() {
+                this.$watch('editMode', value => {
+                    document.querySelectorAll('#expectedHoursTable input').forEach(input => {
+                        input.disabled = !value;
+                    });
+                });
+            }
+        }
     }
-}" class="relative w-full bg-white mt-9 px-5 pb-8 rounded-lg shadow-md ml-4">
-
+</script>
+<!-- defino funciones y variable editmode directamente dentro de Alpine con x-data -->
+<section x-data="expectedHoursComponent()" x-init="init()" class="relative w-full bg-white mt-9 px-5 pb-8 rounded-lg shadow-md ml-4">
     <div class="flex items-center justify-between py-4 border-b border-blue/10">
         <h2 class="text-xl font-bold">Horas mensuales esperadas por empleado</h2>
     </div>
@@ -96,15 +112,13 @@
     </div>
 
     <div class="flex justify-end mt-4">
-        <template x-if="!editMode"> <!-- si no es editmode -->
-            <button @click="editMode = true"
-                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded shadow">
+        <template x-if="!editMode">
+            <button @click="editMode = true" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded shadow">
                 Editar
             </button>
         </template>
-        <template x-if="editMode"> <!-- si es editmode -->
-            <button @click="saveChanges(); editMode = false"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow">
+        <template x-if="editMode">
+            <button @click="saveChanges(); editMode = false" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow">
                 Guardar cambios
             </button>
         </template>
@@ -126,8 +140,7 @@
                 <input id="global-night" type="number" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
             </div>
             <div class="flex items-end">
-                <button @click="setGlobalHours"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded shadow">
+                <button @click="setGlobalHours" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded shadow">
                     Aplicar a todos
                 </button>
             </div>
@@ -153,24 +166,19 @@
                 .then(response => response.json())
                 .then(data => {
                     tableBody.innerHTML = '';
-
                     data.forEach(item => {
                         const row = document.createElement('tr');
                         row.classList.add('border');
-
                         row.innerHTML = `
-                            <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
-                            <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" /></td>
-                            <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" /></td>
-                            <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" /></td>
-                        `;
-
+                        <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
+                        <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                        <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                        <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                    `;
                         tableBody.appendChild(row);
                     });
                 })
-                .catch(error => {
-                    console.error("Error al hacer fetch:", error);
-                });
+                .catch(error => console.error("Error al hacer fetch:", error));
         }
         //actualizacion de la tabla al cambiar seccion o mes
         sectionSelect.addEventListener('change', fetchExpectedHours);
