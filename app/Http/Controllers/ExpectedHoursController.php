@@ -14,7 +14,7 @@ class ExpectedHoursController
     {
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'section_id' => 'required|exists:sections,id',
+            'section_id' => 'required',
             'month' => 'required',
             'year' => 'required|integer',
             'morning_hours' => 'required|integer|min:0',
@@ -25,6 +25,16 @@ class ExpectedHoursController
         // cambiamos el mes de numero a string con la primera letra en mayusc
         $monthNumber = (int) $validated['month'];
         $validated['month'] = ucfirst(Carbon::create()->locale('es')->month($monthNumber)->monthName);
+
+        // en caso de ser todas, obtenemos la seccion del usuario
+        if ($validated['section_id'] === 'all') {
+            $user = User::find($validated['user_id']);
+            // error si no podemos encontrarla
+            if (!$user || !$user->section_id) {
+                return response()->json(['error' => 'No se puede determinar la sección del usuario.'], 400);
+            }
+            $validated['section_id'] = $user->section_id;
+        }
 
         $expectedHour = ExpectedHours::updateOrCreate(
             [
@@ -43,8 +53,6 @@ class ExpectedHoursController
         return response()->json(['success' => true, 'data' => $expectedHour]);
     }
 
-
-
     // pasar las horas por sección para el mes y año
     public function getBySection(Request $request)
     {
@@ -57,6 +65,11 @@ class ExpectedHoursController
 
         if ($sectionId !== 'all') {
             $query->where('section_id', $sectionId);
+        } else {
+            // no mostrar los de sin seccion
+            $query->whereHas('user.section', function ($q) {
+                $q->where('name', '!=', 'Sin sección');
+            });
         }
 
         return response()->json($query->get());

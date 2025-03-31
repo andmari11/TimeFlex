@@ -7,17 +7,58 @@
             editMode: false,
 
             setGlobalHours() {
+                // se obtiene los valores introducidos por el usuario
                 const morning = document.getElementById('global-morning').value;
                 const afternoon = document.getElementById('global-afternoon').value;
                 const night = document.getElementById('global-night').value;
+                // se obtiene mes y seccion de los desplegables y el año usando el actual (seria 2025 ahora)
+                const sectionId = document.getElementById('seccionSelect').value;
+                const month = document.getElementById('mesSelect').value;
+                const year = new Date().getFullYear();
+                // cogemos los inputs de la tabla para mañana, tarde y noche
+                const inputsMorning = document.querySelectorAll('.input-morning');
+                const inputsAfternoon = document.querySelectorAll('.input-afternoon');
+                const inputsNight = document.querySelectorAll('.input-night');
+                // se recorren los inputs para cada usuario y se recogen los valores
+                inputsMorning.forEach((input, index) => {
+                    const userId = input.dataset.userId;
+                    input.value = morning;
+                    inputsAfternoon[index].value = afternoon;
+                    inputsNight[index].value = night;
 
-                document.querySelectorAll('.input-morning').forEach(input => input.value = morning);
-                document.querySelectorAll('.input-afternoon').forEach(input => input.value = afternoon);
-                document.querySelectorAll('.input-night').forEach(input => input.value = night);
+                    // se guardan los valores obtenidos en la bd con un post
+                    fetch('/expected-hours/store-or-update', {
+                        method: 'POST',
+                        credentials: 'same-origin', // importante para que no de problemas el csrf
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        // definimos el JSON a mandar
+                        body: JSON.stringify({
+                            user_id: userId,
+                            section_id: sectionId,
+                            month: month,
+                            year: year,
+                            morning_hours: morning,
+                            afternoon_hours: afternoon,
+                            night_hours: night
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => console.log(`Se guardan los datos para el usuario ${userId}`, data))
+                        .catch(err => console.error(`Ha ocurrido un error al guardar los datos del usuario ${userId}`, err));
+                });
 
+                // inicializamos los campos globales de los turnos para la seccion
                 document.getElementById('global-morning').value = '';
                 document.getElementById('global-afternoon').value = '';
                 document.getElementById('global-night').value = '';
+
+                // salir modo edicion
+                this.editMode = false;
+
+                alert('Horas aplicadas a todos los empleados.');
             },
 
             saveChanges() {
@@ -36,7 +77,7 @@
 
                     fetch('/expected-hours/store-or-update', {
                         method: 'POST',
-                        credentials: 'same-origin',
+                        credentials: 'same-origin', // importante para que no de problemas el csrf
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -130,15 +171,15 @@
         <div class="flex flex-wrap gap-4">
             <div>
                 <label for="global-morning" class="block text-sm font-medium">Mañana</label>
-                <input id="global-morning" type="number" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
+                <input id="global-morning" type="number" min="0" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
             </div>
             <div>
                 <label for="global-afternoon" class="block text-sm font-medium">Tarde</label>
-                <input id="global-afternoon" type="number" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
+                <input id="global-afternoon" type="number" min="0" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
             </div>
             <div>
                 <label for="global-night" class="block text-sm font-medium">Noche</label>
-                <input id="global-night" type="number" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
+                <input id="global-night" type="number" min="0" class="w-24 border-gray-300 rounded shadow-sm px-2 py-1 text-center" />
             </div>
             <div class="flex items-end">
                 <button @click="setGlobalHours" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded shadow">
@@ -172,9 +213,9 @@
                         row.classList.add('border');
                         row.innerHTML = `
                         <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
-                        <td><input type="number" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
-                        <td><input type="number" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
-                        <td><input type="number" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                        <td><input type="number" min="0" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                        <td><input type="number" min="0" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
+                        <td><input type="number" min="0" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
                     `;
                         tableBody.appendChild(row);
                     });
