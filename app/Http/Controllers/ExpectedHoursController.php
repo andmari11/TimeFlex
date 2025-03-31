@@ -53,14 +53,13 @@ class ExpectedHoursController
         $monthNumber = (int) $request->get('month');
         $month = ucfirst(\Carbon\Carbon::create()->locale('es')->month($monthNumber)->monthName);
         $year = now()->year;
+        $query = ExpectedHours::with('user')->where('month', $month)->where('year', $year);
 
-        $expectedHours = ExpectedHours::with('user')
-            ->where('section_id', $sectionId)
-            ->where('month', $month)
-            ->where('year', $year)
-            ->get();
+        if ($sectionId !== 'all') {
+            $query->where('section_id', $sectionId);
+        }
 
-        return response()->json($expectedHours);
+        return response()->json($query->get());
     }
 
 

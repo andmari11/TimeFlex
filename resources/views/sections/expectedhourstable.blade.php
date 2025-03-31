@@ -77,6 +77,7 @@
 
     <div class="flex justify-end gap-4 mt-4">
         <select id="seccionSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm">
+            <option value="all">Todas</option>
             @foreach ($sections as $section)
                 @if ($section->name !== 'Sin sección')
                     <option value="{{ $section->id }}" {{ $section->id == $defaultSectionId ? 'selected' : '' }}>
