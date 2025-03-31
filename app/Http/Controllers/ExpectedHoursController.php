@@ -75,9 +75,4 @@ class ExpectedHoursController
         return response()->json($query->get());
     }
 
-
-
-
-
-
 }

@@ -115,56 +115,71 @@
     </script>
     <div id="statsuser2-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
     <script>
+        function cargarGraficoHorasVsEsperadas(id) {
+            fetch(`/user/${id}/actual-vs-expected`)
+                .then(res => res.json())
+                .then(data => {
+                    Highcharts.chart(`statsuser2-${id}`, {
+                        chart: {
+                            type: 'column',
+                            backgroundColor: '#f0f9ff',
+                        },
+                        title: {
+                            text: 'Horas trabajadas vs esperadas'
+                        },
+                        xAxis: {
+                            categories: ['Mañana', 'Tarde', 'Noche']
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Horas'
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        plotOptions: {
+                            column: {
+                                grouping: true,
+                                shadow: false,
+                                borderWidth: 0
+                            }
+                        },
+                        series: [
+                            {
+                                name: 'Esperadas',
+                                color: 'rgba(165,170,217,1)',
+                                data: [
+                                    data.expected.morning,
+                                    data.expected.afternoon,
+                                    data.expected.night
+                                ]
+                            },
+                            {
+                                name: 'Trabajadas',
+                                color: 'rgba(126,86,134,.9)',
+                                data: [
+                                    data.worked.morning,
+                                    data.worked.afternoon,
+                                    data.worked.night
+                                ]
+                            }
+                        ]
+                    });
+                })
+                .catch(err => {
+                    console.error("Error al cargar el gráfico de horas:", err);
+                    document.getElementById(`statsuser2-${id}`).innerHTML =
+                        '<p style="color:red;">Error al cargar el gráfico</p>';
+                });
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            Highcharts.chart('statsuser2-{{ $employee->id }}', {
-                chart: {
-                    type: 'column',
-                    backgroundColor: '#f0f9ff',
-                },
-                title: {
-                    text: 'Horas trabajadas vs esperadas'
-                },
-                xAxis: {
-                    categories: [
-                        'Mañana',
-                        'Tarde',
-                    ]
-                },
-                yAxis: [{
-                    min: 0,
-                    title: {
-                        text: 'Horas'
-                    }
-                }],
-                legend: {
-                    shadow: false
-                },
-                tooltip: {
-                    shared: true
-                },
-                plotOptions: {
-                    column: {
-                        grouping: false,
-                        shadow: false,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Esperadas',
-                    color: 'rgba(165,170,217,1)',
-                    data: [170, 73],
-                    pointPadding: 0.3,
-                    pointPlacement: -0.2
-                }, {
-                    name: 'Trabajadas',
-                    color: 'rgba(126,86,134,.9)',
-                    data: [145, 50],
-                    pointPadding: 0.4,
-                    pointPlacement: -0.2
-                }]
-            });
+            cargarGraficoHorasVsEsperadas({{ $employee->id }});
         });
     </script>
+
 
 @endif
 

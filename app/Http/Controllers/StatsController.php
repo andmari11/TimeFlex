@@ -10,6 +10,7 @@ use App\Models\Shift;
 use App\Models\ShiftExchange;
 use App\Models\User;
 use App\Models\UserForms;
+use App\Models\ExpectedHours;
 use Illuminate\Support\Facades\Log;
 use App\Models\WorkerPreference;
 use Carbon\Carbon;
@@ -195,6 +196,66 @@ class StatsController
             'satisfaccion_usuario' => $satisfaccionUsuario
         ]);
     }
+
+    public function getActualVsExpected($id)
+    {
+        $year = now()->year;
+        $month = now()->month;
+
+        // obtenemos los datos esperados (horas trabajadas) y si no existen, inicializamos a 0
+        $monthName = ucfirst(\Carbon\Carbon::create()->month($month)->locale('es')->monthName);
+        $expected = \App\Models\ExpectedHours::where('user_id', $id)
+            ->where('month', $monthName)
+            ->where('year', $year)
+            ->first();
+        $expectedData = $expected ? [
+            'morning' => $expected->morning_hours,
+            'afternoon' => $expected->afternoon_hours,
+            'night' => $expected->night_hours,
+        ] : [
+            'morning' => 0,
+            'afternoon' => 0,
+            'night' => 0,
+        ];
+
+        // obtenemos los datos reales de horas trabajadas en el mes
+        $shifts = DB::table('shift_user')
+            ->join('shifts', 'shifts.id', '=', 'shift_user.shift_id')
+            ->where('shift_user.user_id', $id)
+            ->whereYear('shifts.start', $year)
+            ->whereMonth('shifts.start', $month)
+            ->select('shifts.start', 'shifts.end')
+            ->get();
+
+        $workedData = [
+            'morning' => 0,
+            'afternoon' => 0,
+            'night' => 0,
+        ];
+
+        foreach ($shifts as $shift) {
+            $start = Carbon::parse($shift->start);
+            $end = Carbon::parse($shift->end);
+            if ($end->lessThan($start)) {
+                $end->addDay();
+            }
+            $hours = $start->diffInHours($end);
+            $hour = (int) $start->format('H');
+            if ($hour >= 9 && $hour < 15) {
+                $workedData['morning'] += $hours;
+            } elseif ($hour >= 15 && $hour < 21) {
+                $workedData['afternoon'] += $hours;
+            } else {
+                $workedData['night'] += $hours;
+            }
+        }
+
+        return response()->json([
+            'expected' => $expectedData,
+            'worked' => $workedData,
+        ]);
+    }
+
 
 
 }

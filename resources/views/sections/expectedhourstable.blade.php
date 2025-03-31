@@ -11,17 +11,24 @@
                 const morning = document.getElementById('global-morning').value;
                 const afternoon = document.getElementById('global-afternoon').value;
                 const night = document.getElementById('global-night').value;
-                // se obtiene mes y seccion de los desplegables y el año usando el actual (seria 2025 ahora)
-                const sectionId = document.getElementById('seccionSelect').value;
+                // no dejamos que las horas puedan ser negativas
+                if (morning < 0 || afternoon < 0 || night < 0) {
+                    alert('Las horas no pueden ser negativas.');
+                    return;
+                }
+                // se obtiene mes de los desplegables y el año usando el actual (seria 2025 ahora)
                 const month = document.getElementById('mesSelect').value;
                 const year = new Date().getFullYear();
                 // cogemos los inputs de la tabla para mañana, tarde y noche
                 const inputsMorning = document.querySelectorAll('.input-morning');
                 const inputsAfternoon = document.querySelectorAll('.input-afternoon');
                 const inputsNight = document.querySelectorAll('.input-night');
-                // se recorren los inputs para cada usuario y se recogen los valores
+
                 inputsMorning.forEach((input, index) => {
+                    // usando el turno de mañana obtenemos el usuario y su seccion
                     const userId = input.dataset.userId;
+                    const sectionId = input.dataset.sectionId;
+
                     input.value = morning;
                     inputsAfternoon[index].value = afternoon;
                     inputsNight[index].value = night;
@@ -34,8 +41,7 @@
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
-                        // definimos el JSON a mandar
-                        body: JSON.stringify({
+                        body: JSON.stringify({ // definimos el JSON que se espera como respuesta
                             user_id: userId,
                             section_id: sectionId,
                             month: month,
@@ -46,20 +52,27 @@
                         })
                     })
                         .then(res => res.json())
-                        .then(data => console.log(`Se guardan los datos para el usuario ${userId}`, data))
+                        .then(data => {
+                            console.log(`Se guardan los datos para el usuario ${userId}`, data);
+                            if (typeof cargarGraficoEmpleado === 'function') {
+                                cargarGraficoEmpleado(userId);
+                            }
+                            if (typeof cargarGraficoHorasVsEsperadas === 'function') {
+                                cargarGraficoHorasVsEsperadas(userId);
+                            }
+                        })
                         .catch(err => console.error(`Ha ocurrido un error al guardar los datos del usuario ${userId}`, err));
                 });
 
-                // inicializamos los campos globales de los turnos para la seccion
+                // inicializamos los campos de horas a nivel de seccion
                 document.getElementById('global-morning').value = '';
                 document.getElementById('global-afternoon').value = '';
                 document.getElementById('global-night').value = '';
-
                 // salir modo edicion
                 this.editMode = false;
-
-                alert('Horas aplicadas a todos los empleados.');
-            },
+                alert('Horas asignadas a todos los empleados.');
+            }
+            ,
 
             saveChanges() {
                 const sectionId = document.getElementById('seccionSelect').value;
@@ -93,8 +106,16 @@
                         })
                     })
                         .then(res => res.json())
-                        .then(data => console.log(`Guardado user ${userId}`, data))
-                        .catch(err => console.error(`Error al guardar user ${userId}`, err));
+                        .then(data => {
+                            console.log(`Se guardan los datos para el usuario ${userId}`, data);
+                            if (typeof cargarGraficoEmpleado === 'function') {
+                                cargarGraficoEmpleado(userId);
+                            }
+                            if (typeof cargarGraficoHorasVsEsperadas === 'function') {
+                                cargarGraficoHorasVsEsperadas(userId);
+                            }
+                        })
+                        .catch(err => console.error(`Ha ocurrido un error al guardar los datos del usuario ${userId}`, err));
                 });
 
                 alert('Cambios guardados con éxito.');
@@ -212,11 +233,12 @@
                         const row = document.createElement('tr');
                         row.classList.add('border');
                         row.innerHTML = `
-                        <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
-                        <td><input type="number" min="0" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
-                        <td><input type="number" min="0" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
-                        <td><input type="number" min="0" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" disabled /></td>
-                    `;
+                            <td class="p-2 font-semibold">${item.user?.name ?? 'Sin nombre'}</td>
+                            <td><input type="number" min="0" value="${item.morning_hours}" class="input-morning text-center border rounded w-20" data-user-id="${item.user_id}" data-section-id="${item.section_id}" disabled /></td>
+                            <td><input type="number" min="0" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" data-section-id="${item.section_id}" disabled /></td>
+                            <td><input type="number" min="0" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" data-section-id="${item.section_id}" disabled /></td>
+                        `;
+
                         tableBody.appendChild(row);
                     });
                 })
