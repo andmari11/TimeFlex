@@ -73,6 +73,8 @@ Route::get('/satisfaccion', [StatsController::class, 'getSatisfaccion']);
 Route::get('/total-employees', [StatsController::class, 'getTotalEmployees']);
 Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalShiftHours']);
 Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
+Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualVsExpected']);
+
 
 
 Route::get('/ayuda', function () {
@@ -133,6 +135,7 @@ Route::get('forms', function (){
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
 Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySection']);
 Route::post('/expected-hours/store-or-update', [ExpectedHoursController::class, 'storeOrUpdate']);
+
 Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
