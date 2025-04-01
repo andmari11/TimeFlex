@@ -1,6 +1,5 @@
 <!-- cargamos alpine con defer -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
 <script>
     function expectedHoursComponent() {
         return {
@@ -131,6 +130,7 @@
         }
     }
 </script>
+
 <!-- defino funciones y variable editmode directamente dentro de Alpine con x-data -->
 <section x-data="expectedHoursComponent()" x-init="init()" class="relative w-full bg-white mt-9 px-5 pb-8 rounded-lg shadow-md ml-4">
     <div class="flex items-center justify-between py-4 border-b border-blue/10">
@@ -160,7 +160,7 @@
 
     <div class="mt-6 overflow-y-auto max-h-72">
         <table class="min-w-full table-auto border text-center text-sm">
-            <thead class="bg-gray-100 sticky top-0 z-10">
+            <thead class="bg-gray-100">
             <tr>
                 <th class="p-2">Empleado</th>
                 <th class="p-2">Mañana</th>
