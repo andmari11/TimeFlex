@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('message');
             $table->string('url')->nullable();
+            $table->string('email')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('apellidos')->nullable();
+            $table->text('duda');
             $table->boolean('read')->default(false);
             $table->string('tipo')->default('normal');
             $table->foreignIdFor(\App\Models\ShiftExchange::class)->nullable()->constrained()->onDelete('cascade');

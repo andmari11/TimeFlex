@@ -18,7 +18,7 @@
             </section>
             <div class="flex flex-wrap gap-10">
                 @foreach($section->users as $employee)
-                    <x-users.employee-section :employee="$employee"></x-users.employee-section>
+                    <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
                 @endforeach
             </div>
 

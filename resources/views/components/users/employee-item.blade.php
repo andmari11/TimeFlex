@@ -20,7 +20,10 @@
     </div>
 
     <button class="p-2 text-gray-700 text-bold text-l " >
-        <h3 @click="open_drawer = true"  class="hover:scale-110">{{$employee->name}}</h3>
+        <h3 @click="open_drawer = true; cargarGraficoEmpleado({{ $employee->id }})" class="hover:scale-110">
+            {{$employee->name}}
+        </h3>
+
     </button>
 
     <div class="flex justify-start">
@@ -32,6 +35,7 @@
         <x-users.employee-section :employee="$employee"></x-users.employee-section>
     </x-drawer>
 </div>
+
 <script>
     function confirmDeleteEmployee(event, employeeId) {
         event.preventDefault(); // Evita que se envíe el formulario inmediatamente

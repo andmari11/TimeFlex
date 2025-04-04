@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$title ?? "TimeFlex"}}</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,6 +50,9 @@
                                 <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                                 <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
+                                    @if(auth()->user()->role === 'admin')
+                                        <x-nav-link-mobile ref="/dashboard">Dashboard </x-nav-link-mobile>
+                                    @endif
                             @endauth
                         </div>
                     </div>
@@ -130,6 +133,9 @@
                     <x-nav-link-mobile ref="/formularios">Mis formularios </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/equipo">Mi equipo </x-nav-link-mobile>
                     <x-nav-link-mobile ref="/ayuda">Ayuda </x-nav-link-mobile>
+                        @if(auth()->user()->role === 'admin')
+                            <x-nav-link-mobile ref="/dashboard">Dashboard </x-nav-link-mobile>
+                        @endif
                 @endauth
             </div>
             <div class="border-t border-gray-700 pb-3 pt-4" >

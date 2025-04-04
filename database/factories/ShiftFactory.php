@@ -26,13 +26,14 @@ class ShiftFactory extends Factory
         $date = now()->addDays($this->faker->numberBetween(1, 5));
 
         return [
-            'schedule_id' => 1,
+            'schedule_id' => rand(1, 38),
             'notes' => $this->faker->optional()->sentence(),
             'start' => $date->copy()->setTimeFromTimeString($shift['start']),
             'end' => $shift['end'] === '04:00:00' ?
                 $date->copy()->addDay()->setTimeFromTimeString($shift['end']) :
                 $date->copy()->setTimeFromTimeString($shift['end']),
             'users_needed' => $this->faker->numberBetween(1, 3),
+            'type' => $this->faker->numberBetween(0, 2),
         ];
 
 

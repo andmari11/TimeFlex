@@ -11,7 +11,10 @@ use App\Http\Controllers\ShiftExchangeController;
 use App\Http\Controllers\ShiftTypeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\StatsController;
+use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\ExpectedHoursController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
 
@@ -48,6 +51,31 @@ Route::get('/about-us', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+// devolver la vista contact en contact
+Route::get('/estadisticas', function () {
+    return view('estadisticas');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/estadisticashorario', function () {
+    return view('estadisticashorario');
+});
+
+Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
+Route::get('/shifthours-per-section-2025', [StatsController::class, 'getShiftsHoursPerSection2025']);
+Route::get('/total-shifts-hours', [StatsController::class, 'getShiftsHours']);
+Route::get('/satisfaction-per-section-per-month', [StatsController::class, 'satisfactionPerSectionPerMonth']);
+Route::get('/satisfaccion', [StatsController::class, 'getSatisfaccion']);
+Route::get('/total-employees', [StatsController::class, 'getTotalEmployees']);
+Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalShiftHours']);
+Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
+Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualVsExpected']);
+
+
 
 Route::get('/ayuda', function () {
     return view('ayuda');
@@ -103,6 +131,12 @@ Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 Route::get('forms', function (){
     return view('forms');
 });
+
+Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
+Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySection']);
+Route::post('/expected-hours/store-or-update', [ExpectedHoursController::class, 'storeOrUpdate']);
+
+Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');

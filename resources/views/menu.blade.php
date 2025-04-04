@@ -95,7 +95,7 @@
                             @endif
                         </ul>
                     </section>
-                    <x-sections.all-sections></x-sections.all-sections>
+                    <x-expected-hours-table />
 
                 </div>
                 <div class="flex flex-col w-2/3 mt-20 pe-12">
@@ -129,7 +129,7 @@
                                         @if (isset($shift['users']) && count($shift['users']) > 0)
                                             <ul class="mt-2">
                                                 <a href="{{ url('/horario/' . $shift->schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
-                                                <li class="text-white rounded p-1 mb-1">
+                                                    <li class="text-white rounded p-1 mb-1">
                                                         <strong>{{ Carbon\Carbon::parse($shift['start'])->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
                                                         <div class="mt-2 flex flex-wrap gap-1">
                                                             @if(count($shift['users']) < 3)
@@ -140,8 +140,8 @@
                                                                 <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">({{count($shift['users'])}} trabajadores)</span>
                                                             @endif
                                                         </div>
-                                                </li>
-                                            </a>
+                                                    </li>
+                                                </a>
                                             </ul>
                                         @endif
 
@@ -159,9 +159,9 @@
                             <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                                 Formularios
                             </button>
-                            <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                            <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                                 Estadísticas
-                            </button>
+                            </a>
                             <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                                 Satisfacción
                             </button>
@@ -351,9 +351,10 @@
                         <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Formularios
                         </button>
-                        <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                        <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Estadísticas
-                        </button>
+                        </a>
+
                         <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Satisfacción
                         </button>
@@ -365,5 +366,4 @@
             </div>
         </div>
     @endif
-
 </x-layout>
