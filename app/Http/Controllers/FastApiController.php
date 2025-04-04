@@ -122,7 +122,7 @@ class FastApiController extends Controller
 
     public function receiveSchedule(): \Illuminate\Http\JsonResponse
     {
-        Log::info('Datos recibidos:', request()->all()); // Verifica lo que está llegando
+        Log::info('Datos recibidos:', request()->all());
 
         $data=request()->validate([
             "id"=>"required",

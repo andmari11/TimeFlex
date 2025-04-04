@@ -24,10 +24,11 @@ class ShiftExchangeController extends Controller
         else{
             $userShifts = [];
         }
+        $days=$scheduleData['months'][0]['days'];
 
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         $workers = Schedule::find($id_schedule)->section->users;
-        return view('schedules.shift-exchange-admin', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts', 'workers', 'workerSelected')));
+        return view('schedules.shift-exchange-admin', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts', 'workers', 'workerSelected', 'days')));
     }
 
     public function select($id_schedule, $id_shift_someone)
@@ -37,8 +38,10 @@ class ShiftExchangeController extends Controller
         $userShifts = auth()->user()->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
             return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
         });
+        $days=$scheduleData['months'][0]['days'];
+
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
-        return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_someone', 'availableShifts')));
+        return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_someone', 'availableShifts', 'days')));
 
     }
 
@@ -49,9 +52,10 @@ class ShiftExchangeController extends Controller
         $userShifts = auth()->user()->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
             return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
         });
-        $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
+        $days=$scheduleData['months'][0]['days'];
 
-        return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts')));
+        $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
+        return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts','days')));
 
     }
 
@@ -72,7 +76,6 @@ class ShiftExchangeController extends Controller
             'shift_demander_id' => $data['shift_id_mine'],
             'reason' => $data['reason'],
         ]);
-
         $exchange->save();
 
         if ($user_receiver != null) {
@@ -135,6 +138,21 @@ class ShiftExchangeController extends Controller
                 $notification1->user_id = $user->id;
                 $notification1->save();
             }
+            $receiver = User::find($exchange->receiver_id);
+            $emitent = User::find($exchange->demander_id);
+
+            $notificationReceiver = new Notification();
+            $notificationReceiver->user_id = $receiver->id ?? null;
+            $notificationReceiver->message = 'Falta la confirmación del administrador para el cambio de turno';
+            $notificationReceiver->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
+            $notificationReceiver->save();
+
+            $notificationEmitent = new Notification();
+            $notificationEmitent->user_id = $emitent->id ?? null;
+            $notificationEmitent->message = 'Falta la confirmación del administrador para el cambio de turno';
+            $notificationEmitent->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
+            $notificationEmitent->save();
+
         }
         else{
             $this->acceptExchangeAdmin();

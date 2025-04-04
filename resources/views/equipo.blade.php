@@ -34,7 +34,7 @@
         <div class="flex flex-wrap -mx-3">
             @foreach(auth()->user()->company->employees as $employee)
                 <div class="w-1/4 px-3">
-                    <x-users.employee-section :employee="$employee"></x-users.employee-section>
+                    <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
                 </div>
             @endforeach
         </div>

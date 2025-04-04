@@ -1,7 +1,7 @@
 @vite(['resources/js/app.js'])
 @props(['employee', 'showGraphs' => true])
 
-<div class="p-4 bg-blue-50 shadow rounded-xl my-1 w-full max-w-sm mx-auto">
+<div class="p-4 bg-blue-50 shadow rounded-xl my-1 {{ !isset($showGraphs) or $showGraphs ? 'my-1' : 'my-5' }} w-full max-w-sm mx-auto">
     <div class="flex items-center justify-center">
         <img class="h-20 w-20 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
     </div>
@@ -22,7 +22,8 @@
 </div>
 
 @if ($showGraphs)
-    <div id="statsuser-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
+
+    <div class="rounded-lg mt-4 px-2" id="statsuser-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
     <script>
         window.cargarGraficoEmpleado = function (id) {
             fetch(`/user/${id}/shift-distribution`) // sacamos los datos del endpoint definido
@@ -113,7 +114,7 @@
             cargarGraficoEmpleado({{ $employee->id }});
         });
     </script>
-    <div id="statsuser2-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
+    <div class="rounded-lg mb-4 px-2" id="statsuser2-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
     <script>
         function cargarGraficoHorasVsEsperadas(id) {
             fetch(`/user/${id}/actual-vs-expected`)

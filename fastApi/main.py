@@ -64,10 +64,10 @@ async def send_schedule(data):
             logging.info(
                 f"Response status code: {response.status_code}\n"
                 f"Response headers: {response.headers}\n"
-                f"Response content: {response.json()}"
+                f"Response content: {response}"
             )
         except Exception as e:
-            logging.error(f"Error during POST request: {e}")
+            logging.error(f"Error during POST request: {e}", exc_info=True)
             response = None
 
 

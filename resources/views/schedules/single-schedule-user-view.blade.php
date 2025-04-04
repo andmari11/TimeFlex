@@ -16,23 +16,39 @@
             </div>
             @if ($userToView)
                 <div class="px-4 w-full">
-                    <x-users.employee-section  :employee="$userToView"></x-users.employee-section>
+                    <x-users.employee-section  :employee="$userToView" :showGraphs="false"></x-users.employee-section>
                 </div>
                     <div class="m-6">
                         @foreach($usersShifts as $shift)
-                            <div class="p-4 bg-blue-50 mb-4 shadow rounded-xl my-1 relative max-w-lg mx-auto">
+                            <div class="p-4 bg-blue-50 mb-4 shadow rounded-xl my-1 relative max-w-lg mx-auto" x-data="{ open_options_menu: false }">
+
                                 <div class="absolute top-2 right-2 py-2">
+                                    <button
+                                        @click="open_options_menu = !open_options_menu"
+                                        type="button"
+                                        class="px-3 py-1 text-black rounded-full text-lg  font-bold">
+                                        &#x22EE;
+                                    </button>
+
+                                </div>
+
+
+                                <!-- Menú desplegable -->
+                                <div x-show="open_options_menu" @click.away="open_options_menu = false"
+                                     class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
+
                                     @if($userToView->id!=auth()->user()->id)
 
-                                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shift->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
-                                            Cambio de turno
+                                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shift->id}}"
+                                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                        Cambio de turno
                                         </a>
                                     @else
-                                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shift->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
-                                            Cambio de turno
+                                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shift->id}}"
+                                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                        Cambio de turno
                                         </a>
                                     @endif
-
                                 </div>
 
                                 <h3 class="text-xl font-bold mb-3 ">

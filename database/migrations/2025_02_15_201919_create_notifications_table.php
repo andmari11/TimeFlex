@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('nombre')->nullable();
             $table->string('apellidos')->nullable();
-            $table->text('duda');
+            $table->text('duda')->nullable();
             $table->boolean('read')->default(false);
             $table->string('tipo')->default('normal');
             $table->foreignIdFor(\App\Models\ShiftExchange::class)->nullable()->constrained()->onDelete('cascade');

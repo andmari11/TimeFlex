@@ -161,5 +161,5 @@ Route::patch('/sections/{id}/edit', [SectionController::class, 'update'])->middl
 Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->middleware('auth');
 
 Route::get('/unread-notifications', function () {
-    return auth()->user()->unreadNotifications->count();
+    return auth()->user()->unreadNotifications;
 })->middleware('auth');

@@ -16,19 +16,36 @@
             .then(response => response.json())
             .then(data => {
                 const notificationDot = document.getElementById('notification-dot');
-                if (data > 0) {
+                const notificationsList = document.getElementById('notifications-list');
+
+                if (data.length > 0) {
                     notificationDot.classList.remove('hidden');
                 } else {
                     notificationDot.classList.add('hidden');
+                }
+
+                if (data.length > 0) {
+                    notificationsList.innerHTML = '';
+                    data.forEach(notification => {
+                        const notificationElement = document.createElement('a');
+                        notificationElement.href = notification.url;
+                        notificationElement.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:underline', 'hover:rounded-md');
+                        notificationElement.textContent = notification.message;
+
+                        notificationsList.appendChild(notificationElement);
+                    });
+                } else {
+                    notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">No tienes notificaciones</a>';
                 }
             })
             .catch(error => console.error('Error al obtener las notificaciones:', error));
     }
 
+    // Llamar a la función al cargar la página y cada segundo para actualizar
     setInterval(checkUnreadNotifications, 1000);
-
-    checkUnreadNotifications();
+    checkUnreadNotifications(); // Llamada inicial para obtener las notificaciones al cargar la página
 </script>
+
 <div x-data="{ open_menu: false , open_profile_menu: false}" class="min-h-full">
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,16 +83,27 @@
 
                         @endguest
                         @auth
-                            <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                <span class="absolute -inset-1.5"></span>
+                            <button type="button"
+                                    class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                    x-data="{ open_options_menu: false }">
+                                <span class="absolute -inset-1.5" @click="open_options_menu = !open_options_menu"></span>
                                 <span class="sr-only">View notifications</span>
 
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" @click="open_options_menu = !open_options_menu">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                                 </svg>
-                                <div id="notification-dot-container">
+                                <div id="notification-dot-container relative">
+                                    <span id="notification-dot" class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-gray-800"></span>
 
-                                        <span id="notification-dot" class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-gray-800"></span>
+
+                                    <!-- Menú desplegable -->
+                                    <div x-show="open_options_menu" @click.away="open_options_menu = false"
+                                         class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
+
+                                        <div id="notifications-list">
+                                        </div>
+
+                                    </div>
                                 </div>
                             </button>
 
@@ -92,8 +120,8 @@
 
                             <div x-show="open_profile_menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Tu perfil</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Ajustes</a>
                                 <form method="POST" action="/logout">
                                     @csrf
                                     <button type='submit' class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</button>
@@ -160,9 +188,9 @@
                     </button>
                 </div>
                 <div x-show="open_profile_menu"  class="mt-3 space-y-1 px-2">
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Tu perfil</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Ajustes</a>
+                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Cerrar sesión</a>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://code.highcharts.com/dashboards/css/dashboards.css">
 
 <x-layout :title="'Dashboard'">
-    <x-page-heading>Bienvenido al dashboard que te permite ejercer un control total sobre tu empresa</x-page-heading>
+    <x-page-heading>Mi dashboard</x-page-heading>
 
     <div id="midashboard" style="width: 100%; height: 100%"></div>
 

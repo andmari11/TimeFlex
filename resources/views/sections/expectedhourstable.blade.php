@@ -137,8 +137,8 @@
         <h2 class="text-xl font-bold">Horas mensuales esperadas por empleado</h2>
     </div>
 
-    <div class="flex justify-end gap-4 mt-4">
-        <select id="seccionSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm">
+    <div class="flex justify-between gap-2 mt-4">
+        <select id="seccionSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm w-full max-w-xs">
             <option value="all">Todas</option>
             @foreach ($sections as $section)
                 @if ($section->name !== 'Sin sección')
@@ -176,7 +176,7 @@
 
     <div class="flex justify-end mt-4">
         <template x-if="!editMode">
-            <button @click="editMode = true" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded shadow">
+            <button @click="editMode = true" class="bg-blue-800 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded shadow">
                 Editar
             </button>
         </template>

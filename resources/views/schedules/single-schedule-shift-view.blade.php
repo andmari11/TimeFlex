@@ -14,22 +14,41 @@
             </div>
         </div>
         @if ($shiftToView)
-            <div class="mx-auto mt-y0 flex flex-col justify-center items-center">
-                @if(!$shiftToView->hasUser(Auth::user()->id))
-                    <div class="flex items-center justify-center w-full mb-3 px-4">
-                        <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
-                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shiftToView->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+            <div class="mx-auto mt-y0 flex flex-col justify-center items-center" x-data="{ open_options_menu: false }" >
+
+            <div class="flex items-center justify-center relative w-full mb-3 px-8">
+                <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
+                <div class="absolute top-0 right-2 py-0">
+                    <button
+                        @click="open_options_menu = !open_options_menu"
+                        type="button"
+                        class="px-3 py-0 text-black rounded-full text-2xl  font-bold">
+                        &#x22EE;
+                    </button>
+                    <!-- Menú desplegable -->
+
+                </div>
+                <div  x-show="open_options_menu" @click.away="open_options_menu = false"
+                      class="absolute right-0 z-10 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
+
+                    @if(!$shiftToView->hasUser(Auth::user()->id))
+
+                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shiftToView->id}}"
+                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
                             Cambio de turno
                         </a>
-                    </div>
-                @else
-                    <div class="flex items-center justify-center w-full mb-3 px-8">
-                        <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
-                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shiftToView->id}}" class="bg-blue-600 hover:bg-blue-500 text-center px-2 py-1 rounded-2xl text-white text-bold transition-all duration-300">
+                    @else
+                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shiftToView->id}}"
+                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
                             Cambio de turno
                         </a>
-                    </div>
-                @endif
+                    @endif
+                </div>
+
+
+            </div>
+
+
 
                 <p class="pb-2"><strong>Inicio:</strong> {{ \Carbon\Carbon::parse($shiftToView->start)->format('H:i') }}  - {{ \Carbon\Carbon::parse($shiftToView->start)->format('d/m/Y') }}</p>
                 <p class="pb-2"><strong>Fin:</strong> {{ \Carbon\Carbon::parse($shiftToView->end)->format('H:i') }} - {{ \Carbon\Carbon::parse($shiftToView->end)->format('d/m/Y') }} </p>
