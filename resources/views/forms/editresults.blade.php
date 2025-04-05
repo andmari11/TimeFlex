@@ -192,24 +192,49 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Inicializar Flatpickr para rangos de fechas
-            document.querySelectorAll('.date-range-picker').forEach(function (element) {
-                flatpickr(element, {
-                    mode: "range",
-                    dateFormat: "Y-m-d",
-                    defaultDate: element.value.split(" to ") // Carga valores anteriores
+            document.addEventListener('DOMContentLoaded', function () {
+                // Inicializar Flatpickr para rangos de fechas
+                document.querySelectorAll('.date-range-picker').forEach(function (element) {
+                    flatpickr(element, {
+                        mode: "range",
+                        dateFormat: "Y-m-d",
+                        defaultDate: element.value.split(", "), // Carga valores anteriores
+                        locale: {
+                            firstDayOfWeek: 0, // Lunes
+                            weekdays: {
+                                shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                                longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                            },
+                            months: {
+                                shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                            },
+                        }
+                    });
                 });
-            });
 
-            // Inicializar Flatpickr para fechas múltiples
-            document.querySelectorAll('.multi-date-picker').forEach(function (element) {
-                flatpickr(element, {
-                    mode: "multiple",
-                    dateFormat: "Y-m-d",
-                    defaultDate: element.value.split(", ") // Carga valores anteriores
+                // Inicializar Flatpickr para fechas múltiples
+                document.querySelectorAll('.multi-date-picker').forEach(function (element) {
+                    flatpickr(element, {
+                        mode: "multiple",
+                        dateFormat: "Y-m-d",
+                        defaultDate: element.value.split(", "), // Carga valores anteriores
+                        locale: {
+                            firstDayOfWeek: 0, // Lunes
+                            weekdays: {
+                                shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                                longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                            },
+                            months: {
+                                shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                                longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                            },
+                        }
+                    });
                 });
-            });
 
-            // Actualizar el valor del deslizador
+
+                // Actualizar el valor del deslizador
             document.querySelectorAll('.slider').forEach(function (slider) {
                 const valueDisplay = document.getElementById(`slider-value-${slider.id.split('-')[1]}`);
                 valueDisplay.textContent = `${slider.value}%`;

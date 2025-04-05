@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Schedules\ScheduleController;
 use App\Models\Result;
+use App\Models\Schedule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\Form;
@@ -43,7 +46,9 @@ class FormsController extends Controller
             ->where('id_form', $id)
             ->exists();
 
-        return view('forms.show', compact('formulario', 'hasAnswered'));
+        $calendars = self::heatMap();
+        $calendars = $calendars[0];
+        return view('forms.show', compact('formulario', 'hasAnswered', 'calendars'));
     }
 
 
@@ -218,6 +223,7 @@ class FormsController extends Controller
 
     public function submit(Request $request, $id)
     {
+
         $formulario = Form::with('questions')->findOrFail($id);
 
         // Validación de los datos que llegan del formulario.
@@ -497,5 +503,42 @@ class FormsController extends Controller
 
         return redirect()->route('forms.showresults', $formId)
             ->with('success', 'Tus respuestas se han actualizado correctamente.');
+    }
+
+
+
+    public static function heatMap()
+    {
+        //un año
+        $months = collect(range(0, 11))->map(function ($i) {
+            return Carbon::now()->addMonths($i)->startOfMonth();
+        });
+
+        $calendars = collect();
+
+        foreach ($months as $month) {
+            // ajustar para que el calendario comience el lunes anterior
+            $startOfCalendar = $month->copy()->startOfMonth()->startOfWeek(Carbon::MONDAY);
+            $endOfCalendar = $month->copy()->endOfMonth()->endOfWeek(Carbon::SUNDAY);
+
+            // generar las fechas dentro del rango
+            $days = collect();
+            for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+                $days->push([
+                    'date' => $currentDay->copy(),
+                    'day_of_week' => $currentDay->dayOfWeek,
+                    'is_current_month' => $currentDay->month === $month->month,
+                    'value'=>rand(0,10),
+                    'id'=> $currentDay->format('Y-m-d'),
+                ]);
+            }
+
+            $calendars->push([
+                'month_id' => $month->format('m'),
+                'month' => ScheduleController::monthToSpanish($month->format('m')),
+                'days' => $days
+            ]);
+        }
+        return  $calendars;
     }
 }

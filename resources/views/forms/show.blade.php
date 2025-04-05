@@ -1,4 +1,25 @@
 <x-layout :title="'Ver Formulario'">
+    <script>
+        function calendarComponent() {
+            return {
+                selectedDays: [],
+
+                toggleSelection(dayId) {
+                    const index = this.selectedDays.indexOf(dayId);
+                    if (index > -1) {
+                        this.selectedDays.splice(index, 1);
+                    } else {
+                        this.selectedDays.push(dayId);
+                    }
+                },
+
+                isSelected(dayId) {
+                    return this.selectedDays.includes(dayId);
+                }
+            }
+        }
+    </script>
+
     <div class="container mx-auto py-10 px-6">
         <!-- Encabezado -->
         <div class="text-center mb-6">
@@ -120,10 +141,50 @@
                                     @break
 
                                 @case(5)
-                                    <!-- Pregunta Calendario Múltiple -->
-                                    <div class="relative mt-2">
-                                        <input type="text" name="questions[{{ $index }}][answer]" id="multi-date-picker-{{ $index }}"
-                                               class="multi-date-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
+
+                                    <!-- Pregunta Calendario Múltiple-->
+                                    <div x-data="calendarComponent()" class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+                                        <h2 class="text-lg font-semibold mb-4">{{$calendars['month']}}</h2>
+                                            <div class="grid grid-cols-7 gap-0">
+
+                                                @foreach($calendars['days'] as $dia)
+                                                    @php
+                                                        $dayOfWeekNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                                                        $dayOfWeekName = $dayOfWeekNames[$dia['day_of_week']];
+                                                         $heatMapColors = [
+                                                            'bg-sky-100 text-gray-800', // 0
+                                                            'bg-sky-200 text-gray-800', // 1
+                                                            'bg-sky-300 text-gray-800', // 2
+                                                            'bg-sky-400 text-gray-800', // 3
+                                                            'bg-sky-500 text-white',    // 4
+                                                            'bg-sky-600 text-white',    // 5
+                                                            'bg-sky-700 text-white',    // 6
+                                                            'bg-sky-800 text-white',    // 7
+                                                            'bg-sky-900 text-white',    // 8
+                                                            'bg-sky-900 text-white',    // 9
+                                                            'bg-blue-900 text-white',   // 10
+                                                        ];
+                                                        $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
+                                                    @endphp
+                                                    @if($dia['is_current_month'])
+
+                                                        <div
+                                                            class="p-0 border rounded text-center cursor-pointer"
+                                                            :class="isSelected('{{ $dia['id'] }}') ? 'border-2 border-red-500 {{ $color }}' : '{{ $color }}'"
+                                                            @click="toggleSelection('{{ $dia['id'] }}')">
+                                                                <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
+                                                        </div>
+                                                    @else
+                                                        <div
+                                                            class="p-0 border rounded text-center cursor-pointer"
+                                                            :class="'{{ $color }}'">
+
+                                                        </div>
+                                                    @endif
+
+                                                @endforeach
+                                            </div>
+                                    <input type="hidden" name="questions[{{ $index }}][answer]" :value="JSON.stringify(selectedDays)">
                                     </div>
                                     @break
 
@@ -241,7 +302,19 @@
             document.querySelectorAll('.date-range-picker').forEach(function (element) {
                 flatpickr(element, {
                     mode: "range",
-                    dateFormat: "Y-m-d"
+                    dateFormat: "Y-m-d",
+                    defaultDate: element.value.split(", "), // Carga valores anteriores
+                    locale: {
+                        firstDayOfWeek: 0, // Lunes
+                        weekdays: {
+                            shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                            longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                        },
+                        months: {
+                            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                            longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        },
+                    }
                 });
             });
 
@@ -249,9 +322,22 @@
             document.querySelectorAll('.multi-date-picker').forEach(function (element) {
                 flatpickr(element, {
                     mode: "multiple",
-                    dateFormat: "Y-m-d"
+                    dateFormat: "Y-m-d",
+                    defaultDate: element.value.split(", "), // Carga valores anteriores
+                    locale: {
+                        firstDayOfWeek: 0, // Lunes
+                        weekdays: {
+                            shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                            longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                        },
+                        months: {
+                            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                            longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        },
+                    }
                 });
             });
+
 
             // Actualizar el valor del deslizador
             document.querySelectorAll('.slider').forEach(function (slider) {
