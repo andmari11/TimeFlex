@@ -28,7 +28,7 @@ class FormsController extends Controller
                 $query->where('sections.id', $user->section_id);
             })->with('sections')->distinct()->get();
         }
-
+        $formularios = $formularios->isEmpty() ? collect([]) : $formularios->toQuery()->paginate(9);
         return view('forms.index', compact('formularios'));
     }
 

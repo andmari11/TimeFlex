@@ -1,5 +1,5 @@
 
-<x-layout :title="'Formularios disponibles'">
+<x-layout :title="'Calendarios disponibles'">
     <div class="container mx-auto py-10 px-6">
         <div class="text-center mb-10">
             <h1 class="text-4xl font-bold text-gray-800">Tus horarios</h1>
@@ -23,6 +23,11 @@
 
                     <x-schedules.single-schedule-item :schedule="$schedule"></x-schedules.single-schedule-item>
                 @endforeach
+            </div>
+        @endif
+        @if(!$schedules->isEmpty())
+            <div class="py-8">
+                {{ $schedules->links() }}
             </div>
         @endif
     </div>

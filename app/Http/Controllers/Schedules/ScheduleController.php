@@ -20,7 +20,6 @@ class ScheduleController extends Controller
             $schedules = auth()->user()->company->schedules->reverse()->map(function ($schedule) {
                 return $schedule;
             });
-            return view('horario', compact('schedules'));
         }
         else{
             BrowserHistoryController::add(
@@ -29,10 +28,11 @@ class ScheduleController extends Controller
             $schedules = auth()->user()->section->schedules->reverse()->map(function ($schedule) {
                 return $schedule;
             });
-            return view('horario', compact('schedules'));
 
         }
 
+        $schedules = $schedules->isEmpty() ? collect([]) : $schedules->toQuery()->paginate(9);
+        return view('horario', compact('schedules'));
 
     }
 

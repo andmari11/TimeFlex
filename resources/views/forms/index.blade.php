@@ -167,6 +167,11 @@
             </div>
         @endif
     </div>
+    @if(!$formularios->isEmpty())
+        <div class="py-8">
+            {{ $formularios->links() }}
+        </div>
+    @endif
 </x-layout>
 <script>
     function showDuplicatePopup(formId) {
