@@ -30,7 +30,23 @@ class ShiftExchangeController extends Controller
         $workers = Schedule::find($id_schedule)->section->users;
         return view('schedules.shift-exchange-admin', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts', 'workers', 'workerSelected', 'days')));
     }
+    public function selectAssign($id_schedule,$workerSelected_id, $id_shift_someone){
+        $scheduleData = ScheduleController::prepareScheduleData($id_schedule);
+        $workerSelected = User::find($workerSelected_id);
+        if($workerSelected){
+            $userShifts = $workerSelected->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
+                return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
+            });
+        }
+        else{
+            $userShifts = [];
+        }
+        $days=$scheduleData['months'][0]['days'];
 
+        $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
+        $workers = Schedule::find($id_schedule)->section->users;
+        return view('schedules.shift-exchange-assign', array_merge($scheduleData, compact('userShifts', 'id_shift_someone', 'availableShifts','workers', 'workerSelected', 'days')));
+    }
     public function select($id_schedule, $id_shift_someone)
     {
 
@@ -57,6 +73,30 @@ class ShiftExchangeController extends Controller
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts','days')));
 
+    }
+
+    public function assignShift()
+    {
+        $data = request()->validate([
+            'schedule_id' => 'required',
+            'shift_id_someone' => 'required',
+            'worker_id' => 'required',
+        ]);
+
+        $worker = User::find($data['worker_id']);
+        $shift = Shift::find($data['shift_id_someone']);
+        $shift->users()->attach($worker->id);
+        if ($worker != null) {
+            $notification = new Notification();
+            $notification->user_id = $worker->id;
+            $notification->tipo = 'exchange';
+            $notification->message = 'Administración te ha asignado un turno';
+            $notification->url = '/horario/' . $data['schedule_id'] . '/turno/' . $data['shift_id_someone'];
+            $notification->save();
+            $worker->shifts()->attach($data['shift_id_someone']);
+        }
+
+       return redirect('/horario/' . $data['schedule_id'] . '/turno/' . $data['shift_id_someone']);
     }
 
     public function createExchange()

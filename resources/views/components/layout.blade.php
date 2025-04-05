@@ -35,7 +35,7 @@
                         notificationsList.appendChild(notificationElement);
                     });
                 } else {
-                    notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">No tienes notificaciones</a>';
+                    notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm hover:rounded-md text-gray-700 hover:bg-gray-100">No tienes notificaciones</a>';
                 }
             })
             .catch(error => console.error('Error al obtener las notificaciones:', error));

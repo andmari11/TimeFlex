@@ -121,11 +121,15 @@ Route::get('/horario/personal/{id_schedule}/turno/{id_shift}', [ScheduleControll
 
 Route::get('/shift-exchange/{id_schedule}/turno/{id_shift_someone}', [ShiftExchangeController::class, 'select'])->middleware('auth');
 Route::post('/shift-exchange', [ShiftExchangeController::class, 'createExchange'])->middleware('auth');
+Route::post('/shift-assign', [ShiftExchangeController::class, 'assignShift'])->middleware('auth');
 Route::post('/shift-exchange/cancel/{id}', [ShiftExchangeController::class, 'cancelExchange'])->middleware('auth');
 Route::post('/shift-exchange/accept/{id}', [ShiftExchangeController::class, 'acceptExchange'])->middleware('auth');
 Route::get('/shift-exchange/{id_schedule}/turno/{id_shift_someone}/{id_shift_mine}', [ShiftExchangeController::class, 'exchange'])->middleware('auth');
 Route::post('/shift-exchange-admin', [ShiftExchangeController::class, 'createExchangeAdmin'])->middleware('auth');
 Route::get('/shift-exchange/{id_schedule}/worker/{workerSelected_id}/turno/{id_shift_someone}/{id_shift_mine}', [ShiftExchangeController::class, 'selectAdmin'])->middleware('auth');
+Route::get('/shift-exchange/{id_schedule}/worker/{workerSelected_id}/turno/{id_shift_someone}', [ShiftExchangeController::class, 'selectAssign'])->middleware('auth');
+
+
 Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
 
 Route::get('forms', function (){

@@ -3,35 +3,39 @@
 <div class="p-4 bg-white shadow rounded-xl relative min-h-[200px] flex flex-col justify-between">
     <!-- Botón de opciones -->
     <div class="absolute top-2 right-2" x-data="{ open_options_menu: false }">
-    <button
-        @click="open_options_menu = !open_options_menu"
-        type="button"
-        class="px-3 py-1 text-black rounded-full text-lg  font-bold">
-        &#x22EE;
-    </button>
+        @if(auth()->user()->role == 'admin')
 
-    <!-- Menú desplegable -->
-    <div x-show="open_options_menu" @click.away="open_options_menu = false"
-         class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
-        <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/0/0"
-           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-            Cambio de turno
-        </a>
-        @if($schedule->status != 'success')
-            <a href="/horario/{{$schedule->id}}/optimize"
-               class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-                Optimizar
-            </a>
-        @endif
-        <a href="/horario/{{$schedule->id}}/edit"
-           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-            Editar
-        </a>
-        <button class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left">
-            Eliminar
+        <button
+            @click="open_options_menu = !open_options_menu"
+            type="button"
+            class="px-3 py-1 text-black rounded-full text-lg  font-bold">
+            &#x22EE;
         </button>
 
-    </div>
+        <!-- Menú desplegable -->
+        <div x-show="open_options_menu" @click.away="open_options_menu = false"
+             class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
+
+            <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/0/0"
+               class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                Cambio de turno
+            </a>
+            @if($schedule->status != 'success')
+                <a href="/horario/{{$schedule->id}}/optimize"
+                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                    Optimizar
+                </a>
+            @endif
+            <a href="/horario/{{$schedule->id}}/edit"
+               class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                Editar
+            </a>
+            <button class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left">
+                Eliminar
+            </button>
+
+        </div>
+        @endif
 </div>
 
     <!-- Contenido principal -->

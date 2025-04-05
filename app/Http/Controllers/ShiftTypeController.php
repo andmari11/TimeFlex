@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\ShiftType;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShiftTypeController extends Controller
@@ -27,6 +28,8 @@ class ShiftTypeController extends Controller
             'users_needed' => 'required|numeric',
             'period' => 'required|numeric',
             'weekends_excepted' => 'boolean',
+            'workers' => 'array',
+            'workers.*' => 'exists:users,id',
             ], [        ], [
             'notes.required' => 'El campo notas es obligatorio',
             'start.required' => 'El campo inicio es obligatorio',
@@ -36,7 +39,13 @@ class ShiftTypeController extends Controller
             'users_needed.numeric' => 'El campo usuarios necesarios debe ser numérico',
             'period.required' => 'El campo periodo es obligatorio',
             'period.numeric' => 'El campo periodo debe ser numérico',
+            'workers.array' => 'El campo trabajadores debe ser un array',
+            'workers.*.exists' => 'El trabajador seleccionado no es válido',
         ]);
+
+        if (isset($attributesSchedule['workers']) && $attributesSchedule['users_needed'] !== null && count($attributesSchedule['workers']) > $attributesSchedule['users_needed']) {
+            return back()->withErrors(['workers' => 'El número de trabajadores asignados no puede ser mayor que el número de trabajadores necesarios.']);
+        }
         $attributesSchedule['weekends_excepted'] = request()->has('weekends_excepted');
 
 
@@ -47,6 +56,14 @@ class ShiftTypeController extends Controller
 
         // Crear un nuevo horario con los atributos combinados
         $shiftType = ShiftType::create($attributesSchedule);
+
+        // Asignar los trabajadores al nuevo horario
+        if (isset($attributesSchedule['workers'])) {
+            foreach ($attributesSchedule['workers'] as $worker) {
+                $shiftType->users()->attach(User::findOrFail($worker));
+            }
+        }
+
 
         self::generateShifts($shiftType);
 
@@ -70,7 +87,13 @@ class ShiftTypeController extends Controller
         $period = $shiftType->period;
         $weekendsExcepted = $shiftType->weekends_excepted;
 
-        $currentDate = $startDate->copy();
+        if($period==0){
+            $currentDate = \Carbon\Carbon::parse($shiftType->start);
+            $endDate = \Carbon\Carbon::parse($shiftType->end);
+        }
+        else{
+            $currentDate = $startDate->copy();
+        }
 
         while ($currentDate->lte($endDate)) {
             if ($weekendsExcepted && $currentDate->isWeekend()) {
@@ -78,7 +101,7 @@ class ShiftTypeController extends Controller
                 continue;
             }
 
-            Shift::create([
+            $shift = Shift::create([
                 'schedule_id'   => $schedule->id,
                 'notes'         => $shiftType->notes,
                 'start'         => $currentDate->copy()->setTimeFrom($shiftStart),
@@ -86,6 +109,8 @@ class ShiftTypeController extends Controller
                 'users_needed'  => $shiftType->users_needed,
                 'type'          => $shiftType->id,
             ]);
+
+            $shift ->users()->attach($shiftType->users);
 
             switch ($period) {
                 case 0: // Único

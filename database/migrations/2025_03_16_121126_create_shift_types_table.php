@@ -22,7 +22,12 @@ return new class extends Migration
             $table->integer("period");
             $table->boolean("weekends_excepted");
         });
-
+        Schema::create('shift_type_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\ShiftType::class, 'shift_type_id');
+            $table->foreignIdFor(\App\Models\User::class, 'user_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,5 +36,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('shift_types');
+        Schema::dropIfExists('shift_type_user');
     }
 };

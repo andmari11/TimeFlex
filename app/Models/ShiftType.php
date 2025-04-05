@@ -23,7 +23,7 @@ class ShiftType extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(User::class, 'shift_user');
+        return $this->belongsToMany(User::class, 'shift_type_user');
     }
     public function hasUser($id_user)
     {

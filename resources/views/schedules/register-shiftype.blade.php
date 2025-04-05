@@ -54,6 +54,20 @@
 
                     <x-forms.error name="weekends_excepted" />
                 </x-forms.field>
+                <x-forms.field class="col-12">
+                    <x-forms.label for="workers">Asignar trabajadores</x-forms.label>
+                    <select class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 py-1.5 px-3"
+                            name="workers[]"
+                            id="workers"
+                            multiple>
+                        @foreach($schedule->section->users as $worker)
+                            <option value="{{ $worker->id }}" {{ in_array($worker->id, old('workers', [])) ? 'selected' : '' }}>
+                                {{ $worker->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <x-forms.error name="workers" />
+                </x-forms.field>
             </div>
 
             <div class="mt-6 flex items-center justify-between">

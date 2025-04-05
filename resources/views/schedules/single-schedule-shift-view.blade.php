@@ -30,18 +30,31 @@
                 </div>
                 <div  x-show="open_options_menu" @click.away="open_options_menu = false"
                       class="absolute right-0 z-10 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
-
-                    @if(!$shiftToView->hasUser(Auth::user()->id))
-
-                        <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shiftToView->id}}"
+                    @if($shiftToView->users->count() < $shiftToView->users_needed && auth()->user()->role == 'admin')
+                        <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/{{$shiftToView->id}}"
                            class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-                            Cambio de turno
+                            Asignar turno
                         </a>
-                    @else
-                        <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shiftToView->id}}"
-                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-                            Cambio de turno
-                        </a>
+                    @endif
+                    @if($shiftToView->users->count() >= $shiftToView->users_needed)
+                            @if(auth()->user()->role == 'admin')
+                                <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/{{$shiftToView->id}}/0"
+                                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                    Cambio de turno
+                                </a>
+                            @endif
+                            @if(!$shiftToView->hasUser(Auth::user()->id) )
+
+                                <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shiftToView->id}}"
+                                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                    Solicitar cambio de turno
+                                </a>
+                            @else
+                                <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shiftToView->id}}"
+                                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                    Solicitar cambio de turno
+                                </a>
+                            @endif
                     @endif
                 </div>
 

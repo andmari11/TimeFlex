@@ -4,13 +4,14 @@ import json
 
 
 class Shift:
-    def __init__(self, shift_id, schedule_id, start, end, users_needed, type):
+    def __init__(self, shift_id, schedule_id, start, end, users_needed, type, users=[]):
         self.shift_id = shift_id
         self.schedule_id = schedule_id
         self.start = start if isinstance(start, datetime) else datetime.strptime(start, '%Y-%m-%d %H:%M:%S')
         self.end = end if isinstance(end, datetime) else datetime.strptime(end, '%Y-%m-%d %H:%M:%S')
         self.users_needed = users_needed
         self.type = type
+        self.users = users
 
 
     def __repr__(self):
@@ -31,7 +32,8 @@ def process_shifts_from_json(data:json) -> List[Shift]:
             start=entry['start'],
             end=entry['end'],
             users_needed=entry['users_needed'],
-            type=entry.get('type',"0")
+            type=entry.get('type',"0"),
+            users=entry.get('users', [])
         )
         shifts.append(shift)
     return shifts

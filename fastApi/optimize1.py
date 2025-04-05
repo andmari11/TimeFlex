@@ -88,6 +88,11 @@ def optimize(data, logging):
             worker_shifts.append(Bool(nWork(workers[i].user_id, shifts[j].shift_id)))
         all_workers_shifts.append(worker_shifts)
 
+    #asignamos los turnos predefinidos
+    for j in range(n_shifts):
+        for i in range(n_workers):
+            if workers[i].user_id in shifts[j].users:
+                s.add(all_workers_shifts[i][j] == True)
 
     #comprobamos cuantos turnos trabaja cada trabajador
     for i in range(n_workers):

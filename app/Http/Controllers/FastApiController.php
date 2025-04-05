@@ -49,51 +49,23 @@ class FastApiController extends Controller
             $worker_preferences[] = $worker_preference;
         }
 
-//        $worker_preferences = [
-//            [
-//                "user_id" => 1,
-//                'form_id' => 123,
-//                "holidays" => json_encode(["2024-12-01 00:00:00", "2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
-//                "holidays_weight" => 1,
-//                "preferred_shift_types" => json_encode([0, 1, 2]),
-//                "preferred_shift_types_weight" => 1,
-//                "past_satisfaction" => json_encode([0.5, 0.0, 2.5, 1.0, 3.0])
-//            ],
-//            [
-//                "user_id" => 2,
-//                'form_id' => 123,
-//                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-03 00:00:00", "2024-12-02 00:00:00"]),
-//                "holidays_weight" => 1,
-//                "preferred_shift_types" => json_encode([1, 2]),
-//                "preferred_shift_types_weight" => 1,
-//                "past_satisfaction" => json_encode([6.0, 7.5, 8.0, 1.5, 7.0])
-//            ],
-//            [
-//                "user_id" => 3,
-//                'form_id' => 123,
-//                "holidays" => json_encode(["2024-12-04 00:00:00", "2024-12-05 00:00:00"]),
-//                "holidays_weight" => 1,
-//                "preferred_shift_types" => json_encode([2]),
-//                "preferred_shift_types_weight" => 1,
-//                "past_satisfaction" => json_encode([1.5, 9.0, 7.5, 6.0, 8.0])
-//            ],
-//            [
-//                "user_id" => 4,
-//                'form_id' => 123,
-//                "holidays" => json_encode(["2024-12-05 00:00:00", "2024-12-01 00:00:00"]),
-//                "holidays_weight" => 1,
-//                "preferred_shift_types" => json_encode([0, 1]),
-//                "preferred_shift_types_weight" => 1,
-//                "past_satisfaction" => json_encode([7.0, 2.5, 8.0, 1.5, 4.0])
-//            ]
-//        ];
-
-
-
-
-
         $data['usersJSON'] =json_encode($worker_preferences);
-        $data['shiftsJSON'] = json_encode($schedule->shifts);
+
+        $scheduleShifts=[];
+        foreach($schedule->shifts as $shift){
+            $shiftData = [
+                "id" => $shift->id,
+                "schedule_id" => $shift->schedule_id,
+                "start" => $shift->start,
+                "end" => $shift->end,
+                "users_needed" => $shift->users_needed,
+                "type" => $shift->type,
+                "users" => $shift->users->pluck('id')->toArray()
+            ];
+            $scheduleShifts[] = $shiftData;
+        }
+        $data['shiftsJSON'] = json_encode($scheduleShifts);
+
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
@@ -142,6 +114,9 @@ class FastApiController extends Controller
             return response()->json(['message' => 'Datos recibidos y guardados correctamente'], 200);
         }
 
+        $schedule->shifts->each(function ($shift) {
+            $shift->users()->detach();
+        });
         foreach ($schedule->section->company->admins as $user) {
             Notification::create([
                 'user_id' => $user->id,
@@ -191,7 +166,8 @@ class FastApiController extends Controller
                 if ($user) {
                     Satisfaction::create([
                         'user_id' => $user->id,
-                        'score' => $satisfability
+                        'score' => $satisfability,
+                        'schedule_id' => $schedule->id
                     ]);
                 } else {
                     return response()->json(['message' => "Usuario con ID {$userId} no encontrado."], 404);

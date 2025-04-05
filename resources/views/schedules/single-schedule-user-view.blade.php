@@ -36,17 +36,22 @@
                                 <!-- Menú desplegable -->
                                 <div x-show="open_options_menu" @click.away="open_options_menu = false"
                                      class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
-
+                                    @if(auth()->user()->role == 'admin')
+                                        <a href="/shift-exchange/{{$schedule->id}}/worker/0/turno/{{$shift->id}}/0"
+                                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                            Cambio de turno
+                                        </a>
+                                    @endif
                                     @if($userToView->id!=auth()->user()->id)
 
                                         <a href="/shift-exchange/{{$schedule->id}}/turno/{{$shift->id}}"
                                            class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-                                        Cambio de turno
+                                        Solicitar cambio de turno
                                         </a>
                                     @else
                                         <a href="/shift-exchange/{{$schedule->id}}/turno/0/{{$shift->id}}"
                                            class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
-                                        Cambio de turno
+                                        Solicitar cambio de turno
                                         </a>
                                     @endif
                                 </div>
