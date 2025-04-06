@@ -31,7 +31,7 @@ class FormsController extends Controller
                 $query->where('sections.id', $user->section_id);
             })->with('sections')->distinct()->get();
         }
-        $formularios = $formularios->isEmpty() ? collect([]) : $formularios->toQuery()->paginate(9);
+        $formularios = $formularios->isEmpty() ? collect([]) : $formularios->toQuery()->orderBy('created_at', 'desc')->paginate(9);
         return view('forms.index', compact('formularios'));
     }
 
@@ -47,7 +47,6 @@ class FormsController extends Controller
             ->exists();
 
         $calendars = self::heatMap();
-        $calendars = $calendars[0];
         return view('forms.show', compact('formulario', 'hasAnswered', 'calendars'));
     }
 
@@ -535,7 +534,7 @@ class FormsController extends Controller
 
             $calendars->push([
                 'month_id' => $month->format('m'),
-                'month' => ScheduleController::monthToSpanish($month->format('m')),
+                'month' => ScheduleController::monthToSpanish($month->format('m')) . ' ' . $month->format('Y'),
                 'days' => $days
             ]);
         }

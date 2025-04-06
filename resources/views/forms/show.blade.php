@@ -2,6 +2,8 @@
     <script>
         function calendarComponent() {
             return {
+                currentPage: 1,
+                totalPages: {{$calendars->count()}},
                 selectedDays: [],
 
                 toggleSelection(dayId) {
@@ -144,47 +146,82 @@
 
                                     <!-- Pregunta Calendario Múltiple-->
                                     <div x-data="calendarComponent()" class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-                                        <h2 class="text-lg font-semibold mb-4">{{$calendars['month']}}</h2>
-                                            <div class="grid grid-cols-7 gap-0">
+                                        @foreach($calendars as $i=>$month)
+                                            <div x-show="currentPage == {{ $i+1 }}">
+                                                <div class="flex items-center justify-between mb-4">
 
-                                                @foreach($calendars['days'] as $dia)
-                                                    @php
-                                                        $dayOfWeekNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-                                                        $dayOfWeekName = $dayOfWeekNames[$dia['day_of_week']];
-                                                         $heatMapColors = [
-                                                            'bg-sky-100 text-gray-800', // 0
-                                                            'bg-sky-200 text-gray-800', // 1
-                                                            'bg-sky-300 text-gray-800', // 2
-                                                            'bg-sky-400 text-gray-800', // 3
-                                                            'bg-sky-500 text-white',    // 4
-                                                            'bg-sky-600 text-white',    // 5
-                                                            'bg-sky-700 text-white',    // 6
-                                                            'bg-sky-800 text-white',    // 7
-                                                            'bg-sky-900 text-white',    // 8
-                                                            'bg-sky-900 text-white',    // 9
-                                                            'bg-blue-900 text-white',   // 10
-                                                        ];
-                                                        $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
-                                                    @endphp
-                                                    @if($dia['is_current_month'])
+                                                <h2 class="text-lg font-semibold mb-4">{{$month['month']}}</h2>
+                                                @if($calendars->count() > 1)
+                                                    <div class="flex">
+                                                        <!-- Botón de mes anterior -->
+                                                        <button
+                                                            type="button"
+                                                            x-on:click="if (currentPage != 1) currentPage = currentPage - 1"
+                                                            :disabled="currentPage == 1"
+                                                            class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-l-md flex items-center justify-center w-10 h-10 border-r-2 border-white"
+                                                            :class="{ 'opacity-50': currentPage == 1 }">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                                                <path d="M15 19l-7-7 7-7"/>
+                                                            </svg>
+                                                        </button>
 
-                                                        <div
-                                                            class="p-0 border rounded text-center cursor-pointer"
-                                                            :class="isSelected('{{ $dia['id'] }}') ? 'border-2 border-red-500 {{ $color }}' : '{{ $color }}'"
-                                                            @click="toggleSelection('{{ $dia['id'] }}')">
+                                                        <!-- Botón de mes siguiente -->
+                                                        <button
+                                                            type="button"
+                                                            x-on:click="if (currentPage != totalPages) currentPage = currentPage + 1"
+                                                            :disabled="currentPage == totalPages"
+                                                            class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-r-md flex items-center justify-center w-10 h-10"
+                                                            :class="{ 'opacity-50': currentPage == totalPages }">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                                                <path d="M9 5l7 7-7 7"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                @endif
+                                                </div>
+                                                <div class="grid grid-cols-7 gap-0">
+
+                                                    @foreach($month['days'] as $dia)
+                                                        @php
+                                                            $dayOfWeekNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                                                            $dayOfWeekName = $dayOfWeekNames[$dia['day_of_week']];
+                                                             $heatMapColors = [
+                                                                'bg-sky-100 text-gray-800', // 0
+                                                                'bg-sky-200 text-gray-800', // 1
+                                                                'bg-sky-300 text-gray-800', // 2
+                                                                'bg-sky-400 text-gray-800', // 3
+                                                                'bg-sky-500 text-white',    // 4
+                                                                'bg-sky-600 text-white',    // 5
+                                                                'bg-sky-700 text-white',    // 6
+                                                                'bg-sky-800 text-white',    // 7
+                                                                'bg-sky-900 text-white',    // 8
+                                                                'bg-sky-900 text-white',    // 9
+                                                                'bg-blue-900 text-white',   // 10
+                                                            ];
+                                                            $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
+                                                        @endphp
+                                                        @if($dia['is_current_month'])
+
+                                                            <div
+                                                                class="p-0 border rounded text-center cursor-pointer"
+                                                                :class="isSelected('{{ $dia['id'] }}') ? 'border-2 text-white bg-green-800' : '{{ $color }}'"
+                                                                @click="toggleSelection('{{ $dia['id'] }}')">
                                                                 <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
-                                                        </div>
-                                                    @else
-                                                        <div
-                                                            class="p-0 border rounded text-center cursor-pointer"
-                                                            :class="'{{ $color }}'">
+                                                            </div>
+                                                        @else
+                                                            <div
+                                                                class="p-0 border rounded text-center cursor-pointer"
+                                                                :class="'{{ $color }}'">
 
-                                                        </div>
-                                                    @endif
+                                                            </div>
+                                                        @endif
 
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
+                                                <input type="hidden" name="questions[{{ $index }}][answer]" :value="JSON.stringify(selectedDays)">
                                             </div>
-                                    <input type="hidden" name="questions[{{ $index }}][answer]" :value="JSON.stringify(selectedDays)">
+
+                                        @endforeach
                                     </div>
                                     @break
 

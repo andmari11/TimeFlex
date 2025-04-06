@@ -24,8 +24,7 @@ class ShiftExchangeController extends Controller
         else{
             $userShifts = [];
         }
-        $days=$scheduleData['months'][0]['days'];
-
+        $days=$scheduleData['months'][0]['days'] ?? [];
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         $workers = Schedule::find($id_schedule)->section->users;
         return view('schedules.shift-exchange-admin', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts', 'workers', 'workerSelected', 'days')));
@@ -41,8 +40,7 @@ class ShiftExchangeController extends Controller
         else{
             $userShifts = [];
         }
-        $days=$scheduleData['months'][0]['days'];
-
+        $days=$scheduleData['months'][0]['days'] ?? [];
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         $workers = Schedule::find($id_schedule)->section->users;
         return view('schedules.shift-exchange-assign', array_merge($scheduleData, compact('userShifts', 'id_shift_someone', 'availableShifts','workers', 'workerSelected', 'days')));
@@ -54,8 +52,7 @@ class ShiftExchangeController extends Controller
         $userShifts = auth()->user()->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
             return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
         });
-        $days=$scheduleData['months'][0]['days'];
-
+        $days=$scheduleData['months'][0]['days'] ?? [];
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_someone', 'availableShifts', 'days')));
 
@@ -68,8 +65,7 @@ class ShiftExchangeController extends Controller
         $userShifts = auth()->user()->shifts->filter(function ($shift) use ($id_schedule, $id_shift_someone) {
             return $shift->schedule->id == $id_schedule && $shift->id != $id_shift_someone;
         });
-        $days=$scheduleData['months'][0]['days'];
-
+        $days=$scheduleData['months'][0]['days'] ?? [];
         $availableShifts = Schedule::find($id_schedule)->shifts->filter(fn($shift) => !in_array(auth()->user()->id, $shift->users->pluck('id')->toArray()));
         return view('schedules.shift-exchange', array_merge($scheduleData, compact('userShifts', 'id_shift_mine', 'id_shift_someone', 'availableShifts','days')));
 

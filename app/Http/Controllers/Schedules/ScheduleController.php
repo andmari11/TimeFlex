@@ -31,7 +31,7 @@ class ScheduleController extends Controller
 
         }
 
-        $schedules = $schedules->isEmpty() ? collect([]) : $schedules->toQuery()->paginate(9);
+        $schedules = $schedules->isEmpty() ? collect([]) : $schedules->toQuery()->orderBy('created_at', 'desc')->paginate(9);
         return view('horario', compact('schedules'));
 
     }
