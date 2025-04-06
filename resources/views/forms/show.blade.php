@@ -211,7 +211,7 @@
 
                                                             <div
                                                                 class="p-0 border rounded text-center cursor-pointer"
-                                                                :class="isSelected('{{ $dia['id'] }}') ? 'border-2 text-white bg-red-500' : '{{ $color }}'"
+                                                                :class="isSelected('{{ $dia['id'] }}') ? 'text-white bg-red-500' : '{{ $color }}'"
                                                                 @click="toggleSelection('{{ $dia['id'] }}')">
                                                                 <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
                                                             </div>
