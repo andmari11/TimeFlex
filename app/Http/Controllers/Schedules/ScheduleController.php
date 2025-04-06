@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Schedules;
 use App\Http\Controllers\BrowserHistoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FastApiController;
+use App\Http\Controllers\ShiftTypeController;
 use App\Models\Schedule;
 use App\Models\User;
 use Carbon\Carbon;
@@ -313,7 +314,7 @@ class ScheduleController extends Controller
         ]);
 
         // Redirigir al menú principal
-        return redirect('/horario');
+        return redirect('/horario/'.$id);
 
 
     }
@@ -322,9 +323,20 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::findOrFail($id);
         $schedule->delete();
-        return redirect('/horario');
+        return redirect('/horario/'.$id);
     }
 
+    public function regenerateShifts($id)
+    {
+        $schedule = Schedule::findOrFail($id);
 
+        $schedule->shifts()->delete();
+        $schedule->shiftTypes()->each(function ($shiftType) {
+            ShiftTypeController::generateShifts($shiftType);
+        });
+        $schedule->status = 'regenerado';
+        $schedule->save();
+        return redirect('/horario/'.$id );
+    }
 
 }

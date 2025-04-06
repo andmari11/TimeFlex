@@ -56,14 +56,16 @@
             $schedule->status == 'success' ? 'green' :
             ($schedule->status == 'not_optimized' ? 'blue' :
             ($schedule->status == 'finalized' ? 'orange' :
-            ($schedule->status == 'failed' ? 'red' : 'black')))
+            ($schedule->status == 'failed' ? 'red' :
+            ($schedule->status == 'regenerado' ? 'purple' : 'black'))))
         }}-600">
             <strong>Estado:</strong>
             {{
                 $schedule->status == 'success' ? 'Éxito' :
                 ($schedule->status == 'not_optimized' ? 'No optimizado' :
                 ($schedule->status == 'finalized' ? 'Finalizado' :
-                ($schedule->status == 'failed' ? 'Fallido' : 'Desconocido')))
+                ($schedule->status == 'failed' ? 'Fallido' :
+                ($schedule->status == 'regenerado' ? 'Regenerado' : 'Desconocido'))))
             }}
         </p>
 

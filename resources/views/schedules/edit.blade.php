@@ -49,12 +49,16 @@
                     <x-forms.error name="end_date" />
                 </x-forms.field>
 
-                <x-forms.field class="col-12">
-                    <a href="/horario/{{$schedule->id}}/edit/shift-type/create"
-                       class="rounded-md bg-green-600 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
-                        Añadir turnos
-                    </a>
-                </x-forms.field>
+            <x-forms.field class=" w-100 d-flex justify-content-between">
+                <a href="/horario/{{$schedule->id}}/edit/shift-type/create"
+                   class="rounded-md bg-blue-900 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+                    Añadir turnos
+                </a>
+                <a href="/horario/{{ $schedule->id }}/regenerate-shifts"
+                   class="ms-8 rounded-md bg-blue-600 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    Actualizar turnos
+                </a>
+            </x-forms.field>
 
             </div>
 

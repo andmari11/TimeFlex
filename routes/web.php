@@ -110,7 +110,7 @@ Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middlewar
 Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 Route::delete('/horario/{id}/delete', [ScheduleController::class, 'destroy'])->middleware('auth');
 Route::get('/horario/{id}/optimize', [FastApiController::class, 'sendSchedule'])->middleware('auth');
-
+Route::get('/horario/{id}/regenerate-shifts', [ScheduleController::class, 'regenerateShifts'])->middleware('auth');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
 Route::get('/horario/{id_schedule}/turno/{id_shift}', [ScheduleController::class, 'showShift'])->middleware('auth');

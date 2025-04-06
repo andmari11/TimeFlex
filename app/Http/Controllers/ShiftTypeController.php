@@ -72,7 +72,7 @@ class ShiftTypeController extends Controller
         return redirect('/horario/'.$schedule_id.'/edit');
     }
 
-    private static function generateShifts($shiftType)
+    public static function generateShifts($shiftType)
     {
         $schedule = Schedule::findOrFail($shiftType->schedule_id);
 
