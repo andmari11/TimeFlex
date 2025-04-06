@@ -180,11 +180,17 @@
                                                 @endif
                                                 </div>
                                                 <div class="grid grid-cols-7 gap-0">
+                                                    @php
+                                                        $dayOfWeekNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+                                                    @endphp
+                                                    @foreach($dayOfWeekNames as $dayName)
+                                                        <div class="text-center text-xs font-semibold text-gray-500 py-2">
+                                                            {{ $dayName }}
+                                                        </div>
 
+                                                    @endforeach
                                                     @foreach($month['days'] as $dia)
                                                         @php
-                                                            $dayOfWeekNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-                                                            $dayOfWeekName = $dayOfWeekNames[$dia['day_of_week']];
                                                              $heatMapColors = [
                                                                 'bg-sky-100 text-gray-800', // 0
                                                                 'bg-sky-200 text-gray-800', // 1
@@ -200,11 +206,12 @@
                                                             ];
                                                             $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
                                                         @endphp
+
                                                         @if($dia['is_current_month'])
 
                                                             <div
                                                                 class="p-0 border rounded text-center cursor-pointer"
-                                                                :class="isSelected('{{ $dia['id'] }}') ? 'border-2 text-white bg-green-800' : '{{ $color }}'"
+                                                                :class="isSelected('{{ $dia['id'] }}') ? 'border-2 text-white bg-red-500' : '{{ $color }}'"
                                                                 @click="toggleSelection('{{ $dia['id'] }}')">
                                                                 <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
                                                             </div>
@@ -217,7 +224,12 @@
                                                         @endif
 
                                                     @endforeach
+
                                                 </div>
+                                                <p class="italic text-sm text-gray-500 mt-4">
+                                                    Este gráfico tiene como objetivo reflejar los días en los que la demanda es más alta, lo cual puede influir en la probabilidad de que una solicitud sea aceptada, ya que una mayor cantidad de peticiones en esos días podría generar una mayor competencia.
+                                                </p>
+
                                                 <input type="hidden" name="questions[{{ $index }}][answer]" :value="JSON.stringify(selectedDays)">
                                             </div>
 
