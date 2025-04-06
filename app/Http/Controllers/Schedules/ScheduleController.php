@@ -318,6 +318,13 @@ class ScheduleController extends Controller
 
     }
 
+    public function destroy(int $id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $schedule->delete();
+        return redirect('/horario');
+    }
+
 
 
 }

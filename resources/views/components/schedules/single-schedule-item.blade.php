@@ -30,9 +30,17 @@
                class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
                 Editar
             </a>
-            <button class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left">
+            <button
+                class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left"
+                onclick="event.preventDefault(); document.getElementById('delete-form-{{$schedule->id}}').submit();">
                 Eliminar
             </button>
+
+            <form method="POST" action="/horario/{{$schedule->id}}/delete" id="delete-form-{{$schedule->id}}" class="hidden">
+                @csrf
+                @method('DELETE')
+            </form>
+
 
         </div>
         @endif

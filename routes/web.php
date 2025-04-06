@@ -108,7 +108,7 @@ Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middlew
 Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');
 Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
 Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
-
+Route::delete('/horario/{id}/delete', [ScheduleController::class, 'destroy'])->middleware('auth');
 Route::get('/horario/{id}/optimize', [FastApiController::class, 'sendSchedule'])->middleware('auth');
 
 
