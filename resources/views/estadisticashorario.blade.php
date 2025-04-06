@@ -1,7 +1,6 @@
 @vite(['resources/js/app.js'])
-
 <x-layout :title="'Estadísticas de horario'">
-    <x-page-heading>Bienvenido a la página de estadísticas de horario</x-page-heading>
+    <x-page-heading>Bienvenido a la página de estadísticas de horario de {{ $section->name }}</x-page-heading>
 
     <div class="flex justify-center items-center gap-4 my-4">
         <button id="prevMonth" class="px-3 py-1 bg-gray-300 rounded">←</button>
@@ -52,13 +51,13 @@
             }
 
             Highcharts.chart('calendarioHeatmap', {
-                chart: { type: 'heatmap', marginTop: 40, marginBottom: 80, plotBorderWidth: 1 },
+                chart: { type: 'heatmap', marginTop: 40, marginBottom: 80, plotBorderWidth: 1,backgroundColor: '#f8f9fa', borderRadius: 20 },
                 title: { text: `Demanda de turnos en ${monthNames[month]} de ${year}` },
                 xAxis: { categories: dayLabels, title: null },
                 yAxis: { categories: weeks, title: null, reversed: true },
                 colorAxis: {
-                    min: 0,
-                    max: 10, // o el máximo real que tengas
+                    min: 0,  // habria que poner el minimo de turnos del mes
+                    max: 10, //habria que poner el maximo de turnos del mes
                     stops: [
                         [0, '#00cc00'],   // Muy libre
                         [0.25, '#ccff99'], // Libre

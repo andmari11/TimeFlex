@@ -15,6 +15,7 @@ use App\Http\Controllers\StatsController;
 use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\ExpectedHoursController;
+use App\Http\Controllers\ScheduleStatsController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
 
@@ -61,9 +62,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/estadisticashorario', function () {
-    return view('estadisticashorario');
-});
 
 Route::get('/employees-per-section', [StatsController::class, 'getEmployeesPerSection']);
 Route::get('/shifthours-per-section-2025', [StatsController::class, 'getShiftsHoursPerSection2025']);
@@ -82,6 +80,9 @@ Route::get('/ayuda', function () {
 })->middleware(HistorialAccesosMiddleware::class)->name('Ayuda');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
+Route::get('/estadisticashorario/{section}', [ScheduleStatsController::class, 'index']);
+
+
 
 Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth')->name('forms.index');
 Route::get('formularios/create', [FormsController::class, 'create'])->middleware('auth');
