@@ -70,10 +70,25 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#start_date");
-            flatpickr("#end_date");
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#start_date, #end_date').forEach(function (element) {
+            flatpickr(element, {
+                dateFormat: "Y-m-d",
+                defaultDate: element.value.split(", "), // Carga valores anteriores
+                locale: {
+                    firstDayOfWeek: 0, // Lunes
+                    weekdays: {
+                        shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                        longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    },
+                }
+            });
         });
-    </script>
+    });
+</script>
 </x-layout>

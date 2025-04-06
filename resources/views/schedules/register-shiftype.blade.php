@@ -83,13 +83,35 @@
             flatpickr("#start", {
                 enableTime: true, // Habilitar selección de tiempo
                 dateFormat: "Y-m-d H:i", // Formato de fecha y hora (datetime)
-                time_24hr: true // Usar formato de 24 horas
+                time_24hr: true, // Usar formato de 24 horas
+                locale: {
+                    firstDayOfWeek: 0, // Lunes
+                    weekdays: {
+                        shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                        longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    },
+                }
             });
 
             flatpickr("#end", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                time_24hr: true
+                time_24hr: true,
+                locale: {
+                    firstDayOfWeek: 0, // Lunes
+                    weekdays: {
+                        shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                        longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    },
+                }
             });
         });
     </script>
