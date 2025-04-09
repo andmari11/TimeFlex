@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\FastApiController;
 use App\Http\Controllers\ShiftTypeController;
 use App\Models\Schedule;
+use App\Models\ShiftType;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Section;
@@ -288,7 +289,8 @@ class ScheduleController extends Controller
     {
         $sections = Section::all();
         $schedule = Schedule::findOrFail($id);
-        return view('schedules.edit', compact('schedule', 'sections'));
+        $shifttypes = ShiftType::all();
+        return view('schedules.edit', compact('schedule', 'sections', 'shifttypes'));
     }
 
     public function update($id)

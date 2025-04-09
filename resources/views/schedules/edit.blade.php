@@ -59,8 +59,36 @@
                     Actualizar turnos
                 </a>
             </x-forms.field>
+            @if($shifttypes->isNotEmpty())
+                    <x-forms.field class="col-12">
+                        <label class="block text-lg font-medium text-gray-700 mb-3">Turnos</label>
 
-            </div>
+                        <div class="space-y-4">
+                            @foreach($shifttypes as $shifttype)
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm flex justify-between items-start">
+                                    <div class="space-y-1">
+                                        <div class="flex items-start space-x-4">
+                                            <p><span class="font-semibold text-gray-800">Inicio:</span> {{ $shifttype->start }}</p>
+                                            <p><span class="font-semibold text-gray-800">Fin:</span> {{ $shifttype->end }}</p>
+                                        </div>
+                                        <p><span class="font-semibold text-gray-800">Personas necesarias:</span> {{ $shifttype->users_needed }}</p>
+                                        <p><span class="font-semibold text-gray-800">Periodo:</span> {{ ['Una sola vez', 'Diario', 'Semanal', 'Mensual', 'Anual'][$shifttype->period] }}</p>
+                                    </div>
+                                    <div class="flex flex-row items-end space-x-2 ml-4">
+                                        <a href="/turno/{{ $shifttype->id }}/edit" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+
+
+
+                                        <button type="submit" class="bg-red-600  px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </x-forms.field>
+
+                @endif
+
 
             <div class="mt-10 flex items-center justify-between">
                 <a href="/horario"
@@ -68,6 +96,7 @@
                     Cancelar
                 </a>
                 <x-forms.button>Actualizar horario</x-forms.button>
+            </div>
             </div>
         </form>
     </div>
