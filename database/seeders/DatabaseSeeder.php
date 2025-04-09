@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Holidays;
 use App\Models\Schedule;
 use App\Models\Shift;
 use App\Models\User;
@@ -129,6 +130,34 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $user->id,
                     'schedule_id' => $numero,
                     'score' => rand(3,10)
+                ]);
+            }
+        }
+
+        $states = ['Accepted', 'Accepted', 'Accepted', 'Pending', 'Declined']; // pongo mas accepted para que salgan mas
+
+        // vacaciones para abril
+        for ($i = 0; $i < 15; $i++) {
+            $dia_vacaciones = Carbon::create(2025, 4, rand(1,30)); // entre el 1 y el 25 de abril
+            $holiday = Holidays::create([
+                'fecha_solicitud' => now(),
+                'dia_vacaciones' => $dia_vacaciones,
+                'estado' => $states[array_rand($states)],
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+        $holidays = Holidays::all();
+        foreach ($users as $user) {
+            $numberHolidays = rand(2,5);
+            $allHolidays = $holidays->random($numberHolidays)->pluck('id');
+            // asignacion de turnos
+            foreach ($allHolidays as $holidayId) {
+                DB::table('holidays_user')->insert([
+                    'holidays_id' => $holidayId,
+                    'user_id' => $user->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
             }
         }
