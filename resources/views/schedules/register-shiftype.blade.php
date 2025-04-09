@@ -1,35 +1,32 @@
 <x-layout :title="'Registro'">
-    <div class=" flex items-center justify-center ">
-        <form method="POST" action="/horario/{{$schedule->id}}/edit/shift-type/create" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <form method="POST" action="/horario/{{$schedule->id}}/edit/shift-type/create" enctype="multipart/form-data" class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl w-full mx-auto mt-10 mb-20">
             @csrf
             <div class="space-y-1 row" >
 
-
-
-
                 <x-forms.field class="col-12">
-                    <x-forms.label for="start">Día y hora de inicio de turno</x-forms.label>
-                    <input type="text" name="start" id="start" value="{{ old('start') ?? $schedule->start}}" class="w-full  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600  py-1.5 px-3" required>
+                    <label for="start" class="block text-lg font-medium text-gray-700">Día y hora de inicio de turno</label>
+                    <input type="text" name="start" id="start" value="{{ old('start') ?? $schedule->start}}" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                     <x-forms.error name="start" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="end">Día y hora de fin de turno</x-forms.label>
-                    <input type="text" name="end" id="end" value="{{ old('end')?? $schedule->end }}" class="w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" required>
+                    <label for="end" class="block text-lg font-medium text-gray-700">Día y hora de fin de turno</label>
+                    <input type="text" name="end" id="end" value="{{ old('end')?? $schedule->end }}" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                     <x-forms.error name="end" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="notes">Descripción de turno</x-forms.label>
-                    <textarea class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md py-1.5 px-3" name="notes" id="notes" required></textarea>
+                    <label for="notes" class="block text-lg font-medium text-gray-700">Descripción de turno</label>
+                    <textarea class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="notes" id="notes" required></textarea>
                     <x-forms.error name="notes" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="users_needed">Trabajadores necesarios</x-forms.label>
-                    <x-forms.input name="users_needed" id="users_needed" :value="old('users_needed') ?? $schedule->users_needed" required />
+                    <label for="users_needed" class="block text-lg font-medium text-gray-700">Trabajadores necesarios</label>
+                    <input name="users_needed" id="users_needed" value="{{old('users_needed') ?? $schedule->users_needed}}" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
                     <x-forms.error name="users_needed" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="period">Periodo</x-forms.label>
-                    <select class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 py-1.5 px-3"
+                    <label for="period" class="block text-lg font-medium text-gray-700">Periodo</label>
+                    <select class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             name="period"
                             id="period"
                             required>
@@ -49,14 +46,14 @@
                                class="w-4 h-4 rounded border-gray-400 text-indigo-600 shadow-sm focus:ring-indigo-500"
                                value="1"
                             {{ (old('weekends_excepted') ?? $schedule->weekends_excepted) ? 'checked' : '' }}>
-                        <label for="weekends_excepted" class="text-md font-semibold text-gray-700">Evitar fines de semana</label>
+                        <label for="weekends_excepted" class="block text-lg font-medium text-gray-700">Evitar fines de semana</label>
                     </div>
 
                     <x-forms.error name="weekends_excepted" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
-                    <x-forms.label for="workers">Asignar trabajadores</x-forms.label>
-                    <select class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 py-1.5 px-3"
+                    <label for="workers" class="block text-lg font-medium text-gray-700">Asignar trabajadores</label>
+                    <select class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             name="workers[]"
                             id="workers"
                             multiple>
