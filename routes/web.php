@@ -73,14 +73,13 @@ Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalS
 Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
 Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualVsExpected']);
 
-
-
 Route::get('/ayuda', function () {
     return view('ayuda');
 })->middleware(HistorialAccesosMiddleware::class)->name('Ayuda');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth');
 Route::get('/estadisticashorario/{section}', [ScheduleStatsController::class, 'index']);
+Route::get('/section-demand/{section}/{month}-{year}', [ScheduleStatsController::class, 'getDemandPerDay']);
 
 
 
@@ -132,6 +131,7 @@ Route::get('/shift-exchange/{id_schedule}/worker/{workerSelected_id}/turno/{id_s
 
 
 Route::get('/stats', [ScheduleController::class, 'stats'])->middleware('auth');
+
 
 Route::get('forms', function (){
     return view('forms');

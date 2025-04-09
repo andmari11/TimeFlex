@@ -162,7 +162,7 @@ class StatsController
         return response()->json($franjas);
     }
 
-    public function getSatisfaccion()
+    public function getSatisfaccion($userId, $sectionId)
     {
         $user = auth()->id();
         $section = $user->section();
@@ -255,7 +255,6 @@ class StatsController
             'worked' => $workedData,
         ]);
     }
-
 
 
 }

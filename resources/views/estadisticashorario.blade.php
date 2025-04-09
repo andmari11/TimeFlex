@@ -22,77 +22,100 @@
     </div>
 
     <script>
+        const sectionId = {{ $section->id }};
         const today = new Date();
-        let currentMonth = today.getMonth(); // 0 -> enero, ...
+        let currentMonth = today.getMonth(); // 0 -> enero, 1 -> febrero y asi
         let currentYear = today.getFullYear();
         const monthNames = [
             'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ];
         const dayLabels = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
-
         function renderHeatmap(month, year) {
             const weeks = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'Semana 6']; // maximo de semanas -> 6
             const data = [];
-            let date = new Date(Date.UTC(year, month, 1));
+
+            let date = new Date(Date.UTC(year, month, 1)); // inicializamos en el primer dia del mes
             let week = 0;
             let dayNumber = 1;
 
-            while (date.getMonth() === month) {
-                let dayIndex = date.getDay() - 1;
-                if (dayIndex === -1) dayIndex = 6;
+            fetch(`/section-demand/${sectionId}/${month + 1}-${year}`)
+                .then(response => response.json())
+                .then(demandaPorDia => {
+                    const demandaPorFecha = {};
+                    demandaPorDia.forEach(item => {
+                        demandaPorFecha[item.day] = item.total; // cambiamos el formato del array recibido a algo mas comodo
+                    });
 
-                const value = Math.floor(Math.random() * 10);
-                data.push({ x: dayIndex, y: week, value, day: dayNumber });
+                    while (date.getMonth() === month) {
+                        let dayIndex = date.getDay() - 1;
+                        if (dayIndex === -1) dayIndex = 6; // para pasar el domingo al final del calendario
 
-                if (date.getDay() === 0) week++;
-                date.setDate(date.getDate() + 1);
-                dayNumber++;
-            }
+                        const formattedDate = date.toISOString().split('T')[0]; // pasamos fecha a formato yyyy-mm-dd
+                        const valor = demandaPorFecha[formattedDate] ?? 0; // si no hay datos entonces ponemos 0
 
-            Highcharts.chart('calendarioHeatmap', {
-                chart: { type: 'heatmap', marginTop: 40, marginBottom: 80, plotBorderWidth: 1,backgroundColor: '#f8f9fa', borderRadius: 20 },
-                title: { text: `Demanda de turnos en ${monthNames[month]} de ${year}` },
-                xAxis: { categories: dayLabels, title: null },
-                yAxis: { categories: weeks, title: null, reversed: true },
-                colorAxis: {
-                    min: 0,  // habria que poner el minimo de turnos del mes
-                    max: 10, //habria que poner el maximo de turnos del mes
-                    stops: [
-                        [0, '#00cc00'],   // Muy libre
-                        [0.25, '#ccff99'], // Libre
-                        [0.5, '#e6f0DC'],  // Normal
-                        [0.75, '#f1666d'], // Alta demanda
-                        [1, '#ed2024']     // Muy alta
-                    ]
-                },
-                legend: {
-                    align: 'right',
-                    layout: 'vertical',
-                    verticalAlign: 'top',
-                    y: 25,
-                    symbolHeight: 280
-                },
-                tooltip: {
-                    formatter: function () {
-                        return `<b>${weeks[this.point.y]}, ${dayLabels[this.point.x]}</b>: Valor ${this.point.value}, Día ${this.point.options.day}`;
+                        data.push({ x: dayIndex, y: week, value: valor, day: dayNumber }); //metemos el valor de numero de turnos para ese dia
+
+                        if (date.getDay() === 0) week++;
+                        date.setDate(date.getDate() + 1);
+                        dayNumber++;
                     }
-                },
-                series: [{
-                    name: 'Turnos demandados',
-                    borderWidth: 1,
-                    data: data,
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000',
-                        formatter: function () {
-                            return this.point.options.day;
-                        }
-                    }
-                }]
-            });
+
+                    const valores = data.map(d => d.value);
+                    const maxValor = Math.max(...valores);
+                    const minValor = Math.min(...valores);
+
+                    Highcharts.chart('calendarioHeatmap', {
+                        chart: {
+                            type: 'heatmap',
+                            marginTop: 40,
+                            marginBottom: 80,
+                            plotBorderWidth: 1,
+                            backgroundColor: '#f8f9fa',
+                            borderRadius: 20
+                        },
+                        title: { text: `Demanda de turnos en ${monthNames[month]} de ${year}` },
+                        xAxis: { categories: dayLabels, title: null },
+                        yAxis: { categories: weeks, title: null, reversed: true },
+                        colorAxis: {
+                            min: minValor,
+                            max: maxValor,
+                            stops: [
+                                [0, '#00cc00'],   // verde oscuro
+                                [0.3, '#ccff99'], // verde claro
+                                [0.5, '#ffff99'], // amarillo
+                                [0.8, '#f1666d'], // rojo claro
+                                [1, '#ed2024']    // rojo oscuro
+
+                            ]
+                        },
+                        legend: {
+                            align: 'right',
+                            layout: 'vertical',
+                            verticalAlign: 'top',
+                            y: 25,
+                            symbolHeight: 280
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return `<b>${weeks[this.point.y]}, ${dayLabels[this.point.x]}</b>: ${this.point.value} turnos, Día ${this.point.options.day}`;
+                            }
+                        },
+                        series: [{
+                            name: 'Turnos demandados',
+                            borderWidth: 1,
+                            data: data,
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000',
+                                formatter: function () {
+                                    return this.point.options.day;
+                                }
+                            }
+                        }]
+                    });
+                });
         }
-
         function renderTimeline(month, year) {
             const timelineData = [
                 { name: '62%', day: '8', color: '#00cc00' },
@@ -103,7 +126,7 @@
                 { name: '9%', day: '4', color: '#f1666d' },
                 { name: '3%', day: '27', color: '#dc143c' },
                 { name: '1%', day: '12', color: '#ed2024' }
-            ]; // ejemplo de datos -> luego metere reales
+            ];
 
             Highcharts.chart('mejoresPeoresDiasMes', {
                 chart: {
