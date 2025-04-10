@@ -8,30 +8,43 @@
         <button id="nextMonth" class="px-3 py-1 bg-gray-300 rounded">→</button>
     </div>
 
+    <!-- calendario turnos -->
     <div style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
-        <div id="calendarioHeatmap" style="width:100%; max-width: 1000px; height: 500px;"></div>
-        <!-- leyenda para turnos -->
-        <div class="mt-4 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
-            <span>Menor demanda</span>
+        <div id="calendarioTurnosHeatmap" style="width:100%; max-width: 1000px; height: 500px;"></div>
+    </div>
+    <!-- leyenda para turnos -->
+    <div class="w-full flex justify-center">
+        <div class="mt-8 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
+        <span>Menor demanda</span>
             <span class="w-6 h-4 rounded" style="background-color: #00cc00; border: 1px solid #ccc;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #ccff99;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #f1666d;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #ed2024;"></span>
             <span>Mayor demanda</span>
         </div>
+    </div>
+
+    <!-- calendario vacaciones -->
+    <div class="mt-8" style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
         <div id="calendarioVacacionesHeatmap" style="width:100%; max-width: 1000px; height: 500px;"></div>
-        <!-- leyenda para vacaciones -->
-        <div class="mt-4 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
-            <span>No hay vacaciones asignadas</span>
+    </div>
+
+    <!-- leyenda vacaciones -->
+    <div class="w-full flex justify-center">
+        <div class="mt-8 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
+        <span>Baja demanda</span>
             <span class="w-6 h-4 rounded" style="background-color: #00cc00; border: 1px solid #ccc;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #ccff99;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #f1666d;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #ed2024;"></span>
-            <span>Gran número de vacaciones asignadas</span>
+            <span>Alta demanda</span>
         </div>
-        <div id="mejoresPeoresDiasMes" style="width:100%; max-width: 1000px; height: 500px;"></div>
     </div>
 
+    <!-- timeline mejores/peores dias en cuanto a demanda de vacaciones -->
+    <div class="mt-8" style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
+        <div id="mejoresPeoresDiasMes" style="width:100%; max-width: 1000px; height: 500px;"></div>
+    </div>
     <script>
         const sectionId = {{ $section->id }};
         const today = new Date();
@@ -76,7 +89,7 @@
                     const maxValor = Math.max(...valores);
                     const minValor = Math.min(...valores);
 
-                    Highcharts.chart('calendarioHeatmap', {
+                    Highcharts.chart('calendarioTurnosHeatmap', {
                         chart: {
                             type: 'heatmap',
                             marginTop: 40,
