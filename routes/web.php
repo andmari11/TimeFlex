@@ -81,7 +81,7 @@ Route::get('/horario', [ScheduleController::class, 'index'])->middleware('auth')
 Route::get('/estadisticashorario/{section}', [ScheduleStatsController::class, 'index']);
 Route::get('/section-demand/{section}/{month}-{year}', [ScheduleStatsController::class, 'getDemandPerDay']);
 Route::get('/section-holidays/{section}/{month}-{year}', [ScheduleStatsController::class, 'getHolidays']);
-
+Route::get('/section-pending-holidays/{section}/{month}-{year}', [ScheduleStatsController::class, 'getPendingHolidays']);
 
 Route::get('/formularios', [FormsController::class, 'index'])->middleware('auth')->name('forms.index');
 Route::get('formularios/create', [FormsController::class, 'create'])->middleware('auth');
