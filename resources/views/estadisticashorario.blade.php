@@ -10,6 +10,7 @@
 
     <div style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
         <div id="calendarioHeatmap" style="width:100%; max-width: 1000px; height: 500px;"></div>
+        <!-- leyenda para turnos -->
         <div class="mt-4 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
             <span>Menor demanda</span>
             <span class="w-6 h-4 rounded" style="background-color: #00cc00; border: 1px solid #ccc;"></span>
@@ -17,6 +18,16 @@
             <span class="w-6 h-4 rounded" style="background-color: #f1666d;"></span>
             <span class="w-6 h-4 rounded" style="background-color: #ed2024;"></span>
             <span>Mayor demanda</span>
+        </div>
+        <div id="calendarioVacacionesHeatmap" style="width:100%; max-width: 1000px; height: 500px;"></div>
+        <!-- leyenda para vacaciones -->
+        <div class="mt-4 flex gap-2 flex-wrap justify-center items-center text-sm font-medium text-gray-700">
+            <span>No hay vacaciones asignadas</span>
+            <span class="w-6 h-4 rounded" style="background-color: #00cc00; border: 1px solid #ccc;"></span>
+            <span class="w-6 h-4 rounded" style="background-color: #ccff99;"></span>
+            <span class="w-6 h-4 rounded" style="background-color: #f1666d;"></span>
+            <span class="w-6 h-4 rounded" style="background-color: #ed2024;"></span>
+            <span>Gran número de vacaciones asignadas</span>
         </div>
         <div id="mejoresPeoresDiasMes" style="width:100%; max-width: 1000px; height: 500px;"></div>
     </div>
@@ -116,6 +127,91 @@
                     });
                 });
         }
+        function renderHolidaysHeatmap(month, year) {
+            const weeks = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'Semana 6']; // maximo de semanas -> 6
+            const data = [];
+            let date = new Date(Date.UTC(year, month, 1)); // inicializamos en el primer dia del mes
+            let week = 0;
+            let dayNumber = 1;
+
+            fetch(`/section-holidays/${sectionId}/${month + 1}-${year}`)
+                .then(response => response.json())
+                .then(vacacionesPorDia => {
+                    const vacacionesMap = {};
+                    vacacionesPorDia.forEach(item => {
+                        vacacionesMap[item.day] = item.total; // cambiamos el formato del array recibido a algo mas comodo
+                    });
+
+                    while (date.getMonth() === month) {
+                        let dayIndex = date.getDay() - 1;
+                        if (dayIndex === -1) dayIndex = 6; // para pasar el domingo al final del calendario
+
+                        const formattedDate = date.toISOString().split('T')[0]; // pasamos fecha a formato yyyy-mm-dd
+                        const valor = vacacionesMap[formattedDate] ?? 0; // si no hay datos entonces ponemos 0
+
+                        data.push({ x: dayIndex, y: week, value: valor, day: dayNumber }); //metemos el valor de numero de turnos para ese dia
+
+                        if (date.getDay() === 0) week++;
+                        date.setDate(date.getDate() + 1);
+                        dayNumber++;
+                    }
+
+                    const valores = data.map(d => d.value);
+                    const maxValor = Math.max(...valores);
+                    const minValor = Math.min(...valores);
+
+                    Highcharts.chart('calendarioVacacionesHeatmap', {
+                        chart: {
+                            type: 'heatmap',
+                            marginTop: 40,
+                            marginBottom: 80,
+                            plotBorderWidth: 1,
+                            backgroundColor: '#f8f9fa',
+                            borderRadius: 20
+                        },
+                        title: { text: `Vacaciones aceptadas en ${monthNames[month]} de ${year}` },
+                        xAxis: { categories: dayLabels, title: null },
+                        yAxis: { categories: weeks, title: null, reversed: true },
+                        colorAxis: {
+                            min: minValor,
+                            max: maxValor,
+                            stops: [
+                                [0, '#00cc00'],   // verde oscuro
+                                [0.3, '#ccff99'], // verde claro
+                                [0.5, '#ffff99'], // amarillo
+                                [0.8, '#f1666d'], // rojo claro
+                                [1, '#ed2024']    // rojo oscuro
+
+                            ]
+                        },
+                        legend: {
+                            align: 'right',
+                            layout: 'vertical',
+                            verticalAlign: 'top',
+                            y: 25,
+                            symbolHeight: 280
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return `<b>${weeks[this.point.y]}, ${dayLabels[this.point.x]}</b>: ${this.point.value} empleados de vacaciones, Día ${this.point.options.day}`;
+                            }
+                        },
+                        series: [{
+                            name: 'Vacaciones por día',
+                            borderWidth: 1,
+                            data: data,
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000',
+                                formatter: function () {
+                                    return this.point.options.day;
+                                }
+                            }
+                        }]
+                    });
+                });
+        }
+
         function renderTimeline(month, year) {
             const timelineData = [
                 { name: '62%', day: '8', color: '#00cc00' },
@@ -180,6 +276,7 @@
         function updateAllCharts() {
             document.getElementById('monthTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
             renderHeatmap(currentMonth, currentYear);
+            renderHolidaysHeatmap(currentMonth, currentYear);
             renderTimeline(currentMonth, currentYear);
         }
 

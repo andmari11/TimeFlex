@@ -29,4 +29,23 @@ class ScheduleStatsController
         return response()->json($data);
     }
 
+    // obtenemos el numero de peticiones aceptadas de vacaciones de cada dia para la seccion especificada
+    public function getHolidays($sectionId, $month, $year)
+    {
+
+        $holidays = DB::table('holidays')
+            ->join('holidays_user', 'holidays.id', '=', 'holidays_user.holidays_id')
+            ->join('users', 'holidays_user.user_id', '=', 'users.id')
+            ->where('users.section_id', $sectionId)
+            ->where('estado', 'Accepted')
+            ->whereMonth('dia_vacaciones', $month)
+            ->whereYear('dia_vacaciones', $year)
+            ->select(DB::raw("DATE(dia_vacaciones) as day"), DB::raw('count(*) as total'))
+            ->groupBy(DB::raw("DATE(dia_vacaciones)"))
+            ->orderBy('day')
+            ->get();
+
+        return response()->json($holidays);
+    }
+
 }
