@@ -256,5 +256,45 @@ class StatsController
         ]);
     }
 
+    // obtenemos los cambios de turno aceptados vs solicitados para cada mes para el usuario
+    public function getUserShiftExchanges()
+    {
+        $userId = auth()->id();
+
+        // cambios de turno solicitados por mes
+        $solicitadosPorMes = DB::table('shift_exchanges')
+            ->join('shifts', 'shift_exchanges.shift_demander_id', '=', 'shifts.id')
+            ->selectRaw('strftime("%m", shifts.start) as mes, COUNT(*) as total')
+            ->where('shift_exchanges.demander_id', $userId)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
+
+        // cambios de turno aceptados por mes
+        $aceptadosPorMes = DB::table('shift_exchanges')
+            ->join('shifts', 'shift_exchanges.shift_demander_id', '=', 'shifts.id')
+            ->selectRaw('strftime("%m", shifts.start) as mes, COUNT(*) as total')
+            ->where('shift_exchanges.demander_id', $userId)
+            ->where('shift_exchanges.status', 'Accepted')
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
+
+        // arrays para almacenar los resultados
+        $solicitados = [];
+        $aceptados = [];
+
+        // para cada mes guardamos los datos calculados o 0 si no hay
+        for ($i = 1; $i <= 12; $i++) {
+            $mes = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $solicitados[] = $solicitadosPorMes[$mes] ?? 0;
+            $aceptados[] = $aceptadosPorMes[$mes] ?? 0;
+        }
+
+        return response()->json([
+            'solicitados' => $solicitados,
+            'aceptados' => $aceptados,
+        ]);
+    }
 
 }

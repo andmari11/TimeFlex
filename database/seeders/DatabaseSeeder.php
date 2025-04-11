@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
-        for($j = 0; $j < 3; $j++){ //Antes 40
+        for($j = 0; $j < 100; $j++){
             for ($i = 0; $i < 5; $i++) {
                 Shift::factory()->create([
                     'start' => now()->addDays($j * 7 + $i)->setTime(9, 0),
@@ -205,13 +205,13 @@ class DatabaseSeeder extends Seeder
 
         // creamos 60 estados y los mezclamos aleatoriamente
         $statusarray = array_merge(
-            array_fill(0, 30, 'Accepted'),
-            array_fill(0, 20, 'Pending'),
-            array_fill(0, 10, 'Declined')
+            array_fill(0, 600, 'Accepted'),
+            array_fill(0, 400, 'Pending'),
+            array_fill(0, 150, 'Declined')
         );
         shuffle($statusarray);
 
-        foreach (range(1, 60) as $i) {
+        foreach (range(1, 1150) as $i) {
             DB::table('shift_exchanges')->insert([
                 'demander_id' => $demander = fake()->randomElement($users_ids),
                 'receiver_id' => $receiver = fake()->randomElement(array_diff($users_ids, [$demander])),
