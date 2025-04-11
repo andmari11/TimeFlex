@@ -268,79 +268,40 @@
                         </div>
                     </nav>
                     <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 text-center pt-4">
-                        <div class="font-bold hidden lg:block text-black">Lunes</div>
-                        <div class="font-bold hidden lg:block text-black">Martes</div>
-                        <div class="font-bold hidden lg:block text-black">Miércoles</div>
-                        <div class="font-bold hidden lg:block text-black">Jueves</div>
-                        <div class="font-bold hidden lg:block text-black">Viernes</div>
+                        @php
+                            $colores = ['bg-sky-400', 'bg-sky-500', 'bg-sky-600', 'bg-sky-700', 'bg-sky-800'];
+                        @endphp
+                        @foreach($days as $day)
+                            <div class="font-bold hidden lg:block text-black">{{$day['day_of_week']}}</div>
+                        @endforeach
+                        @foreach($days as $index => $day)
+                            <div class="border {{$colores[$index% count($colores)]}} text-white rounded-lg p-2 shadow min-h-40">
+                                <h3 class="font-bold text-lg">{{$day['date']->format('d')}}</h3>
+                                @foreach($day['shifts'] as $shift)
+                                    @if (isset($shift['users']) && count($shift['users']) > 0)
+                                        <ul class="mt-2">
+                                            <a href="{{ url('/horario/' . $shift->schedule->id . '/turno/' . $shift['id']) }}" class="block w-full h-full hover:pointer">
+                                                <li class="text-white rounded p-1 mb-1">
+                                                    <strong>{{ Carbon\Carbon::parse($shift['start'])->format('H:i') }} - {{ Carbon\Carbon::parse($shift['end'])->format('H:i') }}</strong>
+                                                    <div class="mt-2 flex flex-wrap gap-1">
+                                                        @if(count($shift['users']) < 3)
+                                                            @foreach ($shift['users'] as $user)
+                                                                <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">{{ $user['name'] }}</span>
+                                                            @endforeach
+                                                        @else
+                                                            <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">({{count($shift['users'])}} trabajadores)</span>
+                                                        @endif
+                                                    </div>
+                                                </li>
+                                            </a>
+                                        </ul>
+                                    @endif
 
-                        <div class="border bg-sky-400 text-white rounded-lg p-2 shadow">
-                            <h3 class="font-bold text-lg">01</h3>
-                            <ul class="mt-2">
-                                <li class="text-white rounded p-1 mb-1">
-                                    <strong>08:00 - 12:00</strong>
-                                    <div class="mt-2 flex flex-wrap gap-1">
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Juan Pérez</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">María López</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border bg-sky-500 text-white rounded-lg p-2 shadow">
-                            <h3 class="font-bold text-lg">02</h3>
-                            <ul class="mt-2">
-                                <li class="text-white rounded p-1 mb-1">
-                                    <strong>10:00 - 14:00</strong>
-                                    <div class="mt-2 flex flex-wrap gap-1">
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Pedro García</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Carla Sánchez</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Luis Fernández</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border bg-sky-600 text-white rounded-lg p-2 shadow">
-                            <h3 class="font-bold text-lg">03</h3>
-                            <ul class="mt-2">
-                                <li class="text-white rounded p-1 mb-1">
-                                    <strong>12:00 - 16:00</strong>
-                                    <div class="mt-2 flex flex-wrap gap-1">
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Ana Martínez</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border bg-sky-700 text-white rounded-lg p-2 shadow">
-                            <h3 class="font-bold text-lg">04</h3>
-                            <ul class="mt-2">
-                                <li class="text-white rounded p-1 mb-1">
-                                    <strong>14:00 - 18:00</strong>
-                                    <div class="mt-2 flex flex-wrap gap-1">
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Diego Ramírez</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Laura González</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border bg-sky-800 text-white rounded-lg p-2 shadow">
-                            <h3 class="font-bold text-lg">05</h3>
-                            <ul class="mt-2">
-                                <li class="text-white rounded p-1 mb-1">
-                                    <strong>16:00 - 20:00</strong>
-                                    <div class="mt-2 flex flex-wrap gap-1">
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Javier Castro</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Elena Ruiz</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Mario Ortega</span>
-                                        <span class="bg-blue-50 text-sky-800 text-xs font-semibold py-1 px-2 rounded">Sofía Morales</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                @endforeach
+                            </div>
+                        @endforeach
                     </div>
+
 
                 </section>
                 <section class="relative w-full bg-white p-8 rounded-lg shadow-md mt-8 ml-4">

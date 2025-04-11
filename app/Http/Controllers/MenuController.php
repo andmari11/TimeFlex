@@ -13,7 +13,6 @@ class MenuController extends Controller
     public function index(){
         $section=null;
         $lastSchedule = auth()->user()->section->schedules->last();
-
         if (is_object($lastSchedule) && isset($lastSchedule->id)) {
             $days = MenuController::prepareScheduleData($lastSchedule->id);
         } else {
