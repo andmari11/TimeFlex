@@ -85,15 +85,11 @@
                                 }
                             },
                             legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 80,
-                                floating: true,
-                                borderWidth: 1,
-                                shadow: true
-                            },
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                            ,
                             credits: {
                                 enabled: false
                             },
@@ -111,7 +107,77 @@
                     .catch(error => console.error('Error al cargar los datos de solicitudes de cambios de turno', error));
             });
         </script>
-
+        <div id="solicitudesvacaciones" style="width:50%; height:400px;"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/user-holidays-evolution', {
+                    credentials: 'same-origin'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        Highcharts.chart('solicitudesvacaciones', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Evolución de las solicitudes de vacaciones por mes'
+                            },
+                            xAxis: {
+                                categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                title: {
+                                    text: null
+                                },
+                                gridLineWidth: 1,
+                                lineWidth: 0
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Número de vacaciones',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify'
+                                },
+                                gridLineWidth: 0
+                            },
+                            tooltip: {
+                                valueSuffix: ' vacaciones'
+                            },
+                            plotOptions: {
+                                bar: {
+                                    borderRadius: '50%',
+                                    dataLabels: {
+                                        enabled: true
+                                    },
+                                    groupPadding: 0.1
+                                }
+                            },
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                            ,
+                            credits: {
+                                enabled: false
+                            },
+                            series: [{
+                                name: 'Vacaciones solicitadas',
+                                data: data.solicitadas,
+                                color: '#ffa500'
+                            }, {
+                                name: 'Vacaciones aceptadas',
+                                data: data.aceptadas,
+                                color: '#00cc66'
+                            }]
+                        });
+                    })
+                    .catch(error => console.error('Error al cargar los datos de solicitudes de vacaciones', error));
+            });
+        </script>
+        <div id="vacio" style="width:50%; height:400px;"></div>
         <div id="satisfaccion" style="width:100%; height:500px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
