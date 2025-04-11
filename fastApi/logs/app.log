@@ -3179,3 +3179,609 @@ Response content: <Response [200 OK]>
 2025-04-11 19:33:13,236 - DEBUG - close.complete
 2025-04-11 19:34:13,859 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
 2025-04-11 19:34:13,861 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:34:43,925 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 30), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 27), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 28), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 22), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 17), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 22), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 27), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 27), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 29), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-05-02 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-03 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-05-05 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-06 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-07 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-05-08 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-09 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-10 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-05-11 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-12 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-13 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-05-14 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-05-15 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-16 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-05-17 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-05-18 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-19 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-05-20 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-21 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-05-22 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-23 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-24 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-05-25 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-26 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-05-27 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-28 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-29 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-30 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-31 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-01 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-02 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-06-03 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-06-04 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-05 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-06-06 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-07 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-08 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-09 (19) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-06-10 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-06-11 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-12 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-13 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-06-14 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-06-15 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-16 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-17 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-18 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-06-19 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-20 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-06-22 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-23 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-24 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-25 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-26 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-27 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-28 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-06-29 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-30 (19) has workers [True, False, False, False, False, False, True, False, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:34:43,936 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:34:43,936 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002126360F4D0>
+2025-04-11 19:34:43,936 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:34:43,936 - DEBUG - send_request_headers.complete
+2025-04-11 19:34:43,936 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:34:43,936 - DEBUG - send_request_body.complete
+2025-04-11 19:34:43,936 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:34:44,586 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:34:44 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IjZhTmpralRidVdzQUIxaTdQL2RYTkE9PSIsInZhbHVlIjoiT3BRTTExYVBZUitKZjlwRkRaQTNaN1g0N1BLcHRodGJTL3FiRW9jUFAvYjhRa1oxZG1GWjdEY3BXcERmMU1ON3hZNXA4eUphYkpVYThZbmxYbnpKWW1RaU1uM0FUVmdhbk5YbFd2QXFjM0lWbGg5V1NQOTdhSGZsbWhGSURxVlQiLCJtYWMiOiI5NjZjYTM5NmUxYTRmOTU2MjYzNjlkNzRkOGJhY2U2Y2Y2MmI4YzhkZGU4ZmFmZWJkOTU3NTdlM2FlNzU1OTBmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:34:44 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IkxPNHpKVGdyOElGbEtWbkhsQ0pXaHc9PSIsInZhbHVlIjoiYXo2VlNpSldiRlRLOWpsazg0dmFiUFJ0UGd5S2RhUFFuaXI2N0tpUlNENFNGYS9sbFVlYlhMSC8yd1FlYVVDdW5rcExYSW9rQjgvbzdKRGtUdjZjREtQYW84dCttTW8vV3ZPQTRpUVZQNjZRZS85RkdhYVBGS0V3Uk9jdUprc1QiLCJtYWMiOiIyNDhhZTg1MzgzMGE4OWM3Yzg4NDI0YmQ3NTU4YzMyN2MwYWQyMzUxMzFhMzU2MDQ4ZDJjMjc5Mzg4MDNiZjBmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:34:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:34:44,586 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:34:44,586 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:34:44,586 - DEBUG - receive_response_body.complete
+2025-04-11 19:34:44,586 - DEBUG - response_closed.started
+2025-04-11 19:34:44,586 - DEBUG - response_closed.complete
+2025-04-11 19:34:44,586 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            871,
+            877,
+            891,
+            898,
+            899,
+            900,
+            911,
+            914,
+            918
+        ],
+        "2": [
+            865,
+            871,
+            874,
+            880,
+            884,
+            894,
+            895,
+            898,
+            903,
+            915
+        ],
+        "3": [
+            859,
+            860,
+            863,
+            868,
+            869,
+            872,
+            873,
+            876,
+            877,
+            879,
+            882,
+            886,
+            890,
+            892,
+            894,
+            913,
+            916
+        ],
+        "4": [
+            860,
+            867,
+            868,
+            869,
+            870,
+            878,
+            883,
+            885,
+            887,
+            888,
+            889,
+            893,
+            895,
+            901,
+            903,
+            904,
+            906,
+            907,
+            908,
+            910
+        ],
+        "5": [
+            858,
+            862,
+            864,
+            896,
+            901,
+            905
+        ],
+        "6": [
+            859,
+            875,
+            882,
+            885,
+            887,
+            888,
+            889,
+            891,
+            897,
+            902,
+            904,
+            905,
+            908,
+            910
+        ],
+        "7": [
+            858,
+            861,
+            864,
+            866,
+            873,
+            881,
+            883,
+            896,
+            902,
+            909,
+            912,
+            916,
+            917,
+            918
+        ],
+        "8": [
+            861,
+            863,
+            867,
+            870,
+            872,
+            874,
+            878,
+            879,
+            886,
+            892,
+            893,
+            897,
+            900,
+            906,
+            909,
+            913,
+            914,
+            915
+        ],
+        "9": [
+            862,
+            880,
+            881,
+            884
+        ],
+        "10": [
+            865,
+            866,
+            875,
+            876,
+            890,
+            899,
+            907,
+            911,
+            912,
+            917
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:34:44,586 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:34:44 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IjZhTmpralRidVdzQUIxaTdQL2RYTkE9PSIsInZhbHVlIjoiT3BRTTExYVBZUitKZjlwRkRaQTNaN1g0N1BLcHRodGJTL3FiRW9jUFAvYjhRa1oxZG1GWjdEY3BXcERmMU1ON3hZNXA4eUphYkpVYThZbmxYbnpKWW1RaU1uM0FUVmdhbk5YbFd2QXFjM0lWbGg5V1NQOTdhSGZsbWhGSURxVlQiLCJtYWMiOiI5NjZjYTM5NmUxYTRmOTU2MjYzNjlkNzRkOGJhY2U2Y2Y2MmI4YzhkZGU4ZmFmZWJkOTU3NTdlM2FlNzU1OTBmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:34:44 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IkxPNHpKVGdyOElGbEtWbkhsQ0pXaHc9PSIsInZhbHVlIjoiYXo2VlNpSldiRlRLOWpsazg0dmFiUFJ0UGd5S2RhUFFuaXI2N0tpUlNENFNGYS9sbFVlYlhMSC8yd1FlYVVDdW5rcExYSW9rQjgvbzdKRGtUdjZjREtQYW84dCttTW8vV3ZPQTRpUVZQNjZRZS85RkdhYVBGS0V3Uk9jdUprc1QiLCJtYWMiOiIyNDhhZTg1MzgzMGE4OWM3Yzg4NDI0YmQ3NTU4YzMyN2MwYWQyMzUxMzFhMzU2MDQ4ZDJjMjc5Mzg4MDNiZjBmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:34:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:34:44,586 - DEBUG - close.started
+2025-04-11 19:34:44,586 - DEBUG - close.complete
+2025-04-11 19:35:15,585 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:35:15,586 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:35:45,317 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 30), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 29), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 30), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 28), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 26), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 27), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 29), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 28), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-05-02 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-05-03 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-05 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-06 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-07 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-08 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-09 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-10 (19) has workers [True, False, False, True, False, False, False, False, False, False]Shift 2025-05-11 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-12 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-13 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-14 (19) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-05-15 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-05-16 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-17 (19) has workers [False, False, False, False, True, False, False, True, False, False]Shift 2025-05-18 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-19 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-05-20 (19) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-05-21 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-05-22 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-05-23 (19) has workers [True, False, False, False, False, False, True, False, False, False]Shift 2025-05-24 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-05-25 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-05-26 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-05-27 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-05-28 (19) has workers [True, False, False, True, False, False, False, False, False, False]Shift 2025-05-29 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-05-30 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-31 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-01 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-06-02 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-03 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-04 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-05 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-06 (19) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-06-07 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-08 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-09 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-06-10 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-11 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-06-12 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-13 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-14 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-15 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-16 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-17 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-18 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-19 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-20 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-21 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-22 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-23 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-24 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-25 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-26 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-06-27 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-28 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-29 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-30 (19) has workers [True, False, True, False, False, False, False, False, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:35:45,327 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:35:45,327 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000021264787710>
+2025-04-11 19:35:45,327 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:35:45,327 - DEBUG - send_request_headers.complete
+2025-04-11 19:35:45,327 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:35:45,327 - DEBUG - send_request_body.complete
+2025-04-11 19:35:45,327 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:35:45,952 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:35:45 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IlIwdmZvTEdLMmN5Q080dUZ4TjdiTFE9PSIsInZhbHVlIjoiU0oxM243ME9ibm1pSllpTTZGcEZOUWIwQXRmMHdtV1BtNkhjWEd1bnMzR2V3a04xcWtDdGNUNGZpNGhrT3kvcVp4dVpvWGtxTlI4aXhWNDFENldvT2x5TnNJd2JzZnJDWmJPL2hLRjhBOWxoQ29SUU9Vd0ptM01FM2lrMFFMUEsiLCJtYWMiOiJlYTJjNGI1NmUyMTM0NzVmMjlmMzUxMWQ1YjE3NmM3MmJjM2YwNThhMTFjNmRmODg0MTY0YTJlOTQyMjA3MzIyIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:35:45 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlpiMzdCSTArNERIZkg1eURZNkhSZUE9PSIsInZhbHVlIjoiMUd3YXZPVWpLY2F4RUdDWWZndzVRdCtNdlVRaE94QnhqNWVWM0lOZWRWT3I5LzFuRXlvRUt0U25ieVpzcFVWRU4wcHFxNEtWWDIvbUg1d3FKb1hxS05RUTlKWWlheTlJekFKWlFzNEVwaHkzTHFadVkrOFJvTnZtUVM5R2VkR3YiLCJtYWMiOiI5ODBmN2RmZjY1ZmI3YzgwNDExYWI5MGFiNTk2YzNkOTIzNGU4MjY0NzU5M2M3NmJmYjBjM2JiYTIxZGE0ZDA1IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:35:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:35:45,952 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:35:45,952 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:35:45,952 - DEBUG - receive_response_body.complete
+2025-04-11 19:35:45,952 - DEBUG - response_closed.started
+2025-04-11 19:35:45,952 - DEBUG - response_closed.complete
+2025-04-11 19:35:45,952 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            926,
+            927,
+            928,
+            929,
+            934,
+            936,
+            940,
+            941,
+            945,
+            946,
+            947,
+            961,
+            965,
+            967,
+            979
+        ],
+        "2": [
+            925,
+            939,
+            943,
+            944,
+            947,
+            948,
+            950,
+            960,
+            962,
+            968,
+            970,
+            971,
+            978
+        ],
+        "3": [
+            927,
+            931,
+            933,
+            942,
+            953,
+            979
+        ],
+        "4": [
+            919,
+            921,
+            924,
+            925,
+            928,
+            930,
+            931,
+            946,
+            949,
+            954,
+            958,
+            975,
+            976,
+            977
+        ],
+        "5": [
+            921,
+            933,
+            935,
+            937,
+            945,
+            948,
+            951,
+            958,
+            972,
+            975
+        ],
+        "6": [
+            920,
+            926,
+            929,
+            934,
+            937,
+            951,
+            959,
+            966,
+            970,
+            971,
+            976
+        ],
+        "7": [
+            920,
+            922,
+            932,
+            938,
+            939,
+            941,
+            942,
+            943,
+            944,
+            950,
+            952,
+            957,
+            960,
+            963,
+            972,
+            973,
+            974
+        ],
+        "8": [
+            923,
+            932,
+            935,
+            938,
+            940,
+            955,
+            961,
+            978
+        ],
+        "9": [
+            919,
+            952,
+            953,
+            955,
+            956,
+            959,
+            964,
+            967,
+            968,
+            969,
+            973,
+            974
+        ],
+        "10": [
+            922,
+            923,
+            924,
+            930,
+            936,
+            949,
+            954,
+            956,
+            957,
+            962,
+            963,
+            964,
+            965,
+            966,
+            969,
+            977
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:35:45,952 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:35:45 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IlIwdmZvTEdLMmN5Q080dUZ4TjdiTFE9PSIsInZhbHVlIjoiU0oxM243ME9ibm1pSllpTTZGcEZOUWIwQXRmMHdtV1BtNkhjWEd1bnMzR2V3a04xcWtDdGNUNGZpNGhrT3kvcVp4dVpvWGtxTlI4aXhWNDFENldvT2x5TnNJd2JzZnJDWmJPL2hLRjhBOWxoQ29SUU9Vd0ptM01FM2lrMFFMUEsiLCJtYWMiOiJlYTJjNGI1NmUyMTM0NzVmMjlmMzUxMWQ1YjE3NmM3MmJjM2YwNThhMTFjNmRmODg0MTY0YTJlOTQyMjA3MzIyIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:35:45 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlpiMzdCSTArNERIZkg1eURZNkhSZUE9PSIsInZhbHVlIjoiMUd3YXZPVWpLY2F4RUdDWWZndzVRdCtNdlVRaE94QnhqNWVWM0lOZWRWT3I5LzFuRXlvRUt0U25ieVpzcFVWRU4wcHFxNEtWWDIvbUg1d3FKb1hxS05RUTlKWWlheTlJekFKWlFzNEVwaHkzTHFadVkrOFJvTnZtUVM5R2VkR3YiLCJtYWMiOiI5ODBmN2RmZjY1ZmI3YzgwNDExYWI5MGFiNTk2YzNkOTIzNGU4MjY0NzU5M2M3NmJmYjBjM2JiYTIxZGE0ZDA1IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:35:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:35:45,952 - DEBUG - close.started
+2025-04-11 19:35:45,952 - DEBUG - close.complete
+2025-04-11 19:40:09,547 - DEBUG - Loaded backend tkagg version 8.6.
+2025-04-11 19:40:09,993 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:09,993 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:09,993 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:09,993 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:09,993 - DEBUG - STREAM b'IDAT' 78 1189
+2025-04-11 19:40:10,034 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,034 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,034 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,034 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,034 - DEBUG - STREAM b'IDAT' 78 2994
+2025-04-11 19:40:10,056 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,056 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,056 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,057 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,057 - DEBUG - STREAM b'IDAT' 78 374
+2025-04-11 19:40:10,064 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,064 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,064 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,064 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,065 - DEBUG - STREAM b'IDAT' 78 286
+2025-04-11 19:40:10,066 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,066 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,066 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,066 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,066 - DEBUG - STREAM b'IDAT' 78 263
+2025-04-11 19:40:10,068 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,068 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,068 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,068 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,068 - DEBUG - STREAM b'IDAT' 78 387
+2025-04-11 19:40:10,070 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,070 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,070 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,070 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,070 - DEBUG - STREAM b'IDAT' 78 436
+2025-04-11 19:40:10,071 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,072 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,072 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,072 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,072 - DEBUG - STREAM b'IDAT' 78 351
+2025-04-11 19:40:10,073 - DEBUG - STREAM b'IHDR' 16 13
+2025-04-11 19:40:10,073 - DEBUG - STREAM b'sBIT' 41 4
+2025-04-11 19:40:10,073 - DEBUG - b'sBIT' 41 4 (unknown)
+2025-04-11 19:40:10,073 - DEBUG - STREAM b'pHYs' 57 9
+2025-04-11 19:40:10,073 - DEBUG - STREAM b'IDAT' 78 364
+2025-04-11 19:40:10,078 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2025-04-11 19:40:10,078 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,078 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,078 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,078 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,078 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
+2025-04-11 19:40:10,079 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhbd.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelaUIb.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiaz.ttf', name='Georgia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguiemj.ttf', name='Segoe UI Emoji', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolab.ttf', name='Consolas', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,080 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candara.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsunb.ttf', name='SimSun-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhbd.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mvboli.ttf', name='MV Boli', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constani.ttf', name='Constantia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothM.ttc', name='Yu Gothic', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariblk.ttf', name='Arial', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 6.888636363636364
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguili.ttf', name='Segoe UI', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahomabd.ttf', name='Tahoma', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyh.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhl.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicz.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuisl.ttf', name='Segoe UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarab.ttf', name='Candara', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyi.ttf', name='Microsoft Yi Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaraz.ttf', name='Candara', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consola.ttf', name='Consolas', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbd.ttf', name='Arial', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 6.698636363636363
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunsl.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framd.ttf', name='Franklin Gothic Medium', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,081 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspab.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\pala.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelli.ttf', name='Corbel', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrili.ttf', name='Calibri', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\impact.ttf', name='Impact', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeui.ttf', name='Segoe UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbi.ttf', name='Arial', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 7.698636363636363
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comici.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palab.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\javatext.ttf', name='Javanese Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cour.ttf', name='Courier New', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibli.ttf', name='Segoe UI', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhl.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibri.ttf', name='Calibri', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\wingding.ttf', name='Wingdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoepr.ttf', name='Segoe Print', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgun.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrimabd.ttf', name='Ebrima', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,082 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanb.ttf', name='Constantia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,083 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaB.ttc', name='Sitka Small', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,083 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelawUI.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,083 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambria.ttc', name='Cambria', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,083 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\couri.ttf', name='Courier New', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisb.ttf', name='Segoe UI', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiab.ttf', name='Georgia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constan.ttf', name='Constantia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaral.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrii.ttf', name='Calibri', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdana.ttf', name='Verdana', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.6863636363636365
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbi.ttf', name='Courier New', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanai.ttf', name='Verdana', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.6863636363636365
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\micross.ttf', name='Microsoft Sans Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuib.ttf', name='Segoe UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaB.ttf', name='Nirmala UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarai.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\times.ttf', name='Times New Roman', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarali.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariali.ttf', name='Arial', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 7.413636363636363
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriaz.ttf', name='Cambria', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebuc.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailu.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothR.ttc', name='Yu Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\sylfaen.ttf', name='Sylfaen', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunbd.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtext.ttf', name='Myanmar Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjh.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelz.ttf', name='Corbel', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,084 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrima.ttf', name='Ebrima', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbd.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibl.ttf', name='Segoe UI', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comic.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailub.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspa.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\CascadiaMono.ttf', name='Cascadia Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\monbaiti.ttf', name='Mongolian Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\l_10646.ttf', name='Lucida Sans Unicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanaz.ttf', name='Verdana', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.971363636363637
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugi.ttf', name='Gadugi', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelb.ttf', name='Corbel', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\lucon.ttf', name='Lucida Console', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgia.ttf', name='Georgia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taile.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbi.ttf', name='Times New Roman', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\symbol.ttf', name='Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbi.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaS.ttf', name='Nirmala UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolaz.ttf', name='Consolas', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,085 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taileb.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Nirmala.ttf', name='Nirmala UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Inkfree.ttf', name='Ink Free', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoesc.ttf', name='Segoe Script', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriai.ttf', name='Cambria', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Gabriola.ttf', name='Gabriola', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibriz.ttf', name='Calibri', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoescb.ttf', name='Segoe Script', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesi.ttf', name='Times New Roman', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arial.ttf', name='Arial', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 6.413636363636363
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanz.ttf', name='Constantia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palai.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segmdl2.ttf', name='Segoe MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeprb.ttf', name='Segoe Print', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisym.ttf', name='Segoe UI Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelUIsl.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-04-11 19:40:10,086 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbd.ttf', name='Courier New', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisli.ttf', name='Segoe UI', style='italic', variant='normal', weight=350, stretch='normal', size='scalable')) = 11.0975
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mingliub.ttc', name='MingLiU-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framdit.ttf', name='Franklin Gothic Medium', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguihis.ttf', name='Segoe UI Historic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\CascadiaCode.ttf', name='Cascadia Code', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaI.ttc', name='Sitka Small', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\himalaya.ttf', name='Microsoft Himalaya', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\holomdl2.ttf', name='HoloLens MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtextb.ttf', name='Myanmar Text', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuii.ttf', name='Segoe UI', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbell.ttf', name='Corbel', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriab.ttf', name='Cambria', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolai.ttf', name='Consolas', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbeli.ttf', name='Corbel', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibril.ttf', name='Calibri', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanab.ttf', name='Verdana', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.9713636363636367
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugib.ttf', name='Gadugi', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahoma.ttf', name='Tahoma', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrib.ttf', name='Calibri', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuil.ttf', name='Segoe UI', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbd.ttf', name='Times New Roman', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothB.ttc', name='Yu Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsun.ttc', name='SimSun', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbel.ttf', name='Corbel', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Sitka.ttc', name='Sitka Small', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\unispace bd.ttf', name='Unispace', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisbi.ttf', name='Segoe UI', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicbd.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-04-11 19:40:10,087 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\webdings.ttf', name='Webdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palabi.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msgothic.ttc', name='MS Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuiz.ttf', name='Segoe UI', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaZ.ttc', name='Sitka Small', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiai.ttf', name='Georgia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucit.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothL.ttc', name='Yu Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-04-11 19:40:10,088 - DEBUG - findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\bahnschrift.ttf', name='Bahnschrift', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-04-11 19:40:10,088 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.

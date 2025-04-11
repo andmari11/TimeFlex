@@ -4,13 +4,13 @@
     }">
     @foreach($calendars as $index=>$month)
 
-        <div x-show="true">
+        <div x-show="currentPage == {{ $index + 1 }}" >
             @php
                 $monthName = $month["month"];
                 $days = $month['days'];
             @endphp
         <x-layout :title="'Calendario'">
-            <x-page-heading>Calendario de {{$user->name}} en {{$schedule->section->name}}</x-page-heading>
+            <x-page-heading>Calendario personal en {{$schedule->section->name}}</x-page-heading>
 
             <div class="p-4 mx-10  bg-white shadow rounded-xl w-7/10">
                 <div class="flex justify-between">
@@ -59,7 +59,7 @@
                                 <div class="flex space-x-0">
                                     <a href="/horario/{{ $schedule->id }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
                                     <a href="/horario/personal/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
-                                    <a href="/stats" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
+                                    <a href="/estadisticashorario/{{ $schedule->section->id }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
                                 </div>
                             @endif
                     </div>
