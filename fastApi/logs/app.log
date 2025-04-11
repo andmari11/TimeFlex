@@ -1833,3 +1833,1349 @@ Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'applica
 Response content: <Response [200 OK]>
 2025-04-05 12:47:30,460 - DEBUG - close.started
 2025-04-05 12:47:30,461 - DEBUG - close.complete
+2025-04-11 18:54:39,880 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<send_schedule() done, defined at F:\Mis cosas\TimeFlex\fastApi\main.py:52> exception=TypeError('the JSON object must be str, bytes or bytearray, not int')>
+Traceback (most recent call last):
+  File "F:\Mis cosas\TimeFlex\fastApi\main.py", line 57, in send_schedule
+    solution_to_send = optimize(data, logging)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mis cosas\TimeFlex\fastApi\optimize1.py", line 55, in optimize
+    workers = process_worker_preferences(data.get("workers", []))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mis cosas\TimeFlex\fastApi\model\workerPreference.py", line 46, in process_worker_preferences
+    preferred_shift_weight = json.loads(item.get('preferred_shift_weight', DEFAULT_PREFERRED_SHIFTS_WEIGHT))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andre\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not int
+2025-04-11 18:55:27,066 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<send_schedule() done, defined at F:\Mis cosas\TimeFlex\fastApi\main.py:52> exception=TypeError('the JSON object must be str, bytes or bytearray, not NoneType')>
+Traceback (most recent call last):
+  File "F:\Mis cosas\TimeFlex\fastApi\main.py", line 57, in send_schedule
+    solution_to_send = optimize(data, logging)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mis cosas\TimeFlex\fastApi\optimize1.py", line 55, in optimize
+    workers = process_worker_preferences(data.get("workers", []))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mis cosas\TimeFlex\fastApi\model\workerPreference.py", line 46, in process_worker_preferences
+    preferred_shift_weight = json.loads(item.get('preferred_shift_weight'))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andre\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+2025-04-11 19:07:12,642 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 20), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 5), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 27), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 6, 8), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 29), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 20), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 28), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 21), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 30), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-02 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-05-03 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-04 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-05 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-05-06 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-07 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-08 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-09 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-10 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-11 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-12 (19) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-05-13 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-14 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-15 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-16 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-17 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-18 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-19 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-20 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-05-21 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-22 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-23 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-24 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-25 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-26 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-27 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-28 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-29 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-30 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-31 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-01 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-02 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-06-03 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-04 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-05 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-06 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-07 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-06-08 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-09 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-10 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-11 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-06-12 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-13 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-14 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-15 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-16 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-17 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-18 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-19 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-20 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-22 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-23 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-24 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-25 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-26 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-27 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-06-28 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-29 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-30 (19) has workers [False, False, False, False, False, False, False, False, True, True]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:07:12,653 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:07:12,658 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000212635D6810>
+2025-04-11 19:07:12,659 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:07:12,659 - DEBUG - send_request_headers.complete
+2025-04-11 19:07:12,659 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:07:12,659 - DEBUG - send_request_body.complete
+2025-04-11 19:07:12,659 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:07:13,266 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:07:13 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InZpMDViWU9SZTQ1M2NIMkdyeERKS2c9PSIsInZhbHVlIjoiNC9YMERRaWV6ZHJYOVZvQ3laeWpINXJyVm5tQ0dwOXprRndGbXR5SFNNOGlXbWlWRThOb1Eyd0ZjbHVydU1qbzBtcEduMHZWWjB3UEtZQXdWQ09oeWRLS0c2ZnNxWXlpWDR4UlhmRCs1Q2JnRUxYaVNHQVd5TkdwdEtFOWFGN2siLCJtYWMiOiIyZTc0ZjE5MzMzY2Y5NjI3MzM5OTNiMjZhNTc4YzcwNmFiYWNmYWJkYTJhYjhmYWY4ZDVlNDMzOGMwYmQzN2NkIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:07:13 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IkJBNEFEWS9vWnV6bVh1Y1FSUko4Wmc9PSIsInZhbHVlIjoiazNBK01PWmpmSFZIMWtFWmtWZ3RDa0QwbzZ4bmVlRGNsUERBNFdsUjVwMGtzSncvVldFNlRyYysvaUZEdHhQbmhzUmU1VmZmK2l6eG5lYStYMnc4TnJDN1NkU3l4T2dTbElMN3dZTU5reGxZbVF2WmEvTkYvR2tlb29DcVRibXgiLCJtYWMiOiJlZjI2MzhjNWU0ZDFkMmQxNDI5OTExZjVmMWVjZDU0MTI4YWI2MGU4Njg3MTcwZTgzYjMxNWNmMGVjOTA4ZjBjIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:07:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:07:13,266 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:07:13,266 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:07:13,266 - DEBUG - receive_response_body.complete
+2025-04-11 19:07:13,266 - DEBUG - response_closed.started
+2025-04-11 19:07:13,266 - DEBUG - response_closed.complete
+2025-04-11 19:07:13,268 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            502,
+            522,
+            523,
+            540,
+            542
+        ],
+        "2": [
+            496,
+            499,
+            506,
+            520,
+            521,
+            527
+        ],
+        "3": [
+            501,
+            519,
+            524,
+            533,
+            538,
+            549
+        ],
+        "4": [
+            499,
+            500,
+            511,
+            530
+        ],
+        "5": [
+            492,
+            494,
+            500,
+            528,
+            531,
+            545,
+            551
+        ],
+        "6": [
+            493,
+            498,
+            501,
+            503,
+            505,
+            508,
+            509,
+            529,
+            538,
+            541,
+            542
+        ],
+        "7": [
+            496,
+            507,
+            510,
+            511,
+            517,
+            525,
+            526,
+            529,
+            536,
+            539,
+            544,
+            545,
+            547,
+            548,
+            550
+        ],
+        "8": [
+            495,
+            497,
+            503,
+            512,
+            515,
+            519,
+            543
+        ],
+        "9": [
+            492,
+            493,
+            504,
+            513,
+            514,
+            516,
+            518,
+            527,
+            528,
+            532,
+            534,
+            535,
+            537,
+            541,
+            546,
+            548,
+            552
+        ],
+        "10": [
+            494,
+            495,
+            497,
+            498,
+            502,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            510,
+            512,
+            513,
+            514,
+            515,
+            516,
+            517,
+            518,
+            520,
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            530,
+            531,
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            539,
+            540,
+            543,
+            544,
+            546,
+            547,
+            549,
+            550,
+            551,
+            552
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:07:13,268 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:07:13 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InZpMDViWU9SZTQ1M2NIMkdyeERKS2c9PSIsInZhbHVlIjoiNC9YMERRaWV6ZHJYOVZvQ3laeWpINXJyVm5tQ0dwOXprRndGbXR5SFNNOGlXbWlWRThOb1Eyd0ZjbHVydU1qbzBtcEduMHZWWjB3UEtZQXdWQ09oeWRLS0c2ZnNxWXlpWDR4UlhmRCs1Q2JnRUxYaVNHQVd5TkdwdEtFOWFGN2siLCJtYWMiOiIyZTc0ZjE5MzMzY2Y5NjI3MzM5OTNiMjZhNTc4YzcwNmFiYWNmYWJkYTJhYjhmYWY4ZDVlNDMzOGMwYmQzN2NkIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:07:13 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IkJBNEFEWS9vWnV6bVh1Y1FSUko4Wmc9PSIsInZhbHVlIjoiazNBK01PWmpmSFZIMWtFWmtWZ3RDa0QwbzZ4bmVlRGNsUERBNFdsUjVwMGtzSncvVldFNlRyYysvaUZEdHhQbmhzUmU1VmZmK2l6eG5lYStYMnc4TnJDN1NkU3l4T2dTbElMN3dZTU5reGxZbVF2WmEvTkYvR2tlb29DcVRibXgiLCJtYWMiOiJlZjI2MzhjNWU0ZDFkMmQxNDI5OTExZjVmMWVjZDU0MTI4YWI2MGU4Njg3MTcwZTgzYjMxNWNmMGVjOTA4ZjBjIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:07:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:07:13,268 - DEBUG - close.started
+2025-04-11 19:07:13,268 - DEBUG - close.complete
+2025-04-11 19:16:12,180 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:16:12,180 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:16:41,312 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 29), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 26), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 14), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 23), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 25), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 27), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 18), 19)]Worker 8 works shifts [(datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 28), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 30), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-02 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-03 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-04 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-05 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-06 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-07 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-08 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-05-09 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-05-10 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-11 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-12 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-13 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-14 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-15 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-16 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-17 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-18 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-05-19 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-05-20 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-05-21 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-22 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-23 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-24 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-05-25 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-26 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-27 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-28 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-05-29 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-30 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-31 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-01 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-02 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-03 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-04 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-05 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-06 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-07 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-08 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-09 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-10 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-11 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-12 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-13 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-14 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-06-15 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-16 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-17 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-18 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-19 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-20 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-21 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-22 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-23 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-24 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-25 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-26 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-27 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-28 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-29 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-30 (19) has workers [False, False, False, False, False, False, False, False, True, True]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:16:41,321 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:16:41,322 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002126360D940>
+2025-04-11 19:16:41,322 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:16:41,323 - DEBUG - send_request_headers.complete
+2025-04-11 19:16:41,323 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:16:41,323 - DEBUG - send_request_body.complete
+2025-04-11 19:16:41,323 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:16:41,980 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:16:41 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ijk2N0RibUI5K2h5NkdSS2tuNWFwb1E9PSIsInZhbHVlIjoiQWxVaDVMSDdEWXlGdzFSSWc4ZE9JamJPV081c3orNnpvZXIrUlNpYnJMYXk0d1o5YkxjZ3M3T3FTcTdyb2ExQm9ROEdNcS9mOXRrRzEzN1dYbUxrNlFMQW9NTGE0WDBxdXFIZkxRMS94UjFTM2RRTEd6VnEvVTc3c25JeGkxMkoiLCJtYWMiOiIwNjM3MWU5ZTFlNjI1ZmY0ZTkzYWJjZjE5ZjFiOWExNWRlZTQ5NTQzMTgzZDdiZDU3ZjJlNTE1ZTlhMDEwZDgwIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:16:41 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InRGSmh2MnVGOW8ySGgwajAweCtmeGc9PSIsInZhbHVlIjoicjVNS2I4MTBNTHR1aTNCc3pCZFFYbEIrdVk1TVFrRDhmZ2VGUmtCU2hUamsvcW5hMDZpTlcyT085SGhMWHhsMFBzNnQ2VUpYRDBJQzVWVDBOcFdTNElTZy8vcGJuM05OUGJYZ0RjSlJRaGFXeC9tY3JzcjB5U2wzTmRxc3Jtc2UiLCJtYWMiOiJjOGE2ZTE2M2ZiZGM2ZDJhZmY3Mjg2MWMzZTUxMTE1MzM0MWE2NjliYmIxYTU3OTA5YTE2NDE5OTQyOTMwOWVmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:16:41 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:16:41,980 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:16:41,980 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:16:41,981 - DEBUG - receive_response_body.complete
+2025-04-11 19:16:41,981 - DEBUG - response_closed.started
+2025-04-11 19:16:41,981 - DEBUG - response_closed.complete
+2025-04-11 19:16:41,981 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            562,
+            563,
+            565,
+            569,
+            571,
+            572,
+            575,
+            576,
+            582,
+            584,
+            585,
+            586,
+            590,
+            592,
+            598,
+            601,
+            603,
+            604,
+            605,
+            607,
+            612
+        ],
+        "2": [
+            554,
+            558,
+            588,
+            595,
+            596,
+            609
+        ],
+        "3": [
+            556,
+            580,
+            589,
+            591,
+            597
+        ],
+        "4": [
+            556,
+            557,
+            583,
+            599,
+            606
+        ],
+        "5": [
+            555,
+            558,
+            559,
+            577
+        ],
+        "6": [
+            560,
+            561,
+            563,
+            573,
+            578,
+            587,
+            588,
+            594,
+            602,
+            606,
+            610
+        ],
+        "7": [
+            570
+        ],
+        "8": [
+            600,
+            608,
+            611
+        ],
+        "9": [
+            553,
+            554,
+            560,
+            561,
+            564,
+            566,
+            567,
+            568,
+            570,
+            571,
+            572,
+            574,
+            576,
+            579,
+            581,
+            584,
+            586,
+            587,
+            589,
+            591,
+            592,
+            593,
+            598,
+            599,
+            601,
+            603,
+            613
+        ],
+        "10": [
+            553,
+            555,
+            557,
+            559,
+            562,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            573,
+            574,
+            575,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            585,
+            590,
+            593,
+            594,
+            595,
+            596,
+            597,
+            600,
+            602,
+            604,
+            605,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:16:41,981 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:16:41 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ijk2N0RibUI5K2h5NkdSS2tuNWFwb1E9PSIsInZhbHVlIjoiQWxVaDVMSDdEWXlGdzFSSWc4ZE9JamJPV081c3orNnpvZXIrUlNpYnJMYXk0d1o5YkxjZ3M3T3FTcTdyb2ExQm9ROEdNcS9mOXRrRzEzN1dYbUxrNlFMQW9NTGE0WDBxdXFIZkxRMS94UjFTM2RRTEd6VnEvVTc3c25JeGkxMkoiLCJtYWMiOiIwNjM3MWU5ZTFlNjI1ZmY0ZTkzYWJjZjE5ZjFiOWExNWRlZTQ5NTQzMTgzZDdiZDU3ZjJlNTE1ZTlhMDEwZDgwIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:16:41 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6InRGSmh2MnVGOW8ySGgwajAweCtmeGc9PSIsInZhbHVlIjoicjVNS2I4MTBNTHR1aTNCc3pCZFFYbEIrdVk1TVFrRDhmZ2VGUmtCU2hUamsvcW5hMDZpTlcyT085SGhMWHhsMFBzNnQ2VUpYRDBJQzVWVDBOcFdTNElTZy8vcGJuM05OUGJYZ0RjSlJRaGFXeC9tY3JzcjB5U2wzTmRxc3Jtc2UiLCJtYWMiOiJjOGE2ZTE2M2ZiZGM2ZDJhZmY3Mjg2MWMzZTUxMTE1MzM0MWE2NjliYmIxYTU3OTA5YTE2NDE5OTQyOTMwOWVmIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:16:41 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:16:41,981 - DEBUG - close.started
+2025-04-11 19:16:41,981 - DEBUG - close.complete
+2025-04-11 19:20:49,888 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:20:49,888 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:21:20,213 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 24), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 25), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 27), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 29), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 28), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 17), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 30), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 23), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-02 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-03 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-05 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-05-06 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-05-07 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-05-08 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-09 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-05-10 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-11 (19) has workers [False, False, False, False, True, False, False, True, False, False]Shift 2025-05-12 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-05-13 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-05-14 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-15 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-05-16 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-17 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-18 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-19 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-20 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-21 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-05-22 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-05-23 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-24 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-25 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-05-26 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-05-27 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-05-28 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-29 (19) has workers [False, False, True, False, False, False, False, False, False, True]Shift 2025-05-30 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-31 (19) has workers [False, False, False, False, True, False, False, True, False, False]Shift 2025-06-01 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-02 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-06-03 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-04 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-05 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-06 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-06-07 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-08 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-09 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-10 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-11 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-06-12 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-13 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-14 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-15 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-16 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-17 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-18 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-19 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-20 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-21 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-06-22 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-06-23 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-24 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-25 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-26 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-27 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-28 (19) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-06-29 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-30 (19) has workers [False, False, True, False, False, False, False, True, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:21:20,223 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:21:20,223 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002126360F3B0>
+2025-04-11 19:21:20,223 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:21:20,223 - DEBUG - send_request_headers.complete
+2025-04-11 19:21:20,223 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:21:20,223 - DEBUG - send_request_body.complete
+2025-04-11 19:21:20,223 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:21:20,900 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:21:20 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ild2OVpTWnBOQW9zYmVWaVhsK3FwQ2c9PSIsInZhbHVlIjoiNFF0aC91Szhtb3VMY3NJb1UzT3A1K2IwV1Z4ODVlZjVCRUpGbEREUlVRdnRrQ0lhSzkyTkNsNDIvUHZSQysrNUN4UDFzdGxXL3FETkJRd0lqR3VwaTRuOEhucEtYMUJhZTgvUEVHN1Y4aDBmeERDc2U3bFljQXUwOHBWVUg2TUsiLCJtYWMiOiIwNzE3OTQ1NmFiNDVlYWZmNWI3MjZkYWNmMzllY2Q5ZDFmNzVmODQ4MDE0OGQzM2Q4NWJkZTYxMzU2OTBkODgxIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:21:20 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6Ik9SV0RJTGJTZ2QvcjFneEtJSlJiNGc9PSIsInZhbHVlIjoiVGh1bFRUZ0pxcGpnUFlpNjZGWXhRVzlKV0ZPTlg5VHNFR2R0UHZURnEybEJvR0dXMmU3TzlZUUM4OFBDNDgyZTZYd3VVOHdTeWw0QnBKYWgwaUNoME54R2lNTUdUbUFrMmJNNEYvbTh2Q2pxUmFqTC9UaDhVdFNYMWt4aFJzRnQiLCJtYWMiOiI4YTA0ZTQ5NDg5NTkwOWU0ZjE4MGI2YmM0YTQ4Zjg0YTFjMjJhMTgwZGVhZmQ3MTBmNDVlODBkMjY5MjE3YTA4IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:21:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:21:20,900 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:21:20,900 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:21:20,900 - DEBUG - receive_response_body.complete
+2025-04-11 19:21:20,900 - DEBUG - response_closed.started
+2025-04-11 19:21:20,900 - DEBUG - response_closed.complete
+2025-04-11 19:21:20,900 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            625,
+            628,
+            638,
+            651,
+            652,
+            664,
+            665,
+            666,
+            667,
+            668
+        ],
+        "2": [
+            615,
+            616,
+            620,
+            641,
+            643,
+            649,
+            655,
+            662,
+            669
+        ],
+        "3": [
+            614,
+            616,
+            620,
+            621,
+            626,
+            627,
+            633,
+            634,
+            640,
+            642,
+            646,
+            647,
+            654,
+            659,
+            673,
+            674
+        ],
+        "4": [
+            617,
+            618,
+            622,
+            630,
+            631,
+            632,
+            637,
+            645,
+            650,
+            653,
+            657,
+            660,
+            661,
+            663,
+            671
+        ],
+        "5": [
+            615,
+            617,
+            623,
+            624,
+            625,
+            628,
+            631,
+            635,
+            636,
+            641,
+            644,
+            648,
+            650,
+            666,
+            670,
+            673
+        ],
+        "6": [
+            619,
+            621,
+            627,
+            630,
+            632,
+            634,
+            635,
+            637,
+            639,
+            645,
+            647,
+            662,
+            663,
+            670,
+            671,
+            672
+        ],
+        "7": [
+            622,
+            629,
+            639,
+            646,
+            648,
+            655,
+            656,
+            658,
+            661
+        ],
+        "8": [
+            618,
+            624,
+            633,
+            638,
+            644,
+            651,
+            659,
+            664,
+            665,
+            672,
+            674
+        ],
+        "9": [
+            614,
+            623,
+            636,
+            643,
+            649,
+            652,
+            654,
+            656,
+            658,
+            660,
+            667
+        ],
+        "10": [
+            619,
+            626,
+            629,
+            640,
+            642,
+            653,
+            657,
+            668,
+            669
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:21:20,900 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:21:20 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ild2OVpTWnBOQW9zYmVWaVhsK3FwQ2c9PSIsInZhbHVlIjoiNFF0aC91Szhtb3VMY3NJb1UzT3A1K2IwV1Z4ODVlZjVCRUpGbEREUlVRdnRrQ0lhSzkyTkNsNDIvUHZSQysrNUN4UDFzdGxXL3FETkJRd0lqR3VwaTRuOEhucEtYMUJhZTgvUEVHN1Y4aDBmeERDc2U3bFljQXUwOHBWVUg2TUsiLCJtYWMiOiIwNzE3OTQ1NmFiNDVlYWZmNWI3MjZkYWNmMzllY2Q5ZDFmNzVmODQ4MDE0OGQzM2Q4NWJkZTYxMzU2OTBkODgxIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:21:20 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6Ik9SV0RJTGJTZ2QvcjFneEtJSlJiNGc9PSIsInZhbHVlIjoiVGh1bFRUZ0pxcGpnUFlpNjZGWXhRVzlKV0ZPTlg5VHNFR2R0UHZURnEybEJvR0dXMmU3TzlZUUM4OFBDNDgyZTZYd3VVOHdTeWw0QnBKYWgwaUNoME54R2lNTUdUbUFrMmJNNEYvbTh2Q2pxUmFqTC9UaDhVdFNYMWt4aFJzRnQiLCJtYWMiOiI4YTA0ZTQ5NDg5NTkwOWU0ZjE4MGI2YmM0YTQ4Zjg0YTFjMjJhMTgwZGVhZmQ3MTBmNDVlODBkMjY5MjE3YTA4IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:21:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:21:20,900 - DEBUG - close.started
+2025-04-11 19:21:20,900 - DEBUG - close.complete
+2025-04-11 19:22:36,586 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:22:36,587 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:23:05,937 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 18), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 29), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 23), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 30), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 15), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 21), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 19), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 26), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 28), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 27), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-02 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-03 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-05-05 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-06 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-07 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-08 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-09 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-10 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-11 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-12 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-13 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-05-14 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-15 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-16 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-17 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-18 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-19 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-20 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-21 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-22 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-23 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-24 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-25 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-26 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-05-27 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-05-28 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-29 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-30 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-31 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-01 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-02 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-03 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-04 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-05 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-06 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-07 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-08 (19) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-06-09 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-10 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-11 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-12 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-13 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-14 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-06-15 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-16 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-17 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-18 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-06-19 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-20 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-22 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-23 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-24 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-25 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-26 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-27 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-28 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-29 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-30 (19) has workers [False, False, False, True, True, False, False, False, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:23:05,951 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:23:05,951 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000021264741E50>
+2025-04-11 19:23:05,951 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:23:05,951 - DEBUG - send_request_headers.complete
+2025-04-11 19:23:05,951 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:23:05,951 - DEBUG - send_request_body.complete
+2025-04-11 19:23:05,951 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:23:06,591 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:23:06 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImdKMmpPUUhGaC9mZm5zVzVHVnNQbEE9PSIsInZhbHVlIjoia1BMa1M5Zi9iTHdjdzR1RmhxVWxrRDhzU3g1dkFBU29SYlZoeWVEY2JCQWZoRmtYVWpPNFZLQklIUDBXT3JCMjRSNmNXVTVPMmxQNXRBMk94Z0pVdTJWSDZpMGY5d01aSWp5NkRsZktJNzNrRUw2VXNBaXRXQ294MWs1L1JSL08iLCJtYWMiOiJjMjRiYmM4NDNhZTFlYjAxZWU4NDYyNWEyYWZhMWExMTMwYmVhYTQyNmM1NjEzNzU2MjNiZTQ1ZWUyMDkyNjllIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:23:06 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6Im4xbXYrdVBoRzJKaEluc1huNjVHblE9PSIsInZhbHVlIjoiKzB6N0tmdkVlNnQ4NW5yV29QOE1LaFRiYUk2V0cyb3Ixc1JzL2dtSkRVSjV4TFovTXlNcllLb0NwNUVISkY3UlV3SWswa2hFc0Z4cTlhRWQvTlp4MjBuRHlxSnc0UWJBVi9pRTFDeE55SnpKUkREajVpUk90SkhhTkN3b0RpcHQiLCJtYWMiOiI5YWRlZmY5ZWZjYmQ4MTg2NjFjZTg5NjI2YjAxZDQ1Y2ZmYzBlYmQ0ZDBhMzI0YzhlZDk1NTYyN2Y1NTVlZDc2IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:23:06 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:23:06,591 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:23:06,591 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:23:06,591 - DEBUG - receive_response_body.complete
+2025-04-11 19:23:06,591 - DEBUG - response_closed.started
+2025-04-11 19:23:06,591 - DEBUG - response_closed.complete
+2025-04-11 19:23:06,591 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            686,
+            689,
+            692,
+            697,
+            700,
+            704,
+            710,
+            723
+        ],
+        "2": [
+            675,
+            676,
+            677,
+            678,
+            681,
+            682,
+            685,
+            688,
+            695,
+            702,
+            707,
+            708,
+            712,
+            714,
+            716,
+            721,
+            722,
+            723,
+            727,
+            728,
+            730,
+            731,
+            733,
+            734
+        ],
+        "3": [
+            679,
+            686,
+            687,
+            690,
+            692,
+            693,
+            699,
+            712,
+            719,
+            725,
+            728
+        ],
+        "4": [
+            677,
+            679,
+            680,
+            682,
+            685,
+            690,
+            691,
+            694,
+            696,
+            698,
+            702,
+            703,
+            706,
+            709,
+            715,
+            721,
+            722,
+            724,
+            729,
+            734,
+            735
+        ],
+        "5": [
+            676,
+            680,
+            683,
+            691,
+            695,
+            698,
+            700,
+            718,
+            725,
+            726,
+            730,
+            732,
+            735
+        ],
+        "6": [
+            678,
+            689,
+            696,
+            697,
+            701,
+            703,
+            711,
+            717,
+            718,
+            720
+        ],
+        "7": [
+            684,
+            687,
+            701,
+            705,
+            706,
+            719,
+            724,
+            726
+        ],
+        "8": [
+            693,
+            707,
+            713,
+            731
+        ],
+        "9": [
+            683,
+            699,
+            705,
+            709,
+            710,
+            711,
+            713,
+            714,
+            716,
+            717,
+            727,
+            729,
+            733
+        ],
+        "10": [
+            675,
+            681,
+            684,
+            688,
+            694,
+            704,
+            708,
+            715,
+            720,
+            732
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:23:06,591 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:23:06 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImdKMmpPUUhGaC9mZm5zVzVHVnNQbEE9PSIsInZhbHVlIjoia1BMa1M5Zi9iTHdjdzR1RmhxVWxrRDhzU3g1dkFBU29SYlZoeWVEY2JCQWZoRmtYVWpPNFZLQklIUDBXT3JCMjRSNmNXVTVPMmxQNXRBMk94Z0pVdTJWSDZpMGY5d01aSWp5NkRsZktJNzNrRUw2VXNBaXRXQ294MWs1L1JSL08iLCJtYWMiOiJjMjRiYmM4NDNhZTFlYjAxZWU4NDYyNWEyYWZhMWExMTMwYmVhYTQyNmM1NjEzNzU2MjNiZTQ1ZWUyMDkyNjllIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:23:06 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6Im4xbXYrdVBoRzJKaEluc1huNjVHblE9PSIsInZhbHVlIjoiKzB6N0tmdkVlNnQ4NW5yV29QOE1LaFRiYUk2V0cyb3Ixc1JzL2dtSkRVSjV4TFovTXlNcllLb0NwNUVISkY3UlV3SWswa2hFc0Z4cTlhRWQvTlp4MjBuRHlxSnc0UWJBVi9pRTFDeE55SnpKUkREajVpUk90SkhhTkN3b0RpcHQiLCJtYWMiOiI5YWRlZmY5ZWZjYmQ4MTg2NjFjZTg5NjI2YjAxZDQ1Y2ZmYzBlYmQ0ZDBhMzI0YzhlZDk1NTYyN2Y1NTVlZDc2IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:23:06 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:23:06,591 - DEBUG - close.started
+2025-04-11 19:23:06,591 - DEBUG - close.complete
+2025-04-11 19:26:33,875 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:26:33,875 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:26:34,910 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 18), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 28), 19), (datetime.date(2025, 6, 29), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 23), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 29), 19), (datetime.date(2025, 6, 30), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 30), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 15), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 21), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 19), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 26), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 28), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 27), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-02 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-03 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-05-05 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-06 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-07 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-08 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-09 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-05-10 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-11 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-12 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-13 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-05-14 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-05-15 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-16 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-17 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-18 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-05-19 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-20 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-21 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-22 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-23 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-24 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-25 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-26 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-05-27 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-05-28 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-29 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-30 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-31 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-01 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-02 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-03 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-04 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-05 (19) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-06 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-07 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-08 (19) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-06-09 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-10 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-11 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-12 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-13 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-14 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-06-15 (19) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-16 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-17 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-18 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-06-19 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-20 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-22 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-23 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-24 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-25 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-26 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-27 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-28 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-29 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-06-30 (19) has workers [False, False, False, True, True, False, False, False, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:26:34,917 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:26:34,919 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000021264741C70>
+2025-04-11 19:26:34,919 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:26:34,919 - DEBUG - send_request_headers.complete
+2025-04-11 19:26:34,919 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:26:34,919 - DEBUG - send_request_body.complete
+2025-04-11 19:26:34,919 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:26:35,813 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:26:35 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Imhwc0ExUURsOGZqemYwRmZZeUYrVlE9PSIsInZhbHVlIjoiNGczNmZlNU5WbDU3VHEwekE0dHFWVjlPR2c0U2t4SU1VcVFiUEpodVZzU1AxcElMSXYxY3ZQOGFsVjlNWjR5RTlIcTZBeHB2dVBnWXBybnhvVkI2dXIxNHpoc21wZUVLMmpzY1ZEOWhjNVZ6WWFHT3NvT1gzaFZMTDU3NFFqWWQiLCJtYWMiOiIyYjY5MGI5ZTNhNzI5NGEyOTFjYmFkY2Y1MWY4OGJkNTBmMmVhM2UzNThmYWViNjc4YjNjZjEzMThhN2FkOGZkIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:26:35 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InRWUit2dkNldUxDQlFMNElSWDZNa0E9PSIsInZhbHVlIjoiN2ZQZlhEN2hTRU9QcmUzUERrZURzOFNLdTc2S1hpbitzU253cmlSMm9McHJNb1R5aU9zTmRQSVJDNE5vY3h2UmhyeGRpRGZ1TXpIWG1QTHpaczZuajVRK2szKy91azZkMlAxTklTbXVML1VsZVBmY09JTTVDK3lvcVRTaWZSOWgiLCJtYWMiOiIwMDhjMzkzN2Y0YzQwMzBhZWM2YThjMjU3YWZjMGJhMWUyNjg4YjVkNjI1MmJhYTViMzI5NmJiNGY4ZDcxMmFiIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:26:35 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:26:35,813 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:26:35,813 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:26:35,813 - DEBUG - receive_response_body.complete
+2025-04-11 19:26:35,813 - DEBUG - response_closed.started
+2025-04-11 19:26:35,813 - DEBUG - response_closed.complete
+2025-04-11 19:26:35,813 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            686,
+            689,
+            692,
+            697,
+            700,
+            704,
+            710,
+            723
+        ],
+        "2": [
+            675,
+            676,
+            677,
+            678,
+            681,
+            682,
+            685,
+            688,
+            695,
+            702,
+            707,
+            708,
+            712,
+            714,
+            716,
+            721,
+            722,
+            723,
+            727,
+            728,
+            730,
+            731,
+            733,
+            734
+        ],
+        "3": [
+            679,
+            686,
+            687,
+            690,
+            692,
+            693,
+            699,
+            712,
+            719,
+            725,
+            728
+        ],
+        "4": [
+            677,
+            679,
+            680,
+            682,
+            685,
+            690,
+            691,
+            694,
+            696,
+            698,
+            702,
+            703,
+            706,
+            709,
+            715,
+            721,
+            722,
+            724,
+            729,
+            734,
+            735
+        ],
+        "5": [
+            676,
+            680,
+            683,
+            691,
+            695,
+            698,
+            700,
+            718,
+            725,
+            726,
+            730,
+            732,
+            735
+        ],
+        "6": [
+            678,
+            689,
+            696,
+            697,
+            701,
+            703,
+            711,
+            717,
+            718,
+            720
+        ],
+        "7": [
+            684,
+            687,
+            701,
+            705,
+            706,
+            719,
+            724,
+            726
+        ],
+        "8": [
+            693,
+            707,
+            713,
+            731
+        ],
+        "9": [
+            683,
+            699,
+            705,
+            709,
+            710,
+            711,
+            713,
+            714,
+            716,
+            717,
+            727,
+            729,
+            733
+        ],
+        "10": [
+            675,
+            681,
+            684,
+            688,
+            694,
+            704,
+            708,
+            715,
+            720,
+            732
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:26:35,813 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:26:35 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Imhwc0ExUURsOGZqemYwRmZZeUYrVlE9PSIsInZhbHVlIjoiNGczNmZlNU5WbDU3VHEwekE0dHFWVjlPR2c0U2t4SU1VcVFiUEpodVZzU1AxcElMSXYxY3ZQOGFsVjlNWjR5RTlIcTZBeHB2dVBnWXBybnhvVkI2dXIxNHpoc21wZUVLMmpzY1ZEOWhjNVZ6WWFHT3NvT1gzaFZMTDU3NFFqWWQiLCJtYWMiOiIyYjY5MGI5ZTNhNzI5NGEyOTFjYmFkY2Y1MWY4OGJkNTBmMmVhM2UzNThmYWViNjc4YjNjZjEzMThhN2FkOGZkIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:26:35 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6InRWUit2dkNldUxDQlFMNElSWDZNa0E9PSIsInZhbHVlIjoiN2ZQZlhEN2hTRU9QcmUzUERrZURzOFNLdTc2S1hpbitzU253cmlSMm9McHJNb1R5aU9zTmRQSVJDNE5vY3h2UmhyeGRpRGZ1TXpIWG1QTHpaczZuajVRK2szKy91azZkMlAxTklTbXVML1VsZVBmY09JTTVDK3lvcVRTaWZSOWgiLCJtYWMiOiIwMDhjMzkzN2Y0YzQwMzBhZWM2YThjMjU3YWZjMGJhMWUyNjg4YjVkNjI1MmJhYTViMzI5NmJiNGY4ZDcxMmFiIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:26:35 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:26:35,813 - DEBUG - close.started
+2025-04-11 19:26:35,813 - DEBUG - close.complete
+2025-04-11 19:26:49,225 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:26:49,226 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:27:19,418 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 26), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 28), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 29), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 20), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 27), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 28), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 30), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 29), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 30), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 26), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-05-02 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-05-03 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-05-04 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-05 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-06 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-07 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-05-08 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-09 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-10 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-05-11 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-12 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-05-13 (19) has workers [True, False, False, True, False, False, False, False, False, False]Shift 2025-05-14 (19) has workers [True, False, False, False, False, False, False, True, False, False]Shift 2025-05-15 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-16 (19) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-05-17 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-18 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-19 (19) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-05-20 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-05-21 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-05-22 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-05-23 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-24 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-25 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-26 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-27 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-28 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-29 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-05-30 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-05-31 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-01 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-02 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-03 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-04 (19) has workers [False, True, False, False, False, False, True, False, False, False]Shift 2025-06-05 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-06 (19) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-07 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-08 (19) has workers [False, True, False, False, False, False, False, True, False, False]Shift 2025-06-09 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-10 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-11 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-06-12 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-13 (19) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-14 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-06-15 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-16 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-06-17 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-18 (19) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-19 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-20 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-06-22 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-23 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-24 (19) has workers [False, False, False, False, False, True, True, False, False, False]Shift 2025-06-25 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-26 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-27 (19) has workers [False, False, False, False, True, False, False, True, False, False]Shift 2025-06-28 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-29 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-30 (19) has workers [False, False, False, False, False, False, True, False, True, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:27:19,428 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:27:19,428 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000212647416A0>
+2025-04-11 19:27:19,433 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:27:19,433 - DEBUG - send_request_headers.complete
+2025-04-11 19:27:19,433 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:27:19,433 - DEBUG - send_request_body.complete
+2025-04-11 19:27:19,433 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:27:20,028 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:27:20 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InRFejBJeDJGempuNUpKcS92TE5zMnc9PSIsInZhbHVlIjoiVmxvV3BkazNYWnc1U1pwLzZhdGpjaDExTHNYYnZWckZsUzBYOFl3NDZ0eCtQZnVQTWV6MWxtOXB5SzhoUEJwZXVLc1BGVnd5UmJ2alY5bFZ0bDhyUkxueEtBYnVpS2w0bjR6OGlRVHRzYURPNUpYTWU0ajdwaGNxZTVvbFBkRXIiLCJtYWMiOiI1MjAwZWQ4NTc2NzU0N2VhMjBkNTc2ODRlZThmZTA0NGY3Y2M4YjljM2I5Zjg3MmQ3NzAwYjk2ZDYyNzM3YzJjIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:27:20 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IjNPL3FNdzlIQ1dJckV0MXZkZWdKNFE9PSIsInZhbHVlIjoiWGZFL1pLQ2dFVmd6eUxSNnZBV2R4aEpIZW01OHcxMlZpelduelRMYVNnTmZJSVU1ajRVejdVeWZzbktpRHRaZGFUcEwrcGY5dmo2NTdzVHpnR1Y4QW9ZVUpHUnpPQ1c4R1VMUEZtYnlCWEJQOStPTkFEN29nRG43b2Q4WWN1QjkiLCJtYWMiOiI5ZjE5MmNlMzA4ODMxNDM1MGI1ODQ0MGZmNGE1YThlYWU0YjFhYjRmOWZmMzZkODgwMGRhNTViMGNjYzE0MzA1IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:27:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:27:20,028 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:27:20,028 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:27:20,028 - DEBUG - receive_response_body.complete
+2025-04-11 19:27:20,028 - DEBUG - response_closed.started
+2025-04-11 19:27:20,028 - DEBUG - response_closed.complete
+2025-04-11 19:27:20,028 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            746,
+            748,
+            749,
+            750,
+            753,
+            761
+        ],
+        "2": [
+            741,
+            742,
+            744,
+            752,
+            763,
+            767,
+            770,
+            771,
+            774,
+            781,
+            788,
+            791,
+            794
+        ],
+        "3": [
+            737,
+            743,
+            747,
+            758,
+            759,
+            760,
+            762,
+            765,
+            772,
+            773,
+            775,
+            778,
+            782,
+            783,
+            784,
+            786,
+            789,
+            795
+        ],
+        "4": [
+            736,
+            745,
+            748,
+            755,
+            756,
+            759,
+            768,
+            776,
+            777,
+            779,
+            786
+        ],
+        "5": [
+            737,
+            744,
+            747,
+            755,
+            766,
+            767,
+            771,
+            787,
+            789,
+            791,
+            793
+        ],
+        "6": [
+            742,
+            750,
+            751,
+            753,
+            757,
+            761,
+            773,
+            775,
+            777,
+            778,
+            780,
+            781,
+            784,
+            787,
+            790,
+            794
+        ],
+        "7": [
+            738,
+            740,
+            757,
+            764,
+            766,
+            769,
+            770,
+            779,
+            780,
+            782,
+            790,
+            792,
+            796
+        ],
+        "8": [
+            736,
+            743,
+            749,
+            751,
+            754,
+            758,
+            774,
+            783,
+            785,
+            793,
+            795
+        ],
+        "9": [
+            738,
+            739,
+            741,
+            752,
+            754,
+            756,
+            760,
+            762,
+            763,
+            765,
+            768,
+            772,
+            776,
+            796
+        ],
+        "10": [
+            739,
+            740,
+            745,
+            746,
+            764,
+            769,
+            785,
+            788,
+            792
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:27:20,028 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:27:20 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InRFejBJeDJGempuNUpKcS92TE5zMnc9PSIsInZhbHVlIjoiVmxvV3BkazNYWnc1U1pwLzZhdGpjaDExTHNYYnZWckZsUzBYOFl3NDZ0eCtQZnVQTWV6MWxtOXB5SzhoUEJwZXVLc1BGVnd5UmJ2alY5bFZ0bDhyUkxueEtBYnVpS2w0bjR6OGlRVHRzYURPNUpYTWU0ajdwaGNxZTVvbFBkRXIiLCJtYWMiOiI1MjAwZWQ4NTc2NzU0N2VhMjBkNTc2ODRlZThmZTA0NGY3Y2M4YjljM2I5Zjg3MmQ3NzAwYjk2ZDYyNzM3YzJjIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:27:20 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IjNPL3FNdzlIQ1dJckV0MXZkZWdKNFE9PSIsInZhbHVlIjoiWGZFL1pLQ2dFVmd6eUxSNnZBV2R4aEpIZW01OHcxMlZpelduelRMYVNnTmZJSVU1ajRVejdVeWZzbktpRHRaZGFUcEwrcGY5dmo2NTdzVHpnR1Y4QW9ZVUpHUnpPQ1c4R1VMUEZtYnlCWEJQOStPTkFEN29nRG43b2Q4WWN1QjkiLCJtYWMiOiI5ZjE5MmNlMzA4ODMxNDM1MGI1ODQ0MGZmNGE1YThlYWU0YjFhYjRmOWZmMzZkODgwMGRhNTViMGNjYzE0MzA1IiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:27:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:27:20,028 - DEBUG - close.started
+2025-04-11 19:27:20,028 - DEBUG - close.complete
+2025-04-11 19:32:41,658 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:32:41,659 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-04-11 19:33:12,612 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 1 works shifts [(datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 20), 19), (datetime.date(2025, 6, 28), 19)]Worker 2 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 17), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 29), 19)]Worker 3 works shifts [(datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 11), 19), (datetime.date(2025, 5, 14), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 8), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 19), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 24), 19)]Worker 4 works shifts [(datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 15), 19), (datetime.date(2025, 5, 18), 19), (datetime.date(2025, 5, 21), 19), (datetime.date(2025, 5, 23), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 22), 19), (datetime.date(2025, 6, 23), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 27), 19), (datetime.date(2025, 6, 28), 19)]Worker 5 works shifts [(datetime.date(2025, 5, 3), 19), (datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 10), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 5), 19), (datetime.date(2025, 6, 11), 19), (datetime.date(2025, 6, 24), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 27), 19)]Worker 6 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 9), 19), (datetime.date(2025, 5, 12), 19), (datetime.date(2025, 5, 13), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 28), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 16), 19), (datetime.date(2025, 6, 29), 19)]Worker 7 works shifts [(datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 5), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 5, 29), 19), (datetime.date(2025, 5, 30), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 20), 19)]Worker 8 works shifts [(datetime.date(2025, 5, 4), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 20), 19), (datetime.date(2025, 5, 27), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 7), 19), (datetime.date(2025, 6, 10), 19), (datetime.date(2025, 6, 13), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 22), 19)]Worker 9 works shifts [(datetime.date(2025, 5, 1), 19), (datetime.date(2025, 5, 2), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 24), 19), (datetime.date(2025, 5, 26), 19), (datetime.date(2025, 6, 1), 19), (datetime.date(2025, 6, 2), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 6), 19), (datetime.date(2025, 6, 9), 19), (datetime.date(2025, 6, 14), 19), (datetime.date(2025, 6, 17), 19), (datetime.date(2025, 6, 21), 19), (datetime.date(2025, 6, 25), 19), (datetime.date(2025, 6, 30), 19)]Worker 10 works shifts [(datetime.date(2025, 5, 6), 19), (datetime.date(2025, 5, 7), 19), (datetime.date(2025, 5, 8), 19), (datetime.date(2025, 5, 16), 19), (datetime.date(2025, 5, 19), 19), (datetime.date(2025, 5, 22), 19), (datetime.date(2025, 5, 25), 19), (datetime.date(2025, 5, 31), 19), (datetime.date(2025, 6, 3), 19), (datetime.date(2025, 6, 4), 19), (datetime.date(2025, 6, 12), 19), (datetime.date(2025, 6, 15), 19), (datetime.date(2025, 6, 18), 19), (datetime.date(2025, 6, 26), 19), (datetime.date(2025, 6, 30), 19)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-05-02 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-05-03 (19) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-05-04 (19) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-05-05 (19) has workers [False, False, True, False, False, False, True, False, False, False]Shift 2025-05-06 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-07 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-05-08 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-09 (19) has workers [False, False, False, True, False, True, False, False, False, False]Shift 2025-05-10 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-05-11 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-05-12 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-05-13 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-05-14 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-05-15 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-16 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-05-17 (19) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-05-18 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-05-19 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-20 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-05-21 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-22 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-05-23 (19) has workers [False, True, False, True, False, False, False, False, False, False]Shift 2025-05-24 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-05-25 (19) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-05-26 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-05-27 (19) has workers [False, False, False, False, True, False, False, True, False, False]Shift 2025-05-28 (19) has workers [False, False, False, False, True, True, False, False, False, False]Shift 2025-05-29 (19) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-05-30 (19) has workers [True, False, False, False, False, False, True, False, False, False]Shift 2025-05-31 (19) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-01 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-02 (19) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-06-03 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-04 (19) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-05 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-06 (19) has workers [False, False, False, False, False, True, False, False, True, False]Shift 2025-06-07 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-06-08 (19) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-06-09 (19) has workers [False, False, False, False, False, False, True, False, True, False]Shift 2025-06-10 (19) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-06-11 (19) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-06-12 (19) has workers [False, False, False, False, False, False, True, False, False, True]Shift 2025-06-13 (19) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-14 (19) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-15 (19) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-16 (19) has workers [True, False, False, False, False, True, False, False, False, False]Shift 2025-06-17 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-18 (19) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-19 (19) has workers [False, True, True, False, False, False, False, False, False, False]Shift 2025-06-20 (19) has workers [True, False, False, False, False, False, True, False, False, False]Shift 2025-06-21 (19) has workers [False, False, False, True, False, False, False, False, True, False]Shift 2025-06-22 (19) has workers [False, False, False, True, False, False, False, True, False, False]Shift 2025-06-23 (19) has workers [False, False, True, True, False, False, False, False, False, False]Shift 2025-06-24 (19) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-25 (19) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-26 (19) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-27 (19) has workers [False, False, False, True, True, False, False, False, False, False]Shift 2025-06-28 (19) has workers [True, False, False, True, False, False, False, False, False, False]Shift 2025-06-29 (19) has workers [False, True, False, False, False, True, False, False, False, False]Shift 2025-06-30 (19) has workers [False, False, False, False, False, False, False, False, True, True]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-04-11 19:33:12,622 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-11 19:33:12,624 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002126360F170>
+2025-04-11 19:33:12,625 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-11 19:33:12,625 - DEBUG - send_request_headers.complete
+2025-04-11 19:33:12,625 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-11 19:33:12,625 - DEBUG - send_request_body.complete
+2025-04-11 19:33:12,625 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-11 19:33:13,236 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Fri, 11 Apr 2025 17:33:13 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ijk0SXRjZ2hGOWQ3ejJvQ1M5S2E3QXc9PSIsInZhbHVlIjoiUnJYamxVTjVkYng4YWpjUUNJeDFCZC9POGdoUkZrbFlFWVY5ZVZFbFZxQ3IwQjg4WjZrVXJiNkJiWEVVTUpsdUsyV1paMnlHcVIrWXZMc1lLZ1RGZ1djcjJ1eVRaRjNYTlNmcUx6a3pzTC94V0pUOHR5SUV1ZHhQMEJoKy94ZlgiLCJtYWMiOiIyNmQzOTlkMGNkZGVjYTNiMGVkMmEwM2U5MDdjZDQyZTVhYjc2NDk3OWE0Yjg0MjdlOTkxYmIzNzRiZGJiNTFhIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:33:13 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlZUREVGS0t4amhMSHgrUmtYbjBCM1E9PSIsInZhbHVlIjoiL1lZazV4Wm0wNzczQ00wd3IwL0R3MlZsWWhjWWVWWFNaYSt2K21UZDZ1d3RseFVkNEFUMko3RVYra1FVMllrY0w4K3lTS3pMWmhWekQycC9YQVNnRlRsQjM0a25KdXBOSnBCaTljRnpQa09HZWQwMk9yM3JXZjJuQXRCU0hIN1AiLCJtYWMiOiJmMGI4OTJmNmQ5NmI3YjRhZTVmMmVjMWM5ZjhjOWFjOGRkNWE2NmE0OWI0ZTg5Mzg0NjllZGMwYmUzM2JjMzFlIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:33:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-11 19:33:13,236 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-11 19:33:13,236 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-11 19:33:13,236 - DEBUG - receive_response_body.complete
+2025-04-11 19:33:13,236 - DEBUG - response_closed.started
+2025-04-11 19:33:13,236 - DEBUG - response_closed.complete
+2025-04-11 19:33:13,236 - DEBUG - Solution to send: {
+    "id": 44,
+    "status": "success",
+    "scheduleJSON": {
+        "1": [
+            809,
+            813,
+            815,
+            821,
+            826,
+            835,
+            838,
+            843,
+            847,
+            855
+        ],
+        "2": [
+            797,
+            799,
+            807,
+            808,
+            810,
+            811,
+            813,
+            817,
+            819,
+            841,
+            842,
+            846,
+            856
+        ],
+        "3": [
+            801,
+            806,
+            807,
+            810,
+            814,
+            816,
+            832,
+            835,
+            840,
+            846,
+            850,
+            851
+        ],
+        "4": [
+            805,
+            811,
+            814,
+            817,
+            819,
+            834,
+            844,
+            848,
+            849,
+            850,
+            853,
+            854,
+            855
+        ],
+        "5": [
+            799,
+            802,
+            803,
+            806,
+            823,
+            824,
+            825,
+            827,
+            828,
+            832,
+            838,
+            851,
+            852,
+            854
+        ],
+        "6": [
+            800,
+            805,
+            808,
+            809,
+            820,
+            824,
+            833,
+            843,
+            856
+        ],
+        "7": [
+            798,
+            801,
+            822,
+            825,
+            826,
+            836,
+            837,
+            839,
+            847
+        ],
+        "8": [
+            800,
+            812,
+            816,
+            823,
+            829,
+            834,
+            837,
+            840,
+            845,
+            849
+        ],
+        "9": [
+            797,
+            798,
+            804,
+            818,
+            820,
+            822,
+            828,
+            829,
+            830,
+            831,
+            833,
+            836,
+            841,
+            844,
+            848,
+            852,
+            857
+        ],
+        "10": [
+            802,
+            803,
+            804,
+            812,
+            815,
+            818,
+            821,
+            827,
+            830,
+            831,
+            839,
+            842,
+            845,
+            853,
+            857
+        ]
+    },
+    "satisfabilityJSON": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100
+    }
+}
+
+2025-04-11 19:33:13,236 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Fri, 11 Apr 2025 17:33:13 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ijk0SXRjZ2hGOWQ3ejJvQ1M5S2E3QXc9PSIsInZhbHVlIjoiUnJYamxVTjVkYng4YWpjUUNJeDFCZC9POGdoUkZrbFlFWVY5ZVZFbFZxQ3IwQjg4WjZrVXJiNkJiWEVVTUpsdUsyV1paMnlHcVIrWXZMc1lLZ1RGZ1djcjJ1eVRaRjNYTlNmcUx6a3pzTC94V0pUOHR5SUV1ZHhQMEJoKy94ZlgiLCJtYWMiOiIyNmQzOTlkMGNkZGVjYTNiMGVkMmEwM2U5MDdjZDQyZTVhYjc2NDk3OWE0Yjg0MjdlOTkxYmIzNzRiZGJiNTFhIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:33:13 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlZUREVGS0t4amhMSHgrUmtYbjBCM1E9PSIsInZhbHVlIjoiL1lZazV4Wm0wNzczQ00wd3IwL0R3MlZsWWhjWWVWWFNaYSt2K21UZDZ1d3RseFVkNEFUMko3RVYra1FVMllrY0w4K3lTS3pMWmhWekQycC9YQVNnRlRsQjM0a25KdXBOSnBCaTljRnpQa09HZWQwMk9yM3JXZjJuQXRCU0hIN1AiLCJtYWMiOiJmMGI4OTJmNmQ5NmI3YjRhZTVmMmVjMWM5ZjhjOWFjOGRkNWE2NmE0OWI0ZTg5Mzg0NjllZGMwYmUzM2JjMzFlIiwidGFnIjoiIn0%3D; expires=Fri, 11 Apr 2025 19:33:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-11 19:33:13,236 - DEBUG - close.started
+2025-04-11 19:33:13,236 - DEBUG - close.complete
+2025-04-11 19:34:13,859 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-04-11 19:34:13,861 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'

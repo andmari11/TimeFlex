@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Schedules\ScheduleController;
+use App\Models\Holidays;
 use App\Models\Result;
 use App\Models\Schedule;
 use Carbon\Carbon;
@@ -255,7 +256,27 @@ class FormsController extends Controller
                     $scheduleId = $shift ? $shift->schedule_id : null;
                     $answer = $shiftId;
                     break;
+                case 5:
+                    // Tipo Fecha: espera una fecha (string)
+                    $answer = $data['answer'] ?? "";
+                    $answer = trim($answer, '[]');
+                    $dates = explode(',', $answer);
 
+                    foreach ($dates as $date) {
+                        // Limpiar comillas y espacios
+                        $cleanDate = trim(str_replace('"', '', $date));
+
+                        $holiday = Holidays::create([
+                            'fecha_solicitud' => now(),
+                            'dia_vacaciones' => $cleanDate,
+                            'estado' => 'pending',
+                        ]);
+
+                        $holiday->user()->attach($validatedData['id_user']);
+                        $holiday->save();
+                    }
+
+                    break;
                 case 7:
                     // Tipo Opción múltiple: se espera que 'answer' sea un array.
                     if (isset($data['answer']) && is_array($data['answer']) && count($data['answer']) > 0) {

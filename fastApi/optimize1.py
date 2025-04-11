@@ -120,11 +120,11 @@ def optimize(data, logging):
     #comprobamos que los trabajadores no trabajen en sus días de vacaciones
     for i in range(n_workers):
         for j in range(n_shifts):
-            for holiday in workers[i].holidays:
+            for index, holiday in enumerate(workers[i].holidays):
                 holiday_shift=(Or(
                     shifts[j].start.date() == holiday.date(), 
                     shifts[j].end.date() == holiday.date()))
-                s.add_soft(Or(all_workers_shifts[i][j]==False, And(all_workers_shifts[i][j], Not(holiday_shift))), weight = workers[i].holidays_weight)
+                s.add_soft(Or(all_workers_shifts[i][j]==False, And(all_workers_shifts[i][j], Not(holiday_shift))), weight = workers[i].holidays_weight[index])
 
     #tipo de turno ej:(mañana:0, tarde:1, noche:2)
     for i in range(n_workers):

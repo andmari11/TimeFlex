@@ -92,4 +92,9 @@ class User extends Authenticatable
     {
         return $this->HasMany(Result::class);
     }
+
+    public function holidays()
+    {
+        return $this->belongsToMany(Holidays::class);
+    }
 }

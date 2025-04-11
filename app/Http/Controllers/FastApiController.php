@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Form;
+use App\Models\Holidays;
 use App\Models\Notification;
 use App\Models\Result;
 use App\Models\Satisfaction;
@@ -19,10 +20,9 @@ use Illuminate\Support\Facades\Log;
 class FastApiController extends Controller
 {
     public function sendSchedule($id){
-
         $form_id = 1;
-
         $schedule = Schedule::find($id);
+
         $data=[
             "name" => $schedule->name,
             "section_id" => $schedule->section->id,
@@ -31,16 +31,28 @@ class FastApiController extends Controller
 
         $worker_preferences = [];
 
+        $holidays = Holidays::where('dia_vacaciones', '>', Carbon::today())->get();
+        $max_days = max(abs(Carbon::now()->diffInDays($holidays->min('fecha_solicitud') ?? Carbon::today())), 1);
         foreach($schedule->section->users as $user){
             $turnoFav = $schedule->results()->where('id_user', $user->id)->where('id_question_type', 4)->first()->respuesta ?? null;
-            $holidays = explode(', ', Result::all()->where('id_user', $user->id)->where('id_question_type', 5)->first()->respuesta ?? null);
-            $holidays = $this->formatHolidaysWithTime($holidays);
+
+            $holidays = $user->holidays->filter(function ($holiday) use ($schedule) {
+                return $holiday->dia_vacaciones >= $schedule->start_date && $holiday->dia_vacaciones <= $schedule->end_date;
+            });
+            $dates= [];
+            $weights = [];
+
+            foreach ($holidays as $holiday) {
+                $dates[] = $holiday->dia_vacaciones;
+                $weights[] = max((abs(Carbon::now()->diffInDays(Carbon::parse($holiday->fecha_solicitud)))/$max_days*10), 1);
+            }
+            $dates = $this->formatHolidaysWithTime($dates);
             $satisfactions = $user->satisfactions->pluck('score')->toArray();
             $worker_preference = [
                 "form_id" => $form_id,
                 "user_id" => $user->id,
-                "holidays" => $holidays != null ? json_encode($holidays) : json_encode([]),
-                "holidays_weight" => 1,
+                "holidays" => $dates != null ? json_encode($dates) : json_encode([]),
+                "holidays_weight" => $weights != null ? json_encode($weights) : json_encode([]),
                 "preferred_shift_types" => $turnoFav != null ? json_encode([$turnoFav]) : json_encode([]),
                 "preferred_shift_types_weight" => 1,
                 "past_satisfaction" => $satisfactions != null ? json_encode($satisfactions) : json_encode([]),
@@ -50,7 +62,6 @@ class FastApiController extends Controller
         }
 
         $data['usersJSON'] =json_encode($worker_preferences);
-
         $scheduleShifts=[];
         foreach($schedule->shifts as $shift){
             $shiftData = [
@@ -69,8 +80,13 @@ class FastApiController extends Controller
         try{
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
-                dd($response->status(), $response->body());
                 return redirect('/horario')->withErrors(['message' => 'Error sending data.']);
+            }
+            else{
+                $schedule->update([
+                    'status' => 'pending',
+                    'simulation_message' => null
+                ]);
             }
         }
         catch (\Illuminate\Http\Client\ConnectionException $e) {
@@ -169,6 +185,18 @@ class FastApiController extends Controller
                         'score' => $satisfability,
                         'schedule_id' => $schedule->id
                     ]);
+
+                    foreach ($user->holidays as $holiday) {
+                        $userShifts = $user->shifts->where('schedule_id', $schedule->id);
+                        if($userShifts->every(fn($shift) =>
+                            Carbon::parse($shift->start)->toDateString() != $holiday->dia_vacaciones
+                            && Carbon::parse($shift->end)->toDateString() != $holiday->dia_vacaciones)){
+                            $holiday->update(['estado' => 'accepted']);
+                        }
+                        else{
+                            $holiday->update(['estado' => 'rejected']);
+                        }
+                    }
                 } else {
                     return response()->json(['message' => "Usuario con ID {$userId} no encontrado."], 404);
 

@@ -53,19 +53,21 @@
         </p>
 
         <p class="text-lg  text-{{
-            $schedule->status == 'success' ? 'green' :
-            ($schedule->status == 'not_optimized' ? 'blue' :
-            ($schedule->status == 'finalized' ? 'orange' :
-            ($schedule->status == 'failed' ? 'red' :
-            ($schedule->status == 'regenerado' ? 'purple' : 'black'))))
-        }}-600">
+                $schedule->status == 'success' ? 'green' :
+                ($schedule->status == 'not_optimized' ? 'cyan' :
+                ($schedule->status == 'finalized' ? 'amber' :
+                ($schedule->status == 'failed' ? 'red' :
+                ($schedule->status == 'regenerado' ? 'indigo' :
+                ($schedule->status == 'pending' ? 'yellow' : 'gray')))))
+            }}-600">
             <strong>Estado:</strong>
             {{
                 $schedule->status == 'success' ? 'Éxito' :
                 ($schedule->status == 'not_optimized' ? 'No optimizado' :
                 ($schedule->status == 'finalized' ? 'Finalizado' :
                 ($schedule->status == 'failed' ? 'Fallido' :
-                ($schedule->status == 'regenerado' ? 'Regenerado' : 'Desconocido'))))
+                ($schedule->status == 'regenerado' ? 'Regenerado' :
+                ($schedule->status == 'pending' ? 'Pendiente' : 'Desconocido')))))
             }}
         </p>
 
