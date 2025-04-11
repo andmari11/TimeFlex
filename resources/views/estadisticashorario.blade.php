@@ -239,6 +239,8 @@
                     </div>`;
                         return;
                     }
+                    // ordenar por campo total (numero solicitudes)
+                    data.sort((a, b) => a.total - b.total);
                     // obtenemos los valores maximos y minimos en cuanto a numero de solicitudes
                     const maxSolicitudes = Math.max(...data.map(item => item.total));
                     const minSolicitudes = Math.min(...data.map(item => item.total));
