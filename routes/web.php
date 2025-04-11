@@ -72,7 +72,8 @@ Route::get('/total-employees', [StatsController::class, 'getTotalEmployees']);
 Route::get('/total-shift-hours-accumulated', [StatsController::class, 'getTotalShiftHours']);
 Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDistribution']);
 Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualVsExpected']);
-Route::get('/user-shift-exchanges', [App\Http\Controllers\StatsController::class, 'getUserShiftExchanges']);
+Route::get('/user-shift-exchanges', [StatsController::class, 'getUserShiftExchanges']);
+Route::get('/user-holidays-evolution', [StatsController::class, 'getUserHolidaysEvolution']);
 
 
 Route::get('/ayuda', function () {

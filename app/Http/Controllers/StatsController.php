@@ -297,4 +297,44 @@ class StatsController
         ]);
     }
 
+    public function getUserHolidaysEvolution()
+    {
+        $userId = auth()->id();
+
+        // vacaciones solicitadas por mes
+        $solicitadasPorMes = DB::table('holidays')
+            ->join('holidays_user', 'holidays.id', '=', 'holidays_user.holidays_id')
+            ->selectRaw('strftime("%m", holidays.dia_vacaciones) as mes, COUNT(*) as total')
+            ->where('holidays_user.user_id', $userId)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
+
+        // vacaciones aceptadas por mes
+        $aceptadasPorMes = DB::table('holidays')
+            ->join('holidays_user', 'holidays.id', '=', 'holidays_user.holidays_id')
+            ->selectRaw('strftime("%m", holidays.dia_vacaciones) as mes, COUNT(*) as total')
+            ->where('holidays_user.user_id', $userId)
+            ->where('holidays.estado', 'Accepted')
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
+
+        // arrays para almacenar los resultados
+        $solicitadas = [];
+        $aceptadas = [];
+
+        // para cada mes guardamos los datos calculados o 0 si no hay
+        for ($i = 1; $i <= 12; $i++) {
+            $mes = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $solicitadas[] = $solicitadasPorMes[$mes] ?? 0;
+            $aceptadas[] = $aceptadasPorMes[$mes] ?? 0;
+        }
+
+        return response()->json([
+            'solicitadas' => $solicitadas,
+            'aceptadas' => $aceptadas,
+        ]);
+    }
+
 }
