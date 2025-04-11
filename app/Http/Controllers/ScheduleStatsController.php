@@ -79,9 +79,10 @@ class ScheduleStatsController
         $peores = collect($holidays)
             ->sortByDesc('total')
             ->sortBy('diff')
+            ->reject(fn($item) => $mejores->pluck('day')->contains($item->day))
             ->take(4);
 
-        return response()->json($mejores->merge($peores)->unique('day')->values());
+        return response()->json($mejores->concat($peores)->values());
     }
 
 

@@ -98,7 +98,7 @@
                             backgroundColor: '#f8f9fa',
                             borderRadius: 20
                         },
-                        title: { text: `Demanda de turnos en ${monthNames[month]} de ${year}` },
+                        title: { text: `Demanda de turnos` },
                         xAxis: { categories: dayLabels, title: null },
                         yAxis: { categories: weeks, title: null, reversed: true },
                         colorAxis: {
@@ -182,7 +182,7 @@
                             backgroundColor: '#f8f9fa',
                             borderRadius: 20
                         },
-                        title: { text: `Vacaciones aceptadas en ${monthNames[month]} de ${year}` },
+                        title: { text: `Vacaciones aceptadas` },
                         xAxis: { categories: dayLabels, title: null },
                         yAxis: { categories: weeks, title: null, reversed: true },
                         colorAxis: {
@@ -226,73 +226,101 @@
         }
 
         function renderTimeline(month, year) {
-            const timelineData = [
-                { name: '62%', day: '8', color: '#00cc00' },
-                { name: '51%', day: '6', color: '#6eea8e' },
-                { name: '42%', day: '11', color: '#ccff99' },
-                { name: '33%', day: '9', color: '#e6f0DC' },
-                { name: '12%', day: '17', color: '#ff9ea2' },
-                { name: '9%', day: '4', color: '#f1666d' },
-                { name: '3%', day: '27', color: '#dc143c' },
-                { name: '1%', day: '12', color: '#ed2024' }
-            ];
-
-            Highcharts.chart('mejoresPeoresDiasMes', {
-                chart: {
-                    type: 'timeline',
-                    backgroundColor: '#f8f9fa',
-                    borderRadius: 20,
-                    marginTop: 40,
-                    marginBottom: 80
-                },
-                title: {
-                    text: `Días más y menos libres de ${monthNames[month]}`,
-                    align: 'center'
-                },
-                xAxis: {
-                    type: 'category',
-                    categories: timelineData.map(d => `${d.day} de ${monthNames[month]}`),
-                    labels: { style: { fontSize: '14px', fontWeight: 'bold' } },
-                    tickInterval: 1,
-                    lineWidth: 0
-                },
-                yAxis: { visible: false },
-                legend: { enabled: false },
-                tooltip: {
-                    formatter: function () {
-                        return `<b>${this.point.day} de ${monthNames[month]}</b> - ${this.point.name} turnos libres`;
+            fetch(`/section-pending-holidays/${sectionId}/${month + 1}-${year}`)
+                .then(response => response.json())
+                .then(data => {
+                    // obtenemos los valores unicos
+                    const valoresUnicos = [...new Set(data.map(item => item.total))];
+                    // si hay menos de 2 valores unicos no mostramos el grafico -> mostramos un mensaje
+                    if (valoresUnicos.length < 2) {
+                        document.getElementById('mejoresPeoresDiasMes').innerHTML = `
+                    <div class="text-gray-600 text-center mt-10 font-medium">
+                        No hay suficientes días con solicitudes pendientes para mostrar estadísticas comparativas
+                    </div>`;
+                        return;
                     }
-                },
-                series: [{
-                    name: 'Días más y menos libres',
-                    data: timelineData,
-                    marker: { symbol: 'rect', width: 225, height: 60, lineWidth: 0 },
-                    lineWidth: 5,
-                    lineColor: '#d3d3d3',
-                    dataLabels: {
-                        enabled: true,
-                        allowOverlap: true,
-                        formatter: function () {
-                            return `<b>${this.point.name}</b>`;
+                    // obtenemos los valores maximos y minimos en cuanto a numero de solicitudes
+                    const maxSolicitudes = Math.max(...data.map(item => item.total));
+                    const minSolicitudes = Math.min(...data.map(item => item.total));
+                    // funcion para asignar color segun el numero de solicitudes para el timeline
+                    const getColor = (total) => {
+                        // lo del divisor lo pongo para evitar dividir por 0
+                        const ratio = (total - minSolicitudes) / (maxSolicitudes - minSolicitudes || 1);
+
+                        if (ratio <= 0.2) return '#00cc00';   // verde oscuro
+                        if (ratio <= 0.4) return '#ccff99';   // verde claro
+                        if (ratio <= 0.8) return '#ff6961';   // rojo claro
+                        return '#ed2024';                     // rojo oscuro
+                    };
+                    // construccion del timeline (grafico) en caso de que haya un numero suficiente de resultados
+                    const timelineData = data.map(item => {
+                        const fecha = new Date(item.day);
+                        return {
+                            name: `${item.total} solicitud${item.total > 1 ? 'es' : ''}`,
+                            day: item.day,
+                            fecha: `${fecha.getDate()} de ${monthNames[month]}`,
+                            color: getColor(item.total)
+                        };
+                    });
+
+                    Highcharts.chart('mejoresPeoresDiasMes', {
+                        chart: {
+                            type: 'timeline',
+                            backgroundColor: '#f8f9fa',
+                            borderRadius: 20,
+                            marginTop: 40,
+                            marginBottom: 80
                         },
-                        style: {
-                            fontSize: '18px',
-                            fontWeight: 'bold',
-                            color: '#000',
-                            textOutline: 'none'
-                        }
-                    }
-                }]
-            });
-        }
+                        title: {
+                            text: `Días con más y menos solicitudes de vacaciones pendientes`,
+                            align: 'center'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            categories: timelineData.map(d => d.fecha),
+                            labels: { style: { fontSize: '14px', fontWeight: 'bold' } },
+                            tickInterval: 1,
+                            lineWidth: 0
+                        },
+                        yAxis: { visible: false },
+                        legend: { enabled: false },
+                        tooltip: {
+                            formatter: function () {
+                                return `<b>${this.point.fecha}</b> - ${this.point.name}`;
+                            }
+                        },
+                        series: [{
+                            name: 'Solicitudes de vacaciones pendientes',
+                            data: timelineData,
+                            marker: { symbol: 'rect', width: 225, height: 60, lineWidth: 0 },
+                            lineWidth: 5,
+                            lineColor: '#d3d3d3',
+                            dataLabels: {
+                                enabled: true,
+                                allowOverlap: true,
+                                formatter: function () {
+                                    return `<b>${this.point.name}</b>`;
+                                },
+                                style: {
+                                    fontSize: '18px',
+                                    fontWeight: 'bold',
+                                    color: '#000',
+                                    textOutline: 'none'
+                                }
+                            }
+                        }]
+                    });
+                });
 
+        }
+        // funcion para actualizar todos los graficos
         function updateAllCharts() {
             document.getElementById('monthTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
             renderHeatmap(currentMonth, currentYear);
             renderHolidaysHeatmap(currentMonth, currentYear);
             renderTimeline(currentMonth, currentYear);
         }
-
+        // funcion para actualizar los graficos con el mes obtenido al dar a la flecha <-
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('prevMonth').addEventListener('click', () => {
                 currentMonth--;
@@ -302,7 +330,7 @@
                 }
                 updateAllCharts();
             });
-
+            // funcion para actualizar los graficos con el mes obtenido al dar a la flecha ->
             document.getElementById('nextMonth').addEventListener('click', () => {
                 currentMonth++;
                 if (currentMonth > 11) {

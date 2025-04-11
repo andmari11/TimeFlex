@@ -134,10 +134,10 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $states = ['Accepted', 'Accepted', 'Accepted', 'Pending', 'Declined']; // pongo mas accepted para que salgan mas
+        $states = ['Accepted', 'Accepted', 'Accepted', 'Pending', 'Pending']; // pongo mas accepted para que salgan mas
 
         // vacaciones para abril
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $dia_vacaciones = Carbon::create(2025, 4, rand(1,30)); // entre el 1 y el 25 de abril
             $holiday = Holidays::create([
                 'fecha_solicitud' => now(),
@@ -149,7 +149,7 @@ class DatabaseSeeder extends Seeder
         }
         $holidays = Holidays::all();
         foreach ($users as $user) {
-            $numberHolidays = rand(2,5);
+            $numberHolidays = rand(4,8);
             $allHolidays = $holidays->random($numberHolidays)->pluck('id');
             // asignacion de turnos
             foreach ($allHolidays as $holidayId) {
