@@ -106,6 +106,9 @@ Route::get('/file/{id}/show', [FileController::class, 'show'])->name('file.show'
 
 Route::post('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'store'])->middleware('auth');
 Route::get('horario/{id}/edit/shift-type/create', [ShiftTypeController::class, 'create'])->middleware('auth');
+Route::get('/horario/{id}/edit/shift-type/{id_st}/edit', [ShiftTypeController::class, 'edit'])->middleware('auth');
+Route::patch('/horario/{id}/edit/shift-type/{id_st}/edit', [ShiftTypeController::class, 'update'])->middleware('auth');
+Route::delete('/horario/{id}/edit/shift-type/{id_st}/delete', [ShiftTypeController::class, 'destroy'])->middleware('auth');
 
 Route::get('/horario-registrar', [ScheduleController::class, 'create'])->middleware('auth');
 Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middleware('auth');

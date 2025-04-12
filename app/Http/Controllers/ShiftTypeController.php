@@ -72,6 +72,56 @@ class ShiftTypeController extends Controller
         return redirect('/horario/'.$schedule_id.'/edit');
     }
 
+    public function edit($id, $id_st)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $shiftType = ShiftType::findOrFail($id_st);
+        return view('schedules.edit-shiftype', compact('shiftType', 'schedule'));
+    }
+    public function update($id, $id_st)
+    {
+        // Validar los atributos del horario
+        $attributesSchedule = request()->validate([
+
+            'notes' => ['required'],
+            'start' => 'required|date',
+            'end' => 'required|date|after:start_date',
+            'users_needed' => 'required|numeric',
+            'period' => 'required|numeric',
+            'weekends_excepted' => 'boolean',
+            'workers' => 'array',
+            'workers.*' => 'exists:users,id',
+        ], [], [
+            'notes.required' => 'El campo notas es obligatorio',
+            'start.required' => 'El campo inicio es obligatorio',
+            'end.required' => 'El campo fin es obligatorio',
+            'end.after' => 'La fecha de fin debe ser posterior a la fecha de inicio',
+            'users_needed.required' => 'El campo usuarios necesarios es obligatorio',
+            'users_needed.numeric' => 'El campo usuarios necesarios debe ser numérico',
+            'period.required' => 'El campo periodo es obligatorio',
+            'period.numeric' => 'El campo periodo debe ser numérico',
+            'workers.array' => 'El campo trabajadores debe ser un array',
+            'workers.*.exists' => 'El trabajador seleccionado no es válido',
+        ]);
+
+        if (isset($attributesSchedule['workers']) && $attributesSchedule['users_needed'] !== null && count($attributesSchedule['workers']) > $attributesSchedule['users_needed']) {
+            return back()->withErrors(['workers' => 'El número de trabajadores asignados no puede ser mayor que el número de trabajadores necesarios.']);
+        }
+
+
+        $shiftType = ShiftType::findOrFail($id_st);
+
+        $shiftType->update($attributesSchedule);
+
+        return redirect('/horario/'.$id.'/edit');
+    }
+    public function destroy($id, $id_st)
+    {
+        $shiftType = ShiftType::findOrFail($id_st);
+        $shiftType->delete();
+
+        return redirect('/horario/'.$id.'/edit');
+    }
     public static function generateShifts($shiftType)
     {
         $schedule = Schedule::findOrFail($shiftType->schedule_id);
