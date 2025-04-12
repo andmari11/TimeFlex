@@ -289,7 +289,7 @@ class ScheduleController extends Controller
     {
         $sections = Section::all();
         $schedule = Schedule::findOrFail($id);
-        $shifttypes = ShiftType::all();
+        $shifttypes = $schedule->shiftTypes;
         return view('schedules.edit', compact('schedule', 'sections', 'shifttypes'));
     }
 
