@@ -17,7 +17,7 @@
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <label for="notes" class="block text-lg font-medium text-gray-700">Descripción de turno</label>
-                    <textarea class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="notes" id="notes" value="{{$shiftType->notes}}"required></textarea>
+                    <input class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="notes" id="notes" value="{{$shiftType->notes}}" required></input>
                     <x-forms.error name="notes" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
