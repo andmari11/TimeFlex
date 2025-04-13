@@ -53,8 +53,10 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'company_id' => 1,
             'role' => 'admin',
+            'weight' => 5,
             'section_id' => 1
         ]);
+
 
         //crea 1 user
         User::factory(1)->create([

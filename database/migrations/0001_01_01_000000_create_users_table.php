@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role');
-
+            $table->integer('weight')->default(5);
 
             $table->foreignIdFor(\App\Models\Section::class)->nullable();
             $table->foreignIdFor(\App\Models\Company::class);

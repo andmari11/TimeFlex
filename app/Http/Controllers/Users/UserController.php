@@ -49,16 +49,21 @@ class UserController extends Controller
             'password'   => ['nullable', Password::min(6), 'confirmed'],
             'role'       => ['required'],
             'section_id' => ['required'],
+            'user_weight' => ['required', 'integer', 'min:1', 'max:10'], // Validación para el campo "Peso del usuario"
         ]);
-        $user = User::findOrFail($id);
-        $user->update([
-            'name' => request('name'),
-            'email' => request('email'),
-            'section_id' => request('section_id'),
 
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'name'       => request('name'),
+            'email'      => request('email'),
+            'section_id' => request('section_id'),
+            'user_weight' => request('user_weight'), // Se añade el campo "Peso del usuario"
         ]);
+
         return redirect('/menu');
     }
+
 
     public function destroy(int $id)
     {
