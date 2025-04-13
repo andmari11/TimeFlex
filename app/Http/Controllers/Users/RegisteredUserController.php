@@ -1,10 +1,10 @@
 <?php
 
-//BORRAR PORQUE NO SE UTILIZA
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
@@ -16,21 +16,21 @@ class RegisteredUserController extends Controller
 
     public function store()
     {
-        //TODO comprobar que sea admin de la empresa
+        // TODO: Comprobar que sea admin de la empresa
 
         $attributesUser = request()->validate([
             'name'       => ['required'],
             'email'      => ['required', 'email', 'unique:users,email'],
             'password'   => ['required', Password::min(6), 'confirmed'],
             'role'       => ['required'],
-
+            'weight'     => ['required'],
         ]);
 
-        $attributesUser_defaults=[
-            "company_id"=> auth()->user()->company->id
+        $attributesUser_defaults = [
+            "company_id" => auth()->user()->company->id
         ];
 
-        $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
+        $attributesUser = array_merge($attributesUser, $attributesUser_defaults);
 
         $user = User::create($attributesUser);
 
@@ -39,10 +39,8 @@ class RegisteredUserController extends Controller
         return redirect('/menu');
     }
 
-
     public function destroy()
     {
         return view('users.register');
     }
-
 }

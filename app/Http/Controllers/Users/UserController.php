@@ -15,7 +15,6 @@ class UserController extends Controller
 
     public function store()
     {
-
         //TODO comprobar que sea admin de la empresa
         $attributesUser = request()->validate([
             'name'       => ['required'],
@@ -23,18 +22,22 @@ class UserController extends Controller
             'password'   => ['required', Password::min(6), 'confirmed'],
             'role'       => ['required'],
             'section_id' => ['required'],
+            'weight'     => ['required'],
         ]);
 
-        $attributesUser_defaults=[
-            "company_id"=> auth()->user()->company->id
+        $attributesUser_defaults = [
+            "company_id" => auth()->user()->company->id
         ];
 
-        $attributesUser=array_merge($attributesUser, $attributesUser_defaults);
+        $attributesUser = array_merge($attributesUser, $attributesUser_defaults);
+
+
 
         $user = User::create($attributesUser);
 
         return redirect('/menu');
     }
+
     public function edit(int $id){
         $user = User::findOrFail($id);
 
@@ -49,16 +52,15 @@ class UserController extends Controller
             'password'   => ['nullable', Password::min(6), 'confirmed'],
             'role'       => ['required'],
             'section_id' => ['required'],
-            'user_weight' => ['required', 'integer', 'min:1', 'max:10'], // Validación para el campo "Peso del usuario"
+            'user_weight' => ['required'],
         ]);
 
         $user = User::findOrFail($id);
-
         $user->update([
             'name'       => request('name'),
             'email'      => request('email'),
             'section_id' => request('section_id'),
-            'user_weight' => request('user_weight'), // Se añade el campo "Peso del usuario"
+            'weight'     => request('user_weight'),
         ]);
 
         return redirect('/menu');

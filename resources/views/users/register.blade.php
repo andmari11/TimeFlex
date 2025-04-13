@@ -29,6 +29,13 @@
                 </x-forms.field>
 
                 <x-forms.field class="col-12">
+                    <x-forms.label for="weight">Peso del usuario</x-forms.label>
+                    <input type="range" name="weight" id="weight" min="1" max="10" value="{{ old('weight', 5) }}" class="w-full">
+                    <span id="weight_value">{{ old('weight', 5) }}</span>
+                    <x-forms.error name="weight" />
+                </x-forms.field>
+
+                <x-forms.field class="col-12">
                     <x-forms.label for="password">Contraseña</x-forms.label>
                     <x-forms.input name="password" id="password" type="password" required />
                     <x-forms.error name="password" />
@@ -50,3 +57,9 @@
         </form>
     </div>
 </x-layout>
+
+<script>
+    document.getElementById('weight').addEventListener('input', function () {
+        document.getElementById('weight_value').textContent = this.value;
+    });
+</script>
