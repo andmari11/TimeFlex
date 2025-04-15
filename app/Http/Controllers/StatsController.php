@@ -337,4 +337,105 @@ class StatsController
         ]);
     }
 
+    //obtenemos la satisfaccion media del usuario de forma mensual desglosando su distribución de turnos
+    public function getMonthlyShiftSatisfaction()
+    {
+        $userId = auth()->id();
+        $tipoTurnosMensual = [];
+        $contador = [];
+
+        // obtenemos los turnos del usuario y su horario (inicio - fin)
+        $turnos = DB::table('shift_user')
+            ->join('shifts', 'shift_user.shift_id', '=', 'shifts.id')
+            ->join('schedules', 'shifts.schedule_id', '=', 'schedules.id')
+            ->where('shift_user.user_id', $userId)
+            ->select('shifts.start', 'shifts.end')
+            ->get();
+
+        // recorremos cada turno hora a hora
+        foreach ($turnos as $turno) {
+            $inicio = \Carbon\Carbon::parse($turno->start);
+            $fin = \Carbon\Carbon::parse($turno->end);
+            $actual = $inicio->copy();
+            $marcados = [];
+
+            //vamos acumulando tipos de turnos comprendidos entre el final e inicio del turno actual
+            while ($actual <= $fin) {
+                $hora = $actual->hour;
+                if ($hora >= 9 && $hora < 15) {
+                    $tipo = 'Mañana';
+                    $fecha = $actual->copy()->startOfDay();
+                } elseif ($hora >= 15 && $hora < 21) {
+                    $tipo = 'Tarde';
+                    $fecha = $actual->copy()->startOfDay();
+                } else {
+                    $tipo = 'Noche';
+                    // si esta entre 00:00 y 08:59, es del turno de noche del dia anterior
+                    $fecha = $hora >= 21
+                        ? $actual->copy()->startOfDay()
+                        : $actual->copy()->subDay()->startOfDay();
+                }
+
+                $claveFechaTipo = $tipo . '_' . $fecha->toDateString();
+
+                // si aun no hemos contado este tipo de turno en este día
+                if (!in_array($claveFechaTipo, $marcados)) {
+                    // obtenemos el mes y la clave (por ejemplo Tarde_4 -> seria turnos de tarde de abril) y actualizamos el numero de turnos para esa clave
+                    $mes = (int) $fecha->format('m');
+                    $claveMesTipo = $tipo . '_' . $mes;
+                    $contador[$claveMesTipo] = ($contador[$claveMesTipo] ?? 0) + 1;
+                    $tipoTurnosMensual[$claveMesTipo] = [
+                        'tipo' => $tipo,
+                        'mes' => $mes
+                    ];
+                    // guardamos en el array marcados el tipo de turno del dia que corresponda para tenerlo en cuenta en siguientes iteraciones
+                    $marcados[] = $claveFechaTipo;
+                }
+                // avanzamos 1 hora para ver si entramos en otro tipo de turno
+                $actual->addHour();
+            }
+        }
+
+        // obtenemos la media de satisfacción mensual del usuario
+        $satisfaccionPorMes = DB::table('satisfactions')
+            ->where('user_id', $userId)
+            ->selectRaw('strftime("%m", created_at) as mes, AVG(score) as media')
+            ->groupBy('mes')
+            ->pluck('media', 'mes')
+            ->toArray();
+
+        // ahora construyo la respuesta para Highcharts
+        $tipos = ['Mañana', 'Tarde', 'Noche'];
+        $series = [];
+
+        foreach ($tipos as $tipo) {
+            $datosTipo = [];
+            foreach ($tipoTurnosMensual as $clave => $info) {
+                // transformamos el mes en un string de 2 digitos y redondeamos la satisfaccion media del mes a 1 decimal
+                $mesKey = str_pad($info['mes'], 2, '0', STR_PAD_LEFT);
+                $satisfaccionMes = round($satisfaccionPorMes[$mesKey] ?? 5.0, 1);
+                if ($info['tipo'] === $tipo) {
+                    $datosTipo[] = [
+                        'x' => $info['mes'] - 1,
+                        'y' => $satisfaccionMes,
+                        'z' => $contador[$clave],
+                        'name' => $tipo
+                    ];
+                }
+            }
+
+            $series[] = [
+                'name' => $tipo,
+                'data' => $datosTipo
+            ];
+        }
+
+        return response()->json($series);
+    }
+
+
+
+
+
+
 }

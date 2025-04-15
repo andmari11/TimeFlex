@@ -4,6 +4,7 @@ import heatmap from 'highcharts/modules/heatmap';
 import Timeline from 'highcharts/modules/timeline';
 import Gantt from 'highcharts/modules/gantt';
 import Accessibility from 'highcharts/modules/accessibility';
+import HighchartsMore from 'highcharts/highcharts-more';
 window.Highcharts = Highcharts;
 
 document.addEventListener("DOMContentLoaded", function () {

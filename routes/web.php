@@ -74,6 +74,8 @@ Route::get('/user/{id}/shift-distribution', [StatsController::class, 'getShiftDi
 Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualVsExpected']);
 Route::get('/user-shift-exchanges', [StatsController::class, 'getUserShiftExchanges']);
 Route::get('/user-holidays-evolution', [StatsController::class, 'getUserHolidaysEvolution']);
+Route::get('/monthly-shift-satisfaction', [StatsController::class, 'getMonthlyShiftSatisfaction']);
+
 
 
 Route::get('/ayuda', function () {

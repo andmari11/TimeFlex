@@ -177,7 +177,59 @@
                     .catch(error => console.error('Error al cargar los datos de solicitudes de vacaciones', error));
             });
         </script>
-        <div id="vacio" style="width:50%; height:400px;"></div>
+        <div id="burbujasMesTurnos" style="width:50%; height:400px;"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/monthly-shift-satisfaction', {
+                    credentials: 'same-origin'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        Highcharts.chart('burbujasMesTurnos', {
+                            chart: {
+                                type: 'bubble',
+                                plotBorderWidth: 1,
+                                zoomType: 'xy'
+                            },
+                            title: {
+                                text: 'Satisfacción mensual respecto a la cantidad y tipo de turnos'
+                            },
+                            xAxis: {
+                                title: { text: 'Mes' },
+                                min: -0.5,
+                                max: 11.5,
+                                tickInterval: 1,
+                                labels: {
+                                    formatter: function () {
+                                        return ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][this.value];
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Satisfacción media'
+                                },
+                                max: 10,
+                                min: 0
+                            },
+                            tooltip: {
+                                useHTML: true,
+                                headerFormat: '<b>{point.name}</b><br>',
+                                pointFormat: 'Mes: {point.x}<br>Satisfacción: {point.y}<br>Turnos: {point.z}'
+                            },
+                            plotOptions: {
+                                bubble: {
+                                    minSize: 10,
+                                    maxSize: 60
+                                }
+                            },
+                            credits: { enabled: false },
+                            series: data
+                        });
+                    })
+                    .catch(error => console.error('Error al cargar el gráfico de burbujas:', error));
+            });
+        </script>
         <div id="satisfaccion" style="width:100%; height:500px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
