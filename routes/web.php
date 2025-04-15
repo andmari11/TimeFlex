@@ -75,6 +75,8 @@ Route::get('/user/{id}/actual-vs-expected', [StatsController::class, 'getActualV
 Route::get('/user-shift-exchanges', [StatsController::class, 'getUserShiftExchanges']);
 Route::get('/user-holidays-evolution', [StatsController::class, 'getUserHolidaysEvolution']);
 Route::get('/monthly-shift-satisfaction', [StatsController::class, 'getMonthlyShiftSatisfaction']);
+Route::get('/satisfaction-user-vs-section', [StatsController::class, 'getMonthlySatisfactionComparison']);
+
 
 
 

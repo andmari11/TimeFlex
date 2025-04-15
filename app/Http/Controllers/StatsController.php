@@ -433,9 +433,46 @@ class StatsController
         return response()->json($series);
     }
 
+    // funcion que obtiene los datos para comparar la satisfaccion del empleado vs seccion mes a mes
+    public function getMonthlySatisfactionComparison()
+    {
+        $userId = auth()->id();
+        $user = User::findOrFail($userId);
+        $sectionId = $user->section_id;
 
+        // obtenemos la satisfacción mensual del usuario
+        $satisfaccionesUsuario = DB::table('satisfactions')
+            ->join('schedules', 'satisfactions.schedule_id', '=', 'schedules.id')
+            ->where('satisfactions.user_id', $userId)
+            ->selectRaw('strftime("%m", schedules.start_date) as mes, AVG(score) as media')
+            ->groupBy('mes')
+            ->pluck('media', 'mes');
 
+        // obtenemos la satisfacción mensual de la sección
+        $satisfaccionesSeccion = DB::table('satisfactions')
+            ->join('schedules', 'satisfactions.schedule_id', '=', 'schedules.id')
+            ->join('users', 'satisfactions.user_id', '=', 'users.id')
+            ->where('users.section_id', $sectionId)
+            ->selectRaw('strftime("%m", schedules.start_date) as mes, AVG(score) as media')
+            ->groupBy('mes')
+            ->pluck('media', 'mes');
 
+        // creamos arrays para almacenar los resultados de cada mes
+        $empleado = [];
+        $seccion = [];
+
+        // rellenamos los arrays con la media redondeada a 1 decimal
+        for ($i = 1; $i <= 12; $i++) {
+            $mes = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $empleado[] = round($satisfaccionesUsuario[$mes] ?? 0, 1);
+            $seccion[] = round($satisfaccionesSeccion[$mes] ?? 0, 1);
+        }
+
+        return response()->json([
+            'empleado' => $empleado,
+            'seccion' => $seccion
+        ]);
+    }
 
 
 }

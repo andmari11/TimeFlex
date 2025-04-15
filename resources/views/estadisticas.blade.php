@@ -16,7 +16,7 @@
                         const monthlyHours = new Array(12).fill(0);
 
                         hoursData.forEach(entry => {
-                            const monthIndex = parseInt(entry.month) - 1; // Convertir el mes a índice (0-11)
+                            const monthIndex = parseInt(entry.month) - 1; // restamos uno para pasar el mes a indice
                             monthlyHours[monthIndex] = entry.hours;
                         });
 
@@ -30,11 +30,12 @@
                             yAxis: { title: { text: 'Horas' } },
                             series: [{
                                 name: 'Horas',
-                                data: monthlyHours
+                                data: monthlyHours,
+                                color: '#00bfae'
                             }]
                         });
                     })
-                    .catch(error => console.error('Error loading the data: ', error));
+                    .catch(error => console.error('Error al cargar los datos de horas trabajadas: ', error));
             });
         </script>
         <div id="solicitudescambioturno" style="width:50%; height:400px;"></div>
@@ -233,70 +234,71 @@
         <div id="satisfaccion" style="width:100%; height:500px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                if (document.getElementById('satisfaccion')) {
-                    console.log("Iniciando grafico2...");
-
-                    // Datos de ejemplo
-                    const inflationData = [4, 7, 5, 10, 6, 9, 8, 3, 7];
-                    const historicalAverage = [5, 6, 6, 7, 6, 7, 6, 5, 6];
-
-                    Highcharts.chart('satisfaccion', {
-                        chart: {
-                            type: 'spline',
-                            animation: {
-                                duration: 1000 // duracion animacion
-                            }
-                        },
-
-                        title: {
-                            text: 'Evolución de la Satisfacción'
-                        },
-
-                        subtitle: {
-                            text: 'Empleado vs Sección'
-                        },
-
-                        xAxis: {
-                            categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre']
-                        },
-
-                        yAxis: {
-                            title: {
-                                text: 'Satisfacción'
-                            }
-                        },
-
-                        plotOptions: {
-                            series: {
+                fetch('/satisfaction-user-vs-section', {
+                    credentials: 'same-origin'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        Highcharts.chart('satisfaccion', {
+                            chart: {
+                                type: 'spline',
                                 animation: {
-                                    duration: 1500
+                                    duration: 1000
+                                }
+                            },
+                            title: {
+                                text: 'Evolución de la Satisfacción'
+                            },
+                            subtitle: {
+                                text: 'Empleado vs Sección'
+                            },
+                            xAxis: {
+                                categories: [
+                                    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                                ]
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Satisfacción'
                                 },
-                                marker: {
-                                    enabled: true,
-                                    symbol: 'circle'
+                                min: 0,
+                                max: 10
+                            },
+                            plotOptions: {
+                                series: {
+                                    animation: {
+                                        duration: 1500
+                                    },
+                                    marker: {
+                                        enabled: true,
+                                        symbol: 'circle'
+                                    },
+                                    lineWidth: 2
+                                }
+                            },
+                            series: [
+                                {
+                                    name: 'Empleado',
+                                    data: data.empleado,
+                                    color: '#f7a35c',
+                                    animation: {
+                                        duration: 1500
+                                    }
                                 },
-                                lineWidth: 2
-                            }
-                        },
-
-                        series: [{
-                            name: 'Empleado',
-                            data: inflationData,
-                            animation: {
-                                duration: 1500
-                            }
-                        }, {
-                            name: 'Media de la sección',
-                            data: historicalAverage,
-                            animation: {
-                                duration: 1500,
-                                defer: 1000 // retraso de la animacion
-                            }
-                        }]
-                    });
-                } else {
-                    console.error("No ha cargado el div satisfaccion");
-                }
+                                {
+                                    name: 'Media de la sección',
+                                    data: data.seccion,
+                                    color: '#8085e9',
+                                    animation: {
+                                        duration: 1500,
+                                        defer: 1000
+                                    }
+                                }
+                            ]
+                        });
+                    })
+                    .catch(error => console.error('Error al cargar el gráfico de comparación de satisfacción mensual:', error));
             });
         </script>
 

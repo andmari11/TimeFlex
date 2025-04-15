@@ -71,21 +71,27 @@ class DatabaseSeeder extends Seeder
         ]);
         Schedule::factory(2)->create();
 
-        for ($i = 0; $i < 12; $i++) {
-            for($j = 1; $j < 4; $j++){
-                $startDate = Carbon::create(2025, $i + 1, 1);
-                $endDate = $startDate->copy()->endOfMonth();
-
-                Schedule::create([
-                    'section_id' => $j,
-                    'name' => fake()->sentence(3),
-                    'description' => fake()->optional()->paragraph(),
-                    'status' => 'not_optimized',
-                    'start_date' => $startDate,
-                    'end_date' => $endDate
-                ]);
+        for ($mes = 1; $mes <= 12; $mes++) {
+            for ($seccion = 1; $seccion <= 3; $seccion++) {
+                // creamos 1 o 2 schedules por sección y mes
+                $numSchedules = rand(1, 2);
+                for ($i = 0; $i < $numSchedules; $i++) {
+                    // ponemos valores por defecto de inicio y final de los schedules
+                    $diaInicio = rand(1, 15);
+                    $startDate = Carbon::create(2025, $mes, $diaInicio);
+                    $endDate = $startDate->copy()->addDays(rand(5, 12));
+                    Schedule::create([
+                        'section_id' => $seccion,
+                        'name' => fake()->sentence(3),
+                        'description' => fake()->optional()->paragraph(),
+                        'status' => 'not_optimized',
+                        'start_date' => $startDate,
+                        'end_date' => $endDate,
+                    ]);
+                }
             }
         }
+
         for($j = 0; $j < 100; $j++){
             for ($i = 0; $i < 5; $i++) {
                 Shift::factory()->create([
@@ -122,18 +128,29 @@ class DatabaseSeeder extends Seeder
             }
             $usedNumbers = [];
 
-            for ($i = 0; $i < 5; $i++) {
-                do {
-                    $numero = rand(1, 30);
-                } while (in_array($numero, $usedNumbers));
-
-                $usedNumbers[] = $numero;
-                Satisfaction::create([
-                    'user_id' => $user->id,
-                    'schedule_id' => $numero,
-                    'score' => rand(3,10)
-                ]);
+            $schedules = Schedule::all();
+            foreach ($users as $usuario) {
+                for ($mes = 1; $mes <= 12; $mes++) {
+                    // buscamos schedules que comiencen en ese mes
+                    $schedulesDelMes = $schedules->filter(function ($schedule) use ($mes) {
+                        return Carbon::parse($schedule->start_date)->month === $mes;
+                    });
+                    if ($schedulesDelMes->isNotEmpty()) {
+                        // elegimos 1 o 2 schedules  del mes
+                        $satisfactionsACrear = $schedulesDelMes->random(min(rand(1, 2), $schedulesDelMes->count()));
+                        foreach ($satisfactionsACrear as $schedule) {
+                            Satisfaction::create([
+                                'user_id' => $usuario->id,
+                                'schedule_id' => $schedule->id,
+                                'score' => rand(2, 10),
+                            ]);
+                        }
+                    }
+                }
             }
+
+
+
         }
 
         $states = ['Accepted', 'Accepted', 'Accepted', 'Pending', 'Pending']; // pongo mas accepted para que salgan mas
