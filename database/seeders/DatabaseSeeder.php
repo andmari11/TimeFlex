@@ -92,24 +92,35 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        for($j = 0; $j < 100; $j++){
-            for ($i = 0; $i < 5; $i++) {
-                Shift::factory()->create([
-                    'start' => now()->addDays($j * 7 + $i)->setTime(9, 0),
-                    'end' => now()->addDays($j * 7 + $i)->setTime(15, 0),
-                ]);
+        for ($mes = 1; $mes <= 12; $mes++) {
+            $diasEnMes = Carbon::create(2025, $mes, 1)->daysInMonth;
 
-                Shift::factory()->create([
-                    'start' => now()->addDays($j * 7 + $i)->setTime(15, 0),
-                    'end' => now()->addDays($j * 7 + $i)->setTime(21, 0),
-                ]);
+            for ($dia = 1; $dia <= $diasEnMes; $dia++) {
+                foreach (Section::all() as $section) {
+                    $fecha = Carbon::create(2025, $mes, $dia);
 
-                Shift::factory()->create([
-                    'start' => now()->addDays($j * 7 + $i)->setTime(21, 0),
-                    'end' => now()->addDays($j * 7 + $i + 1)->setTime(4, 0),
-                ]);
+                    // turno mañana
+                    Shift::factory()->create([
+                        'start' => $fecha->copy()->setTime(9, 0),
+                        'end' => $fecha->copy()->setTime(15, 0),
+                    ]);
+
+                    // turno tarde
+                    Shift::factory()->create([
+                        'start' => $fecha->copy()->setTime(15, 0),
+                        'end' => $fecha->copy()->setTime(21, 0),
+                    ]);
+
+                    // turno noche
+                    Shift::factory()->create([
+                        'start' => $fecha->copy()->setTime(21, 0),
+                        'end' => $fecha->copy()->addDay()->setTime(4, 0),
+                    ]);
+                }
             }
         }
+
+
         $users = User::all();
         $shifts = Shift::all();
 
