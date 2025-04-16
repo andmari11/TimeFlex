@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Section;
 use Illuminate\Validation\Rules\Password;
+use App\Models\ExpectedHours;
 class UserController extends Controller
 {
     public function create()
@@ -30,10 +31,31 @@ class UserController extends Controller
         ];
 
         $attributesUser = array_merge($attributesUser, $attributesUser_defaults);
-
-
-
         $user = User::create($attributesUser);
+
+        // creamos las horas esperadas por turno para el nuevo usuario
+        $defaultMorning = 80;
+        $defaultAfternoon = 60;
+        $defaultNight = 50;
+
+        $months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        $year = now()->year;
+
+        foreach ($months as $month) {
+            ExpectedHours::create([
+                'user_id' => $user->id,
+                'section_id' => $user->section_id,
+                'month' => $month,
+                'year' => $year,
+                'morning_hours' => $defaultMorning,
+                'afternoon_hours' => $defaultAfternoon,
+                'night_hours' => $defaultNight,
+            ]);
+        }
 
         return redirect('/menu');
     }
