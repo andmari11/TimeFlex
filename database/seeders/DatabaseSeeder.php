@@ -11,6 +11,7 @@ use App\Models\Section;
 use App\Models\ExpectedHours;
 use App\Models\QuestionType;
 use App\Models\Satisfaction;
+use App\Models\Notification;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -279,5 +280,38 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        Notification::create([
+            'user_id' => 11,
+            'tipo' => 'ayuda',
+            'message' => 'Has solicitado ayuda a Administración',
+            'email' => 'usuario11@example.com',
+            'nombre' => 'Juan',
+            'apellidos' => 'Pérez',
+            'duda' => '¿Cómo cambio mi contraseña?',
+            'read' => false,
+        ]);
+
+        Notification::create([
+            'user_id' => 11,
+            'tipo' => 'turno',
+            'message' => 'Tu turno del jueves ha sido actualizado',
+            'email' => 'usuario11@example.com',
+            'nombre' => 'Juan',
+            'apellidos' => 'Pérez',
+            'duda' => null,
+            'read' => false,
+        ]);
+
+        Notification::create([
+            'user_id' => 11,
+            'tipo' => 'sistema',
+            'message' => 'Nueva actualización del sistema disponible',
+            'email' => 'usuario11@example.com',
+            'nombre' => 'Juan',
+            'apellidos' => 'Pérez',
+            'duda' => null,
+            'read' => true,
+        ]);
     }
 }

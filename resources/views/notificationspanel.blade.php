@@ -1,7 +1,24 @@
-<x-layout title=" 'Centro de Notificaciones' ">
+<x-layout title="Centro de Notificaciones">
     <x-page-heading>Bienvenido a tu centro de notificaciones</x-page-heading>
     <div class="max-w-5xl mx-auto py-10">
         <h1 class="text-3xl font-bold text-sky-900 mb-6 text-center">📬 Notificaciones Recibidas</h1>
+        <!-- Filtro para elegir el tipo de notificacion -->
+        <form method="GET" action="{{ route('notifications.panel') }}" class="mb-6 text-center">
+            <label for="tipo" class="font-medium text-gray-700 mr-2">Filtrar por tipo:</label>
+            <select name="tipo" id="tipo" class="border border-gray-300 rounded px-3 py-1">
+                <option value="todas" {{ request('tipo') == 'todas' ? 'selected' : '' }}>Todas</option>
+                @foreach($tipos as $tipo)
+                    <option value="{{ $tipo }}" {{ request('tipo') == $tipo ? 'selected' : '' }}>
+                        <!-- primera letra en mayuscula -->
+                        {{ ucfirst($tipo) }}
+                    </option>
+                @endforeach
+            </select>
+            <button type="submit" class="ml-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                Aplicar
+            </button>
+        </form>
+
         <!-- recorremos las notificaciones del usuario -->
         @forelse ($notifications as $notification)
             @php

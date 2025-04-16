@@ -16,6 +16,7 @@ use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\ExpectedHoursController;
 use App\Http\Controllers\ScheduleStatsController;
+use App\Http\Controllers\NotificationController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
 
@@ -147,7 +148,7 @@ Route::get('forms', function (){
     return view('forms');
 });
 
-Route::get('/notificationspanel', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.panel');
+Route::get('/notificationspanel', [NotificationController::class, 'index'])->name('notifications.panel');
 
 
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
