@@ -35,7 +35,7 @@
                         notificationsList.appendChild(notificationElement);
                     });
                 } else {
-                    notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm hover:rounded-md text-gray-700 hover:bg-gray-100">No tienes notificaciones</a>';
+                    notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm hover:rounded-md text-gray-700 hover:bg-gray-100">No hay notificaciones nuevas</a>';
                 }
             })
             .catch(error => console.error('Error al obtener las notificaciones:', error));
@@ -98,11 +98,17 @@
 
                                     <!-- Menú desplegable -->
                                     <div x-show="open_options_menu" @click.away="open_options_menu = false"
-                                         class="absolute right-0 z-10 mt-2 w-48 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
-
+                                         class="absolute right-0 z-10 mt-2 w-64 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
                                         <div id="notifications-list">
                                         </div>
 
+                                        <!-- Botón fijo en la parte inferior para ir al centro de notificaciones -->
+                                        <div class="border-t border-gray-200 mt-2">
+                                            <a href="{{ route('notifications.panel') }}"
+                                               class="block w-full text-center px-4 py-2 text-sm font-medium text-blue-600 hover:bg-gray-100 hover:underline">
+                                                Ir al Centro de Notificaciones
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </button>
