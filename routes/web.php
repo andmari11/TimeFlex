@@ -147,6 +147,9 @@ Route::get('forms', function (){
     return view('forms');
 });
 
+Route::get('/notificationspanel', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.panel');
+
+
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
 Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySection']);
 Route::post('/expected-hours/store-or-update', [ExpectedHoursController::class, 'storeOrUpdate']);
