@@ -23,7 +23,7 @@
 
 @if ($showGraphs)
 
-    <div class="rounded-lg mt-4 px-2" id="statsuser-{{ $employee->id }}" style="width: 100%; height: 400px;"></div>
+    <div class="rounded-lg mt-4 px-2" id="statsuser-{{ $employee->id }}" style="width: 100%; aspect-ratio: 1 / 1;"></div>
     <script>
         window.cargarGraficoEmpleado = function (id) {
             fetch(`/user/${id}/shift-distribution`) // sacamos los datos del endpoint definido
@@ -77,9 +77,9 @@
                         },
                         plotOptions: {
                             pie: {
-                                size: '65%',
-                                innerSize: '65%',
-                                borderRadius: 8,
+                                size: '55%',
+                                innerSize: '60%',
+                                borderRadius: 6,
                                 dataLabels: {
                                     enabled: true,
                                     useHTML: true,
