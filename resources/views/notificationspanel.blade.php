@@ -1,6 +1,7 @@
-<x-layout title="Centro de Notificaciones">
+<x-layout title=" 'Centro de Notificaciones' ">
+    <x-page-heading>Bienvenido a tu centro de notificaciones</x-page-heading>
     <div class="max-w-5xl mx-auto py-10">
-        <h1 class="text-3xl font-bold text-sky-900 mb-6">📬 Centro de Notificaciones</h1>
+        <h1 class="text-3xl font-bold text-sky-900 mb-6 text-center">📬 Notificaciones Recibidas</h1>
         <!-- recorremos las notificaciones del usuario -->
         @forelse ($notifications as $notification)
             @php

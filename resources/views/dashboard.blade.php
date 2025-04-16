@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://code.highcharts.com/dashboards/css/dashboards.css">
 
 <x-layout :title="'Dashboard'">
-    <x-page-heading>Mi dashboard</x-page-heading>
+    <x-page-heading>Mi Dashboard</x-page-heading>
 
     <div id="midashboard" style="width: 100%; height: 100%"></div>
 
