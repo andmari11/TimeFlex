@@ -131,7 +131,6 @@ class StatsController
     public function getShiftDistribution($id)
     {
         $userId = intval($id);
-
         $franjas = [
             '9:00 - 15:00' => 0,
             '15:00 - 21:00' => 0,
@@ -146,21 +145,43 @@ class StatsController
             ->get(['shifts.start', 'shifts.end']);
 
         foreach ($shifts as $shift) {
-            $start = \Carbon\Carbon::parse($shift->start);
-            $end = \Carbon\Carbon::parse($shift->end);
-            $hour = (int) $start->format('H');
+            $inicio = Carbon::parse($shift->start);
+            $fin = Carbon::parse($shift->end);
+            if ($fin->lessThan($inicio)) {
+                $fin->addDay();
+            }
+            // aqui llevamos la cuenta de los tipos de turno ya contados por dia
+            $marcados = [];
+            while ($inicio < $fin) {
+                $hora = $inicio->hour;
+                if ($hora >= 9 && $hora < 15) {
+                    $tipo = '9:00 - 15:00';
+                    $dia = $inicio->copy()->startOfDay();
+                } elseif ($hora >= 15 && $hora < 21) {
+                    $tipo = '15:00 - 21:00';
+                    $dia = $inicio->copy()->startOfDay();
+                } else {
+                    $tipo = '21:00 - 04:00';
+                    // entre medianoche y 08:59 ponemos que pertenece al turno de noche del dia anterior
+                    $dia = $hora >= 21
+                        ? $inicio->copy()->startOfDay()
+                        : $inicio->copy()->subDay()->startOfDay();
+                }
+                // clave unica para no contar varias veces el mismo tipo de turno en el dia
+                $clave = $tipo . '_' . $dia->toDateString();
+                if (!in_array($clave, $marcados)) {
+                    $franjas[$tipo]++;
+                    $marcados[] = $clave;
+                }
 
-            if ($hour >= 9 && $hour < 15) {
-                $franjas['9:00 - 15:00']++;
-            } elseif ($hour >= 15 && $hour < 21) {
-                $franjas['15:00 - 21:00']++;
-            } else {
-                $franjas['21:00 - 04:00']++;
+                $inicio->addHour();
             }
         }
 
         return response()->json($franjas);
     }
+
+
 
     public function getSatisfaccion($userId, $sectionId)
     {

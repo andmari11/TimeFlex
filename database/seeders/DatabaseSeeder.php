@@ -204,6 +204,29 @@ class DatabaseSeeder extends Seeder
         QuestionType::create(['name' => 'Numérica', 'description' => 'Pregunta que exige como respuesta un valor numérico.']);
         QuestionType::create(['name' => 'Carga de Archivo', 'description' => 'Pregunta que permite adjuntar un archivo en la respuesta.']);
 
+        // prueba para ver si funciona bien shift distribution
+        $usuarioPrueba = User::factory()->create([
+            'name' => 'prueba',
+            'email' => 'prueba@prueba.com',
+            'password' => Hash::make('password'),
+            'company_id' => 1,
+            'role' => 'employee',
+            'section_id' => 2,
+        ]);
+        $fechaInicio = Carbon::create(2025, 4, 14);
+        $fechaFinal = Carbon::create(2025, 4, 16);
+        $turnoEspecial = Shift::factory()->create([
+            'start' => $fechaInicio->copy()->setTime(9, 0),
+            'end' => $fechaFinal->copy()->setTime(16, 0),
+        ]);
+        DB::table('shift_user')->insert([
+            'user_id' => $usuarioPrueba->id,
+            'shift_id' => $turnoEspecial->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
         $defaultMorning = 80;
         $defaultAfternoon = 60;
         $defaultNight = 20;
