@@ -313,5 +313,16 @@ class DatabaseSeeder extends Seeder
             'duda' => null,
             'read' => true,
         ]);
+
+        Notification::create([
+            'user_id' => 11,
+            'tipo' => 'prueba',
+            'message' => 'Nueva prueba de notificacion',
+            'email' => 'usuario11@example.com',
+            'nombre' => 'Juan',
+            'apellidos' => 'Pérez',
+            'duda' => null,
+            'read' => true,
+        ]);
     }
 }
