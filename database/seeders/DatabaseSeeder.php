@@ -229,7 +229,7 @@ class DatabaseSeeder extends Seeder
 
         $defaultMorning = 80;
         $defaultAfternoon = 60;
-        $defaultNight = 20;
+        $defaultNight = 50;
         $months = [
             'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'

@@ -222,13 +222,14 @@ class StatsController
     {
         $year = now()->year;
         $month = now()->month;
+        $monthName = ucfirst(Carbon::create()->month($month)->locale('es')->monthName);
 
-        // obtenemos los datos esperados (horas trabajadas) y si no existen, inicializamos a 0
-        $monthName = ucfirst(\Carbon\Carbon::create()->month($month)->locale('es')->monthName);
-        $expected = \App\Models\ExpectedHours::where('user_id', $id)
+        // obtenemos las horas esperadas de la BD
+        $expected = ExpectedHours::where('user_id', $id)
             ->where('month', $monthName)
             ->where('year', $year)
             ->first();
+        // inicializamos a 0 si no hay datos y tambien inicializamos las horas trabajadas
         $expectedData = $expected ? [
             'morning' => $expected->morning_hours,
             'afternoon' => $expected->afternoon_hours,
@@ -238,36 +239,62 @@ class StatsController
             'afternoon' => 0,
             'night' => 0,
         ];
-
-        // obtenemos los datos reales de horas trabajadas en el mes
-        $shifts = DB::table('shift_user')
-            ->join('shifts', 'shifts.id', '=', 'shift_user.shift_id')
-            ->where('shift_user.user_id', $id)
-            ->whereYear('shifts.start', $year)
-            ->whereMonth('shifts.start', $month)
-            ->select('shifts.start', 'shifts.end')
-            ->get();
-
         $workedData = [
             'morning' => 0,
             'afternoon' => 0,
             'night' => 0,
         ];
 
+
+        $monthStart = Carbon::create($year, $month, 1)->startOfDay();
+        $monthEnd = $monthStart->copy()->endOfMonth();
+        // obtenemos de la BD los turnos del usuario del mes
+        $shifts = DB::table('shift_user')
+            ->join('shifts', 'shifts.id', '=', 'shift_user.shift_id')
+            ->where('shift_user.user_id', $id)
+            ->where(function ($query) use ($monthStart, $monthEnd) {
+                $query->whereBetween('shifts.start', [$monthStart, $monthEnd])
+                    ->orWhereBetween('shifts.end', [$monthStart, $monthEnd]);
+            })
+            ->select('shifts.start', 'shifts.end')
+            ->get();
+        // lo definimos para evitar contar la misma franja varias veces al dia
+        $marcados = [];
         foreach ($shifts as $shift) {
             $start = Carbon::parse($shift->start);
             $end = Carbon::parse($shift->end);
             if ($end->lessThan($start)) {
                 $end->addDay();
             }
-            $hours = $start->diffInHours($end);
-            $hour = (int) $start->format('H');
-            if ($hour >= 9 && $hour < 15) {
-                $workedData['morning'] += $hours;
-            } elseif ($hour >= 15 && $hour < 21) {
-                $workedData['afternoon'] += $hours;
-            } else {
-                $workedData['night'] += $hours;
+
+            $actual = $start->copy();
+            while ($actual <= $end) {
+                $hora = $actual->hour;
+                if ($hora >= 9 && $hora < 15) {
+                    $tipo = 'morning';
+                    $fecha = $actual->copy()->startOfDay();
+                    $horasTurno = 6;
+                } elseif ($hora >= 15 && $hora < 21) {
+                    $tipo = 'afternoon';
+                    $fecha = $actual->copy()->startOfDay();
+                    $horasTurno = 6;
+                } else {
+                    $tipo = 'night';
+                    // entre medianoche y 08:59 ponemos que pertenece al turno de noche del dia anterior
+                    $fecha = ($hora >= 21)
+                        ? $actual->copy()->startOfDay()
+                        : $actual->copy()->subDay()->startOfDay();
+                    $horasTurno = 12;
+                }
+                // si la franja no esta registrada la contamos
+                if ($fecha->month == $month && $fecha->year == $year) {
+                    $clave = $tipo . '_' . $fecha->toDateString();
+                    if (!in_array($clave, $marcados)) {
+                        $workedData[$tipo] += $horasTurno;
+                        $marcados[] = $clave;
+                    }
+                }
+                $actual->addHour();
             }
         }
 
@@ -276,6 +303,7 @@ class StatsController
             'worked' => $workedData,
         ]);
     }
+
 
     // obtenemos los cambios de turno aceptados vs solicitados para cada mes para el usuario
     public function getUserShiftExchanges()
