@@ -1,12 +1,14 @@
 <x-layout :title="'Editar Perfil'">
-    <x-page-heading>Menú de edición del usuario {{ auth()->user()->name }}</x-page-heading>
+    <x-page-heading>Menú de edición de {{ auth()->user()->name }}</x-page-heading>
 
-    <div class="flex items-center justify-center">
-        <form method="POST" action="{{ route('profileUpdate') }}" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
-            @csrf
-            @method('PATCH')
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-md mt-10">
+            <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Actualizar Información</h2>
 
-            <div class="space-y-1 row">
+            <form method="POST" action="{{ route('profileUpdate') }}" enctype="multipart/form-data" class="space-y-4">
+                @csrf
+                @method('PATCH')
+
                 <x-forms.field class="col-12">
                     <x-forms.label for="name">Nombre</x-forms.label>
                     <x-forms.input name="name" id="name" value="{{ old('name', auth()->user()->name) }}" required />
@@ -33,18 +35,12 @@
 
                 <input type="hidden" name="role" value="{{ auth()->user()->role }}">
                 <input type="hidden" name="company_id" value="{{ auth()->user()->company_id }}">
-            </div>
 
-            <div class="mt-6 flex items-center justify-between">
-                <a href="/menu" class="text-sm font-semibold text-gray-900">Cancelar</a>
-                <x-forms.button>Actualizar información</x-forms.button>
-            </div>
-        </form>
+                <div class="flex justify-between items-center mt-6">
+                    <a href="/menu" class="text-sm font-semibold text-gray-700 hover:text-gray-900">Cancelar</a>
+                    <x-forms.button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md shadow">Actualizar Perfil</x-forms.button>
+                </div>
+            </form>
+        </div>
     </div>
 </x-layout>
-
-<script>
-    document.getElementById('user_weight').addEventListener('input', function () {
-        document.getElementById('weight_value').textContent = this.value;
-    });
-</script>
