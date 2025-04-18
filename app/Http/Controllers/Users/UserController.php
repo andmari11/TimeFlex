@@ -66,6 +66,32 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
+    public function profileEdit()
+    {
+        $user = auth()->user();
+
+        return view('users.profile', compact('user'));
+    }
+
+    public function profileUpdate()
+    {
+        request()->validate([
+            'name'        => ['required'],
+            'email'       => ['required', 'email', 'unique:users,email,' . auth()->id()],
+            'password'   => ['nullable', Password::min(6), 'confirmed'],
+        ]);
+
+        $user = auth()->user();
+        $user->update([
+            'name'       => request('name'),
+            'email'      => request('email'),
+        ]);
+
+        $user->save();
+
+        return redirect('/menu');
+    }
+
     public function update(int $id)
     {
         request()->validate([
