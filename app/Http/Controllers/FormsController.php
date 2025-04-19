@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\Form;
+use App\Models\Weight;
 use App\Models\QuestionType;
 use App\Models\Question;
 use App\Models\Option;
@@ -101,6 +102,14 @@ class FormsController extends Controller
                     ]);
                     $questionOption->save();
                 }
+            }
+
+            if (isset($questionData['value'])) {
+                $weight = new Weight([
+                    'id_question' => $question->id,
+                    'value' => $questionData['value'],
+                ]);
+                $weight->save();
             }
         }
 

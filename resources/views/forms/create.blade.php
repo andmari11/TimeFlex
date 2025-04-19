@@ -71,7 +71,7 @@
                                 <label for="questions[0][id_question_type]" class="block text-lg font-medium text-gray-700">Tipo de Pregunta</label>
                                 <select name="questions[0][id_question_type]" id="questions[0][id_question_type]" required
                                         class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                        onchange="showQuestionFields(this, 0)">
+                                        onchange="showQuestionFields(this, 0); showQuestionSlider(this, 0);">
                                     <option value="" disabled selected>Selecciona el tipo de pregunta</option>
                                     @foreach(\App\Models\QuestionType::all() as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -82,6 +82,8 @@
 
                             <!-- Contenedor dinámico para las opciones -->
                             <div id="question-fields-0" class="mt-4"></div>
+                            <!-- Contenedor dinámico para el slider -->
+                            <div id="question-slider-0" class="mt-4"></div>
                         </div>
                     </div>
 
@@ -178,6 +180,13 @@
                 </div>
             `;
                     break;
+
+                case '4': //tipo turnos
+                    break;
+
+                case '5': //tipo vacaciones
+                    break;
+
                 case '7': //tipo opción múltiple
                     fieldsContainer.innerHTML = `
                 <div class="flex flex-col gap-4">
@@ -270,4 +279,38 @@
             });
         });
     </script>
+
+    <script>
+        function showQuestionSlider(select, index) {
+            let sliderContainer = document.getElementById(`question-slider-${index}`);
+            sliderContainer.innerHTML = '';
+
+            if (select.value == 4 || select.value == 5) {
+                let label = document.createElement('label');
+                label.innerHTML = "Selecciona un valor (1 a 10)";
+                label.className = "block text-lg font-medium text-gray-700";
+
+                let slider = document.createElement('input');
+                slider.type = "range";
+                slider.name = `questions[${index}][value]`;
+                slider.min = "1";
+                slider.max = "10";
+                slider.value = "5";
+                slider.className = "mt-1 block w-full";
+
+                let output = document.createElement('span');
+                output.className = "block text-center text-lg font-semibold text-blue-700 mt-2";
+                output.innerHTML = slider.value;
+
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                };
+
+                sliderContainer.appendChild(label);
+                sliderContainer.appendChild(slider);
+                sliderContainer.appendChild(output);
+            }
+        }
+    </script>
+
 </x-layout>
