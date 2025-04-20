@@ -76,7 +76,7 @@
                                     <label for="questions[{{ $index }}][id_question_type]" class="block text-lg font-medium text-gray-700">Tipo de Pregunta</label>
                                     <select name="questions[{{ $index }}][id_question_type]" id="questions[{{ $index }}][id_question_type]" required
                                             class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                            onchange="showQuestionFields(this, {{ $index }})">
+                                            onchange="showQuestionFields(this, {{ $index }}); showQuestionSlider(this, {{$index}});">
                                         <option value="" disabled>Selecciona el tipo de pregunta</option>
                                         @foreach(\App\Models\QuestionType::all() as $type)
                                             <option value="{{ $type->id }}" @if($type->id == $question->id_question_type) selected @endif>{{ $type->name }}</option>
@@ -93,6 +93,15 @@
                                         @endforeach
                                     @endif
                                 </div>
+                                <!-- NUEVO EDITAR -->
+
+                                @php
+                                    // Verifica si hay un peso asociado a esta pregunta
+                                    $weightValue = $question->weights ? $question->weights->value : 1;  // Usar valor por defecto si no hay peso
+                                @endphp
+
+                                <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4"></div>
+
                             </div>
                         @endforeach
                     </div>
@@ -156,90 +165,17 @@
     <!-- Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Inicializar Flatpickr
             flatpickr(".flatpickr", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
                 time_24hr: true
             });
-        });
 
-        // Funciones para manejo dinámico de preguntas
-        document.getElementById('add-question').addEventListener('click', function () {
-            const container = document.getElementById('questions-container');
-            const index = container.children.length;
-            const template = document.querySelector('.question-template').cloneNode(true);
-
-            // Limpiar valores y actualizar nombres dinámicos
-            template.querySelectorAll('input, select').forEach(function (input) {
-                input.name = input.name.replace(/\[\d+\]/, `[${index}]`);
-                input.id = input.id.replace(/\[\d+\]/, `[${index}]`);
-                input.value = '';
-            });
-
-            template.querySelector('select').setAttribute('onchange', `showQuestionFields(this, ${index})`);
-            template.querySelector('[id^=question-fields-]').id = `question-fields-${index}`;
-
-            // Agregar nueva pregunta al contenedor
-            container.appendChild(template);
-        });
-
-
-        function showQuestionFields(select, index) {
-            // Obtener el contenedor dinámico para los campos adicionales
-            const fieldsContainer = document.getElementById(`question-fields-${index}`);
-            fieldsContainer.innerHTML = ''; // Limpiar cualquier contenido previo
-
-            switch (select.value) {
-                case '2': // Si el tipo de pregunta es "Selector" (ID = 2)
-                    // Crear campos dinámicos iniciales para las opciones
-                    fieldsContainer.innerHTML = `
-                <div class="flex items-center gap-2 mb-2">
-                    <input type="text" name="questions[${index}][options][]" placeholder="Opción 1"
-                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                    <button type="button" onclick="addOption(${index})"
-                        class="text-blue-500 hover:text-blue-700 font-semibold">
-                        + Agregar Opción
-                    </button>
-                </div>
-            `;
-                    break;
-
-                default:
-                    // Si no se requiere campo dinámico, no se genera contenido
-                    fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;
-                    break;
-            }
-        }
-
-        function addOption(index) {
-            const fieldsContainer = document.getElementById(`question-fields-${index}`);
-            const optionCount = fieldsContainer.querySelectorAll('input').length + 1; // Contar opciones existentes
-
-            // Crear un nuevo contenedor para la opción
-            const newOption = document.createElement('div');
-            newOption.classList.add('flex', 'items-center', 'gap-2', 'mb-2');
-            newOption.innerHTML = `
-        <input type="text" name="questions[${index}][options][]" placeholder="Opción ${optionCount}"
-            class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-        <button type="button" onclick="removeOption(this)"
-            class="text-red-500 hover:text-red-700 font-semibold">
-            Eliminar
-        </button>
-    `;
-
-            // Añadir la nueva opción antes del botón principal
-            fieldsContainer.appendChild(newOption);
-        }
-
-        function removeOption(button) {
-            button.parentElement.remove(); // Eliminar el contenedor de la opción
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Variables del DOM
+            // Lógica de modales
             const updateModal = document.getElementById('update-modal');
             const openUpdateModalButton = document.getElementById('open-update-modal');
             const closeUpdateModalButton = document.getElementById('close-update-modal');
@@ -250,30 +186,163 @@
             const openCancelModalButton = document.getElementById('open-cancel-modal');
             const closeCancelModalButton = document.getElementById('close-cancel-modal');
 
-            // Abrir el modal para Actualizar
             openUpdateModalButton.addEventListener('click', () => {
-                updateModal.classList.remove('hidden'); // Mostrar el modal
+                updateModal.classList.remove('hidden');
             });
 
-            // Cerrar el modal para Actualizar
             closeUpdateModalButton.addEventListener('click', () => {
-                updateModal.classList.add('hidden'); // Ocultar el modal
+                updateModal.classList.add('hidden');
             });
 
-            // Confirmar la acción de Actualizar
             confirmUpdateButton.addEventListener('click', () => {
-                editForm.submit(); // Enviar el formulario
+                editForm.submit();
             });
 
-            // Abrir el modal para Cancelar
             openCancelModalButton.addEventListener('click', () => {
-                cancelModal.classList.remove('hidden'); // Mostrar el modal
+                cancelModal.classList.remove('hidden');
             });
 
-            // Cerrar el modal para Cancelar
             closeCancelModalButton.addEventListener('click', () => {
-                cancelModal.classList.add('hidden'); // Ocultar el modal
+                cancelModal.classList.add('hidden');
+            });
+
+            // Mostrar sliders si ya hay preguntas con tipo 4 o 5
+            document.querySelectorAll('select[id^="questions"]').forEach((select) => {
+                const match = select.name.match(/questions\[(\d+)\]/);
+                if (match) {
+                    const index = match[1];
+                    if (select.value == 4 || select.value == 5) {
+                        showQuestionSlider(select, index);
+                    }
+                }
             });
         });
+
+        // Agregar nueva pregunta dinámicamente
+        document.getElementById('add-question').addEventListener('click', function () {
+            const container = document.getElementById('questions-container');
+            const index = container.children.length;
+            const template = document.querySelector('.question-template').cloneNode(true);
+
+            template.querySelectorAll('input, select').forEach(function (input) {
+                input.name = input.name.replace(/\[\d+\]/, `[${index}]`);
+                input.id = input.id.replace(/\[\d+\]/, `[${index}]`);
+                if (input.tagName !== 'SELECT') input.value = '';
+            });
+
+            // Setear onchange correctamente
+            const questionTypeSelect = template.querySelector('select[name^="questions"][name$="[id_question_type]"]');
+            questionTypeSelect.setAttribute('onchange', `showQuestionFields(this, ${index}); showQuestionSlider(this, ${index});`);
+            questionTypeSelect.value = ''; // ← fuerza que se quede en la opción por defecto
+
+            // Asegurar que los IDs estén bien
+            template.querySelector('[id^=question-fields-]').id = `question-fields-${index}`;
+            template.querySelector('[id^=question-slider-]').id = `question-slider-${index}`;
+
+            // Limpiar slider por defecto
+            const sliderContainer = template.querySelector(`#question-slider-${index}`);
+            if (sliderContainer) sliderContainer.innerHTML = '';
+
+            container.appendChild(template);
+        });
+
+        function showQuestionFields(select, index) {
+            const fieldsContainer = document.getElementById(`question-fields-${index}`);
+            fieldsContainer.innerHTML = '';
+
+            switch (select.value) {
+                case '2':
+                    fieldsContainer.innerHTML = `
+                <div class="flex items-center gap-2 mb-2">
+                    <input type="text" name="questions[${index}][options][]" placeholder="Opción 1"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <button type="button" onclick="addOption(${index})"
+                        class="text-blue-500 hover:text-blue-700 font-semibold">
+                        + Agregar Opción
+                    </button>
+                </div>`;
+                    break;
+
+                case '4':
+                    break;
+
+                case '5':
+                    break;
+
+                case '7':
+                    fieldsContainer.innerHTML = `
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="text" name="questions[${index}][options][]" placeholder="Opción 1"
+                                class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                                <button type="button" onclick="addOption(${index})"
+                                    class="text-blue-500 hover:text-blue-700 font-semibold">
+                                    + Agregar Opción
+                                </button>
+                        </div>`;
+                    break;
+
+                default:
+                    fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;
+                    break;
+            }
+        }
+
+        function addOption(index) {
+            const fieldsContainer = document.getElementById(`question-fields-${index}`);
+            const optionCount = fieldsContainer.querySelectorAll('input').length + 1;
+
+            const newOption = document.createElement('div');
+            newOption.classList.add('flex', 'items-center', 'gap-2', 'mb-2');
+            newOption.innerHTML = `
+        <input type="text" name="questions[${index}][options][]" placeholder="Opción ${optionCount}"
+            class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+        <button type="button" onclick="removeOption(this)"
+            class="text-red-500 hover:text-red-700 font-semibold">
+            Eliminar
+        </button>`;
+
+            fieldsContainer.appendChild(newOption);
+        }
+
+        function removeOption(button) {
+            button.parentElement.remove();
+        }
+
+        function showQuestionSlider(select, index) {
+            let sliderContainer = document.getElementById(`question-slider-${index}`);
+            sliderContainer.innerHTML = '';
+
+            // Obtener el valor del slider desde el backend (si está disponible)
+            const weightValue = select.dataset.weightValue || "5"; // Valor por defecto si no se encuentra uno
+
+            if (select.value == 4 || select.value == 5) {
+                let label = document.createElement('label');
+                label.innerHTML = "Selecciona un valor (1 a 10)";
+                label.className = "block text-lg font-medium text-gray-700";
+
+                let slider = document.createElement('input');
+                slider.type = "range";
+                slider.name = `questions[${index}][value]`;
+                slider.min = "1";
+                slider.max = "10";
+                slider.value = weightValue;  // Aquí asignamos el valor cargado desde la base de datos
+                slider.className = "mt-1 block w-full";
+
+                let output = document.createElement('span');
+                output.className = "block text-center text-lg font-semibold text-blue-700 mt-2";
+                output.innerHTML = slider.value;
+
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                };
+
+                sliderContainer.appendChild(label);
+                sliderContainer.appendChild(slider);
+                sliderContainer.appendChild(output);
+            }
+        }
+
     </script>
+
+
 </x-layout>

@@ -142,7 +142,7 @@ class FormsController extends Controller
     // Función para mostrar el formulario de edición
     public function edit($id)
     {
-        $formulario = Form::with('questions.options')->findOrFail($id);
+        $formulario = Form::with(['questions.options', 'questions.weights'])->findOrFail($id);
         return view('forms.edit', compact('formulario'));
     }
 

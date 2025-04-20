@@ -39,4 +39,9 @@ class Question extends Model
         return $this->hasMany(Result::class, 'id_question');
     }
 
+    public function weights()
+    {
+        return $this->hasMany(Weight::class, 'id_question');
+    }
+
 }
