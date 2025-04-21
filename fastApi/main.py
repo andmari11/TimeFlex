@@ -6,22 +6,11 @@ import asyncio
 import json
 from model.shift import *
 from model.workerPreference import *
-from stats import *
 from optimize1 import *
 import logging
 
 
 app = FastAPI()
-
-class StatsData(BaseModel):
-    id: int
-
-
-@app.post("/api/stats")
-
-async def root(params: StatsData):
-    img=Stats.get_example()
-    return img
 
 class ScheduleData(BaseModel):
     id: int
