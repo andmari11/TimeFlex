@@ -129,18 +129,22 @@
                                 <a href="/perfil" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Tu perfil</a>
 
                                 <!-- Ajustes con su submenu -->
-                                <div class="relative group">
+                                <div x-data="{ showSubmenu: false }" class="relative"
+                                     @mouseenter="showSubmenu = true"
+                                     @mouseleave="showSubmenu = false">
+
                                     <div class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                                         Ajustes
+
                                         <!-- Pintamos la flecha que abre el submenu -->
-                                        <svg class="w-4 h-4 ml-2 text-gray-500 group-hover:text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 ml-2 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                         </svg>
                                     </div>
 
                                     <!-- Submenu de ajustes -->
-                                    <div class="absolute top-0 left-full ml-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden group-hover:block z-20">
-                                        <!-- Enlace a la ventana cuya lógica y aspecto se definen mas abajo -->
+                                    <div x-show="showSubmenu" x-transition class="absolute top-0 left-full ml-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-30">
+                                        <!-- Enlace a la ventana cuya lógica y aspecto se definen más abajo -->
                                         <a href="#"
                                            @click.prevent="$dispatch('open-notification-settings')"
                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
