@@ -127,7 +127,28 @@
                             <div x-show="open_profile_menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <a href="/perfil" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Tu perfil</a>
-                                <a href="/ajustes" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Ajustes</a>
+
+                                <!-- Ajustes con su submenu -->
+                                <div class="relative group">
+                                    <div class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                        Ajustes
+                                        <!-- Pintamos la flecha que abre el submenu -->
+                                        <svg class="w-4 h-4 ml-2 text-gray-500 group-hover:text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- Submenu de ajustes -->
+                                    <div class="absolute top-0 left-full ml-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden group-hover:block z-20">
+                                        <!-- Enlace a la ventana cuya lógica y aspecto se definen mas abajo -->
+                                        <a href="#"
+                                           @click.prevent="$dispatch('open-notification-settings')"
+                                           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+                                            Notificaciones
+                                        </a>
+                                    </div>
+                                </div>
+
                                 <form method="POST" action="/logout">
                                     @csrf
                                     <button type='submit' class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</button>
@@ -210,6 +231,51 @@
         @endif
         {{$slot}}
     </main>
+</div>
+<!-- Panel de ajuste de notificaciones -->
+<!-- Pongo de primeras todas las categorias a true, que es como estara por defecto-->
+<div
+    x-data="{ open: false, settings: { ayuda: true, turno: true, sistema: true, prueba: true } }"
+    @open-notification-settings.window="open = true"
+    x-show="open"
+    style="display: none"
+    x-cloak
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+>
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative">
+        <!-- Botón de cerrar el panel -->
+        <button @click="open = false" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">
+            ✕
+        </button>
+
+        <h2 class="text-xl font-semibold mb-4">Tipos de Notificaciones Activadas</h2>
+        <div class="space-y-4">
+            <template x-for="(enabled, category) in settings" :key="category">
+                <div class="flex justify-between items-center">
+                    <span class="capitalize" x-text="category"></span>
+                    <input
+                        type="checkbox"
+                        :checked="enabled"
+                        @change="settings[category] = !settings[category]"
+                        class="w-10 h-5 bg-gray-300 rounded-full appearance-none checked:bg-green-500 focus:outline-none transition duration-200 relative before:absolute before:content-[''] before:w-4 before:h-4 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-5 before:transition before:duration-200"
+                    />
+                </div>
+            </template>
+        </div>
+
+        <div class="mt-6 text-right">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" @click="guardarNotificaciones()">
+                Guardar preferencias
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function guardarNotificaciones() {
+            // La idea seria meter las preferencias en la BD y al crear el usuario poner a todas a por defecto, pero confirmar con andres primero
+            alert("Configuración de notificaciones actualizada correctamente");
+        }
+    </script>
 </div>
 
 </html>
