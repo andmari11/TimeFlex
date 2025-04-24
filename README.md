@@ -64,8 +64,15 @@ python3 -m uvicorn main:app --host 127.0.0.1 --port 8001 --reload
 uvicorn main:app --host 127.0.0.1 --port 8001 --reload
 ```
 
+## 9. Compilar recursos del Frontend
+Para que los estilos personalizados de la aplicación y scripts asociados funcionen correctamente, especialmente las estadísticas de Highcharts,
+es necesario compilar los archivos fuente usando Vite. Para ello, usamos el siguiente comando
 
-## 9. Verificar configuración del servidor web
+```bash
+npm run dev
+```
+
+## 10. Verificar configuración del servidor web
 Asegúrate de que el servidor web (Apache, Nginx, etc.) esté configurado correctamente para servir el proyecto Laravel. Si estás usando el servidor web integrado de Laravel para pruebas, puedes iniciarlo con:
 
 ```bash
