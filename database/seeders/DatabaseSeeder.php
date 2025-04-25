@@ -13,6 +13,7 @@ use App\Models\QuestionType;
 use App\Models\Satisfaction;
 use App\Models\Notification;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserNotificationsPreference;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -31,15 +32,15 @@ class DatabaseSeeder extends Seeder
         Company::factory(config('const.seeder.companies'))->create();
         //crea 3 secciones, admin y sin seccion
         Section::factory(1)->create([
-            'name'  => "Administradores",
-            "company_id"=> 1,
-            'default'=>true
+            'name' => "Administradores",
+            "company_id" => 1,
+            'default' => true
         ]);
         Section::factory(1)->create([
             'id' => 0,
             'name' => 'Sin sección',
             'company_id' => 1,
-            'default'=>true
+            'default' => true
         ]);
         Section::factory(config('const.seeder.sections'))->create();
         //crea 10 trabajadores
@@ -127,7 +128,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as $user) {
             // entre 25 y 38 turnos aleatorios para cada usuario (unicos)
-            $numberShifts = rand(25,38);
+            $numberShifts = rand(25, 38);
             $assignedShifts = $shifts->random($numberShifts)->pluck('id');
             // asignacion de turnos
             foreach ($assignedShifts as $shiftId) {
@@ -162,7 +163,6 @@ class DatabaseSeeder extends Seeder
             }
 
 
-
         }
 
         $states = ['Accepted', 'Accepted', 'Accepted', 'Pending', 'Pending']; // pongo mas accepted para que salgan mas
@@ -184,7 +184,7 @@ class DatabaseSeeder extends Seeder
         // asignacion de vacaciones a los usuarios
         $holidays = Holidays::all();
         foreach ($users as $user) {
-            $numberHolidays = rand(55,60);
+            $numberHolidays = rand(55, 60);
             $allHolidays = $holidays->random($numberHolidays)->pluck('id');
             foreach ($allHolidays as $holidayId) {
                 DB::table('holidays_user')->insert([
@@ -195,11 +195,11 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
-        QuestionType::create([ 'name' => 'Calendario', 'description' => 'Pregunta basada en una fecha seleccionable mediante un calendario.' ]);
-        QuestionType::create([ 'name' => 'Selector', 'description' => 'Pregunta con múltiples opciones seleccionables a través de un menú desplegable.' ]);
-        QuestionType::create([ 'name' => 'Gradual', 'description' => 'Pregunta con una escala gradual para evaluar.' ]);
-        QuestionType::create([ 'name' => 'Turnos', 'description' => 'Pregunta para obtener información para los turnos deseados.' ]);
-        QuestionType::create([ 'name' => 'Vacaciones', 'description' => 'Pregunta para obtener información para las vacaciones.' ]);
+        QuestionType::create(['name' => 'Calendario', 'description' => 'Pregunta basada en una fecha seleccionable mediante un calendario.']);
+        QuestionType::create(['name' => 'Selector', 'description' => 'Pregunta con múltiples opciones seleccionables a través de un menú desplegable.']);
+        QuestionType::create(['name' => 'Gradual', 'description' => 'Pregunta con una escala gradual para evaluar.']);
+        QuestionType::create(['name' => 'Turnos', 'description' => 'Pregunta para obtener información para los turnos deseados.']);
+        QuestionType::create(['name' => 'Vacaciones', 'description' => 'Pregunta para obtener información para las vacaciones.']);
         QuestionType::create(['name' => 'Texto Libre', 'description' => 'Pregunta que permite ingresos de texto sin restricciones predefinidas.']);
         QuestionType::create(['name' => 'Opción Múltiple', 'description' => 'Pregunta en la que el usuario puede elegir una o varias opciones mediante casillas de verificación.']);
         QuestionType::create(['name' => 'Numérica', 'description' => 'Pregunta que exige como respuesta un valor numérico.']);
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
 
         Notification::create([
             'user_id' => 11,
-            'tipo' => 'prueba',
+            'tipo' => 'otras',
             'message' => 'Nueva prueba de notificacion',
             'email' => 'usuario11@example.com',
             'nombre' => 'Juan',
@@ -324,5 +324,15 @@ class DatabaseSeeder extends Seeder
             'duda' => null,
             'read' => true,
         ]);
+
+        foreach ($users as $user) {
+            UserNotificationsPreference::create([
+                'user_id' => $user->id,
+                'ayuda' => true,
+                'turno' => true,
+                'sistema' => true,
+                'otras' => true,
+            ]);
+        }
     }
 }

@@ -98,4 +98,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Holidays::class);
     }
+
+    public function notificationPreferences()
+    {
+        return $this->hasOne(UserNotificationsPreference::class);
+    }
 }
