@@ -25,6 +25,8 @@ class SectionController extends Controller
         ], [
             'name.required' => 'Es necesario introducir el nombre de la sección a registrar',
             'name.unique' => 'Ya existe una sección con este nombre',
+            'min_hours' => 'required|integer|min:0',
+            'max_hours' => 'required|integer|min:0|gte:min_hours',
         ]);
 
         // Obtener el último ID de la base de datos y sumarle 1
@@ -66,6 +68,8 @@ class SectionController extends Controller
         // Validar los atributos de la sección
         request()->validate([
             'name' => ['required'],
+            'min_hours' => 'required|integer|min:0',
+            'max_hours' => 'required|integer|min:0|gte:min_hours',
         ]);
 
         // Encontrar la sección y actualizarla
@@ -77,6 +81,8 @@ class SectionController extends Controller
         }
         $section->update([
             'name' => request('name'),
+            'min_hours' => request('min_hours'),
+            'max_hours' => request('max_hours'),
         ]);
 
         // Redirigir al menú principal

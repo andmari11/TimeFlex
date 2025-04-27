@@ -33,12 +33,16 @@ class DatabaseSeeder extends Seeder
         //crea 3 secciones, admin y sin seccion
         Section::factory(1)->create([
             'name' => "Administradores",
+            'min_hours' => 38,
+            'max_hours' => 40,
             "company_id" => 1,
             'default' => true
         ]);
         Section::factory(1)->create([
             'id' => 0,
             'name' => 'Sin sección',
+            'min_hours' => 38,
+            'max_hours' => 40,
             'company_id' => 1,
             'default' => true
         ]);

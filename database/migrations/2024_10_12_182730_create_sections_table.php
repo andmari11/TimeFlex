@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('min_hours');
+            $table->integer('max_hours');
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Company::class);
             $table->boolean('default')->default(false);

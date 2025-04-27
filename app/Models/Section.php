@@ -12,6 +12,8 @@ class Section extends Model
     protected $fillable = [
         'id',
         'name',
+        'min_hours',
+        'max_hours',
         'company_id'
     ];
 

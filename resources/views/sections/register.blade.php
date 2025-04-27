@@ -10,6 +10,20 @@
                     <x-forms.input name="name" id="name" :value="old('name')" required />
                     <x-forms.error name="name" />
                 </x-forms.field>
+
+                <!-- Horas mínimas -->
+                <x-forms.field class="col-12">
+                    <x-forms.label for="min_hours">Horas mínimas</x-forms.label>
+                    <x-forms.input type="number" name="min_hours" id="min_hours" :value="old('min_hours')" required min="0" />
+                    <x-forms.error name="min_hours" />
+                </x-forms.field>
+
+                <!-- Horas máximas -->
+                <x-forms.field class="col-12">
+                    <x-forms.label for="max_hours">Horas máximas</x-forms.label>
+                    <x-forms.input type="number" name="max_hours" id="max_hours" :value="old('max_hours')" required min="0" />
+                    <x-forms.error name="max_hours" />
+                </x-forms.field>
             </div>
 
             <div class="mt-6 flex items-center justify-between">
