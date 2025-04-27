@@ -143,29 +143,47 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- Script para manejo dinámico de preguntas -->
     <script>
-
         document.getElementById('add-question').addEventListener('click', function() {
             const container = document.getElementById('questions-container');
             const index = container.children.length;
             const template = document.querySelector('.question-template').cloneNode(true);
 
+            // Actualizar los nombres e IDs de los inputs y selects
             template.querySelectorAll('input, select').forEach(function(input) {
                 input.name = input.name.replace('[0]', `[${index}]`);
                 input.id = input.id.replace('[0]', `[${index}]`);
                 input.value = '';
             });
 
+            // Actualizar los IDs de los contenedores dinámicos
             template.querySelector('#question-fields-0').id = `question-fields-${index}`;
-            template.querySelector('select').setAttribute('onchange', `showQuestionFields(this, ${index})`);
+            template.querySelector('#question-slider-0').id = `question-slider-${index}`;
+
+            // Configurar el evento onchange para manejar tanto opciones como sliders
+            const select = template.querySelector('select');
+            select.setAttribute('onchange', `showQuestionFields(this, ${index}); showQuestionSlider(this, ${index});`);
 
             container.appendChild(template);
         });
 
         function showQuestionFields(select, index) {
+            // Identificar los contenedores dinámicos
             const fieldsContainer = document.getElementById(`question-fields-${index}`);
-            fieldsContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+            const sliderContainer = document.getElementById(`question-slider-${index}`);
+
+            // Limpiar cualquier contenido previo en los contenedores
+            if (fieldsContainer) fieldsContainer.innerHTML = '';
+            if (sliderContainer) sliderContainer.innerHTML = '';
 
             switch (select.value) {
+                case '1': // Tipo sin campos adicionales
+                case '3':
+                case '6':
+                case '8':
+                case '9':
+                    fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;
+                    break;
+
                 case '2': // Tipo "Selector"
                     fieldsContainer.innerHTML = `
                 <div class="flex flex-col gap-4">
@@ -181,13 +199,24 @@
             `;
                     break;
 
-                case '4': //tipo turnos
+                case '4': // Tipo "Turnos"
+                case '5': // Tipo "Vacaciones"
+                    sliderContainer.innerHTML = `
+                <label class="block text-lg font-medium text-gray-700">Selecciona un valor (1 a 10)</label>
+                <input type="range" name="questions[${index}][value]" min="1" max="10" value="5"
+                    class="mt-1 block w-full">
+                <span class="block text-center text-lg font-semibold text-blue-700 mt-2">5</span>
+            `;
+
+                    // Actualizar dinámicamente el valor del slider
+                    const slider = sliderContainer.querySelector('input[type="range"]');
+                    const output = sliderContainer.querySelector('span');
+                    slider.oninput = function () {
+                        output.innerHTML = this.value;
+                    };
                     break;
 
-                case '5': //tipo vacaciones
-                    break;
-
-                case '7': //tipo opción múltiple
+                case '7': // Tipo "Opción Múltiple"
                     fieldsContainer.innerHTML = `
                 <div class="flex flex-col gap-4">
                     <div class="flex items-center gap-2 mb-2">
@@ -201,13 +230,45 @@
                 </div>
             `;
                     break;
+
                 default:
-                    // Si no se requiere campo dinámico, no se genera contenido
                     fieldsContainer.innerHTML = `<p class="text-gray-500 italic mt-2">Este tipo de pregunta no requiere campos adicionales.</p>`;
                     break;
             }
         }
 
+
+        function showQuestionSlider(select, index) {
+            const sliderContainer = document.getElementById(`question-slider-${index}`);
+            sliderContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+
+            // Mostrar el slider solo para los tipos "Turnos" (id = 4) o "Vacaciones" (id = 5)
+            if (select.value == 4 || select.value == 5) {
+                const label = document.createElement('label');
+                label.innerHTML = "Selecciona un valor (1 a 10)";
+                label.className = "block text-lg font-medium text-gray-700";
+
+                const slider = document.createElement('input');
+                slider.type = "range";
+                slider.name = `questions[${index}][value]`;
+                slider.min = "1";
+                slider.max = "10";
+                slider.value = "5";
+                slider.className = "mt-1 block w-full";
+
+                const output = document.createElement('span');
+                output.className = "block text-center text-lg font-semibold text-blue-700 mt-2";
+                output.innerHTML = slider.value;
+
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                };
+
+                sliderContainer.appendChild(label);
+                sliderContainer.appendChild(slider);
+                sliderContainer.appendChild(output);
+            }
+        }
 
         function addOption(index) {
             const fieldsContainer = document.getElementById(`question-fields-${index}`);
@@ -215,12 +276,12 @@
             const newOption = document.createElement('div');
             newOption.classList.add('flex', 'items-center', 'gap-2', 'mb-2');
             newOption.innerHTML = `
-                <input type="text" name="questions[${index}][options][]" placeholder="Opción ${optionCount}"
-                    class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">
-                    Eliminar
-                </button>
-            `;
+        <input type="text" name="questions[${index}][options][]" placeholder="Opción ${optionCount}"
+            class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+        <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">
+            Eliminar
+        </button>
+    `;
             fieldsContainer.appendChild(newOption);
         }
 
@@ -228,7 +289,10 @@
             button.parentElement.remove();
         }
 
+    </script>
 
+
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             flatpickr("#start_date", {
                 enableTime: true, // Habilitar selección de tiempo
@@ -279,18 +343,21 @@
             });
         });
     </script>
-
     <script>
         function showQuestionSlider(select, index) {
-            let sliderContainer = document.getElementById(`question-slider-${index}`);
-            sliderContainer.innerHTML = '';
+            // Obtener el contenedor del slider dinámico
+            const sliderContainer = document.getElementById(`question-slider-${index}`);
+            sliderContainer.innerHTML = ''; // Limpiar cualquier contenido previo
 
+            // Mostrar el slider solo para los tipos "Turnos" (id = 4) o "Vacaciones" (id = 5)
             if (select.value == 4 || select.value == 5) {
-                let label = document.createElement('label');
+                // Crear el label descriptivo
+                const label = document.createElement('label');
                 label.innerHTML = "Selecciona un valor (1 a 10)";
                 label.className = "block text-lg font-medium text-gray-700";
 
-                let slider = document.createElement('input');
+                // Crear el slider (input tipo range)
+                const slider = document.createElement('input');
                 slider.type = "range";
                 slider.name = `questions[${index}][value]`;
                 slider.min = "1";
@@ -298,14 +365,17 @@
                 slider.value = "5";
                 slider.className = "mt-1 block w-full";
 
-                let output = document.createElement('span');
+                // Crear el output para mostrar el valor seleccionado
+                const output = document.createElement('span');
                 output.className = "block text-center text-lg font-semibold text-blue-700 mt-2";
                 output.innerHTML = slider.value;
 
-                slider.oninput = function() {
+                // Actualizar el valor dinámicamente al mover el slider
+                slider.oninput = function () {
                     output.innerHTML = this.value;
                 };
 
+                // Agregar los elementos al contenedor del slider
                 sliderContainer.appendChild(label);
                 sliderContainer.appendChild(slider);
                 sliderContainer.appendChild(output);
