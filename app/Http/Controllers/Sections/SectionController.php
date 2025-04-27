@@ -22,11 +22,18 @@ class SectionController extends Controller
         // Validar los atributos de la sección
         $attributesSection = request()->validate([
             'name' => ['required', 'unique:sections,name'],
+            'min_hours' => ['required', 'integer', 'min:0'],
+            'max_hours' => ['required', 'integer', 'min:0', 'gte:min_hours'],
         ], [
             'name.required' => 'Es necesario introducir el nombre de la sección a registrar',
             'name.unique' => 'Ya existe una sección con este nombre',
-            'min_hours' => 'required|integer|min:0',
-            'max_hours' => 'required|integer|min:0|gte:min_hours',
+            'min_hours.required' => 'Es necesario introducir el número mínimo de horas',
+            'min_hours.integer' => 'El número mínimo de horas debe ser un valor entero',
+            'min_hours.min' => 'El número mínimo de horas no puede ser menor que 0',
+            'max_hours.required' => 'Es necesario introducir el número máximo de horas',
+            'max_hours.integer' => 'El número máximo de horas debe ser un valor entero',
+            'max_hours.min' => 'El número máximo de horas no puede ser menor que 0',
+            'max_hours.gte' => 'El número máximo de horas debe ser mayor o igual al número mínimo de horas',
         ]);
 
         // Obtener el último ID de la base de datos y sumarle 1
@@ -41,7 +48,7 @@ class SectionController extends Controller
             'id' => $newId,
             'company_id' => $companyId,
         ]);
-
+        
         // Crear una nueva sección con los atributos combinados
         $section = Section::create($attributesSection);
 
