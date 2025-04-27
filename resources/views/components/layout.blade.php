@@ -236,10 +236,33 @@
         {{$slot}}
     </main>
 </div>
+<!-- Inicializamos las notificaciones con los valores guardados en la BD -->
+<script>
+    function getNotificationsPreferencesData() {
+        return {
+            open: false,
+            settings: {
+                ayuda: true,
+                turno: true,
+                sistema: true,
+                otras: true,
+            },
+            init() {
+                fetch('/get-notifications-preferences')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.settings = data;
+                    })
+                    .catch(error => {
+                        console.error('Error cargando las preferencias de notificaciones de la BD :', error);
+                    });
+            }
+        }
+    }
+</script>
 <!-- Panel de ajuste de notificaciones -->
-<!-- Pongo de primeras todas las categorias a true, que es como estara por defecto-->
 <div
-    x-data="{ open: false, settings: { ayuda: true, turno: true, sistema: true, otras: true } }"
+    x-data="getNotificationsPreferencesData()"
     @open-notification-settings.window="open = true"
     @close-notification-settings.window="open = false"
     x-show="open"
@@ -275,7 +298,6 @@
 
         </div>
     </div>
-
     <script>
         function guardarNotificaciones(settings) {
             fetch('/save-notifications-preferences', {

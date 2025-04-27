@@ -24,4 +24,26 @@ class UserNotificationsPreferencesController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function getPreferences()
+    {
+        $user = auth()->user();
+        $preferences = $user->notificationPreferences;
+
+        if (!$preferences) {
+            return response()->json([
+                'ayuda' => true,
+                'turno' => true,
+                'sistema' => true,
+                'otras' => true,
+            ]);
+        }
+
+        return response()->json([
+            'ayuda' => $preferences->ayuda,
+            'turno' => $preferences->turno,
+            'sistema' => $preferences->sistema,
+            'otras' => $preferences->otras,
+        ]);
+    }
 }

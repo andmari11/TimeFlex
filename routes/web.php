@@ -151,6 +151,7 @@ Route::get('forms', function (){
 
 Route::get('/notificationspanel', [NotificationController::class, 'index'])->name('notifications.panel');
 Route::post('/save-notifications-preferences', [UserNotificationsPreferencesController::class, 'update'])->middleware('auth');
+Route::get('/get-notifications-preferences', [UserNotificationsPreferencesController::class, 'getPreferences'])->middleware('auth');
 
 
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);
