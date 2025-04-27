@@ -17,6 +17,7 @@ use App\Http\Controllers\FormsController;
 use App\Http\Controllers\ExpectedHoursController;
 use App\Http\Controllers\ScheduleStatsController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserNotificationsPreferencesController;
 //REVISAR SI SE PUEDE QUITAR
 //use App\Http\Controllers\ScheduleController;
 
@@ -149,6 +150,7 @@ Route::get('forms', function (){
 });
 
 Route::get('/notificationspanel', [NotificationController::class, 'index'])->name('notifications.panel');
+Route::post('/save-notifications-preferences', [UserNotificationsPreferencesController::class, 'update'])->middleware('auth');
 
 
 Route::post('/expected-hours', [ExpectedHoursController::class, 'storeOrUpdate']);

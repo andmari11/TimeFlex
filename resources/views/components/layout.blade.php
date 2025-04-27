@@ -239,8 +239,9 @@
 <!-- Panel de ajuste de notificaciones -->
 <!-- Pongo de primeras todas las categorias a true, que es como estara por defecto-->
 <div
-    x-data="{ open: false, settings: { ayuda: true, turno: true, sistema: true, prueba: true } }"
+    x-data="{ open: false, settings: { ayuda: true, turno: true, sistema: true, otras: true } }"
     @open-notification-settings.window="open = true"
+    @close-notification-settings.window="open = false"
     x-show="open"
     style="display: none"
     x-cloak
@@ -268,18 +269,46 @@
         </div>
 
         <div class="mt-6 text-right">
-            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" @click="guardarNotificaciones()">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" @click="guardarNotificaciones(settings)">
                 Guardar preferencias
             </button>
+
         </div>
     </div>
 
     <script>
-        function guardarNotificaciones() {
-            // La idea seria meter las preferencias en la BD y al crear el usuario poner a todas a por defecto, pero confirmar con andres primero
-            alert("Configuración de notificaciones actualizada correctamente");
+        function guardarNotificaciones(settings) {
+            fetch('/save-notifications-preferences', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(settings)
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Ha ocurrido un error al guardar las preferencias de notificaciones');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Preferencias de notificaciones guardadas con éxito');
+                        // cerramos la ventana de preferencias de notificaciones
+                        window.dispatchEvent(new CustomEvent('close-notification-settings'));
+                    } else {
+                        alert('Ha ocurrido un error al guardar las preferencias de notificaciones');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ha ocurrido un error inesperado: ', error);
+                    alert('Ha ocurrido un error inesperado: ' + error.message);
+                });
         }
+
     </script>
+
 </div>
 
 </html>
