@@ -76,8 +76,17 @@ class FastApiController extends Controller
             $scheduleShifts[] = $shiftData;
         }
         $data['shiftsJSON'] = json_encode($scheduleShifts);
+        $data['holidaysWeightConfig'] = $schedule->results()?->where('id_question_type', 4)->first()?->question?->weights->first()->value ?? 0;
+        $data['shiftsWeightConfig'] = $schedule->results()?->where('id_question_type', 5)->first()?->question?->weights->first()->value ?? 0;
+
+        $data['minHoursPerWorker'] = $schedule->section->min_hours;
+        $data['maxHoursPerWorker'] = $schedule->section->max_hours;
+        $data['maxShiftsPerWorker'] = $schedule->section->max_shifts;
+        $data['minShiftsPerWorker'] = $schedule->section->min_shifts;
+
 
         try{
+            dd($data);
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
                 return redirect('/horario')->withErrors(['message' => 'Error sending data.']);

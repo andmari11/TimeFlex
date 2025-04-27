@@ -32,7 +32,7 @@
                 <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">
                     <a href="/horario/{{ $notification->shiftExchange->shiftDemander->schedule->id }}/turno/{{ $notification->shiftExchange->shift_demander_id }}"
                        class="hover:underline hover:cursor-pointer">
-                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->date)->format('d-m-Y') }}<br>
+                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->start)->format('d-m-Y') }}<br>
                         ({{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->start)->format('H:i') }} -
                         {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->end)->format('H:i') }})
                     </a>
@@ -40,7 +40,7 @@
                 <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">
                     <a href="/horario/{{ $notification->shiftExchange->shiftReceiver->schedule->id }}/turno/{{ $notification->shiftExchange->shift_receiver_id }}"
                        class="hover:underline hover:cursor-pointer">
-                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->date)->format('d-m-Y') }}<br>
+                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->start)->format('d-m-Y') }}<br>
                         ({{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->start)->format('H:i') }} -
                         {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->end)->format('H:i') }})
                     </a>
@@ -57,7 +57,7 @@
                 <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">
                     <a href="/horario/{{ $notification->shiftExchange->shiftReceiver->schedule->id }}/turno/{{ $notification->shiftExchange->shift_receiver_id }}"
                        class="hover:underline hover:cursor-pointer">
-                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->date)->format('d-m-Y') }}<br>
+                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->start)->format('d-m-Y') }}<br>
                         ({{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->start)->format('H:i') }} -
                         {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftReceiver->end)->format('H:i') }})
                     </a>
@@ -65,7 +65,7 @@
                 <td class="px-1 py-1 bg-blue-50 text-sky-900 text-sm text-center font-semibold rounded">
                     <a href="/horario/{{ $notification->shiftExchange->shiftDemander->schedule->id }}/turno/{{ $notification->shiftExchange->shift_demander_id }}"
                        class="hover:underline hover:cursor-pointer">
-                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->date)->format('d-m-Y') }}<br>
+                        {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->start)->format('d-m-Y') }}<br>
                         ({{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->start)->format('H:i') }} -
                         {{ \Carbon\Carbon::parse($notification->shiftExchange->shiftDemander->end)->format('H:i') }})
                     </a>

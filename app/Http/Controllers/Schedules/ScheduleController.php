@@ -136,6 +136,9 @@ class ScheduleController extends Controller
     {
         $scheduleData = $this->prepareScheduleData($id_schedule);
         $shiftToView = $scheduleData['schedule']->shifts->find($id_shift);
+        if($shiftToView==null){
+            return redirect('/horario/'.$id_schedule);
+        }
         $nextShiftMonth = Carbon::parse($shiftToView->start)->format('m');
 
         $currentPage = $scheduleData['months']->search(function ($calendar) use ($nextShiftMonth) {

@@ -55,7 +55,7 @@
                         <x-forms.error name="reason" />
                     </x-forms.field>
                     <div class="mt-6 px-4 flex items-center justify-between">
-                        <a href="/horario/{{$schedule->id}}/turno/' + {{$id_shift_someone}}"
+                        <a href="/horario/{{$schedule->id}}"
                            class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancelar</a>
                         @if(isset($id_shift_someone) && $id_shift_someone!=0 && $workerSelected)
                             <x-forms.button formaction="/shift-assign">Registrar asignación</x-forms.button>

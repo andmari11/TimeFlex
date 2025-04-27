@@ -192,17 +192,17 @@
                                                     @foreach($month['days'] as $dia)
                                                         @php
                                                              $heatMapColors = [
-                                                                'bg-sky-100 text-gray-800', // 0
-                                                                'bg-sky-200 text-gray-800', // 1
-                                                                'bg-sky-300 text-gray-800', // 2
-                                                                'bg-sky-400 text-gray-800', // 3
+                                                                'bg-sky-200 text-sky-800', // 0
+                                                                'bg-sky-200 text-sky-800', // 1
+                                                                'bg-sky-200 text-sky-800', // 2
+                                                                'bg-sky-200 text-sky-800', // 3
                                                                 'bg-sky-500 text-white',    // 4
-                                                                'bg-sky-600 text-white',    // 5
-                                                                'bg-sky-700 text-white',    // 6
-                                                                'bg-sky-800 text-white',    // 7
-                                                                'bg-sky-900 text-white',    // 8
-                                                                'bg-sky-900 text-white',    // 9
-                                                                'bg-blue-900 text-white',   // 10
+                                                                'bg-sky-500 text-white',    // 5
+                                                                'bg-sky-500 text-white',    // 6
+                                                                'bg-sky-500 text-white',    // 7
+                                                                'bg-sky-800 text-white',    // 8
+                                                                'bg-sky-800 text-white',    // 9
+                                                                'bg-sky-800 text-white',   // 10
                                                             ];
                                                             $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
                                                         @endphp
@@ -211,7 +211,7 @@
 
                                                             <div
                                                                 class="p-0 border rounded text-center cursor-pointer"
-                                                                :class="isSelected('{{ $dia['id'] }}') ? 'text-white bg-red-500' : '{{ $color }}'"
+                                                                :class="isSelected('{{ $dia['id'] }}') ? 'text-white bg-gray-500' : '{{ $color }}'"
                                                                 @click="toggleSelection('{{ $dia['id'] }}')">
                                                                 <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
                                                             </div>

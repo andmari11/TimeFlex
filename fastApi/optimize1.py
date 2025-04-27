@@ -4,9 +4,11 @@ from model.workerPreference import *
 import json
 
 PREFERRED_SHIFTS_WEIGHT = 10
-HOLIDAYS_WEIGHT = -20
-N_MAX_SHIFTS_PER_WORKER = 2000000
-N_MAX_HOURS_PER_WORKER = 80000000
+HOLIDAYS_WEIGHT = 10
+N_MAX_SHIFTS_PER_WORKER = 999999
+N_MAX_HOURS_PER_WORKER = 999999
+N_MIN_HOURS_PER_WORKER = 0
+N_MIN_SHIFTS_PER_WORKER = 0
 
 
 def read_file(file_path):
@@ -27,7 +29,7 @@ def satisfaction_score(all_assigned_shifts, workers, shifts, m):
                     holidays_worked += (shifts[j].start.date() == holiday.date() or shifts[j].end.date() == holiday.date())
                     preferred_shifts += (shifts[j].type in workers[i].preferred_shift_types)
         # print(f"Worker {workers[i].user_id} worked {holidays_worked} holidays and {preferred_shifts} preferred shifts")
-        score = (holidays_worked * HOLIDAYS_WEIGHT) + (preferred_shifts * PREFERRED_SHIFTS_WEIGHT)
+        score = (holidays_worked * -HOLIDAYS_WEIGHT) + (preferred_shifts * PREFERRED_SHIFTS_WEIGHT)
         scores.append(score)
 
     # normalizar satisfabilidad
@@ -54,6 +56,13 @@ def optimize(data, logging):
     # shifts = process_shifts_from_json(read_file("z3_pruebas/turnos.txt"))
     workers = process_worker_preferences(data.get("workers", []))
     shifts = process_shifts_from_json(data.get('shifts', []))
+    PREFERRED_SHIFTS_WEIGHT = data.get("shiftsWeightConfig", 10)
+    HOLIDAYS_WEIGHT = data.get("holidaysWeightConfig", 10)
+    N_MAX_SHIFTS_PER_WORKER = data.get("maxShiftsPerWorker", 999999)
+    N_MAX_HOURS_PER_WORKER = data.get("maxHoursPerWorker", 999999)
+    N_MIN_HOURS_PER_WORKER = data.get("minHoursPerWorker", 0)
+    N_MIN_SHIFTS_PER_WORKER = data.get("minShiftsPerWorker", 0)
+
     n_shifts = len(shifts)
     n_workers = len(workers)
 
@@ -100,6 +109,7 @@ def optimize(data, logging):
         for j in range(n_shifts):
             worker_takes_shift.append(bool2int(all_workers_shifts[i][j]))
         s.assert_and_track(addsum(worker_takes_shift) <= N_MAX_SHIFTS_PER_WORKER, f"%worker_{workers[i].user_id}% supera el máximo de turnos {N_MAX_SHIFTS_PER_WORKER} a trabajar")	
+        s.assert_and_track(addsum(worker_takes_shift) >= N_MIN_SHIFTS_PER_WORKER, f"%worker_{workers[i].user_id}% no alcanza el mínimo de turnos {N_MIN_SHIFTS_PER_WORKER} a trabajar")
 
 
     #comprobamos cuantos horas trabaja cada trabajador
@@ -108,6 +118,7 @@ def optimize(data, logging):
         for j in range(n_shifts):
             worker_hours.append(If(all_workers_shifts[i][j], countHours(shifts[j]), 0))
         s.assert_and_track(addsum(worker_hours) <= N_MAX_HOURS_PER_WORKER, f"%worker_{workers[i].user_id}% supera el máximo de horas {N_MAX_HOURS_PER_WORKER} a trabajar")
+        s.assert_and_track(addsum(worker_hours) >= N_MIN_HOURS_PER_WORKER, f"%worker_{workers[i].user_id}% no alcanza el mínimo de horas {N_MIN_HOURS_PER_WORKER} a trabajar")
 
     #comprobamos que cada turno tiene suficientes trabajadores
     for i in range(n_shifts):
