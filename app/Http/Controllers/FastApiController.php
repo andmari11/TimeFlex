@@ -86,7 +86,6 @@ class FastApiController extends Controller
 
 
         try{
-            dd($data);
             $response = Http::timeout(5)->post(config('services.fastApi.url') . 'api/schedule', $data);
             if ($response->failed()) {
                 return redirect('/horario')->withErrors(['message' => 'Error sending data.']);

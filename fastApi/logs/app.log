@@ -4480,3 +4480,154 @@ Traceback (most recent call last):
   File "C:\Users\andre\AppData\Local\Programs\Python\Python312\Lib\site-packages\z3\z3.py", line 107, in _z3_assert
     raise Z3Exception(msg)
 z3.z3types.Z3Exception: Boolean expression expected
+2025-04-27 20:01:10,044 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 4 works shifts [(datetime.date(2025, 5, 9), 1), (datetime.date(2025, 5, 11), 1), (datetime.date(2025, 5, 13), 1)]Worker 7 works shifts [(datetime.date(2025, 5, 1), 1), (datetime.date(2025, 5, 5), 1), (datetime.date(2025, 5, 7), 1), (datetime.date(2025, 5, 10), 1), (datetime.date(2025, 5, 12), 1), (datetime.date(2025, 5, 14), 1), (datetime.date(2025, 5, 15), 1)]Worker 8 works shifts [(datetime.date(2025, 5, 2), 1), (datetime.date(2025, 5, 4), 1), (datetime.date(2025, 5, 6), 1)]Worker 13 works shifts [(datetime.date(2025, 5, 3), 1), (datetime.date(2025, 5, 8), 1)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (1) has workers [False, True, False, False]Shift 2025-05-02 (1) has workers [False, False, True, False]Shift 2025-05-03 (1) has workers [False, False, False, True]Shift 2025-05-04 (1) has workers [False, False, True, False]Shift 2025-05-05 (1) has workers [False, True, False, False]Shift 2025-05-06 (1) has workers [False, False, True, False]Shift 2025-05-07 (1) has workers [False, True, False, False]Shift 2025-05-08 (1) has workers [False, False, False, True]Shift 2025-05-09 (1) has workers [True, False, False, False]Shift 2025-05-10 (1) has workers [False, True, False, False]Shift 2025-05-11 (1) has workers [True, False, False, False]Shift 2025-05-12 (1) has workers [False, True, False, False]Shift 2025-05-13 (1) has workers [True, False, False, False]Shift 2025-05-14 (1) has workers [False, True, False, False]Shift 2025-05-15 (1) has workers [False, True, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100]
+2025-04-27 20:01:10,049 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-27 20:01:10,054 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000177766A2FF0>
+2025-04-27 20:01:10,055 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 20:01:10,055 - DEBUG - send_request_headers.complete
+2025-04-27 20:01:10,055 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 20:01:10,055 - DEBUG - send_request_body.complete
+2025-04-27 20:01:10,055 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 20:01:11,055 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 27 Apr 2025 18:01:11 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6IlgrR1ltNlM2a09kTlp3N2tSSVZhZmc9PSIsInZhbHVlIjoiOVgza2EvMmUwdUd1RGhLdU1ZQnk0QUxsbDJwdWtKVEFTaStjVUtyTmFhb3pWWnRhZEs4ZlVkMHM2VW8wUE9VbUN6ektFNDJjcEJEUEpmTS9FQ0NkdUJ6NFFJaGJsanJPNU80ekxnakY2TXpvSzREVzRzakNFS0F5ZGMzWVJyNHMiLCJtYWMiOiI3NTE4NDAwYTliOTVkMWJlNzMwNTBkODk3ZWY0NjVlYTM5NDRiNWE1MGE5MTgxMjRmYTY2Mjc5MmI2MGIyZmE3IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:01:11 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6Im1OTmdTOVcwVmVrR1dBR2QrNnd1ZGc9PSIsInZhbHVlIjoiTVpsdHZHZ1FZZFJGbVZvc2hBL09oYU8xODBoVUF6RGZMNkJBOEpDSmp2YnJ2M2d3cCtwUy8vREZUdUgyMlc0clRKNkQ3RGViODlWRnN0bFlucFFjcXpMOC9pZ0NwTWd1Y3FEODdTREpOMklaRG9PcGlreVowVmx3QkZJS2JTcUQiLCJtYWMiOiJkZmM4NmJiMjYxYjEzYjFkYTY4MGUwNDAxN2I2NDhmMTBhMTE3ZDliODVkYmJkYmQ3NjU4ZjQ0Yjc5ZGQ4NzM2IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:01:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-27 20:01:11,055 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-27 20:01:11,056 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 20:01:11,056 - DEBUG - receive_response_body.complete
+2025-04-27 20:01:11,056 - DEBUG - response_closed.started
+2025-04-27 20:01:11,056 - DEBUG - response_closed.complete
+2025-04-27 20:01:11,056 - DEBUG - Solution to send: {
+    "id": 53,
+    "status": "success",
+    "scheduleJSON": {
+        "4": [
+            5485,
+            5487,
+            5489
+        ],
+        "7": [
+            5477,
+            5481,
+            5483,
+            5486,
+            5488,
+            5490,
+            5491
+        ],
+        "8": [
+            5478,
+            5480,
+            5482
+        ],
+        "13": [
+            5479,
+            5484
+        ]
+    },
+    "satisfabilityJSON": {
+        "4": 100,
+        "7": 100,
+        "8": 100,
+        "13": 100
+    }
+}
+
+2025-04-27 20:01:11,056 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 27 Apr 2025 18:01:11 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6IlgrR1ltNlM2a09kTlp3N2tSSVZhZmc9PSIsInZhbHVlIjoiOVgza2EvMmUwdUd1RGhLdU1ZQnk0QUxsbDJwdWtKVEFTaStjVUtyTmFhb3pWWnRhZEs4ZlVkMHM2VW8wUE9VbUN6ektFNDJjcEJEUEpmTS9FQ0NkdUJ6NFFJaGJsanJPNU80ekxnakY2TXpvSzREVzRzakNFS0F5ZGMzWVJyNHMiLCJtYWMiOiI3NTE4NDAwYTliOTVkMWJlNzMwNTBkODk3ZWY0NjVlYTM5NDRiNWE1MGE5MTgxMjRmYTY2Mjc5MmI2MGIyZmE3IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:01:11 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6Im1OTmdTOVcwVmVrR1dBR2QrNnd1ZGc9PSIsInZhbHVlIjoiTVpsdHZHZ1FZZFJGbVZvc2hBL09oYU8xODBoVUF6RGZMNkJBOEpDSmp2YnJ2M2d3cCtwUy8vREZUdUgyMlc0clRKNkQ3RGViODlWRnN0bFlucFFjcXpMOC9pZ0NwTWd1Y3FEODdTREpOMklaRG9PcGlreVowVmx3QkZJS2JTcUQiLCJtYWMiOiJkZmM4NmJiMjYxYjEzYjFkYTY4MGUwNDAxN2I2NDhmMTBhMTE3ZDliODVkYmJkYmQ3NjU4ZjQ0Yjc5ZGQ4NzM2IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:01:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-27 20:01:11,056 - DEBUG - close.started
+2025-04-27 20:01:11,056 - DEBUG - close.complete
+2025-04-27 20:03:59,908 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=999999, N_MAX_HOURS_PER_WORKER=999999, N_MIN_HOURS_PER_WORKER=0, N_MIN_SHIFTS_PER_WORKER=0
+2025-04-27 20:04:00,124 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 4 works shifts [(datetime.date(2025, 5, 8), 1), (datetime.date(2025, 5, 9), 1), (datetime.date(2025, 5, 11), 1), (datetime.date(2025, 5, 13), 1)]Worker 7 works shifts [(datetime.date(2025, 5, 1), 1), (datetime.date(2025, 5, 2), 1), (datetime.date(2025, 5, 5), 1), (datetime.date(2025, 5, 6), 1), (datetime.date(2025, 5, 7), 1), (datetime.date(2025, 5, 10), 1), (datetime.date(2025, 5, 12), 1), (datetime.date(2025, 5, 15), 1)]Worker 8 works shifts [(datetime.date(2025, 5, 4), 1)]Worker 13 works shifts [(datetime.date(2025, 5, 3), 1), (datetime.date(2025, 5, 14), 1)]
+---------- Horario por turno ----------
+Shift 2025-05-01 (1) has workers [False, True, False, False]Shift 2025-05-02 (1) has workers [False, True, False, False]Shift 2025-05-03 (1) has workers [False, False, False, True]Shift 2025-05-04 (1) has workers [False, False, True, False]Shift 2025-05-05 (1) has workers [False, True, False, False]Shift 2025-05-06 (1) has workers [False, True, False, False]Shift 2025-05-07 (1) has workers [False, True, False, False]Shift 2025-05-08 (1) has workers [True, False, False, False]Shift 2025-05-09 (1) has workers [True, False, False, False]Shift 2025-05-10 (1) has workers [False, True, False, False]Shift 2025-05-11 (1) has workers [True, False, False, False]Shift 2025-05-12 (1) has workers [False, True, False, False]Shift 2025-05-13 (1) has workers [True, False, False, False]Shift 2025-05-14 (1) has workers [False, False, False, True]Shift 2025-05-15 (1) has workers [False, True, False, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100]
+2025-04-27 20:04:00,130 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-27 20:04:00,135 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000021FB96A2FF0>
+2025-04-27 20:04:00,135 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 20:04:00,136 - DEBUG - send_request_headers.complete
+2025-04-27 20:04:00,136 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 20:04:00,136 - DEBUG - send_request_body.complete
+2025-04-27 20:04:00,136 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 20:04:00,334 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 27 Apr 2025 18:04:00 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImRPUHJLNm9jUzVqakYyUlAveE9JbEE9PSIsInZhbHVlIjoiNzZNRHJ0Y1k2aFB3VlRjdWNiTDJFN0RiTEpoWDRFQkVsbklMRnAwYVp1Y1VpaFdxMW5jb2xzYk1UeG52NTZ5VStFVTR4a2Rzdm1BakVPN1NZNEduc3Uycmg4czVqVm1FS3cvaFJWcnlpMEptSW5SNkVQRTBFUDFha0dMam9pdEYiLCJtYWMiOiI2MjFmZmZkMThjNWYxZmQ5MjgzZDcxODNjZGVjOWMwMjU3ZDNhMDZiMzE4ZWQ0N2NhYTE2ZjM2NDkwYmQ2NzEyIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:04:00 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6InFjTXZUWFRyb0o1Y0RsS1psTklrK3c9PSIsInZhbHVlIjoiZUxRQ3RFNU93ZXdzR2xMcHJ2b2xHZ3VhQTBiY1REQVVFak1qVStaMWx0Y2hKWlVtZ3g4MGlnbkMxYVBDTXBacjB0QzlaOHUxcGpTd3d6bDZEU0lwQkFtNnpldjJ3TktXQlR3cUh3dkk0NzhJd21sbHZzU09QeU9pSkpBRitrd2QiLCJtYWMiOiJlNTg5MjhlM2Y1MzUzNWQ0YzJjYjcwNWVkMzgzMDc3MWNhYjhiZjgxY2RmNWFlMTYzMTNlNzBlYzYxZDI3ZmQ2IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:04:00 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-27 20:04:00,334 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-27 20:04:00,334 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 20:04:00,335 - DEBUG - receive_response_body.complete
+2025-04-27 20:04:00,335 - DEBUG - response_closed.started
+2025-04-27 20:04:00,335 - DEBUG - response_closed.complete
+2025-04-27 20:04:00,335 - DEBUG - Solution to send: {
+    "id": 53,
+    "status": "success",
+    "scheduleJSON": {
+        "4": [
+            5499,
+            5500,
+            5502,
+            5504
+        ],
+        "7": [
+            5492,
+            5493,
+            5496,
+            5497,
+            5498,
+            5501,
+            5503,
+            5506
+        ],
+        "8": [
+            5495
+        ],
+        "13": [
+            5494,
+            5505
+        ]
+    },
+    "satisfabilityJSON": {
+        "4": 100,
+        "7": 100,
+        "8": 100,
+        "13": 100
+    }
+}
+
+2025-04-27 20:04:00,335 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 27 Apr 2025 18:04:00 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImRPUHJLNm9jUzVqakYyUlAveE9JbEE9PSIsInZhbHVlIjoiNzZNRHJ0Y1k2aFB3VlRjdWNiTDJFN0RiTEpoWDRFQkVsbklMRnAwYVp1Y1VpaFdxMW5jb2xzYk1UeG52NTZ5VStFVTR4a2Rzdm1BakVPN1NZNEduc3Uycmg4czVqVm1FS3cvaFJWcnlpMEptSW5SNkVQRTBFUDFha0dMam9pdEYiLCJtYWMiOiI2MjFmZmZkMThjNWYxZmQ5MjgzZDcxODNjZGVjOWMwMjU3ZDNhMDZiMzE4ZWQ0N2NhYTE2ZjM2NDkwYmQ2NzEyIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:04:00 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6InFjTXZUWFRyb0o1Y0RsS1psTklrK3c9PSIsInZhbHVlIjoiZUxRQ3RFNU93ZXdzR2xMcHJ2b2xHZ3VhQTBiY1REQVVFak1qVStaMWx0Y2hKWlVtZ3g4MGlnbkMxYVBDTXBacjB0QzlaOHUxcGpTd3d6bDZEU0lwQkFtNnpldjJ3TktXQlR3cUh3dkk0NzhJd21sbHZzU09QeU9pSkpBRitrd2QiLCJtYWMiOiJlNTg5MjhlM2Y1MzUzNWQ0YzJjYjcwNWVkMzgzMDc3MWNhYjhiZjgxY2RmNWFlMTYzMTNlNzBlYzYxZDI3ZmQ2IiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:04:00 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-27 20:04:00,335 - DEBUG - close.started
+2025-04-27 20:04:00,335 - DEBUG - close.complete
+2025-04-27 20:06:26,199 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=10000, N_MAX_HOURS_PER_WORKER=40, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=1
+2025-04-27 20:06:26,262 - DEBUG - ('No solution found', ['%worker_4% no alcanza el mínimo de horas 38 a trabajar'])
+2025-04-27 20:06:26,267 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-04-27 20:06:26,271 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001ADE08CAD20>
+2025-04-27 20:06:26,271 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-04-27 20:06:26,272 - DEBUG - send_request_headers.complete
+2025-04-27 20:06:26,272 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-04-27 20:06:26,272 - DEBUG - send_request_body.complete
+2025-04-27 20:06:26,272 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-04-27 20:06:26,302 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 27 Apr 2025 18:06:26 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ik11T2lPN3ZZTkJsbmNJaXUvMkRLU3c9PSIsInZhbHVlIjoiQ1dBS0tnNExTMXZja3oxV2trU3FUaDRiRFpGSldYVmg2eEg3dC9jbGFhRDlJQUV2ZTNzNnZtSEthZjNsTUhvaXB5TmhGeFpPMFhQSmxJa2NvNndlaXZvbXk1elNFVGd5bHZSei9tMXhMb0krU1djc25pSEFlSHU1Nm5tSCt4VUIiLCJtYWMiOiI5ZjA4NTdiZGYzMDRmOWU5MTcxOTc4OWFhMTc4YmMxZDllYjZkYzljYzI4MDZiODE2OTY5Zjg2ZTNkZGNlMjlmIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:06:26 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6ImJWOHJraWV5bnVHc1RQWXdwdGlZRnc9PSIsInZhbHVlIjoiUTRXQ0ZiTzdiTGovN2VaMGpJeUxmZUtOVGpHbnBJODJWWWJnSUFyTFNFWDFkRk5obFB2L1crdVdjbmhuWHlIVm85Z1F5OGxyYlZWcURjeGdaRERXSUNKV28zV3R2TTQ0WDMxNmhLaUZxZkhHT3RKZjlKQ1hIcWJ3WXBvdEtKTisiLCJtYWMiOiI1ZTY5M2Q2MThkYTEwZDA2MTk0YzZiNTQwNjg3OWIzMzRlNWI5MDI0M2E5YjhmODJhMDM0Yzg4OWJjNDRmZGZhIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:06:26 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-04-27 20:06:26,303 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-04-27 20:06:26,303 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-04-27 20:06:26,303 - DEBUG - receive_response_body.complete
+2025-04-27 20:06:26,303 - DEBUG - response_closed.started
+2025-04-27 20:06:26,303 - DEBUG - response_closed.complete
+2025-04-27 20:06:26,304 - DEBUG - Solution to send: {
+    "id": 53,
+    "status": "failed",
+    "message": [
+        "%worker_4% no alcanza el m\u00ednimo de horas 38 a trabajar"
+    ]
+}
+
+2025-04-27 20:06:26,304 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 27 Apr 2025 18:06:26 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ik11T2lPN3ZZTkJsbmNJaXUvMkRLU3c9PSIsInZhbHVlIjoiQ1dBS0tnNExTMXZja3oxV2trU3FUaDRiRFpGSldYVmg2eEg3dC9jbGFhRDlJQUV2ZTNzNnZtSEthZjNsTUhvaXB5TmhGeFpPMFhQSmxJa2NvNndlaXZvbXk1elNFVGd5bHZSei9tMXhMb0krU1djc25pSEFlSHU1Nm5tSCt4VUIiLCJtYWMiOiI5ZjA4NTdiZGYzMDRmOWU5MTcxOTc4OWFhMTc4YmMxZDllYjZkYzljYzI4MDZiODE2OTY5Zjg2ZTNkZGNlMjlmIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:06:26 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6ImJWOHJraWV5bnVHc1RQWXdwdGlZRnc9PSIsInZhbHVlIjoiUTRXQ0ZiTzdiTGovN2VaMGpJeUxmZUtOVGpHbnBJODJWWWJnSUFyTFNFWDFkRk5obFB2L1crdVdjbmhuWHlIVm85Z1F5OGxyYlZWcURjeGdaRERXSUNKV28zV3R2TTQ0WDMxNmhLaUZxZkhHT3RKZjlKQ1hIcWJ3WXBvdEtKTisiLCJtYWMiOiI1ZTY5M2Q2MThkYTEwZDA2MTk0YzZiNTQwNjg3OWIzMzRlNWI5MDI0M2E5YjhmODJhMDM0Yzg4OWJjNDRmZGZhIiwidGFnIjoiIn0%3D; expires=Sun, 27 Apr 2025 20:06:26 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-04-27 20:06:26,304 - DEBUG - close.started
+2025-04-27 20:06:26,304 - DEBUG - close.complete

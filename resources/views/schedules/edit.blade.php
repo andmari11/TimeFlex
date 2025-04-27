@@ -56,7 +56,7 @@
                 </a>
                 <a href="/horario/{{ $schedule->id }}/regenerate-shifts"
                    class="ms-8 rounded-md bg-blue-600 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-                    Actualizar turnos
+                    Regenerar turnos
                 </a>
             </x-forms.field>
             @if($shifttypes->isNotEmpty())
@@ -93,7 +93,7 @@
                 @endif
 
 
-            <div class="mt-10 flex items-center justify-between">
+            <div class="mt-10 mx-4 flex items-center justify-between">
                 <a href="/horario"
                    class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     Cancelar

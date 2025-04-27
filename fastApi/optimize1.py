@@ -62,6 +62,9 @@ def optimize(data, logging):
     N_MAX_HOURS_PER_WORKER = data.get("maxHoursPerWorker", 999999)
     N_MIN_HOURS_PER_WORKER = data.get("minHoursPerWorker", 0)
     N_MIN_SHIFTS_PER_WORKER = data.get("minShiftsPerWorker", 0)
+    logging.debug(f"Configuración de pesos: PREFERRED_SHIFTS_WEIGHT={PREFERRED_SHIFTS_WEIGHT}, HOLIDAYS_WEIGHT={HOLIDAYS_WEIGHT}, N_MAX_SHIFTS_PER_WORKER={N_MAX_SHIFTS_PER_WORKER}, N_MAX_HOURS_PER_WORKER={N_MAX_HOURS_PER_WORKER}, N_MIN_HOURS_PER_WORKER={N_MIN_HOURS_PER_WORKER}, N_MIN_SHIFTS_PER_WORKER={N_MIN_SHIFTS_PER_WORKER}")
+
+
 
     n_shifts = len(shifts)
     n_workers = len(workers)

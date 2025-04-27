@@ -18,6 +18,10 @@ class ScheduleData(BaseModel):
     name: str
     usersJSON: str
     shiftsJSON: str
+    minHoursPerWorker: int
+    maxHoursPerWorker: int
+    minShiftsPerWorker: int
+    maxShiftsPerWorker: int
 
 
 
@@ -27,7 +31,11 @@ async def root(params: ScheduleData):
     input_data = {
         "id":params.id,
 	    "workers":json.loads(params.usersJSON),
-        "shifts": json.loads(params.shiftsJSON)
+        "shifts": json.loads(params.shiftsJSON),
+        "minHoursPerWorker": params.minHoursPerWorker,
+        "maxHoursPerWorker": params.maxHoursPerWorker,
+        "minShiftsPerWorker": params.minShiftsPerWorker,
+        "maxShiftsPerWorker": params.maxShiftsPerWorker,
     }
     asyncio.create_task(send_schedule(input_data))
 
