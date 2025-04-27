@@ -44,7 +44,7 @@ class FastApiController extends Controller
 
             foreach ($holidays as $holiday) {
                 $dates[] = $holiday->dia_vacaciones;
-                $weights[] = max((abs(Carbon::now()->diffInDays(Carbon::parse($holiday->fecha_solicitud)))/$max_days*10), 1);
+                $weights[] = max((abs(Carbon::now()->diffInDays(Carbon::parse($holiday->fecha_solicitud)))/$max_days*$user->weight), 1);
             }
             $dates = $this->formatHolidaysWithTime($dates);
             $satisfactions = $user->satisfactions->pluck('score')->toArray();
@@ -54,7 +54,7 @@ class FastApiController extends Controller
                 "holidays" => $dates != null ? json_encode($dates) : json_encode([]),
                 "holidays_weight" => $weights != null ? json_encode($weights) : json_encode([]),
                 "preferred_shift_types" => $turnoFav != null ? json_encode([$turnoFav]) : json_encode([]),
-                "preferred_shift_types_weight" => 1,
+                "preferred_shift_types_weight" => $user->weight,
                 "past_satisfaction" => $satisfactions != null ? json_encode($satisfactions) : json_encode([]),
             ];
             WorkerPreference::create($worker_preference);
