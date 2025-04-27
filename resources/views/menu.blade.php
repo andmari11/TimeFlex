@@ -209,7 +209,9 @@
                             <svg class="w-7 h-7 text-blue-900 pt-1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2a7 7 0 00-7 7v3.29l-1.29 1.29a1 1 0 00-.21 1.09A1 1 0 005 15h14a1 1 0 00.91-1.41l-1.29-1.29V9a7 7 0 00-7-7zm0 18a3 3 0 01-2.82-2h5.64A3 3 0 0112 20z"/>
                             </svg>
-                            <h2 class="text-xl font-bold">Notificaciones</h2>
+                            <a href="{{ route('notifications.panel') }}" class="text-xl font-bold text-blue-800 hover:underline">
+                                Notificaciones
+                            </a>
                         </div>
                         <!-- Icono de ajustes -->
                         <svg class="w-8 h-8 text-blue-900 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">

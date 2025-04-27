@@ -6,6 +6,11 @@ class NotificationController
 {
     public function index(Request $request)
     {
+        // si no se esta autenticado se redirige a login mostrando mensaje de error
+        if (!auth()->check()) {
+            return redirect('/login')->withErrors(['message' => 'Debes iniciar sesión para ver las notificaciones.']);
+        }
+
         // todas las notificaciones del usuario
         $query = auth()->user()->notifications()->latest();
 
