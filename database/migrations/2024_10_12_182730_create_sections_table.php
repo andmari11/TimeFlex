@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('min_hours');
             $table->integer('max_hours');
+            $table->integer('min_shifts');
+            $table->integer('max_shifts');
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Company::class);
             $table->boolean('default')->default(false);

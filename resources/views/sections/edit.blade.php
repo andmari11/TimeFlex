@@ -24,6 +24,18 @@
                         <x-forms.input type="number" name="max_hours" id="max_hours" value="{{old('max_hours', $section->max_hours)}}" required min="0" />
                         <x-forms.error name="max_hours" />
                     </x-forms.field>
+
+                    <x-forms.field class="col-12">
+                        <x-forms.label for="min_shifts">Turnos mínimos</x-forms.label>
+                        <x-forms.input type="number" name="min_shifts" id="min_shifts" value="{{old('min_shifts', $section->min_shifts)}}" required min="0" />
+                        <x-forms.error name="min_shifts" />
+                    </x-forms.field>
+
+                    <x-forms.field class="col-12">
+                        <x-forms.label for="max_shifts">Turnos máximos</x-forms.label>
+                        <x-forms.input type="number" name="max_shifts" id="max_shifts" value="{{old('max_shifts', $section->max_shifts)}}" required min="0" />
+                        <x-forms.error name="max_shifts" />
+                    </x-forms.field>
                 @endif
             </div>
             <div class="mt-6 flex items-center justify-between">

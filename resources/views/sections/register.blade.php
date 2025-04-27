@@ -20,9 +20,23 @@
 
                 <!-- Horas máximas -->
                 <x-forms.field class="col-12">
-                    <x-forms.label for="max_hours">Horas máximas</x-forms.label>
+                    <x-forms.label for="max_shifts">Horas máximas</x-forms.label>
                     <x-forms.input type="number" name="max_hours" id="max_hours" :value="old('max_hours')" required min="0" />
                     <x-forms.error name="max_hours" />
+                </x-forms.field>
+
+                <!-- Turnos mínimas -->
+                <x-forms.field class="col-12">
+                    <x-forms.label for="min_hours">Turnos mínimos</x-forms.label>
+                    <x-forms.input type="number" name="min_shifts" id="min_shifts" :value="old('min_shifts')" required min="0" />
+                    <x-forms.error name="min_shifts" />
+                </x-forms.field>
+
+                <!-- Turnos máximas -->
+                <x-forms.field class="col-12">
+                    <x-forms.label for="max_shifts">Turnos máximos</x-forms.label>
+                    <x-forms.input type="number" name="max_shifts" id="max_shifts" :value="old('max_shifts')" required min="0" />
+                    <x-forms.error name="max_shifts" />
                 </x-forms.field>
             </div>
 

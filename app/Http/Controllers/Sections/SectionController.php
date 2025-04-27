@@ -24,6 +24,8 @@ class SectionController extends Controller
             'name' => ['required', 'unique:sections,name'],
             'min_hours' => ['required', 'integer', 'min:0'],
             'max_hours' => ['required', 'integer', 'min:0', 'gte:min_hours'],
+            'min_shifts' => ['required', 'integer', 'min:0'],
+            'max_shifts' => ['required', 'integer', 'min:0', 'gte:min_shifts'],
         ], [
             'name.required' => 'Es necesario introducir el nombre de la sección a registrar',
             'name.unique' => 'Ya existe una sección con este nombre',
@@ -34,6 +36,13 @@ class SectionController extends Controller
             'max_hours.integer' => 'El número máximo de horas debe ser un valor entero',
             'max_hours.min' => 'El número máximo de horas no puede ser menor que 0',
             'max_hours.gte' => 'El número máximo de horas debe ser mayor o igual al número mínimo de horas',
+            'min_shifts.required' => 'Es necesario introducir el número mínimo de turnos',
+            'min_shifts.integer' => 'El número mínimo de turnos debe ser un valor entero',
+            'min_shifts.min' => 'El número mínimo de turnos no puede ser menor que 0',
+            'max_shifts.required' => 'Es necesario introducir el número máximo de turnos',
+            'max_shifts.integer' => 'El número máximo de turnos debe ser un valor entero',
+            'max_shifts.min' => 'El número máximo de turnoa no puede ser menor que 0',
+            'max_shifts.gte' => 'El número máximo de turnos debe ser mayor o igual al número mínimo de turnos',
         ]);
 
         // Obtener el último ID de la base de datos y sumarle 1
@@ -48,7 +57,7 @@ class SectionController extends Controller
             'id' => $newId,
             'company_id' => $companyId,
         ]);
-        
+
         // Crear una nueva sección con los atributos combinados
         $section = Section::create($attributesSection);
 
@@ -77,6 +86,8 @@ class SectionController extends Controller
             'name' => ['required'],
             'min_hours' => 'required|integer|min:0',
             'max_hours' => 'required|integer|min:0|gte:min_hours',
+            'min_shifts' => ['required', 'integer', 'min:0'],
+            'max_shifts' => ['required', 'integer', 'min:0', 'gte:min_shifts'],
         ]);
 
         // Encontrar la sección y actualizarla
@@ -90,6 +101,8 @@ class SectionController extends Controller
             'name' => request('name'),
             'min_hours' => request('min_hours'),
             'max_hours' => request('max_hours'),
+            'min_shifts' => request('min_shifts'),
+            'max_shifts' => request('max_shifts'),
         ]);
 
         // Redirigir al menú principal

@@ -14,6 +14,8 @@ class Section extends Model
         'name',
         'min_hours',
         'max_hours',
+        'min_shifts',
+        'max_shifts',
         'company_id'
     ];
 

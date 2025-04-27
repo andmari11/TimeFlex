@@ -160,6 +160,8 @@
             template.querySelector('#question-slider-0').id = `question-slider-${index}`;
 
             // Configurar el evento onchange para manejar tanto opciones como sliders
+
+            //REVISAR!!!!
             const select = template.querySelector('select');
             select.setAttribute('onchange', `showQuestionFields(this, ${index}); showQuestionSlider(this, ${index});`);
 

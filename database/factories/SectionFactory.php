@@ -20,6 +20,8 @@ class SectionFactory extends Factory
             'name' => $this->faker->jobTitle(),
             'min_hours' => 38,
             'max_hours' => 40,
+            'min_shifts' => 1,
+            'max_shifts' => 10000,
             'company_id' => 1,
         ];
     }
