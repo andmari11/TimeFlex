@@ -69,7 +69,6 @@ class User extends Authenticatable
     }
     public function notifications()
     {
-        $this->updateReadNotifications();
         return $this->hasMany(Notification::class)->latest()->take(10);
     }
     public function unreadNotifications()
@@ -93,7 +92,10 @@ class User extends Authenticatable
     {
         return $this->HasMany(Result::class);
     }
-
+    public function allNotifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
     public function holidays()
     {
         return $this->belongsToMany(Holidays::class);

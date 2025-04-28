@@ -185,6 +185,6 @@ Route::get('/sections/{id}/edit', [SectionController::class, 'edit'])->middlewar
 Route::patch('/sections/{id}/edit', [SectionController::class, 'update'])->middleware('auth');
 Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->middleware('auth');
 
-Route::get('/unread-notifications', function () {
-    return auth()->user()->unreadNotifications;
-})->middleware('auth');
+Route::get('/unread-notifications', [NotificationController::class, 'getUnreadNotifications'])->middleware('auth');
+
+
