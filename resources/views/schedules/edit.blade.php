@@ -78,10 +78,15 @@
                                         <a href="/horario/{{$schedule->id}}/edit/shift-type/{{$shifttype->id}}/edit" class="bg-blue-500 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
 
                                         <button type="submit" form="delete-form-{{$shifttype->id}}" class="bg-red-600 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
-                                        <form method="POST" action="/horario/{{$schedule->id}}/edit/shift-type/{{$shifttype->id}}/delete" id="delete-form-{{$shifttype->id}}" class="hidden">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        @push('delete-forms')
+                                            <form id="delete-form-{{ $shifttype->id }}"
+                                                  method="POST"
+                                                  action="/horario/{{ $schedule->id }}/edit/shift-type/{{ $shifttype->id }}/delete"
+                                                  class="hidden">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endpush
 
 
                                     </div>
@@ -102,6 +107,7 @@
             </div>
             </div>
         </form>
+        @stack('delete-forms')
     </div>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
