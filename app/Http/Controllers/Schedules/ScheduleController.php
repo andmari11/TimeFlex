@@ -328,7 +328,7 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::findOrFail($id);
         $schedule->delete();
-        return redirect('/horario/'.$id);
+        return redirect('/horario');
     }
 
     public function regenerateShifts($id)
