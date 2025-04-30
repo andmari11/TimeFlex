@@ -31,9 +31,10 @@
 
                 if (data.length > 0) {
                     notificationsList.innerHTML = '';
+                    const notificationCenterURL = '/notificationspanel'; // defino ruta al centro de notificaciones
                     data.forEach(notification => {
                         const notificationElement = document.createElement('a');
-                        notificationElement.href = notification.url;
+                        notificationElement.href = notification.url ? notification.url : `${notificationCenterURL }?tipo=${notification.tipo}`;
                         notificationElement.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:underline', 'hover:rounded-md');
                         notificationElement.textContent = notification.message;
 
