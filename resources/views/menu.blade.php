@@ -3,7 +3,11 @@
     if (auth()->user()->role === 'employee') {
         // Si es un empleado, obtenemos su sección
         $section = auth()->user()->section;
+
     }
+
+    $sections = \App\Models\Section::all();
+
 @endphp
 
 
@@ -171,7 +175,8 @@
                         </div>
                     </section>
 
-                    <x-users.all-employees :section="$section"></x-users.all-employees>
+                    <x-users.all-employees :section="$section" :sections="$sections"></x-users.all-employees>
+
 
                 </div>
             </div>
@@ -327,7 +332,7 @@
                     </div>
                 </section>
 
-                <x-users.all-employees :section="$section"></x-users.all-employees>
+                <x-users.all-employees :section="$section" :sections="$sections"></x-users.all-employees>
 
             </div>
         </div>
