@@ -178,7 +178,7 @@ Route::post('/register-user/', [UserController::class, 'store'])->middleware('au
 Route::get('/perfil', [UserController::class, 'profileEdit'])->middleware('auth')->name('profileEdit');
 Route::patch('/perfil', [UserController::class, 'profileUpdate'])->name('profileUpdate');
 
-Route::get('/register-section/', [SectionController::class, 'create'])->middleware('auth'); //CAMBIAR CONTROLLER
+Route::get('/register-section/', [SectionController::class, 'create'])->middleware('auth');
 Route::post('/register-section/', [SectionController::class, 'store'])->middleware('auth');
 
 Route::get('/sections/{id}/edit', [SectionController::class, 'edit'])->middleware('auth');
