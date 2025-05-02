@@ -58,13 +58,14 @@
                 <!-- Contenedor de Preguntas -->
                 <div class="mt-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Preguntas</h2>
+                    <x-forms.error name="questions" />
                     <div id="questions-container">
                         <div class="question-template bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
                             <div class="mb-4">
                                 <label for="questions[0][title]" class="block text-lg font-medium text-gray-700">Título de la Pregunta</label>
                                 <input type="text" name="questions[0][title]" id="questions[0][title]" required
                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <x-forms.error name="questions[0][title]" />
+                                <x-forms.error name="questions.0.title" />
                             </div>
 
                             <div>
@@ -77,7 +78,8 @@
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-forms.error name="questions[0][id_question_type]" />
+                                <x-forms.error name="questions.0.id_question_type" />
+                                <x-forms.error :name="'questions.0.options'" />
                             </div>
 
                             <!-- Contenedor dinámico para las opciones -->
@@ -148,40 +150,25 @@
             const index = container.children.length;
             const template = document.querySelector('.question-template').cloneNode(true);
 
-            // Asegurar que la pregunta clonada empiece vacía
+            // Actualizar los nombres e IDs de los inputs y selects
             template.querySelectorAll('input, select').forEach(function(input) {
                 input.name = input.name.replace('[0]', `[${index}]`);
                 input.id = input.id.replace('[0]', `[${index}]`);
-                input.value = ''; // Limpia el valor anterior
+                input.value = '';
             });
 
-            // Asegurar que los contenedores dinámicos estén vacíos
-            const fieldsContainer = template.querySelector('#question-fields-0');
-            const sliderContainer = template.querySelector('#question-slider-0');
+            // Actualizar los IDs de los contenedores dinámicos
+            template.querySelector('#question-fields-0').id = `question-fields-${index}`;
+            template.querySelector('#question-slider-0').id = `question-slider-${index}`;
 
-            fieldsContainer.id = `question-fields-${index}`;
-            fieldsContainer.innerHTML = ''; // Limpia contenido heredado
+            // Configurar el evento onchange para manejar tanto opciones como sliders
 
-            sliderContainer.id = `question-slider-${index}`;
-            sliderContainer.innerHTML = ''; // Limpia contenido heredado
-
-            // Configurar evento onchange de manera adecuada
+            //REVISAR!!!!
             const select = template.querySelector('select');
-            select.value = ''; // Establecer el valor inicial vacío
-            select.addEventListener('change', function () {
-                resetFields(index);
-                showQuestionFields(select, index);
-                showQuestionSlider(select, index);
-            });
+            select.setAttribute('onchange', `showQuestionFields(this, ${index}); showQuestionSlider(this, ${index});`);
 
             container.appendChild(template);
         });
-
-        // Función para limpiar los contenedores antes de actualizar la pregunta actual
-        function resetFields(index) {
-            document.getElementById(`question-fields-${index}`).innerHTML = '';
-            document.getElementById(`question-slider-${index}`).innerHTML = '';
-        }
 
         function showQuestionFields(select, index) {
             // Identificar los contenedores dinámicos
