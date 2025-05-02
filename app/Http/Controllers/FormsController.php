@@ -62,15 +62,31 @@ class FormsController extends Controller
     // Guardar un nuevo formulario y sus preguntas
     public function store(Request $request)
     {
-        // Validar los datos del formulario
         $request->validate([
             'title' => 'required|string|max:255',
             'summary' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'id_sections' => 'required|array', // Validar que es un array
-            'id_sections.*' => 'exists:sections,id', // Validar que cada sección exista en la tabla sections
+            'id_sections' => 'required|array',
+            'id_sections.*' => 'exists:sections,id',
+            'questions' => 'required|array|min:1',
+            'questions.*.title' => 'required|string|max:255',
+            'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
+        ], [
+            'questions.required' => 'Debe haber al menos una pregunta en el formulario.',
+            'questions.min' => 'Debe haber al menos una pregunta en el formulario.',
         ]);
+
+        // Validación adicional para preguntas de tipo 2 y 7
+        foreach ($request->questions as $key => $question) {
+            if (in_array($question['id_question_type'], [2, 7])) {
+                if (!isset($question['options']) || empty($question['options']) || in_array(null, $question['options'], true)) {
+                    return redirect()->back()->withErrors([
+                        "questions.$key.options" => "Las opciones son obligatorias y deben contener valores.",
+                    ])->withInput();
+                }
+            }
+        }
 
         // Crear el formulario
         $formulario = Form::create([
@@ -93,8 +109,8 @@ class FormsController extends Controller
             ]);
             $question->save();
 
-            // Crear las opciones si existen
-            if (isset($questionData['options'])) {
+            // Crear las opciones obligatorias solo si existen
+            if (isset($questionData['options']) && is_array($questionData['options'])) {
                 foreach ($questionData['options'] as $option) {
                     $questionOption = new Option([
                         'id_question' => $question->id,
@@ -104,6 +120,7 @@ class FormsController extends Controller
                 }
             }
 
+            // Guardar el valor si está definido
             if (isset($questionData['value'])) {
                 $weight = new Weight([
                     'id_question' => $question->id,
@@ -116,8 +133,6 @@ class FormsController extends Controller
         return redirect()->route('forms.index')
             ->with('success', 'Formulario, preguntas y secciones asignados exitosamente.');
     }
-
-
 
     // Eliminar un formulario
     public function destroy($id)

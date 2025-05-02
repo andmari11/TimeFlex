@@ -58,13 +58,14 @@
                 <!-- Contenedor de Preguntas -->
                 <div class="mt-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Preguntas</h2>
+                    <x-forms.error name="questions" />
                     <div id="questions-container">
                         <div class="question-template bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
                             <div class="mb-4">
                                 <label for="questions[0][title]" class="block text-lg font-medium text-gray-700">Título de la Pregunta</label>
                                 <input type="text" name="questions[0][title]" id="questions[0][title]" required
                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <x-forms.error name="questions[0][title]" />
+                                <x-forms.error name="questions.0.title" />
                             </div>
 
                             <div>
@@ -77,7 +78,8 @@
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-forms.error name="questions[0][id_question_type]" />
+                                <x-forms.error name="questions.0.id_question_type" />
+                                <x-forms.error :name="'questions.0.options'" />
                             </div>
 
                             <!-- Contenedor dinámico para las opciones -->
