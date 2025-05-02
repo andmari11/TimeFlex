@@ -160,10 +160,15 @@
             // Actualizar los IDs de los contenedores dinámicos
             template.querySelector('#question-fields-0').id = `question-fields-${index}`;
             template.querySelector('#question-slider-0').id = `question-slider-${index}`;
+            const fieldsContainer = template.querySelector(`#question-fields-${index}`);
+            const sliderContainer = template.querySelector(`#question-slider-${index}`);
+
+            fieldsContainer.id = `question-fields-${index}`;
+            fieldsContainer.innerHTML = ''; // Limpia contenido heredado
+            sliderContainer.id = `question-slider-${index}`;
+            sliderContainer.innerHTML = ''; // Limpia contenido heredado
 
             // Configurar el evento onchange para manejar tanto opciones como sliders
-
-            //REVISAR!!!!
             const select = template.querySelector('select');
             select.setAttribute('onchange', `showQuestionFields(this, ${index}); showQuestionSlider(this, ${index});`);
 
