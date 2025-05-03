@@ -120,10 +120,14 @@
                 @endforeach
             @endforeach
         @elseif(auth()->user()->role === 'employee')
-            @foreach($section->users as $employee)
-                <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
-                    <x-users.employee-item :employee="$employee"></x-users.employee-item>
-                </div>
+            @foreach($sections as $sec)
+                @foreach($sec->users as $employee)
+                    @if($employee->section_id == auth()->user()->section_id)
+                        <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
+                            <x-users.employee-item :employee="$employee"></x-users.employee-item>
+                        </div>
+                    @endif
+                @endforeach
             @endforeach
         @endif
     </section>
