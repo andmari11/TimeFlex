@@ -93,14 +93,29 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <!-- NUEVO EDITAR -->
 
-                                @php
-                                    // Verifica si hay un peso asociado a esta pregunta
-                                    $weightValue = $question->weights ? $question->weights->value : 1;  // Usar valor por defecto si no hay peso
-                                @endphp
+                                <select name="questions[{{ $index }}][id_question_type]" id="questions[{{ $index }}][id_question_type]" required
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                        onchange="showQuestionFields(this, {{ $index }}); showQuestionSlider(this, {{ $index }});"
+                                        data-weight-value="{{ $question->weights->first()->value ?? 5 }}">
+                                    <option value="" disabled>Selecciona el tipo de pregunta</option>
+                                    @foreach(\App\Models\QuestionType::all() as $type)
+                                        <option value="{{ $type->id }}" @if($type->id == $question->id_question_type) selected @endif>{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
 
-                                <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4"></div>
+                                <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4">
+                                    @if($question->id_question_type == 4 || $question->id_question_type == 5)
+                                        @php
+                                            $weightValue = $question->weights->first()->value ?? 5; // Valor predeterminado si no hay peso
+                                        @endphp
+
+                                        <label class="block text-lg font-medium text-gray-700">Selecciona un valor (1 a 10)</label>
+                                        <input type="range" name="questions[{{ $index }}][value]" min="1" max="10" value="{{ old('questions.'.$index.'.value', $weightValue) }}"
+                                               class="mt-1 block w-full">
+                                        <span class="block text-center text-lg font-semibold text-blue-700 mt-2">{{ $weightValue }}</span>@endif
+                                </div>
+
 
                             </div>
                         @endforeach
@@ -312,8 +327,8 @@
             let sliderContainer = document.getElementById(`question-slider-${index}`);
             sliderContainer.innerHTML = '';
 
-            // Obtener el valor del slider desde el backend (si está disponible)
-            const weightValue = select.dataset.weightValue || "5"; // Valor por defecto si no se encuentra uno
+
+            const weightValue = select.getAttribute('data-weight-value') || "5"; // Valor por defecto si no se encuentra uno
 
             if (select.value == 4 || select.value == 5) {
                 let label = document.createElement('label');
@@ -325,7 +340,7 @@
                 slider.name = `questions[${index}][value]`;
                 slider.min = "1";
                 slider.max = "10";
-                slider.value = weightValue;  // Aquí asignamos el valor cargado desde la base de datos
+                slider.value = weightValue;
                 slider.className = "mt-1 block w-full";
 
                 let output = document.createElement('span');
