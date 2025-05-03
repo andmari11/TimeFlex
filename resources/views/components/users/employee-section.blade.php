@@ -12,9 +12,9 @@
         <a class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
     </div>
     @if(auth()->user()->role === 'admin')
-        <a href="/sections/{{ $employee->section->id }}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
-        <button onclick="confirmDeleteSection(event, {{ $employee->section->id }})" class="bg-red-600 hover:bg-red-400 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
-        <form method="POST" action="/sections/{{ $employee->section->id }}/delete" id="delete-form-{{ $employee->section->id }}" class="hidden">
+        <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+        <button onclick="confirmDeleteSection(event, {{ $employee->id }})" class="bg-red-600 hover:bg-red-400 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
+        <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{ $employee->id }}" class="hidden">
             @csrf
             @method('DELETE')
         </form>
