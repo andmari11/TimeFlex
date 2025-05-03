@@ -254,15 +254,15 @@ class FormsController extends Controller
         $validatedData = $request->validate([
             'questions' => 'required|array',
             'questions.*.id_question' => 'required|integer|exists:questions,id',
-            'questions.*.id_question_type' => 'required|integer|exists:question_type,id', // nombre correcto de la tabla
+            'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
             'id_user' => 'required|integer|exists:users,id',
             'id_form' => 'required|integer|exists:forms,id',
-            // Para respuestas simples se utiliza "answer"
-            'questions.*.answer' => 'sometimes|required',
+            'questions.*.answer' => 'required',
         ], [
             'questions.required' => 'Debes responder al menos una pregunta.',
-            'questions.*.answer.required' => 'Por favor, completa todas las preguntas antes de enviar el formulario.',
+            'questions.*.answer.required' => 'Todas las preguntas deben ser respondidas antes de enviar el formulario.',
         ]);
+
 
         // Procesamiento y guardado de cada respuesta.
         foreach ($validatedData['questions'] as $index => $data) {
