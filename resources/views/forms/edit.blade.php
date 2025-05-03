@@ -76,7 +76,8 @@
                                     <label for="questions[{{ $index }}][id_question_type]" class="block text-lg font-medium text-gray-700">Tipo de Pregunta</label>
                                     <select name="questions[{{ $index }}][id_question_type]" id="questions[{{ $index }}][id_question_type]" required
                                             class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                            onchange="showQuestionFields(this, {{ $index }}); showQuestionSlider(this, {{$index}});">
+                                            onchange="showQuestionFields(this, {{ $index }}); showQuestionSlider(this, {{ $index }});"
+                                            data-weight-value="{{ $question->weights->first()->value ?? 5 }}">
                                         <option value="" disabled>Selecciona el tipo de pregunta</option>
                                         @foreach(\App\Models\QuestionType::all() as $type)
                                             <option value="{{ $type->id }}" @if($type->id == $question->id_question_type) selected @endif>{{ $type->name }}</option>
@@ -93,16 +94,6 @@
                                         @endforeach
                                     @endif
                                 </div>
-
-                                <select name="questions[{{ $index }}][id_question_type]" id="questions[{{ $index }}][id_question_type]" required
-                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                        onchange="showQuestionFields(this, {{ $index }}); showQuestionSlider(this, {{ $index }});"
-                                        data-weight-value="{{ $question->weights->first()->value ?? 5 }}">
-                                    <option value="" disabled>Selecciona el tipo de pregunta</option>
-                                    @foreach(\App\Models\QuestionType::all() as $type)
-                                        <option value="{{ $type->id }}" @if($type->id == $question->id_question_type) selected @endif>{{ $type->name }}</option>
-                                    @endforeach
-                                </select>
 
                                 <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4">
                                     @if($question->id_question_type == 4 || $question->id_question_type == 5)
