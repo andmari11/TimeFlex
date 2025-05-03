@@ -17,9 +17,13 @@
 
             </section>
             <div class="flex flex-wrap gap-10">
-                @foreach($section->users as $employee)
+                @foreach($sectionEmployees as $employee)
                     <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
                 @endforeach
+            </div>
+
+            <div class="py-8">
+                {{ $sectionEmployees->links() }}
             </div>
 
         </div>
@@ -42,14 +46,17 @@
             <!-- Línea divisoria -->
             <hr class="my-6 border-t border-gray-300">
 
-        <div class="flex flex-wrap -mx-3">
-            @foreach(auth()->user()->company->employees as $employee)
-                <div class="w-1/4 px-3">
-                    <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
-                </div>
-            @endforeach
-        </div>
+            <div class="flex flex-wrap -mx-3">
+                @foreach($employees as $employee)
+                    <div class="w-1/4 px-3">
+                        <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
+                    </div>
+                @endforeach
+            </div>
 
+            <div class="py-8">
+                {{ $employees->links() }}
+            </div>
         </div>
     @endif
 </x-layout>
