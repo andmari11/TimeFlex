@@ -18,7 +18,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            @if(auth()->user()->role === 'admin')
+            @if(!$section && auth()->user()->role === 'admin')
                 <a href="/register-user" @click.stop
                    class="flex items-center justify-center w-8 h-8 bg-white text-blue-900 rounded-full border-2 border-blue-900 hover:bg-blue-900 hover:text-white transition">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -61,11 +61,11 @@
             <h2 class="text-lg font-bold mb-4">Editar sección</h2>
 
             <div class="space-y-3">
-                @foreach($sections as $section)
-                    @if($section->id !== 0 && $section->id !== 1)
+                @foreach($sections as $sec)
+                    @if($sec->id !== 0 && $sec->id !== 1)
                         <div class="flex justify-between items-center border p-2 rounded-lg">
-                            <span class="font-medium">{{ $section->name }}</span>
-                            <a href="/sections/{{ $section->id }}/edit"
+                            <span class="font-medium">{{ $sec->name }}</span>
+                            <a href="/sections/{{ $sec->id }}/edit"
                                class="text-blue-600 underline hover:text-blue-800 transition-all">
                                 Editar
                             </a>
@@ -86,11 +86,11 @@
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 class="text-lg font-bold mb-4 text-black-600">Eliminar sección</h2>
 
-            @foreach($sections as $section)
-                @if($section->id !== 0 && $section->id !== 1)
+            @foreach($sections as $sec)
+                @if($sec->id !== 0 && $sec->id !== 1)
                     <div class="flex justify-between items-center border p-2 rounded-lg">
-                        <span class="font-medium">{{ $section->name }}</span>
-                        <form action="/sections/{{ $section->id }}/delete" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta sección?')">
+                        <span class="font-medium">{{ $sec->name }}</span>
+                        <form action="/sections/{{ $sec->id }}/delete" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta sección?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-blue-600 underline hover:text-red-800 transition-all">
@@ -111,7 +111,17 @@
 
     <section x-show="open_all_employees" class="p-4 rounded-xl flex flex-col text-center overflow-y-auto"
              style="max-height: 500px;">
-        @if(auth()->user()->role === 'admin')
+        @if($section)
+            @foreach($sections as $sec)
+                @foreach($sec->users as $employee)
+                    @if($section->id == $employee->section_id)
+                        <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
+                            <x-users.employee-item :employee="$employee"></x-users.employee-item>
+                        </div>
+                    @endif
+                @endforeach
+            @endforeach
+        @elseif(auth()->user()->role === 'admin')
             @foreach($sections as $sec)
                 @foreach($sec->users as $employee)
                     <div class="p-4 bg-blue-50 shadow rounded-xl my-1">
