@@ -30,7 +30,18 @@
                 <form action="/search" class="mt-2 mb-7">
                     <input type="text" name="q" placeholder="Busca compañeros..." class="rounded-xl border px-5 py-4 w-full max-w-xl bg-white/25 focus:outline-none border-gray-300"/>
                 </form>
+
+                @if(auth()->user()->role === 'admin')
+                    <a href="/export-csv"
+                       class="mt-4 px-3 py-1 bg-gray-600 text-white font-semibold rounded-md shadow-md hover:bg-gray-700 transition-all">
+                        Descargar CSV
+                    </a>
+                @endif
+
             </section>
+            <!-- Línea divisoria -->
+            <hr class="my-6 border-t border-gray-300">
+
         <div class="flex flex-wrap -mx-3">
             @foreach(auth()->user()->company->employees as $employee)
                 <div class="w-1/4 px-3">

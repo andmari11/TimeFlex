@@ -18,10 +18,7 @@ use App\Http\Controllers\ExpectedHoursController;
 use App\Http\Controllers\ScheduleStatsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserNotificationsPreferencesController;
-//REVISAR SI SE PUEDE QUITAR
-//use App\Http\Controllers\ScheduleController;
-
-
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Middleware\HistorialAccesosMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -187,4 +184,5 @@ Route::delete('/sections/{id}/delete', [SectionController::class, 'destroy'])->m
 
 Route::get('/unread-notifications', [NotificationController::class, 'getUnreadNotifications'])->middleware('auth');
 
+Route::get('/export-csv', [ExportController::class, 'export'])->middleware('auth');
 
