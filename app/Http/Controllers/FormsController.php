@@ -210,6 +210,19 @@ class FormsController extends Controller
                     'id_question_type' => $questionData['id_question_type'],
                 ]);
 
+                // Actualizar el campo `value` en la tabla `weights` para preguntas de tipo 4 o 5
+                if (in_array($questionData['id_question_type'], [4, 5]) && isset($questionData['value'])) {
+                    $weight = Weight::where('id_question', $questionData['id'])->first();
+                    if ($weight) {
+                        $weight->update(['value' => $questionData['value']]);
+                    } else {
+                        // Si no existe un registro en `weights`, crearlo
+                        Weight::create([
+                            'id_question' => $questionData['id'],
+                            'value' => $questionData['value'],
+                        ]);
+                    }
+                }
 
                 // Actualizar o agregar opciones de la pregunta existente
                 if (in_array($questionData['id_question_type'], [2, 7]) && isset($questionData['options']) && is_array($questionData['options'])) {
@@ -233,9 +246,7 @@ class FormsController extends Controller
                         }
                     }
                 }
-
             } else {
-
                 // Crear nueva pregunta
                 $question = Question::create([
                     'id_form' => $formulario->id,
@@ -250,8 +261,16 @@ class FormsController extends Controller
                     }
                 }
 
+                // Crear un registro en `weights` para preguntas de tipo 4 o 5
+                if (in_array($questionData['id_question_type'], [4, 5]) && isset($questionData['value'])) {
+                    Weight::create([
+                        'id_question' => $question->id,
+                        'value' => $questionData['value'],
+                    ]);
+                }
             }
         }
+
         return redirect()->route('forms.index')
             ->with('success', 'Formulario actualizado exitosamente.');
     }
