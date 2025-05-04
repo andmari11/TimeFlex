@@ -86,14 +86,17 @@
                                     <x-forms.error name="questions[{{ $index }}][id_question_type]" />
                                 </div>
                                 <div id="question-fields-{{ $index }}">
-                                    @if($question->id_question_type == 2)
+                                    @if($question->id_question_type == 2 || $question->id_question_type == 7)
                                         @foreach($question->options as $optionIndex => $option)
-                                            <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][id]" value="{{ $option->id }}" hidden>
-                                            <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][value]" value="{{ $option->value }}" placeholder="Opción {{ $optionIndex + 1 }}" required
-                                                   class="mt-2 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][value]" value="{{ $option->value }}" placeholder="Opción {{ $optionIndex + 1 }}" required
+                                                       class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                                <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">Eliminar</button>
+                                            </div>
                                         @endforeach
                                     @endif
                                 </div>
+
 
                                 <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4">
                                     @if($question->id_question_type == 4 || $question->id_question_type == 5)

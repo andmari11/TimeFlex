@@ -165,7 +165,16 @@ class FormsController extends Controller
     public function update(Request $request, $id)
     {
         $formulario = Form::findOrFail($id);
-
+        $request->merge([
+            'questions' => array_map(function ($question) {
+                if (in_array($question['id_question_type'], [2, 7]) && isset($question['options']) && is_array($question['options'])) {
+                    $question['options'] = array_map(function ($option) {
+                        return is_array($option) ? $option : ['value' => $option];
+                    }, $question['options']);
+                }
+                return $question;
+            }, $request->questions)
+        ]);
         // Validar los datos del formulario
         $request->validate([
             'title' => 'required|string|max:255',
@@ -175,10 +184,10 @@ class FormsController extends Controller
             'id_sections' => 'required|array',
             'id_sections.*' => 'exists:sections,id',
             'questions' => 'required|array',
-            'questions.*.id' => 'nullable|integer|exists:questions,id',
             'questions.*.title' => 'required|string|max:255',
             'questions.*.id_question_type' => 'required|integer|exists:question_type,id',
-            'questions.*.file' => 'sometimes|file|max:2048', // Archivos con máximo 2MB
+            'questions.*.options' => 'required_if:questions.*.id_question_type,2,7|array',
+            'questions.*.options.*.value' => 'required|string|max:255',
         ]);
 
         // Actualizar los datos generales del formulario
@@ -192,9 +201,8 @@ class FormsController extends Controller
         // Sincronizar las secciones seleccionadas
         $formulario->sections()->sync($request->id_sections);
 
-        // Actualizar las preguntas del formulario
         foreach ($request->questions as $index => $questionData) {
-            if (isset($questionData['id'])) {
+            if (isset($questionData['id']) && $questionData['id'] !== null) {
                 // Actualizar pregunta existente
                 $question = Question::findOrFail($questionData['id']);
                 $question->update([
@@ -202,42 +210,43 @@ class FormsController extends Controller
                     'id_question_type' => $questionData['id_question_type'],
                 ]);
 
+
                 // Actualizar o agregar opciones de la pregunta existente
-                if (isset($questionData['options'])) {
-                    foreach ($questionData['options'] as $optionIndex => $optionValue) {
-                        if (isset($optionValue['id'])) {
+                if (in_array($questionData['id_question_type'], [2, 7]) && isset($questionData['options']) && is_array($questionData['options'])) {
+                    $optionIds = array_filter(array_column($questionData['options'], 'id'));
+
+                    if (!empty($optionIds)) {
+                        $question->options()->whereNotIn('id', $optionIds)->delete();
+                    }
+
+
+                    foreach ($questionData['options'] as $optionData) {
+                        if (isset($optionData['id'])) {
                             // Actualizar opción existente
-                            $option = Option::findOrFail($optionValue['id']);
-                            $option->update(['value' => $optionValue['value']]);
+                            $option = Option::findOrFail($optionData['id']);
+                            $option->update(['value' => $optionData['value']]);
                         } else {
                             // Crear nueva opción
-                            $questionOption = new Option([
-                                'id_question' => $question->id,
-                                'value' => $optionValue['value'],
-                            ]);
-                            $questionOption->save();
+                            $question->options()->create(['value' => $optionData['value']]);
                         }
                     }
                 }
             } else {
+
                 // Crear nueva pregunta
-                $question = new Question([
+                $question = Question::create([
                     'id_form' => $formulario->id,
                     'title' => $questionData['title'],
                     'id_question_type' => $questionData['id_question_type'],
                 ]);
-                $question->save();
 
                 // Crear nuevas opciones para la pregunta
-                if (isset($questionData['options'])) {
-                    foreach ($questionData['options'] as $option) {
-                        $questionOption = new Option([
-                            'id_question' => $question->id,
-                            'value' => $option['value'],
-                        ]);
-                        $questionOption->save();
+                if (isset($questionData['options']) && is_array($questionData['options'])) {
+                    foreach ($questionData['options'] as $optionValue) {
+                        $question->options()->create(['value' => $optionValue['value']]);
                     }
                 }
+
             }
         }
 
