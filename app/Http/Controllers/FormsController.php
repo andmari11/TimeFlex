@@ -213,13 +213,15 @@ class FormsController extends Controller
 
                 // Actualizar o agregar opciones de la pregunta existente
                 if (in_array($questionData['id_question_type'], [2, 7]) && isset($questionData['options']) && is_array($questionData['options'])) {
+                    // Obtener los IDs de las opciones enviadas en el request
                     $optionIds = array_filter(array_column($questionData['options'], 'id'));
 
+                    // Eliminar opciones que no están en el request
                     if (!empty($optionIds)) {
                         $question->options()->whereNotIn('id', $optionIds)->delete();
                     }
 
-
+                    // Procesar cada opción enviada en el request
                     foreach ($questionData['options'] as $optionData) {
                         if (isset($optionData['id'])) {
                             // Actualizar opción existente
@@ -231,6 +233,7 @@ class FormsController extends Controller
                         }
                     }
                 }
+
             } else {
 
                 // Crear nueva pregunta
@@ -249,7 +252,6 @@ class FormsController extends Controller
 
             }
         }
-
         return redirect()->route('forms.index')
             ->with('success', 'Formulario actualizado exitosamente.');
     }

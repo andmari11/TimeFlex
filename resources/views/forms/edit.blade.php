@@ -89,6 +89,7 @@
                                     @if($question->id_question_type == 2 || $question->id_question_type == 7)
                                         @foreach($question->options as $optionIndex => $option)
                                             <div class="flex items-center gap-2 mb-2">
+                                                <input type="hidden" name="questions[{{ $index }}][options][{{ $optionIndex }}][id]" value="{{ $option->id }}">
                                                 <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][value]" value="{{ $option->value }}" placeholder="Opción {{ $optionIndex + 1 }}" required
                                                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                                 <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">Eliminar</button>
