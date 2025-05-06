@@ -31,7 +31,7 @@ class FastApiController extends Controller
 
         $worker_preferences = [];
 
-        $holidays = Holidays::where('dia_vacaciones', '>', Carbon::today())->get();
+        $holidays = Holidays::whereBetween('dia_vacaciones', [$schedule->start, $schedule->end])->get();
         $max_days = max(abs(Carbon::now()->diffInDays($holidays->min('fecha_solicitud') ?? Carbon::today())), 1);
         foreach($schedule->section->users as $user){
             $turnoFav = $schedule->results()->where('id_user', $user->id)->where('id_question_type', 4)->first()->respuesta ?? null;

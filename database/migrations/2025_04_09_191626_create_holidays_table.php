@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamp("fecha_solicitud");
             $table->timestamp("dia_vacaciones");
             $table->string('estado')->nullable();
+            $table->foreignIdFor(\App\Models\Question::class, 'pregunta_id')->nullable();
             $table->timestamps();
         });
     }
