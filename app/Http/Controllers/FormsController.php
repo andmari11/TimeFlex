@@ -174,7 +174,27 @@ class FormsController extends Controller
                 }
                 return $question;
             }, $request->questions)
+        ], [
+            // Mensajes personalizados
+            'title.required' => 'El título del formulario es obligatorio.',
+            'summary.required' => 'El resumen del formulario es obligatorio.',
+            'start_date.required' => 'La fecha de inicio es obligatoria.',
+            'end_date.required' => 'La fecha de finalización es obligatoria.',
+            'end_date.after_or_equal' => 'La fecha de finalización debe ser igual o posterior a la fecha de inicio.',
+            'id_sections.required' => 'Debes seleccionar al menos una sección.',
+            'id_sections.*.exists' => 'La sección seleccionada no es válida.',
+            'questions.required' => 'Debes agregar al menos una pregunta.',
+            'questions.*.title.required' => 'El título de la pregunta es obligatorio.',
+            'questions.*.id_question_type.required' => 'El tipo de pregunta es obligatorio.',
+            'questions.*.id_question_type.exists' => 'El tipo de pregunta seleccionado no es válido.',
+            'questions.*.options.required_if' => 'Las opciones son obligatorias para preguntas de tipo 2 o 7.',
+            'questions.*.options.*.value.required' => 'El valor de la opción es obligatorio.',
+            'questions.*.value.required_if' => 'El valor del slider es obligatorio para preguntas de tipo 4 o 5.',
+            'questions.*.value.integer' => 'El valor del slider debe ser un número entero.',
+            'questions.*.value.min' => 'El valor del slider debe ser al menos :min.',
+            'questions.*.value.max' => 'El valor del slider no puede ser mayor a :max.',
         ]);
+
         // Validar los datos del formulario
         $request->validate([
             'title' => 'required|string|max:255',

@@ -69,7 +69,7 @@
                                     <label for="questions[{{ $index }}][title]" class="block text-lg font-medium text-gray-700">Título de la Pregunta</label>
                                     <input type="text" name="questions[{{ $index }}][title]" id="questions[{{ $index }}][title]" value="{{ old('questions.'.$index.'.title', $question->title) }}" required
                                            class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <x-forms.error name="questions[{{ $index }}][title]" />
+                                    <x-forms.error name="questions.{{ $index }}.title" />
                                 </div>
 
                                 <div class="mb-4">
@@ -83,7 +83,7 @@
                                             <option value="{{ $type->id }}" @if($type->id == $question->id_question_type) selected @endif>{{ $type->name }}</option>
                                         @endforeach
                                     </select>
-                                    <x-forms.error name="questions[{{ $index }}][id_question_type]" />
+                                    <x-forms.error name="questions.{{ $index }}.id_question_type" />
                                 </div>
                                 <div id="question-fields-{{ $index }}">
                                     @if($question->id_question_type == 2 || $question->id_question_type == 7)
@@ -92,11 +92,14 @@
                                                 <input type="hidden" name="questions[{{ $index }}][options][{{ $optionIndex }}][id]" value="{{ $option->id }}">
                                                 <input type="text" name="questions[{{ $index }}][options][{{ $optionIndex }}][value]" value="{{ $option->value }}" placeholder="Opción {{ $optionIndex + 1 }}" required
                                                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                                <!-- Mostrar errores para el valor de la opción -->
+                                                <x-forms.error name="questions.{{ $index }}.options.{{ $optionIndex }}.value" />
                                                 <button type="button" onclick="removeOption(this)" class="text-red-500 hover:text-red-700 font-semibold">Eliminar</button>
                                             </div>
                                         @endforeach
                                     @endif
                                 </div>
+
 
 
                                 <div id="question-slider-{{ $index }}" data-id-question="{{ $question->id }}" class="mt-4">
@@ -108,7 +111,10 @@
                                         <label class="block text-lg font-medium text-gray-700">Selecciona un valor (1 a 10)</label>
                                         <input type="range" name="questions[{{ $index }}][value]" min="1" max="10" value="{{ old('questions.'.$index.'.value', $weightValue) }}"
                                                class="mt-1 block w-full">
-                                        <span class="block text-center text-lg font-semibold text-blue-700 mt-2">{{ $weightValue }}</span>@endif
+                                        <span class="block text-center text-lg font-semibold text-blue-700 mt-2">{{ $weightValue }}</span>
+                                    @endif
+                                        <x-forms.error name="questions.{{ $index }}.value" />
+
                                 </div>
 
 
