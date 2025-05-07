@@ -1,16 +1,3 @@
-@php
-
-    if (auth()->user()->role === 'employee') {
-        // Si es un empleado, obtenemos su sección
-        $section = auth()->user()->section;
-
-    }
-
-    $sections = \App\Models\Section::all();
-
-@endphp
-
-
 <x-layout :title="'Mi área'">
     @if(auth()->user()->role === 'admin')
         <x-sidebar >
@@ -102,7 +89,7 @@
                             @endif
                         </ul>
                     </section>
-                    <x-expected-hours-table />
+                    <x-expected-hours-table :section="$section" :sections="$sections" :default-section-id="$defaultSectionId" />
 
                 </div>
                 <div class="flex flex-col w-2/3 mt-20 pe-12">

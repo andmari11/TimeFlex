@@ -8,32 +8,26 @@ use App\Models\ExpectedHours;
 
 class ExpectedHoursTable extends Component
 {
+    public $section;
     public $sections;
+    public $defaultSectionId;
     public $currentMonth;
     public $currentYear;
     public $expectedHours;
 
-    public function __construct()
+    public function __construct(Section $section = null, $sections = [], $defaultSectionId = null)
     {
-        $this->sections = Section::all(); // Para el select
+        $this->section = $section;
+        $this->sections = $sections;
+
+        // si no viene seccion por defecto, se asigna 0 (todas)
+        $this->defaultSectionId = $defaultSectionId ?? 0;
         $this->currentMonth = now()->month;
-        $this->currentYear = now()->year;
-        $defaultSection = Section::where('name', 'Administradores')->first();
-        $defaultSectionId = $defaultSection?->id;
-
-        $this->expectedHours = ExpectedHours::where('section_id', $defaultSectionId)
-            ->where('month', $this->currentMonth)
-            ->where('year', $this->currentYear)
-            ->with('user')
-            ->get();
-
-        $this->defaultSectionId = $defaultSectionId;
+        $this->currentYear  = now()->year;
     }
 
     public function render()
     {
-        return view('sections.expectedhourstable', [
-            'defaultSectionId' => $this->defaultSectionId,
-        ]);
+        return view('sections.expectedhourstable');
     }
 }

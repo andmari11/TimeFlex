@@ -19,25 +19,34 @@ class MenuController extends Controller
             $days = MenuController::prepareEmptyData();
         }
         $nextShift = $this->getNextShift($days);
-        return view('menu', compact('section', 'days', 'nextShift'));
+
+        $sections = Section::all();
+        $defaultSectionId = 0;
+
+        return view('menu', compact('section', 'days', 'nextShift', 'sections', 'defaultSectionId'));
+
     }
 
-    public function indexAdmin($id){
-        $section=auth()->user()->company->sections()->where('id', $id)->first();
-        $lastSchedule = $section->schedules->last();
-
-        if (is_object($lastSchedule) && isset($lastSchedule->id)) {
-            $days = MenuController::prepareScheduleData($lastSchedule->id);
+    public function indexAdmin($id) {
+        // tratamos de forma especial sin seccion -> /menu/0
+        if ((int)$id === 0) {
+            // ponemos que se vean todos los trabajadores
+            $section = null;
+            $defaultSectionId = 0;
+            $lastSchedule = auth()->user()->section->schedules->last();
         } else {
-            $days = MenuController::prepareEmptyData();
+            $section = Section::findOrFail($id);
+            $defaultSectionId = $section->id;
+            $lastSchedule = $section->schedules->last();
         }
-        if(!$section){
-            abort(404);
-        }
-        $nextShift = $this->getNextShift($days);
 
-        return view('menu', compact('section', 'days', 'nextShift'));
+        $days      = $lastSchedule ? self::prepareScheduleData($lastSchedule->id) : self::prepareEmptyData();
+        $nextShift = $this->getNextShift($days);
+        $sections  = Section::all();
+
+        return view('menu', compact('section', 'days', 'nextShift', 'sections', 'defaultSectionId'));
     }
+
     private function getNextShift($days){
         $nextShiftDay = $days->first(function ($day) {
             return $day['shifts']->first(function ($shift) {

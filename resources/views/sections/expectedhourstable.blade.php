@@ -1,5 +1,6 @@
 <!-- cargamos alpine con defer -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 <script>
     function expectedHoursComponent() {
         return {
@@ -139,15 +140,20 @@
 
     <div class="flex justify-between gap-2 mt-4">
         <select id="seccionSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm w-full max-w-xs">
-            <option value="all">Todas</option>
-            @foreach ($sections as $section)
-                @if ($section->name !== 'Sin sección')
-                    <option value="{{ $section->id }}" {{ $section->id == $defaultSectionId ? 'selected' : '' }}>
-                        {{ $section->name }}
+            <!-- opcion Todas -->
+            <option value="0" {{ $defaultSectionId === 0 ? 'selected' : '' }}>Todas</option>
+
+            <!-- resto de opciones -->
+            @foreach($sections as $sec)
+                <!-- tratamos de forma especial sin seccion para que salga en su lugar todas -->
+                @if($sec->name !== 'Sin sección')
+                    <option value="{{ $sec->id }}" {{ $defaultSectionId === $sec->id ? 'selected' : '' }}>
+                        {{ $sec->name }}
                     </option>
                 @endif
             @endforeach
         </select>
+
 
         <select id="mesSelect" class="border border-gray-300 rounded-md px-3 py-2 shadow-sm">
             @for ($i = 1; $i <= 12; $i++)
@@ -220,9 +226,9 @@
         function fetchExpectedHours() {
             const sectionId = sectionSelect.value;
             const month = monthSelect.value;
-            if (!sectionId) return;
+            const sectionParam = (sectionSelect.value === 'all') ? 0 : sectionSelect.value;
 
-            fetch(`/expected-hours/section?section_id=${sectionId}&month=${month}`, {
+            fetch(`/expected-hours/section?section_id=${sectionParam}&month=${month}`, {
                 method: 'GET',
                 credentials: 'same-origin', //lo ponemos para que no de problemas el csrf
             })
@@ -238,14 +244,21 @@
                             <td><input type="number" min="0" value="${item.afternoon_hours}" class="input-afternoon text-center border rounded w-20" data-user-id="${item.user_id}" data-section-id="${item.section_id}" disabled /></td>
                             <td><input type="number" min="0" value="${item.night_hours}" class="input-night text-center border rounded w-20" data-user-id="${item.user_id}" data-section-id="${item.section_id}" disabled /></td>
                         `;
-
                         tableBody.appendChild(row);
                     });
                 })
                 .catch(error => console.error("Error al hacer fetch:", error));
         }
         //actualizacion de la tabla al cambiar seccion o mes
-        sectionSelect.addEventListener('change', fetchExpectedHours);
+        sectionSelect.addEventListener('change', function () {
+            const sectionId = this.value;
+            if (sectionId === 'all') {
+                window.location.href = '/menu';
+            } else {
+                window.location.href = `/menu/${sectionId}`;
+            }
+        });
+
         monthSelect.addEventListener('change', fetchExpectedHours);
 
         fetchExpectedHours();

@@ -56,23 +56,24 @@ class ExpectedHoursController
     // pasar las horas por sección para el mes y año
     public function getBySection(Request $request)
     {
-        $sectionId = $request->get('section_id');
-        // conversion mes entero a string
-        $monthNumber = (int) $request->get('month');
-        $month = ucfirst(\Carbon\Carbon::create()->locale('es')->month($monthNumber)->monthName);
-        $year = now()->year;
-        $query = ExpectedHours::with('user')->where('month', $month)->where('year', $year);
+        $sectionId   = (int)$request->query('section_id');
+        $monthNumber = (int)$request->query('month');
+        $year        = now()->year;
+        // pasamos el mes de numero a string
+        $monthName = ucfirst(Carbon::create()->locale('es')->month($monthNumber)->monthName);
 
-        if ($sectionId !== 'all') {
-            $query->where('section_id', $sectionId);
-        } else {
-            // no mostrar los de sin seccion
-            $query->whereHas('user.section', function ($q) {
-                $q->where('name', '!=', 'Sin sección');
-            });
+        $q = ExpectedHours::with('user');
+        // saltamos sin seccion
+        if ($sectionId > 0) {
+            $q->where('section_id', $sectionId);
         }
+        $result = $q
+            ->where('month', $monthName)
+            ->where('year', $year)
+            ->get();
 
-        return response()->json($query->get());
+        return response()->json($result);
     }
+
 
 }
