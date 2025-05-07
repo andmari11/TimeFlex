@@ -74,7 +74,7 @@
                 @php
                     $date = $day['date'];
                     $dayOfWeek = $day['day_of_week'];
-                    $isCurrentMonth = $day['is_current_month'] && (!$date->isPast() or $date->isToday());
+                    $isCurrentMonth = $day['is_current_month'];
                     $isToday = $date->isToday();
                     $bgColor = $isCurrentMonth ? match ($dayOfWeek) {
                         1 => 'bg-sky-400', // Lunes
