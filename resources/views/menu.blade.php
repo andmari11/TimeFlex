@@ -303,9 +303,9 @@
                 </section>
                 <section class="relative w-full bg-white p-8 rounded-lg shadow-md mt-8 ml-4">
                     <div class="flex justify-around">
-                        <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                        <a href="/notificationspanel?tipo=turno" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Solicitudes
-                        </button>
+                        </a>
                         <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Formularios
                         </button>
