@@ -12,7 +12,7 @@
             <section class="text-center pt-2">
 
                 <form action="/search" class="mt-2 mb-7">
-                    <input type="text" name="q" placeholder="Busca compañeros..." value={{$query}} class="rounded-xl border px-5 py-4 w-full max-w-xl bg-white/25 focus:outline-none border-gray-300"/>
+                    <input type="text" name="q" placeholder="Busca compañeros..." value="{{$query}}" class="rounded-xl border px-5 py-4 w-full max-w-xl bg-white/25 focus:outline-none border-gray-300"/>
                 </form>
 
             </section>
