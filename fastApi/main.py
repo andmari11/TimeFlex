@@ -8,7 +8,8 @@ from model.shift import *
 from model.workerPreference import *
 from optimize1 import *
 import logging
-
+import time
+import tracemalloc
 
 app = FastAPI()
 
@@ -50,8 +51,24 @@ async def send_schedule(data):
     async with httpx.AsyncClient() as client:
 
         logging.basicConfig(filename="logs/app.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
-        
+        logging.debug(f"Received data: {data}")
+        start_time = time.perf_counter()
+        tracemalloc.start()
+
+
         solution_to_send = optimize(data, logging)
+
+        end_time = time.perf_counter()
+        elapsed_time = end_time - start_time
+        current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
+        info = (f"Elapsed time: {elapsed_time:.2f} seconds\n"
+                 f"Current memory usage: {current / 10**6:.2f} MB; Peak: {peak / 10**6:.2f} MB\n")
+        logging.info(info)
+        if "message" not in solution_to_send or not solution_to_send["message"]:
+            solution_to_send["message"] = [info]
+        else:
+            solution_to_send["message"].append(info)
 
         try:
             response = await client.post("http://timeflex.test/fastapi-schedule", json=solution_to_send)

@@ -75,7 +75,7 @@ class ShiftFactory extends Factory
 
                     if ($trabajadores and $trabajadores->count() > 0) {
                         for($i = 0; $i < $shift->users_needed; $i++){
-                            $trabajadorAleatorio = $trabajadores->random();
+                            $trabajadorAleatorio = $trabajadores->filter(fn($trabajador) => !$shift->users->contains($trabajador->id))->random();
                             $shift->users()->attach($trabajadorAleatorio->id);
                         }
                         $shift->save();
