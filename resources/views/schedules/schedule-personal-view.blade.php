@@ -139,7 +139,7 @@
 
                         @if ($nextShift)
                             <div class="mx-auto mt-20 flex flex-col justify-center items-center">
-                                <h3 class="text-xl font-bold mb-3">Turno del {{ \Carbon\Carbon::parse($nextShift->start)->locale('es')->format('d \d\e F') }}</h3> <!-- Muestra el día de comienzo en español -->
+                                <h3 class="text-xl font-bold mb-3">Turno del {{ \Carbon\Carbon::parse($nextShift->start)->locale('es')->translatedFormat('d \d\e F') }}</h3> <!-- Muestra el día de comienzo en español -->
                                     <p class="pb-2"><strong>Inicio:</strong> {{ \Carbon\Carbon::parse($nextShift->start)->format('H:i') }}  - {{ \Carbon\Carbon::parse($nextShift->start)->format('d/m/Y') }}</p>
                                     <p class="pb-2"><strong>Fin:</strong> {{ \Carbon\Carbon::parse($nextShift->end)->format('H:i') }} - {{ \Carbon\Carbon::parse($nextShift->end)->format('d/m/Y') }} </p>
 

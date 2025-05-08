@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 <x-layout :title="'Calendario'">
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
     <div class="flex justify-between">
@@ -17,7 +18,7 @@
             <div class="mx-auto mt-y0 flex flex-col justify-center items-center" x-data="{ open_options_menu: false }" >
 
             <div class="flex items-center justify-center relative w-full mb-3 px-8">
-                <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->format('d \d\e F') }}</h3>
+                <h3 class="text-xl font-bold pe-4">Turno del {{ \Carbon\Carbon::parse($shiftToView->start)->locale('es')->translatedFormat('d \d\e F') }}</h3>
                 <div class="absolute top-0 right-2 py-0">
                     <button
                         @click="open_options_menu = !open_options_menu"
@@ -55,6 +56,32 @@
                                     Solicitar cambio de turno
                                 </a>
                             @endif
+                            @php
+                                $start = Carbon::parse($shiftToView->start)->utc()->format('Ymd\THis\Z');
+                                $end = Carbon::parse($shiftToView->end)->utc()->format('Ymd\THis\Z');
+                                $title = urlencode('Turno de ' . $schedule->section->name . ' - ' . \Carbon\Carbon::parse($shiftToView->start)->locale('es')->translatedFormat('d \d\e F') );
+                                $details = urlencode($shiftToView->notes ?? 'Sin notas');
+                                $startIso = Carbon::parse($shiftToView->start)->utc()->format('Y-m-d\TH:i:s\Z');
+                                $endIso = Carbon::parse($shiftToView->end)->utc()->format('Y-m-d\TH:i:s\Z');
+
+                                $outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose"
+                                 . "?path=%2Fcalendar%2Faction%2Fcompose"
+                                 . "&rru=addevent"
+                                 . "&allday=false"
+                                 . "&startdt={$start}"
+                                 . "&enddt={$end}"
+                                 . "&subject={$title}"
+                                 . "&body={$details}";
+                                $googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text={$title}&details={$details}&dates={$start}/{$end}";
+                            @endphp
+                                <a href="{{ $googleCalendarUrl }}" target="_blank" rel="noopener noreferrer"
+                                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                    Añadir a Google Calendar
+                                </a>
+                                <a href="{{ $outlookUrl }}" target="_blank" rel="noopener noreferrer"
+                                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                    Añadir a Outlook
+                                </a>
                     @endif
                 </div>
 

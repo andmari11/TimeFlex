@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 
 <x-layout :title="'Calendario'">
     <x-page-heading> Horario de {{ $schedule->section->name }}</x-page-heading>
@@ -54,10 +55,36 @@
                                         Solicitar cambio de turno
                                         </a>
                                     @endif
+                                        @php
+                                            $start = Carbon::parse($shift->start)->utc()->format('Ymd\THis\Z');
+                                            $end = Carbon::parse($shift->end)->utc()->format('Ymd\THis\Z');
+                                            $title = urlencode('Turno de ' . $schedule->section->name . ' - ' . \Carbon\Carbon::parse($shift->start)->locale('es')->translatedFormat('d \d\e F') );
+                                            $details = urlencode($shift->notes ?? 'Sin notas');
+                                            $startIso = Carbon::parse($shift->start)->utc()->format('Y-m-d\TH:i:s\Z');
+                                            $endIso = Carbon::parse($shift->end)->utc()->format('Y-m-d\TH:i:s\Z');
+
+                                            $outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose"
+                                             . "?path=%2Fcalendar%2Faction%2Fcompose"
+                                             . "&rru=addevent"
+                                             . "&allday=false"
+                                             . "&startdt={$start}"
+                                             . "&enddt={$end}"
+                                             . "&subject={$title}"
+                                             . "&body={$details}";
+                                            $googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text={$title}&details={$details}&dates={$start}/{$end}";
+                                        @endphp
+                                        <a href="{{ $googleCalendarUrl }}" target="_blank" rel="noopener noreferrer"
+                                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                            Añadir a Google Calendar
+                                        </a>
+                                        <a href="{{ $outlookUrl }}" target="_blank" rel="noopener noreferrer"
+                                           class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                                            Añadir a Outlook
+                                        </a>
                                 </div>
 
                                 <h3 class="text-xl font-bold mb-3 ">
-                                    <a  class="hover:cursor-pointer hover:text-sky-900 "  href="/horario/{{ $shift->schedule->id }}/turno/{{ $shift->id }}">Turno del {{ \Carbon\Carbon::parse($shift->start)->locale('es')->format('d \d\e F') }}</a>
+                                    <a  class="hover:cursor-pointer hover:text-sky-900 "  href="/horario/{{ $shift->schedule->id }}/turno/{{ $shift->id }}">Turno del {{ \Carbon\Carbon::parse($shift->start)->locale('es')->translatedFormat('d \d\e F') }}</a>
                                 </h3>
 
                                 <div class="flex flex-col gap-2">
