@@ -18,6 +18,6 @@ class SearchController extends Controller
 
         $employees = $query->get();
 
-        return view('results', ['employees' => $employees]);
+        return view('results', ['employees' => $employees, 'query' => request('q')]);
     }
 }
