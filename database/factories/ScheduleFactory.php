@@ -32,6 +32,9 @@ class ScheduleFactory extends Factory
     {
         $secciones = Section::all()->where('default', false);
         $meses = [
+            'Enero' => ['start' => '2025-01-01 00:00:00', 'end' => '2025-01-31 23:59:00'],
+            'Febrero' => ['start' => '2025-02-01 00:00:00', 'end' => '2025-02-28 23:59:00'],
+            'Marzo' => ['start' => '2025-03-01 00:00:00', 'end' => '2025-03-31 23:59:00'],
             'Abril' => ['start' => '2025-04-01 00:00:00', 'end' => '2025-04-30 23:59:00'],
             'Mayo'  => ['start' => '2025-05-01 00:00:00', 'end' => '2025-05-31 23:59:00']
         ];
