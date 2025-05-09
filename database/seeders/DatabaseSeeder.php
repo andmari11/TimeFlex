@@ -87,6 +87,34 @@ class DatabaseSeeder extends Seeder
         ExpectedHoursFactory::createMultiples();
         ShiftExchangesFactory::CreateMultiples();
 
+        $defaultMorning = 80;
+        $defaultAfternoon = 60;
+        $defaultNight = 50;
+        $months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        $year = now()->year;
+        Section::all()->each(function ($section) use ($months, $year, $defaultMorning, $defaultAfternoon, $defaultNight) {
+            $section->users->each(function ($user) use ($section, $months, $year, $defaultMorning, $defaultAfternoon, $defaultNight) {
+                foreach ($months as $month) {
+                    ExpectedHours::updateOrCreate(
+                        [
+                            'user_id' => $user->id,
+                            'month' => $month,
+                            'year' => $year,
+                        ],
+                        [
+                            'section_id' => $section->id,
+                            'morning_hours' => $defaultMorning,
+                            'afternoon_hours' => $defaultAfternoon,
+                            'night_hours' => $defaultNight,
+                        ]
+                    );
+                }
+            });
+        });
+
 
     }
 }

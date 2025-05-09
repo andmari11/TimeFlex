@@ -14,7 +14,7 @@ class ExportController extends Controller
         $response = new StreamedResponse(function () {
             $handle = fopen('php://output', 'w');
 
-            fputcsv($handle, ['ID', 'Email', 'Rol', 'Peso', 'Seccion', 'Horas mínimas', 'Horas maximas', 'Turnos minimos', 'Turnos maximos']);
+            fputcsv($handle, ['ID', 'Email', 'Rol', 'Peso', 'Seccion', 'Horas minimas', 'Horas maximas', 'Turnos minimos', 'Turnos maximos']);
 
             $data = DB::select("SELECT users.id, users.email, users.role, users.weight,
                                 sections.name, sections.min_hours, sections.max_hours,
