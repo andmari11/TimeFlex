@@ -1,11 +1,13 @@
 @vite(['resources/js/app.js'])
 <x-layout :title="'Estadísticas de horario'">
     <x-page-heading>Bienvenido a la página de estadísticas de horario de {{ $section->name }}</x-page-heading>
-
-    <div class="flex justify-center items-center gap-4 my-4">
-        <button id="prevMonth" class="px-3 py-1 bg-gray-300 rounded">←</button>
-        <h2 id="monthTitle" class="text-lg font-semibold"></h2>
-        <button id="nextMonth" class="px-3 py-1 bg-gray-300 rounded">→</button>
+    <div class="flex justify-between items-center gap-4 my-4 max-w-2xl mx-auto">
+        <a href="{{ url('/horario/'.$section->id) }}" class="bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-xl text-lg font-semibold text-white">← Volver</a>
+        <div class="flex justify-center items-center gap-4">
+            <button id="prevMonth" class="px-3 py-1 bg-gray-300 rounded">←</button>
+            <h2 id="monthTitle" class="text-lg font-semibold"></h2>
+            <button id="nextMonth" class="px-3 py-1 bg-gray-300 rounded">→</button>
+        </div>
     </div>
 
     <!-- calendario turnos -->

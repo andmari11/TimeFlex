@@ -52,12 +52,7 @@
 
                         @foreach(session('historial_accesos') as $item)
                             <li>
-                                <a href="{{ $item['link'] }}" class="flex items-center p-2  transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
-                                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                    <span class="ms-3">{{ $item['titulo'] }}</span>
-                                </a>
+                                <a href="{{ $item['link'] }}" class="block ps-10 px-3 py-1 transition duration-75 rounded-lg hover:bg-gray-700 text-white">{{ $item['titulo'] }}</a>
                             </li>
                         @endforeach
                     </ul>
