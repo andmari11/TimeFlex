@@ -16,11 +16,20 @@
                 </form>
 
             </section>
-            <div class="flex flex-wrap gap-10">
-                @foreach($employees as $employee)
-                    <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
-                @endforeach
-            </div>
+            @if($employees->isEmpty())
+                <div class="w-full flex flex-col items-center justify-center py-20">
+                    <p class="text-3xl font-semibold text-gray-600 text-center mb-6">
+                        No se encontraron compañeros<br> que coincidan con <span class="text-gray-800">“{{ $query }}”</span>
+                    </p>
+                    <a href="{{ url('/equipo') }}" class="mt-8 inline-block bg-blue-500 hover:bg-blue-400 text-white px-6 py-3 rounded-lg text-lg font-medium">Volver</a>
+                </div>
+            @else
+                <div class="flex flex-wrap gap-10 justify-center">
+                    @foreach($employees as $employee)
+                        <x-users.employee-section :employee="$employee" :showGraphs="false"/>
+                    @endforeach
+                </div>
+            @endif
 
         </div>
 </x-layout>

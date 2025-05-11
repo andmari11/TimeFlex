@@ -1,7 +1,7 @@
 @vite(['resources/js/app.js'])
 @props(['employee', 'showGraphs' => true])
 
-<div class="p-4 bg-blue-50 shadow rounded-xl my-1 {{ !isset($showGraphs) or $showGraphs ? 'my-1' : 'my-5' }} w-full max-w-sm mx-auto">
+<div class="p-4 bg-blue-50 shadow rounded-xl my-1 {{ !isset($showGraphs) or $showGraphs ? 'my-1' : 'my-5' }} w-full max-w-sm mx-auto ">
     <div class="flex items-center justify-center">
         <img class="h-20 w-20 rounded-full" src="https://static.vecteezy.com/system/resources/previews/004/274/186/non_2x/person-icon-user-interface-icon-silhouette-of-man-simple-symbol-a-glyph-symbol-in-your-web-site-design-logo-app-ui-webinar-video-chat-ect-vector.jpg" alt="">
     </div>
@@ -12,7 +12,11 @@
         @php
             $horario = $employee->section->schedules()->latest()->first();
         @endphp
-        <a href="/horario/personal/{{$horario?->id??""}}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
+        <div class="min-h-16 flex items-center justify-center mb-3">
+            @if($horario)
+                <a href="/horario/personal/{{ $horario->id }}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold">Ver horario</a>
+            @endif
+        </div>
     </div>
     @if(auth()->user()->role === 'admin')
         <a href="{{ url('/users/'.$employee->id.'/edit') }}?redirect_to={{ urlencode(url()->current()) }}" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>

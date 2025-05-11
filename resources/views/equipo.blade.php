@@ -16,7 +16,7 @@
                 </form>
 
             </section>
-            <div class="flex flex-wrap gap-10">
+            <div class="flex flex-wrap gap-10 ">
                 @foreach($sectionEmployees as $employee)
                     <x-users.employee-section :employee="$employee" :showGraphs="false"></x-users.employee-section>
                 @endforeach
