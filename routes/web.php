@@ -20,8 +20,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserNotificationsPreferencesController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Middleware\HistorialAccesosMiddleware;
 use Illuminate\Support\Facades\Route;
+
 
 // devolver la vista de welcome en home
 Route::get('/', function () {
@@ -156,6 +158,8 @@ Route::get('/expected-hours/section', [ExpectedHoursController::class, 'getBySec
 Route::post('/expected-hours/store-or-update', [ExpectedHoursController::class, 'storeOrUpdate']);
 
 Route::post('/ayuda', [AyudaController::class, 'store'])->name('ayuda.store');
+
+Route::post('/contact', [ContactoController::class, 'store'])->name('contact.store');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');

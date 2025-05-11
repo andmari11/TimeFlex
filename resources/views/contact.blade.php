@@ -1,4 +1,4 @@
-<x-layout :title="'Contacto'"></x-layout>
+<x-layout :title="'Contacto'">
 
 <div class="bg-white">
     <div class="isolate bg-white px-6 py-8 sm:py-20 lg:px-8">
@@ -7,7 +7,8 @@
             <h2 class="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Contáctanos</h2>
             <p class="mt-2 text-lg/8 text-gray-600">¿Tienes preguntas o quieres probar TimeFlex? Escríbenos y descubre cómo podemos ayudarte.</p>
         </div>
-        <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+        <form id="contactoForm" action="{{ route('contact.store') }}" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+            @csrf
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                     <label for="first-name" class="block text-sm/6 font-semibold text-gray-900">Nombre</label>
@@ -58,25 +59,110 @@
                         <textarea name="message" id="message" rows="4" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"></textarea>
                     </div>
                 </div>
-                <div class="flex gap-x-4 sm:col-span-2">
-                    <div class="flex h-6 items-center">
-                        <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-                        <button type="button" class="flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" role="switch" aria-checked="false" aria-labelledby="switch-1-label">
-                            <span class="sr-only">Agree to policies</span>
-                            <!-- Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" -->
-                            <span aria-hidden="true" class="size-4 translate-x-0 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"></span>
-                        </button>
+                <div class="flex gap-x-4 sm:col-span-2 items-center">
+                    <div class="relative">
+                        <input type="checkbox" name="privacy" id="privacy" value="1" class="sr-only peer" required>
+                        <label for="privacy" class="block w-10 h-6 bg-gray-200 rounded-full peer-checked:bg-indigo-600 transition-colors duration-200 cursor-pointer"></label>
+                        <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 peer-checked:translate-x-4 pointer-events-none"></div>
                     </div>
-                    <label class="text-sm/6 text-gray-600" id="switch-1-label">
+
+                    <label for="privacy" class="text-sm/6 text-gray-600 cursor-pointer">
                         Confirme que ha leído y acepta nuestra
-                        <a href="#" class="font-semibold text-indigo-600">política&nbsp;de privacidad</a>.
+                        <a href="{{ asset('politica_privacidad_timeflex.pdf') }}" class="font-semibold text-indigo-600" target="_blank">política&nbsp;de privacidad</a>.
                     </label>
                 </div>
+                <div id="formMessages" class="mt-6"></div>
             </div>
             <div class="mt-10">
-                <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Let's talk</button>
+                <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enviar</button>
             </div>
         </form>
+        <div id="successModal"
+             class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-40">
+            <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg text-center">
+                <h2 class="text-2xl font-semibold text-green-700 mb-4">Gracias por contactarnos</h2>
+                <p class="text-gray-700">Te responderemos en el menor tiempo posible a tu consulta.</p>
+                <button id="closeModal"
+                        class="mt-6 inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none">
+                    Cerrar
+                </button>
+            </div>
+        </div>
     </div>
 
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('contactoForm');
+        const messages = document.getElementById('formMessages');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+        const closeModalBtn = document.getElementById('closeModal');
+        const modal = document.getElementById('successModal');
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        const checkbox = document.getElementById('privacy');
+        checkbox.addEventListener('invalid', function () {
+            this.setCustomValidity('Debes aceptar nuestra política de privacidad para continuar con la petición');
+        });
+        checkbox.addEventListener('input', function () {
+            this.setCustomValidity('');
+        });
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            messages.innerHTML = '';
+
+
+
+            const formData = new FormData(form);
+
+            fetch("{{ route('contact.store') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json'
+                },
+                credentials: 'same-origin',
+                body: formData
+            })
+                .then(async response => {
+                    if (response.ok) {
+                        form.reset();
+                        const modal = document.getElementById('successModal');
+                        modal.classList.remove('hidden');
+                        modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    } else {
+                        const data = await response.json();
+                        if (data.errors) {
+                            let errorList = '<ul class="list-disc list-inside text-sm">';
+                            Object.values(data.errors).forEach(errorGroup => {
+                                errorGroup.forEach(error => {
+                                    errorList += `<li>${error}</li>`;
+                                });
+                            });
+                            errorList += '</ul>';
+
+                            messages.innerHTML = `
+                                    <div class="text-red-700 bg-red-50 border border-red-200 rounded-md px-4 py-3 shadow-sm">
+                                        <p class="font-semibold mb-2">Corrige los siguientes errores:</p>
+                                        ${errorList}
+                                    </div>
+                                    `;
+                        }
+                    }
+                })
+                .catch(error => {
+                    messages.innerHTML = `
+                        <div class="text-red-700 bg-red-50 border border-red-200 rounded-md px-4 py-3 shadow-sm">
+                            <p class="font-semibold">Error al enviar el formulario. Inténtalo de nuevo más tarde.</p>
+                        </div>
+                    `;
+                    console.error('Error:', error);
+                });
+        });
+
+    });
+</script>
+</x-layout>
