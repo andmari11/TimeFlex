@@ -231,76 +231,7 @@
                     .catch(error => console.error('Error al cargar el gráfico de burbujas:', error));
             });
         </script>
-        <div id="satisfaccion" style="width:100%; height:500px;"></div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                fetch('/satisfaction-user-vs-section', {
-                    credentials: 'same-origin'
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        Highcharts.chart('satisfaccion', {
-                            chart: {
-                                type: 'spline',
-                                animation: {
-                                    duration: 1000
-                                }
-                            },
-                            title: {
-                                text: 'Evolución de la Satisfacción'
-                            },
-                            subtitle: {
-                                text: 'Empleado vs Sección'
-                            },
-                            xAxis: {
-                                categories: [
-                                    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-                                ]
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Satisfacción'
-                                },
-                                min: 0,
-                                max: 10
-                            },
-                            plotOptions: {
-                                series: {
-                                    animation: {
-                                        duration: 1500
-                                    },
-                                    marker: {
-                                        enabled: true,
-                                        symbol: 'circle'
-                                    },
-                                    lineWidth: 2
-                                }
-                            },
-                            series: [
-                                {
-                                    name: 'Empleado',
-                                    data: data.empleado,
-                                    color: '#f7a35c',
-                                    animation: {
-                                        duration: 1500
-                                    }
-                                },
-                                {
-                                    name: 'Media de la sección',
-                                    data: data.seccion,
-                                    color: '#8085e9',
-                                    animation: {
-                                        duration: 1500,
-                                        defer: 1000
-                                    }
-                                }
-                            ]
-                        });
-                    })
-                    .catch(error => console.error('Error al cargar el gráfico de comparación de satisfacción mensual:', error));
-            });
-        </script>
+
 
     </div>
 </x-layout>

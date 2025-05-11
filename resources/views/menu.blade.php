@@ -145,22 +145,32 @@
                         </div>
 
                     </section>
-                    <section class="relative w-full bg-white p-8 rounded-lg shadow-md mt-8 ml-4">
-                        <div class="flex justify-around">
-                            <a href="/notificationspanel?tipo=turno" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
-                                Solicitudes
-                            </a>
-                            <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
-                                Formularios
-                            </button>
-                            <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
-                                Estadísticas
-                            </a>
-                            <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
-                                Satisfacción
-                            </button>
+                    <div x-data="satComponent()" x-init="init()" x-cloak>
+                        <section class="relative w-full bg-white p-8 rounded-lg shadow-md mt-8 ml-4">
+                            <div class="flex justify-around">
+                                <a href="/notificationspanel?tipo=turno" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                                    Solicitudes
+                                </a>
+                                <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                                    Formularios
+                                </button>
+                                <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                                    Estadísticas
+                                </a>
+                                <button @click="open = true" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Satisfacción</button>
+                            </div>
+                        </section>
+
+                        <div x-show="open" @click.away="open = false" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <div class="bg-white rounded-lg overflow-hidden w-[90%] max-w-3xl">
+                                <div class="border-b px-4 py-2 flex justify-between">
+                                    <h3 class="text-xl font-semibold">Satisfacción</h3>
+                                    <button @click="open = false">&times;</button>
+                                </div>
+                                <div id="satisfaccionModalContainer" style="width:100%; height:400px;"></div>
+                            </div>
                         </div>
-                    </section>
+                    </div>
 
                     <x-users.all-employees :section="$section" :sections="$sections"></x-users.all-employees>
 
@@ -313,7 +323,7 @@
                             Estadísticas
                         </a>
 
-                        <button class="w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                        <button class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                             Satisfacción
                         </button>
                     </div>
@@ -325,3 +335,5 @@
         </div>
     @endif
 </x-layout>
+
+
