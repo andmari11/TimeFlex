@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Section;
 use Illuminate\Validation\Rules\Password;
 use App\Models\ExpectedHours;
+use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function create()
@@ -60,10 +61,11 @@ class UserController extends Controller
         return redirect('/menu');
     }
 
-    public function edit(int $id){
+    public function edit(Request $request, int $id){
         $user = User::findOrFail($id);
+        $redirectTo = $request->input('redirect_to', url('/menu'));
 
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'redirectTo'));
     }
 
     public function profileEdit()
@@ -92,7 +94,7 @@ class UserController extends Controller
         return redirect('/menu');
     }
 
-    public function update(int $id)
+    public function update(Request $request, int $id)
     {
         request()->validate([
             'name'       => ['required'],
@@ -110,16 +112,18 @@ class UserController extends Controller
             'section_id' => request('section_id'),
             'weight'     => request('user_weight'),
         ]);
+        $redirect = $request->input('redirect_to', url('/menu'));
 
-        return redirect('/menu');
+        return redirect($redirect)->with('success','Edición de datos del usuario realizada correctamente');
     }
 
 
-    public function destroy(int $id)
+    public function destroy(Request $request, int $id)
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect('/menu');
+        $redirect = $request->input('redirect_to', url('/menu'));
+        return redirect($redirect)->with('success', 'Usuario eliminado correctamente');
     }
 
     public static function reassignSectionToUnassigned(int $section_id)

@@ -15,13 +15,14 @@
         <a href="/horario/personal/{{$horario?->id??""}}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
     </div>
     @if(auth()->user()->role === 'admin')
-        <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
+        <a href="{{ url('/users/'.$employee->id.'/edit') }}?redirect_to={{ urlencode(url()->current()) }}" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
         @if($employee->role != 'admin')
             <button onclick="confirmDeleteSection(event, {{ $employee->id }})" class="bg-red-600 hover:bg-red-400 px-2 py-1 rounded-xl text-xs text-white">Eliminar</button>
         @endif
         <form method="POST" action="/users/{{$employee->id}}/delete" id="delete-form-{{ $employee->id }}" class="hidden">
             @csrf
             @method('DELETE')
+            <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
         </form>
     @endif
 </div>

@@ -56,10 +56,11 @@
             </div>
             <div class="mt-6 flex items-center justify-between">
 
-                <a href="/menu" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
+                <a href="{{ $redirectTo }}" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</a>
                 <button form="delete-form"  class=" bg-red-600 hover:bg-red-200 rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm">Eliminar</button>
                 <x-forms.button>Actualizar información</x-forms.button>
             </div>
+            <input type="hidden" name="redirect_to" value="{{ $redirectTo }}">
         </form>
         <form method="POST" action="/users/{{$user->id}}/delete" id="delete-form" class="hidden">
             @csrf
