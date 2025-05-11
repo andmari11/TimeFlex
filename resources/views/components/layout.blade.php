@@ -39,7 +39,7 @@
                                 yAxis:    { title: { text: 'Satisfacción' }, min: 0, max: 10 },
                                 series: [
                                     { name: 'Empleado',      data: this.data.empleado },
-                                    { name: 'Media sección', data: this.data.seccion }
+                                    { name: 'Media de la sección', data: this.data.seccion }
                                 ]
                             });
                         } else if (this.chart) {
