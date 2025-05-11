@@ -12,7 +12,7 @@
         @php
             $horario = $employee->section->schedules()->latest()->first();
         @endphp
-        <a href="/horario/{{$horario?->id??""}}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
+        <a href="/horario/personal/{{$horario?->id??""}}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold my-3">Ver horario</a>
     </div>
     @if(auth()->user()->role === 'admin')
         <a href="/users/{{$employee->id}}/edit" class="bg-blue-500 hover:bg-blue-400 px-2 py-1 rounded-xl text-xs text-white">Editar</a>
