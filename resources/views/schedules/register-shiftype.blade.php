@@ -21,7 +21,7 @@
                 </x-forms.field>
                 <x-forms.field class="col-12">
                     <label for="users_needed" class="block text-lg font-medium text-gray-700">Trabajadores necesarios</label>
-                    <input name="users_needed" id="users_needed" value="{{old('users_needed') ?? $schedule->users_needed}}" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
+                    <input name="users_needed" id="users_needed" type="number" min="1" value="{{old('users_needed') ?? $schedule->users_needed}}" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" required />
                     <x-forms.error name="users_needed" />
                 </x-forms.field>
                 <x-forms.field class="col-12">
