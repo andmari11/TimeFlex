@@ -95,7 +95,14 @@
                                         <ul class="mt-2 space-y-2">
                                             @foreach($question->results as $result)
                                                 <li class="bg-white border border-gray-200 p-3 rounded-md shadow">
-                                                    <p class="text-gray-900 font-medium">{{ $result->respuesta }}</p>
+                                                    @if($question->id_question_type == 9)
+                                                        <a href="{{ route('file.download', $result->file->id) }}" class="text-blue-500 hover:underline">
+                                                            Descargar archivo: {{ $result->file->name }}
+                                                        </a>
+                                                        <img src="{{ route('file.show', $result->file->id) }}" alt="{{ $result->file->name }}" class="mt-4 max-w-full h-auto rounded-lg shadow-md">
+                                                    @else
+                                                        <p class="text-gray-900 font-medium">{{ $result->respuesta }}</p>
+                                                    @endif
                                                     <p class="text-sm text-gray-500 mt-1">
                                                         Respondido por: <span class="font-semibold">{{ $result->user->name }}</span>
                                                     </p>
