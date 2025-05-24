@@ -1,4 +1,25 @@
 <x-layout :title="'Editar Respuestas del Formulario'">
+    <script>
+        function calendarComponent(initialSelectedDays = []) {
+            return {
+                currentPage: 1,
+                totalPages: 12,
+                selectedDays: initialSelectedDays,
+                toggleSelection(dayId) {
+                    if (this.selectedDays.includes(dayId)) {
+                        this.selectedDays = this.selectedDays.filter(id => id !== dayId);
+                    } else {
+                        this.selectedDays.push(dayId);
+                    }
+                },
+                isSelected(dayId) {
+                    return this.selectedDays.includes(dayId);
+                }
+            };
+        }
+
+    </script>
+
     <div class="container mx-auto py-10 px-6">
         <!-- Encabezado -->
         <div class="text-center mb-6">
@@ -66,13 +87,120 @@
                                     @break
 
                                 @case(5)
-                                    <!-- Pregunta Calendario Múltiple -->
-                                    <div class="relative mt-2">
-                                        <input type="text" name="answers[{{ $answer->id }}][respuesta]" id="multi-date-picker-{{ $answer->id }}"
-                                               class="multi-date-picker mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                               value="{{ $answer->respuesta }}" required />
+
+                                    <!-- Pregunta Calendario Múltiple-->
+                                    <div x-data="calendarComponent({{ json_encode($answer->respuesta) }})" class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+                                        @foreach($calendars as $i=>$month)
+                                            <div x-show="currentPage == {{ $i+1 }}">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <h2 class="text-lg font-semibold mb-4">{{$month['month']}}</h2>
+                                                    @if($calendars->count() > 1)
+                                                        <div class="flex">
+                                                            <!-- Botón de mes anterior -->
+                                                            <button
+                                                                type="button"
+                                                                x-on:click="if (currentPage != 1) currentPage = currentPage - 1"
+                                                                :disabled="currentPage == 1"
+                                                                class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-l-md flex items-center justify-center w-10 h-10 border-r-2 border-white"
+                                                                :class="{ 'opacity-50': currentPage == 1 }">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                                                    <path d="M15 19l-7-7 7-7"/>
+                                                                </svg>
+                                                            </button>
+
+                                                            <!-- Botón de mes siguiente -->
+                                                            <button
+                                                                type="button"
+                                                                x-on:click="if (currentPage != totalPages) currentPage = currentPage + 1"
+                                                                :disabled="currentPage == totalPages"
+                                                                class="px-3 py-1 bg-sky-900 text-white cursor-pointer disabled:bg-gray-400 transition-all duration-200 ease-in-out rounded-r-md flex items-center justify-center w-10 h-10"
+                                                                :class="{ 'opacity-50': currentPage == totalPages }">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                                                                    <path d="M9 5l7 7-7 7"/>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="grid grid-cols-7 gap-0">
+                                                    @php
+                                                        $dayOfWeekNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+                                                    @endphp
+                                                    @foreach($dayOfWeekNames as $dayName)
+                                                        <div class="text-center text-xs font-semibold text-gray-500 py-2">
+                                                            {{ $dayName }}
+                                                        </div>
+                                                    @endforeach
+                                                    @foreach($month['days'] as $dia)
+                                                        @php
+                                                            $heatMapColors = [
+                                                                'bg-sky-200 text-sky-800', // 0
+                                                                'bg-sky-200 text-sky-800', // 1
+                                                                'bg-sky-200 text-sky-800', // 2
+                                                                'bg-sky-200 text-sky-800', // 3
+                                                                'bg-sky-500 text-white',    // 4
+                                                                'bg-sky-500 text-white',    // 5
+                                                                'bg-sky-500 text-white',    // 6
+                                                                'bg-sky-500 text-white',    // 7
+                                                                'bg-sky-800 text-white',    // 8
+                                                                'bg-sky-800 text-white',    // 9
+                                                                'bg-sky-800 text-white',   // 10
+                                                            ];
+                                                            $color = !$dia['is_current_month'] ? 'bg-gray-100 text-black' : $heatMapColors[$dia['value'] ?? 0];
+                                                        @endphp
+
+                                                        @if($dia['is_current_month'])
+                                                            <div
+                                                                class="p-0 border rounded text-center cursor-pointer"
+                                                                :class="isSelected('{{ $dia['id'] }}') ? 'text-white bg-gray-500' : '{{ $color }}'"
+                                                                @click="toggleSelection('{{ $dia['id'] }}')">
+                                                                <div class="text-sm font-bold py-5">{{ \Carbon\Carbon::parse($dia['date'])->format('d') }}</div>
+                                                            </div>
+                                                        @else
+                                                            <div
+                                                                class="p-0 border rounded text-center cursor-pointer"
+                                                                :class="'{{ $color }}'">
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                                <p class="italic text-sm text-gray-500 mt-4">
+                                                    Este gráfico tiene como objetivo reflejar los días en los que la demanda es más alta, lo cual puede influir en la probabilidad de que una solicitud sea aceptada, ya que una mayor cantidad de peticiones en esos días podría generar una mayor competencia.
+                                                </p>
+
+                                                <div class="mt-6">
+                                                    <h3 class="text-lg font-semibold mb-4">Leyenda de colores</h3>
+                                                    <div class="grid grid-cols-2 gap-4">
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-sky-200 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Baja demanda</span>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-sky-500 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Demanda moderada</span>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-sky-800 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Alta demanda</span>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-gray-100 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Días fuera del mes actual</span>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-gray-500 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Día seleccionado</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Campo oculto para almacenar los días seleccionados -->
+                                                <input type="hidden" name="answers[{{ $answer->id }}][respuesta]" :value="JSON.stringify(selectedDays)">
+                                            </div>
+                                        @endforeach
                                     </div>
                                     @break
+
                                 @case(6)
                                     <!-- Pregunta Texto Libre -->
                                     <div class="mt-2">

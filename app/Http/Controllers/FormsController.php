@@ -524,7 +524,9 @@ class FormsController extends Controller
             ->with('question')
             ->get();
 
-        return view('forms.editresults', compact('formulario', 'answers'));
+        $calendars = self::heatMap();
+
+        return view('forms.editresults', compact('formulario', 'answers', 'calendars'));
     }
 
     public function updateResults(Request $request, $formId)
