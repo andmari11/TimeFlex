@@ -173,22 +173,54 @@
         </div>
     @endif
 </x-layout>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        flatpickr("#start_date", {
+            dateFormat: "Y-m-d H:i",
+            enableTime: true,
+            time_24hr: true
+        });
+
+        flatpickr("#end_date", {
+            dateFormat: "Y-m-d H:i",
+            enableTime: true,
+            time_24hr: true
+        });
+    });
+</script>
+
+
+<script>
+
+    function disableScroll() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    function enableScroll() {
+        document.body.style.overflow = '';
+    }
+
     function showDuplicatePopup(formId) {
         document.getElementById(`duplicate-modal-${formId}`).classList.remove('hidden');
+        disableScroll();
     }
 
     function closeDuplicatePopup(formId) {
         document.getElementById(`duplicate-modal-${formId}`).classList.add('hidden');
+        enableScroll();
     }
 
-    // Mostrar el modal de confirmación para eliminar
     function showDeletePopup(formId) {
         document.getElementById(`delete-modal-${formId}`).classList.remove('hidden');
+        disableScroll();
     }
 
-    // Ocultar el modal de confirmación para eliminar
     function closeDeletePopup(formId) {
         document.getElementById(`delete-modal-${formId}`).classList.add('hidden');
+        enableScroll();
     }
+
 </script>
