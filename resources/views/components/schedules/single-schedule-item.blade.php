@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<div class="p-4 bg-white shadow rounded-xl relative min-h-[200px] flex flex-col justify-between" x-data="{ openModal: false }">
+<div class="p-4 bg-white shadow rounded-xl relative min-h-[200px] flex flex-col justify-between" x-data="{ openModalEliminacion: false }">
     <!-- Botón de opciones -->
     <div class="absolute top-2 right-2" x-data="{ open_options_menu: false }">
         @if(auth()->user()->role == 'admin')
@@ -29,9 +29,9 @@
                    class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
                     Editar
                 </a>
-                <button
-                    class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left"
-                    onclick="event.preventDefault(); document.getElementById('delete-form-{{$schedule->id}}').submit();">
+
+                <button @click="openModalEliminacion = true"
+                        class="block px-4 py-2 text-gray-800 hover:bg-red-100 text-sm transition-all w-full text-left">
                     Eliminar
                 </button>
 
@@ -43,7 +43,29 @@
         @endif
     </div>
 
-    <!-- Contenido principal -->
+    <!-- Modal de confirmación -->
+    <div x-show="openModalEliminacion" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6">
+            <h2 class="text-lg font-bold mb-4">Confirmar eliminación</h2>
+            <p class="text-gray-700 mb-4">¿Estás seguro de que deseas eliminar este elemento? Esta acción no se puede deshacer.</p>
+
+            <div class="flex justify-end space-x-4">
+                <button @click="openModalEliminacion = false"
+                        class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
+                    Cancelar
+                </button>
+                <form method="POST" action="/horario/{{$schedule->id}}/delete">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                        Confirmar eliminación
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Contenido principal -->
     <div class="flex flex-col gap-2 mt-4">
         <p class="text-lg  text-black">
             <strong>ID:</strong> {{ $schedule->name }}
