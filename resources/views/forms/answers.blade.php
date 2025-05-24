@@ -49,9 +49,11 @@
                             class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                         <option value="" {{ request('section_id') === null ? 'selected' : '' }}>Todas las secciones</option>
                         @foreach($sections as $section)
-                            <option value="{{ $section['id'] }}" {{ request('section_id') == $section['id'] ? 'selected' : '' }}>
-                                {{ $section['name'] }}
-                            </option>
+                            @if($section['id'] != 0)
+                                <option value="{{ $section['id'] }}" {{ request('section_id') == $section['id'] ? 'selected' : '' }}>
+                                    {{ $section['name'] }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -81,6 +83,16 @@
         @else
             <div class="space-y-8">
                 @foreach($formularios as $formulario)
+                    @php
+                        $hasResponses = $formulario->questions->some(function ($question) {
+                            return $question->results->isNotEmpty();
+                        });
+                    @endphp
+
+                    @if(!$hasResponses)
+                        @continue
+                    @endif
+
                     <div class="bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 p-6">
                         <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ $formulario->title }}</h2>
                         <p class="text-gray-600 text-sm mb-4">{{ $formulario->summary }}</p>
