@@ -1,23 +1,30 @@
 <x-layout :title="'Editar Respuestas del Formulario'">
     <script>
         function calendarComponent(initialSelectedDays = []) {
+            const parsedSelectedDays = typeof initialSelectedDays === 'string'
+                ? initialSelectedDays.split(',').map(day => day.replace(/[\[\]"]/g, '').trim())
+                : Array.isArray(initialSelectedDays)
+                    ? initialSelectedDays.map(day => day.replace(/[\[\]"]/g, '').trim())
+                    : [];
+
             return {
                 currentPage: 1,
                 totalPages: 12,
-                selectedDays: initialSelectedDays,
+                selectedDays: parsedSelectedDays,
                 toggleSelection(dayId) {
-                    if (this.selectedDays.includes(dayId)) {
-                        this.selectedDays = this.selectedDays.filter(id => id !== dayId);
+                    const cleanedDayId = dayId.replace(/[\[\]]/g, '').trim();
+                    if (this.selectedDays.includes(cleanedDayId)) {
+                        this.selectedDays = this.selectedDays.filter(id => id !== cleanedDayId);
                     } else {
-                        this.selectedDays.push(dayId);
+                        this.selectedDays.push(cleanedDayId);
                     }
+                    this.selectedDays = [...new Set(this.selectedDays)];
                 },
                 isSelected(dayId) {
                     return this.selectedDays.includes(dayId);
                 }
             };
         }
-
     </script>
 
     <div class="container mx-auto py-10 px-6">
