@@ -32,6 +32,31 @@
                                     <!-- Previsualización de imagen -->
                                     <img src="{{ route('file.show', $answer->file->id) }}" alt="{{ $answer->file->name }}" class="mt-4 max-w-full h-auto rounded-lg shadow-md">
                                 @endif
+                            @elseif($answer->id_question_type == 4)
+                                @if($answer->shiftTypes->period === 0)
+                                    ({{ \Carbon\Carbon::parse($answer->shiftTypesstart)->format('d/m/Y H:i') }} - {{ \Carbon\Carbon::parse($answer->shiftTypes->end)->format('d/m/Y H:i') }}) -
+                                @else
+                                    ({{ \Carbon\Carbon::parse($answer->shiftTypes->start)->format('H:i') }} - {{ \Carbon\Carbon::parse($answer->shiftTypes->end)->format('H:i') }}) -
+                                @endif
+                                @switch($answer->shiftTypes->period)
+                                    @case(0)
+                                        Una sola vez
+                                        @break
+                                    @case(1)
+                                        Diaria
+                                        @break
+                                    @case(2)
+                                        Semanal
+                                        @break
+                                    @case(3)
+                                        Mensual
+                                        @break
+                                    @case(4)
+                                        Anual
+                                        @break
+                                    @default
+                                        Periodo no definido
+                                @endswitch
                             @else
                                 <!-- Mostrar texto normal -->
                                 <p class="text-gray-800 mt-1">{{ $answer->respuesta }}</p>

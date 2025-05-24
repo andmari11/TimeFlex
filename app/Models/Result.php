@@ -52,6 +52,11 @@ class Result extends Model
         return $this->belongsTo(File::class, 'respuesta', 'id');
     }
 
+    public function shiftTypes()
+    {
+        return $this->belongsTo(ShiftType::class, 'respuesta', 'id');
+    }
+
     public function schedule(){
 
         return $this->belongsTo(Schedule::class, 'id_schedule', 'id');
