@@ -3,7 +3,7 @@
 <x-layout :title="'Estadísticas'">
     <x-page-heading>Bienvenido a la página de estadísticas</x-page-heading>
     <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
-        <div id="totalShiftsHours" style="width:50%; height:400px;"></div>
+        <div id="totalShiftsHours" style="width:49%; height:400px;"></div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 fetch('/total-shifts-hours', {
@@ -38,7 +38,7 @@
                     .catch(error => console.error('Error al cargar los datos de horas trabajadas: ', error));
             });
         </script>
-        <div id="solicitudescambioturno" style="width:50%; height:400px;"></div>
+        <div id="solicitudescambioturno" style="width:49%; height:400px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 fetch('/user-shift-exchanges', {
@@ -108,7 +108,12 @@
                     .catch(error => console.error('Error al cargar los datos de solicitudes de cambios de turno', error));
             });
         </script>
-        <div id="solicitudesvacaciones" style="width:50%; height:400px;"></div>
+    </div>
+
+    <div style="margin-top: 20px;"></div>
+
+    <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+        <div id="solicitudesvacaciones" style="width:49%; height:400px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 fetch('/user-holidays-evolution', {
@@ -178,7 +183,7 @@
                     .catch(error => console.error('Error al cargar los datos de solicitudes de vacaciones', error));
             });
         </script>
-        <div id="burbujasMesTurnos" style="width:50%; height:400px;"></div>
+        <div id="burbujasMesTurnos" style="width:49%; height:400px;"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 fetch('/monthly-shift-satisfaction', {
@@ -231,7 +236,10 @@
                     .catch(error => console.error('Error al cargar el gráfico de burbujas:', error));
             });
         </script>
-
-
+        <div style="display: flex; justify-content: center; margin-top: 30px;">
+            <button onclick="window.history.back()" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Volver
+            </button>
+        </div>
     </div>
 </x-layout>
