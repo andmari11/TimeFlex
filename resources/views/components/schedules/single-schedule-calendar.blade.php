@@ -50,7 +50,9 @@
                     @if(!isset($showButtons) or $showButtons)
                         <div class="flex space-x-0">
                             <a href="/horario/{{ $schedule->id }}" class="bg-sky-900 text-white text-s font-semibold py-2 px-4 rounded-l focus:outline-none">Horario de equipo</a>
-                            <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                            @if(auth()->user()->role === "employee")
+                                <a href="/horario/personal/{{ $schedule->id  }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4  focus:outline-none">Horario personal</a>
+                            @endif
                             <a href="/estadisticashorario/{{ $schedule->section->id }}" class="bg-gray-200 text-black text-s font-semibold py-2 px-4 rounded-r focus:outline-none">Estadísticas</a>
                         </div>
                     @endif
