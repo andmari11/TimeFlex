@@ -236,7 +236,7 @@
                     .catch(error => console.error('Error al cargar el gráfico de burbujas:', error));
             });
         </script>
-        <div style="display: flex; justify-content: center; margin-top: 30px;">
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
             <button onclick="window.history.back()" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
                 Volver
             </button>

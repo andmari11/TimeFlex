@@ -15,6 +15,12 @@
 <x-layout :title="'Dashboard'">
     <x-page-heading>Mi Dashboard</x-page-heading>
 
+    <div style="display: flex; justify-content: center; margin-top: -25px;">
+        <button onclick="window.location.href='/menu'" style="padding: 0; font-size: 16px; background: none; color: gray; border: none; text-decoration: underline; cursor: pointer;">
+            Volver al menú principal
+        </button>
+    </div>
+
     <div id="midashboard" style="width: 100%; height: 100%"></div>
 
     <script>
