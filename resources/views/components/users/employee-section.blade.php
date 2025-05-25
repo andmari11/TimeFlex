@@ -39,6 +39,13 @@
             fetch(`/user/${id}/shift-distribution`) // sacamos los datos del endpoint definido
                 .then(res => res.json())
                 .then(data => {
+                    const entradas = Object.entries(data);
+                    const total = entradas.reduce((acc, [, value]) => acc + value, 0);
+
+                    if (total < 1) {
+                        document.getElementById(`statsuser-${id}`).innerHTML = '<div style="text-align:center; color:#666; font-weight:bold; font-size:1rem;">No dispones de turnos asignados</div>';
+                        return;
+                    }
                     const seriesData = Object.entries(data).map(([name, value]) => ({ name, y: value }));
 
                     const chart = Highcharts.chart(`statsuser-${id}`, {
