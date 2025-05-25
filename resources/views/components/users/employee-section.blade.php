@@ -1,5 +1,13 @@
 @vite(['resources/js/app.js'])
 @props(['employee', 'showGraphs' => true])
+@php
+    use Carbon\Carbon;
+    $mesActual = Carbon::now()->format('F');
+    // obtenemos el horario para el mes actual de la seccion del empleado seleccionado
+    $horario = $employee->section->schedules()->where('name', 'like', '%' . $mesActual . '%')
+        ->latest()
+        ->first();
+@endphp
 
 <div class="p-4 bg-blue-50 shadow rounded-xl my-1 {{ !isset($showGraphs) or $showGraphs ? 'my-1' : 'my-5' }} w-full max-w-sm mx-auto ">
     <div class="flex items-center justify-center">
@@ -9,9 +17,6 @@
         <h3 class="text-xl text-gray-700 my-2 font-bold">{{ $employee->name }}</h3>
         <h3 class="text-lg text-gray-700 my-2 bg-white/10 hover:bg-white/35 px-3 py-1 rounded-xl">{{ $employee->section->name }}</h3>
         <a class="text-lg text-gray-700 my-2 hover:underline">{{ $employee->email }}</a>
-        @php
-            $horario = $employee->section->schedules()->latest()->first();
-        @endphp
         <div class="min-h-16 flex items-center justify-center mb-3">
             @if($horario)
                 <a href="/horario/personal/{{ $horario->id }}" class="bg-sky-700 hover:bg-sky-900 px-4 py-3 rounded-xl text-xl text-white font-bold">Ver horario</a>
