@@ -55,7 +55,7 @@
 
 </head>
 
-<body class="h-full bg-gray-100">
+<body class="h-full {{ $background ?? 'bg-gray-100' }}">
     @auth
         <!-- llamadas para ver el numero de notificaciones -->
         <script>
