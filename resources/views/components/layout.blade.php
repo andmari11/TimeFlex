@@ -56,48 +56,50 @@
 </head>
 
 <body class="h-full bg-gray-100">
-    <!-- llamadas para ver el numero de notificaciones -->
-    <script>
-        function checkUnreadNotifications() {
-            fetch('/unread-notifications', {
-                credentials: 'same-origin',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const notificationDot = document.getElementById('notification-dot');
-                    const notificationsList = document.getElementById('notifications-list');
-
-                    if (data.length > 0) {
-                        notificationDot.classList.remove('hidden');
-                    } else {
-                        notificationDot.classList.add('hidden');
-                    }
-
-                    if (data.length > 0) {
-                        notificationsList.innerHTML = '';
-                        const notificationCenterURL = '/notificationspanel'; // defino ruta al centro de notificaciones
-                        data.forEach(notification => {
-                            const notificationElement = document.createElement('a');
-                            notificationElement.href = notification.url ? notification.url : `${notificationCenterURL }?tipo=${notification.tipo}`;
-                            notificationElement.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:underline', 'hover:rounded-md');
-                            notificationElement.textContent = notification.message;
-
-                            notificationsList.appendChild(notificationElement);
-                        });
-                    } else {
-                        notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm hover:rounded-md text-gray-700 hover:bg-gray-100">No hay notificaciones nuevas</a>';
+    @auth
+        <!-- llamadas para ver el numero de notificaciones -->
+        <script>
+            function checkUnreadNotifications() {
+                fetch('/unread-notifications', {
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                     }
                 })
-                .catch(error => console.error('Error al obtener las notificaciones:', error));
-        }
+                    .then(response => response.json())
+                    .then(data => {
+                        const notificationDot = document.getElementById('notification-dot');
+                        const notificationsList = document.getElementById('notifications-list');
 
-        // Llamar a la función al cargar la página y cada segundo para actualizar
-        setInterval(checkUnreadNotifications, 1000);
-        checkUnreadNotifications(); // Llamada inicial para obtener las notificaciones al cargar la página
-    </script>
+                        if (data.length > 0) {
+                            notificationDot.classList.remove('hidden');
+                        } else {
+                            notificationDot.classList.add('hidden');
+                        }
+
+                        if (data.length > 0) {
+                            notificationsList.innerHTML = '';
+                            const notificationCenterURL = '/notificationspanel'; // defino ruta al centro de notificaciones
+                            data.forEach(notification => {
+                                const notificationElement = document.createElement('a');
+                                notificationElement.href = notification.url ? notification.url : `${notificationCenterURL }?tipo=${notification.tipo}`;
+                                notificationElement.classList.add('block', 'px-4', 'py-2', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:underline', 'hover:rounded-md');
+                                notificationElement.textContent = notification.message;
+
+                                notificationsList.appendChild(notificationElement);
+                            });
+                        } else {
+                            notificationsList.innerHTML = '<a href="#" class="block px-4 py-2 text-sm hover:rounded-md text-gray-700 hover:bg-gray-100">No hay notificaciones nuevas</a>';
+                        }
+                    })
+                    .catch(error => console.error('Error al obtener las notificaciones:', error));
+            }
+
+            // Llamar a la función al cargar la página y cada segundo para actualizar
+            setInterval(checkUnreadNotifications, 1000);
+            checkUnreadNotifications(); // Llamada inicial para obtener las notificaciones al cargar la página
+        </script>
+    @endauth
 
 
 
@@ -295,30 +297,31 @@
             {{$slot}}
         </main>
     </div>
-    <!-- Inicializamos las notificaciones con los valores guardados en la BD -->
-    <script>
-        function getNotificationsPreferencesData() {
-            return {
-                open: false,
-                settings: {
-                    ayuda: true,
-                    turno: true,
-                    sistema: true,
-                    otras: true,
-                },
-                init() {
-                    fetch('/get-notifications-preferences')
-                        .then(response => response.json())
-                        .then(data => {
-                            this.settings = data;
-                        })
-                        .catch(error => {
-                            console.error('Error cargando las preferencias de notificaciones de la BD :', error);
-                        });
+    @auth
+        <!-- Inicializamos las notificaciones con los valores guardados en la BD -->
+        <script>
+            function getNotificationsPreferencesData() {
+                return {
+                    open: false,
+                    settings: {
+                        ayuda: true,
+                        turno: true,
+                        sistema: true,
+                        otras: true,
+                    },
+                    init() {
+                        fetch('/get-notifications-preferences')
+                            .then(response => response.json())
+                            .then(data => {
+                                this.settings = data;
+                            })
+                            .catch(error => {
+                                console.error('Error cargando las preferencias de notificaciones de la BD :', error);
+                            });
+                    }
                 }
             }
-        }
-    </script>
+        </script>
     <!-- Panel de ajuste de notificaciones -->
     <div
         x-data="getNotificationsPreferencesData()"
@@ -391,6 +394,7 @@
         </script>
 
     </div>
+    @endauth
     @stack('scripts')
 </body>
 </html>
