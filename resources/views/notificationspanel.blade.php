@@ -1,5 +1,10 @@
 <x-layout title="Centro de Notificaciones">
     <x-page-heading>Bienvenido a tu centro de notificaciones</x-page-heading>
+    <div style="display: flex; justify-content: center; margin-top: -25px;">
+        <button onclick="window.location.href='/menu'" style="padding: 0; font-size: 16px; background: none; color: gray; border: none; text-decoration: underline; cursor: pointer;">
+            Volver al menú principal
+        </button>
+    </div>
     <div class="max-w-5xl mx-auto py-10">
         <h1 class="text-3xl font-bold text-sky-900 mb-6 text-center">📬 Notificaciones Recibidas</h1>
         <!-- Filtro para elegir el tipo de notificacion -->
