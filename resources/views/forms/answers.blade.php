@@ -113,6 +113,32 @@
                                                             Descargar archivo: {{ $result->file->name }}
                                                         </a>
                                                         <img src="{{ route('file.show', $result->file->id) }}" alt="{{ $result->file->name }}" class="mt-4 max-w-full h-auto rounded-lg shadow-md">
+                                                    @elseif($question->id_question_type == 4)
+
+                                                        @if($result->shiftTypes->period === 0)
+                                                            ({{ \Carbon\Carbon::parse($result->shiftTypesstart)->format('d/m/Y H:i') }} - {{ \Carbon\Carbon::parse($result->shiftTypes->end)->format('d/m/Y H:i') }}) -
+                                                        @else
+                                                            ({{ \Carbon\Carbon::parse($result->shiftTypes->start)->format('H:i') }} - {{ \Carbon\Carbon::parse($result->shiftTypes->end)->format('H:i') }}) -
+                                                        @endif
+                                                        @switch($result->shiftTypes->period)
+                                                            @case(0)
+                                                                Una sola vez
+                                                                @break
+                                                            @case(1)
+                                                                Diaria
+                                                                @break
+                                                            @case(2)
+                                                                Semanal
+                                                                @break
+                                                            @case(3)
+                                                                Mensual
+                                                                @break
+                                                            @case(4)
+                                                                Anual
+                                                                @break
+                                                            @default
+                                                                Periodo no definido
+                                                        @endswitch
                                                     @else
                                                         <p class="text-gray-900 font-medium">{{ $result->respuesta }}</p>
                                                     @endif
