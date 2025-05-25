@@ -421,7 +421,7 @@
                         }
                     });
                 });
-
+            });
 
                 // Actualizar el valor del deslizador
             document.querySelectorAll('.slider').forEach(function (slider) {
