@@ -84,7 +84,7 @@ class FormFactory extends Factory
                 Question::create([
                     'id_form' => $formulario->id,
                     'title' => "Pregunta genérica $j del formulario {$formulario->title}",
-                    'id_question_type' => rand(1, 3),
+                    'id_question_type' => fake()->randomElement(array_diff(range(1, 9), [4, 5])),
                 ]);
             }
         }

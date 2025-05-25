@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\File;
 use App\Models\Holidays;
 use App\Models\Schedule;
 use App\Models\Shift;
@@ -17,6 +18,7 @@ use App\Models\UserNotificationsPreference;
 use Database\Factories\ExpectedHoursFactory;
 use Database\Factories\HolidaysFactory;
 use Database\Factories\NotificationFactory;
+use Database\Factories\ResultFactory;
 use Database\Factories\ScheduleFactory;
 use Database\Factories\SectionFactory;
 use Database\Factories\ShiftExchangesFactory;
@@ -116,7 +118,7 @@ class DatabaseSeeder extends Seeder
                 }
             });
         });
-
-
+        File::factory()->count(10)->create();
+        ResultFactory::createMultiples();
     }
 }
