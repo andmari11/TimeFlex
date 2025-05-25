@@ -5,7 +5,7 @@
     <div class="flex justify-between">
 
         <x-schedules.single-schedule-calendar class="basis-[50%] flex-grow" :schedule="$schedule"  :months="$months" :showButtons="false"></x-schedules.single-schedule-calendar>
-        <div class="w-full max-w-xl flex-grow mb-10 flex-column align-items-center justify-content-center p-4 mr-10 w-30 shadow rounded-lg bg-white">
+        <div class="w-full max-w-xl flex-grow max-h-[1600px] mb-10 flex-column align-items-center justify-content-center p-4 mr-10 w-30 shadow rounded-lg bg-white">
             <div class="flex justify-end">
                 <!--<h2 class="text-2xl font-bold mb-4">Calendario de equipo de :</h2>-->
                 <div class="flex space-x-0 mb-8">
@@ -19,7 +19,7 @@
                 <div class="px-4 w-full">
                     <x-users.employee-section  :employee="$userToView" :showGraphs="false"></x-users.employee-section>
                 </div>
-                    <div class="m-6">
+                    <div class="m-6 overflow-y-auto max-h-[1100px]">
                         @foreach($usersShifts as $shift)
                             <div class="p-4 bg-blue-50 mb-4 shadow rounded-xl my-1 relative max-w-lg mx-auto" x-data="{ open_options_menu: false }">
 
