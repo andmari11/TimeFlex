@@ -198,11 +198,19 @@ class FastApiController extends Controller
             foreach ($data['satisfabilityJSON'] as $userId => $satisfability) {
                 $user = User::find($userId);
                 if ($user) {
-                    Satisfaction::create([
-                        'user_id' => $user->id,
-                        'score' => $satisfability,
-                        'schedule_id' => $schedule->id
-                    ]);
+                    $satisfaction = Satisfaction::where('user_id', $user->id)
+                        ->where('schedule_id', $schedule->id)
+                        ->first();
+
+                    if ($satisfaction) {
+                        $satisfaction->update(['score' => $satisfability]);
+                    } else {
+                        Satisfaction::create([
+                            'user_id' => $user->id,
+                            'score' => $satisfability,
+                            'schedule_id' => $schedule->id
+                        ]);
+                    }
 
                     foreach ($user->holidays as $holiday) {
                         $userShifts = $user->shifts->where('schedule_id', $schedule->id);
