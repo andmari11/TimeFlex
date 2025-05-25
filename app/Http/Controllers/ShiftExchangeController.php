@@ -228,6 +228,13 @@ class ShiftExchangeController extends Controller
         $notification->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
         $notification->save();
 
+        $notification2 = new Notification();
+        $notification2->tipo = 'turno';
+        $notification2->user_id = $exchange->receiver_id ?? null;
+        $notification2->message = 'Han aceptado tu solicitud de cambio de turno';
+        $notification2->url = '/horario/' . $exchange->shiftReceiver->schedule->id . '/turno/' . $exchange->shift_receiver_id;
+        $notification2->save();
+
         $exchange->update(['status' => 'accepted']);
 
         Notification::where('shift_exchange_id', $id)->delete();

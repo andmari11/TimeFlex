@@ -1,4 +1,4 @@
-<x-layout :title="'Editar Horario'">
+<x-layout :title="'Editar horario'">
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 class="text-4xl text-center font-bold text-gray-800 mt-10 mb-5">Editar Horario</h1>
         <form method="POST" action="/horario/{{ $schedule->id }}/edit" enctype="multipart/form-data"
@@ -51,7 +51,7 @@
 
                 <x-forms.field class=" w-100 d-flex justify-content-between">
                     <a href="/horario/{{$schedule->id}}/edit/shift-type/create"
-                       class="rounded-md bg-blue-900 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+                       class="rounded-md bg-blue-900 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
                         Añadir turnos
                     </a>
                     <a href="/horario/{{ $schedule->id }}/regenerate-shifts"
@@ -89,7 +89,7 @@
 
                 <div class="mt-10 mx-4 flex items-center justify-between">
                     <a href="/horario"
-                       class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                       class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Cancelar
                     </a>
                     <x-forms.button>Actualizar horario</x-forms.button>

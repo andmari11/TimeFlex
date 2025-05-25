@@ -307,7 +307,7 @@ class ScheduleController extends Controller
             'end_date' => 'required|date|after:start_date'
 
         ]);
-        $this->regenerateShifts($id);
+        $this->regenerateShifts($id, "not_optimized");
 
         // Encontrar el horario y actualizarlo
         $schedule = Schedule::findOrFail($id);
@@ -332,7 +332,7 @@ class ScheduleController extends Controller
         return redirect('/horario');
     }
 
-    public function regenerateShifts($id)
+    public function regenerateShifts($id, $status = 'regenerado')
     {
         $schedule = Schedule::findOrFail($id);
 
@@ -340,7 +340,7 @@ class ScheduleController extends Controller
         $schedule->shiftTypes()->each(function ($shiftType) {
             ShiftTypeController::generateShifts($shiftType);
         });
-        $schedule->status = 'regenerado';
+        $schedule->status = $status;
         $schedule->save();
         return redirect('/horario/'.$id );
     }

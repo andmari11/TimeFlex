@@ -1,6 +1,6 @@
 <x-layout :title="'Registro'">
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <h1 class="text-4xl text-center font-bold text-gray-800 mt-10 mb-5">Crear Nuevo Horario</h1>
+        <h1 class="text-4xl text-center font-bold text-gray-800 mt-10 mb-5">Crear nuevo horario</h1>
         <form method="POST" action="/horario-registrar" enctype="multipart/form-data"
               class="bg-white border border-gray-200 rounded-lg shadow-lg p-8 max-w-4xl w-full mx-auto mt-10 mb-20">
             @csrf

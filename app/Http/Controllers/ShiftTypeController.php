@@ -141,8 +141,12 @@ class ShiftTypeController extends Controller
             $currentDate = \Carbon\Carbon::parse($shiftType->start);
             $endDate = \Carbon\Carbon::parse($shiftType->end);
         }
-        else{
+        else if($period==1){
             $currentDate = $startDate->copy();
+        }
+        else{
+            $currentDate = \Carbon\Carbon::parse($shiftType->start);
+            $endDate = \Carbon\Carbon::parse($shiftType->end);
         }
 
         while ($currentDate->lte($endDate)) {

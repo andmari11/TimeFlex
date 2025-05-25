@@ -1,7 +1,7 @@
 <x-layout :title="'Crear Nuevo Formulario'">
     <div class="container mx-auto py-10 px-6">
         <div class="text-center mb-10">
-            <h1 class="text-4xl font-bold text-gray-800">Crear Nuevo Formulario</h1>
+            <h1 class="text-4xl font-bold text-gray-800">Crear nuevo formulario</h1>
             <p class="text-gray-600 mt-2">Configura los detalles del formulario y agrega preguntas dinámicamente.</p>
         </div>
 
@@ -301,18 +301,26 @@
     </script>
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#start_date", {
-                enableTime: true, // Habilitar selección de tiempo
-                dateFormat: "Y-m-d H:i", // Formato de fecha y hora (datetime)
-                time_24hr: true // Usar formato de 24 horas
-            });
-
-            flatpickr("#end_date", {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-                time_24hr: true
+            document.querySelectorAll('#start_date, #end_date').forEach(function (element) {
+                flatpickr(element, {
+                    dateFormat: "Y-m-d",
+                    defaultDate: element.value.split(", "), // Carga valores anteriores
+                    locale: {
+                        firstDayOfWeek: 0, // Lunes
+                        weekdays: {
+                            shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                            longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                        },
+                        months: {
+                            shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                            longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        },
+                    }
+                });
             });
         });
     </script>
