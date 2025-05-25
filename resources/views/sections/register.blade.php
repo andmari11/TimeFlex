@@ -1,4 +1,6 @@
 <x-layout :title="'Registro'">
+    <x-page-heading>Menú de creación de sección</x-page-heading>
+
     <div class=" flex items-center justify-center ">
         <form method="POST" action="/register-section" enctype="multipart/form-data" class="w-full max-w-md bg-white p-8 rounded-lg shadow-md mt-10">
             @csrf
