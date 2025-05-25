@@ -307,6 +307,7 @@ class ScheduleController extends Controller
             'end_date' => 'required|date|after:start_date'
 
         ]);
+        $this->regenerateShifts($id);
 
         // Encontrar el horario y actualizarlo
         $schedule = Schedule::findOrFail($id);

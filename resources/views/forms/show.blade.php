@@ -234,30 +234,29 @@
                                                     <h3 class="text-lg font-semibold mb-4">Leyenda de colores</h3>
                                                     <div class="grid grid-cols-2 gap-4">
 
+
                                                         <div class="flex items-center">
                                                             <div class="w-6 h-6 bg-sky-200 border rounded"></div>
                                                             <span class="ml-2 text-sm text-gray-700">Baja demanda</span>
                                                         </div>
-
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-gray-100 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Días fuera del mes actual</span>
+                                                        </div>
                                                         <div class="flex items-center">
                                                             <div class="w-6 h-6 bg-sky-500 border rounded"></div>
                                                             <span class="ml-2 text-sm text-gray-700">Demanda moderada</span>
                                                         </div>
-
+                                                        <div class="flex items-center">
+                                                            <div class="w-6 h-6 bg-gray-500 border rounded"></div>
+                                                            <span class="ml-2 text-sm text-gray-700">Día seleccionado</span>
+                                                        </div>
                                                         <div class="flex items-center">
                                                             <div class="w-6 h-6 bg-sky-800 border rounded"></div>
                                                             <span class="ml-2 text-sm text-gray-700">Alta demanda</span>
                                                         </div>
 
-                                                        <div class="flex items-center">
-                                                            <div class="w-6 h-6 bg-gray-100 border rounded"></div>
-                                                            <span class="ml-2 text-sm text-gray-700">Días fuera del mes actual</span>
-                                                        </div>
 
-                                                        <div class="flex items-center">
-                                                            <div class="w-6 h-6 bg-gray-500 border rounded"></div>
-                                                            <span class="ml-2 text-sm text-gray-700">Día seleccionado</span>
-                                                        </div>
                                                     </div>
                                                 </div>
 

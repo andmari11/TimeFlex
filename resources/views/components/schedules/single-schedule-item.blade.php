@@ -1,6 +1,5 @@
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<div class="p-4 bg-white shadow rounded-xl relative min-h-[200px] flex flex-col justify-between" x-data="{ openModalEliminacion: false }">
+<div class="p-4 bg-white shadow rounded-xl relative min-h-[200px] flex flex-col justify-between" x-data="{ openModalEliminacion: false, openModal: false }">
     <!-- Botón de opciones -->
     <div class="absolute top-2 right-2" x-data="{ open_options_menu: false }">
         @if(auth()->user()->role == 'admin')
@@ -23,6 +22,10 @@
                     <a href="/horario/{{$schedule->id}}/optimize"
                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
                         Optimizar
+                    </a>
+                    <a href="/horario/{{$schedule->id}}/optimize-debug"
+                       class="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-sm transition-all">
+                        Optimizar modo análisis
                     </a>
                 @endif
                 <a href="/horario/{{$schedule->id}}/edit"
@@ -70,6 +73,7 @@
         <p class="text-lg  text-black">
             <strong>ID:</strong> {{ $schedule->name }}
         </p>
+    @if(auth()->user()->role == 'admin')
 
         <p class="text-lg  text-{{
                 $schedule->status == 'success' ? 'green' :
@@ -90,7 +94,7 @@
             }}
         </p>
 
-        @if($schedule->status == 'failed' && $schedule->simulation_message)
+        @if($schedule->simulation_message)
             <p class="text-gray-700 text-sm">
                 {!! nl2br(e(\Illuminate\Support\Str::limit($schedule->simulation_message, 200, '...'))) !!}
 
@@ -100,8 +104,9 @@
                 </button>
             </p>
         @endif
-    </div>
+        @endif
 
+    </div>
     <!-- Botón de acción -->
     <div class="mt-4">
         <a href="/horario/{{$schedule->id}}"
@@ -113,7 +118,14 @@
     <!-- Modal -->
     <div x-show="openModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 overflow-y-auto max-h-[80vh]">
-            <h2 class="text-lg font-bold mb-4">Mensaje de simulación</h2>
+            <div class="flex justify-between items-center  mb-4">
+                <h2 class="text-lg font-bold">Mensaje de simulación</h2>
+                <button @click="openModal = false" class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
             <div class="text-gray-700 text-sm">
                 {!! nl2br(e($schedule->simulation_message)) !!}
             </div>

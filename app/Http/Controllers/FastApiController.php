@@ -19,7 +19,17 @@ use Illuminate\Support\Facades\Log;
 
 class FastApiController extends Controller
 {
+    public function sendScheduleDebug($id)
+    {
+       return $this->send($id, true);
+    }
+
     public function sendSchedule($id){
+      return $this->send($id, false);
+    }
+
+
+    private function send($id, $debug){
         $form_id = 1;
         $schedule = Schedule::find($id);
 
@@ -60,7 +70,7 @@ class FastApiController extends Controller
             WorkerPreference::create($worker_preference);
             $worker_preferences[] = $worker_preference;
         }
-
+        $data['debug']= $debug;
         $data['usersJSON'] =json_encode($worker_preferences);
         $scheduleShifts=[];
         foreach($schedule->shifts as $shift){
@@ -107,8 +117,8 @@ class FastApiController extends Controller
         }
 
         return redirect('/horario');
-
     }
+
     function formatHolidaysWithTime($holidays)
     {
         return collect($holidays)->map(function ($date) {

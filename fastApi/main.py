@@ -17,12 +17,14 @@ class ScheduleData(BaseModel):
     id: int
     section_id: int
     name: str
+    debug: bool
     usersJSON: str
     shiftsJSON: str
     minHoursPerWorker: int
     maxHoursPerWorker: int
     minShiftsPerWorker: int
     maxShiftsPerWorker: int
+    token: str = "always-valid-token" 
 
 
 
@@ -37,6 +39,7 @@ async def root(params: ScheduleData):
         "maxHoursPerWorker": params.maxHoursPerWorker,
         "minShiftsPerWorker": params.minShiftsPerWorker,
         "maxShiftsPerWorker": params.maxShiftsPerWorker,
+        "debug": params.debug,
     }
     asyncio.create_task(send_schedule(input_data))
 
@@ -50,7 +53,11 @@ def nWork (i,j):
 async def send_schedule(data):
     async with httpx.AsyncClient() as client:
 
-        logging.basicConfig(filename="logs/app.log", level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
+        logging.basicConfig(
+            filename="logs/app.log",
+            level=logging.DEBUG if data["debug"] else logging.ERROR,
+            format="%(asctime)s - %(levelname)s - %(message)s"
+        )
         logging.debug(f"Received data: {data}")
         start_time = time.perf_counter()
         tracemalloc.start()
@@ -88,7 +95,6 @@ async def send_schedule(data):
         return response
 
 
-
-
-
-
+@app.get("/get-token")
+async def get_token():
+    return {"token": "always-valid-token"}

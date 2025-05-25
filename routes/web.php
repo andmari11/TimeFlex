@@ -22,6 +22,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Middleware\HistorialAccesosMiddleware;
+use http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -121,7 +122,9 @@ Route::post('/horario-registrar', [ScheduleController::class, 'store'])->middlew
 Route::get('/horario/{id}/edit', [ScheduleController::class, 'edit'])->middleware('auth');
 Route::patch('/horario/{id}/edit', [ScheduleController::class, 'update'])->middleware('auth');
 Route::delete('/horario/{id}/delete', [ScheduleController::class, 'destroy'])->middleware('auth');
+
 Route::get('/horario/{id}/optimize', [FastApiController::class, 'sendSchedule'])->middleware('auth');
+Route::get('/horario/{id}/optimize-debug', [FastApiController::class, 'sendScheduleDebug'])->middleware('auth');
 Route::get('/horario/{id}/regenerate-shifts', [ScheduleController::class, 'regenerateShifts'])->middleware('auth');
 
 Route::get('/horario/{id}', [ScheduleController::class, 'show'])->middleware('auth');
@@ -191,3 +194,6 @@ Route::get('/unread-notifications', [NotificationController::class, 'getUnreadNo
 
 Route::get('/export-csv', [ExportController::class, 'export'])->middleware('auth');
 
+Route::get('/get-token', function () {
+    return response()->json(['token' => 'always-valid-token']);
+});

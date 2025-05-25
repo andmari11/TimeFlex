@@ -30,10 +30,9 @@
                     <select class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             name="period"
                             id="period"
-                            value="{{old('period') ?? $shiftType->period}}"
                             required>
                         @foreach([0 => 'Una sola vez', 1 => 'Diario', 2 => 'Semanal', 3 => 'Mensual', 4 => 'Anual'] as $key => $label)
-                            <option value="{{ $key }}" {{ $key == (old('period') ?? $schedule->period) ? 'selected' : '' }}>
+                            <option value="{{ $key }}" {{ $key == (old('period') ?? $shiftType->period) ? 'selected' : '' }}>
                                 {{ $label }}
                             </option>
                         @endforeach

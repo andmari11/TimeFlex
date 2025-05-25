@@ -63,6 +63,7 @@ def optimize(data, logging):
     N_MAX_HOURS_PER_WORKER = data.get("maxHoursPerWorker", 999999)*5
     N_MIN_HOURS_PER_WORKER = data.get("minHoursPerWorker", 0)
     N_MIN_SHIFTS_PER_WORKER = data.get("minShiftsPerWorker", 0)
+    DEBUG = data.get("debug", True)
     logging.debug(f"Configuración de pesos: PREFERRED_SHIFTS_WEIGHT={PREFERRED_SHIFTS_WEIGHT}, HOLIDAYS_WEIGHT={HOLIDAYS_WEIGHT}, N_MAX_SHIFTS_PER_WORKER={N_MAX_SHIFTS_PER_WORKER}, N_MAX_HOURS_PER_WORKER={N_MAX_HOURS_PER_WORKER}, N_MIN_HOURS_PER_WORKER={N_MIN_HOURS_PER_WORKER}, N_MIN_SHIFTS_PER_WORKER={N_MIN_SHIFTS_PER_WORKER}")
 
 
@@ -177,10 +178,7 @@ def optimize(data, logging):
     for i in range(n_workers):
         for day in set(shift.start for shift in shifts):  # dias de turnos
             daily_shifts = [all_workers_shifts[i][j] for j in range(n_shifts) if shifts[j].start.date() == day.date()]
-            if DEBUG:
-                s.assert_and_track(Sum([If(shift, 1, 0) for shift in daily_shifts]) <= 1, f"%worker_{workers[i].user_id}% trabaja más de un turno en el día {day.date()}")
-            else:
-                s.add(Sum([If(shift, 1, 0) for shift in daily_shifts]) <= 1)
+            s.add(Sum([If(shift, 1, 0) for shift in daily_shifts]) <= 1)
 
 
 

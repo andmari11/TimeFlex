@@ -8182,3 +8182,901 @@ Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'applica
 Response content: <Response [200 OK]>
 2025-05-08 15:45:10,380 - DEBUG - close.started
 2025-05-08 15:45:10,380 - DEBUG - close.complete
+2025-05-25 13:55:07,099 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.44303201556714,85.44297415040509,85.44297415399306,85.4429741574074,85.4429741607639,85.44297416452545,85.44297416799768,85.44297417135417]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.44297473466435,85.44297474050927]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.44297519577546,85.44297520179398,85.44297520526621,85.44297520868055,85.44297521203704,85.44297521533565,85.44297521869213,85.4429752220486,85.44297522552084,85.44297522881945]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.44297577708333,85.44297578333334,85.44297578686341,85.44297579050927,85.44297579392362,85.44297579733795,85.44297580069446,85.44297580410881,85.44297580746529,85.44297581087963]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.44297634484954,85.44297634971065,85.44297635324074]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.44297681915509,85.44297682511575]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.44297739270833,85.44297739843749,85.44297740185185,85.44297740520832,85.44297740850695,85.44297741180556,85.44297741510417]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.44303583559028,85.44297797019675,85.44297797378474,85.44297797719908]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.4430363027199,85.44303630821759,85.4429784413773,85.44297844479166]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.44297901163193,85.44297901747684,85.44297902100695,85.44297902436342,85.44297902777778]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [{'id': 2447, 'schedule_id': 21, 'start': '2025-06-02 12:00:00', 'end': '2025-06-02 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2448, 'schedule_id': 21, 'start': '2025-06-03 12:00:00', 'end': '2025-06-03 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2449, 'schedule_id': 21, 'start': '2025-06-04 12:00:00', 'end': '2025-06-04 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2450, 'schedule_id': 21, 'start': '2025-06-05 12:00:00', 'end': '2025-06-05 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2451, 'schedule_id': 21, 'start': '2025-06-06 12:00:00', 'end': '2025-06-06 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2452, 'schedule_id': 21, 'start': '2025-06-09 12:00:00', 'end': '2025-06-09 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2453, 'schedule_id': 21, 'start': '2025-06-10 12:00:00', 'end': '2025-06-10 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2454, 'schedule_id': 21, 'start': '2025-06-11 12:00:00', 'end': '2025-06-11 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2455, 'schedule_id': 21, 'start': '2025-06-12 12:00:00', 'end': '2025-06-12 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2456, 'schedule_id': 21, 'start': '2025-06-13 12:00:00', 'end': '2025-06-13 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2457, 'schedule_id': 21, 'start': '2025-06-16 12:00:00', 'end': '2025-06-16 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2458, 'schedule_id': 21, 'start': '2025-06-17 12:00:00', 'end': '2025-06-17 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2459, 'schedule_id': 21, 'start': '2025-06-18 12:00:00', 'end': '2025-06-18 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2460, 'schedule_id': 21, 'start': '2025-06-19 12:00:00', 'end': '2025-06-19 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2461, 'schedule_id': 21, 'start': '2025-06-20 12:00:00', 'end': '2025-06-20 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2462, 'schedule_id': 21, 'start': '2025-06-23 12:00:00', 'end': '2025-06-23 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2463, 'schedule_id': 21, 'start': '2025-06-24 12:00:00', 'end': '2025-06-24 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2464, 'schedule_id': 21, 'start': '2025-06-25 12:00:00', 'end': '2025-06-25 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2465, 'schedule_id': 21, 'start': '2025-06-26 12:00:00', 'end': '2025-06-26 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2466, 'schedule_id': 21, 'start': '2025-06-27 12:00:00', 'end': '2025-06-27 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2467, 'schedule_id': 21, 'start': '2025-06-30 12:00:00', 'end': '2025-06-30 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2468, 'schedule_id': 21, 'start': '2025-06-02 20:00:00', 'end': '2025-06-02 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2469, 'schedule_id': 21, 'start': '2025-06-03 20:00:00', 'end': '2025-06-03 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2470, 'schedule_id': 21, 'start': '2025-06-04 20:00:00', 'end': '2025-06-04 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2471, 'schedule_id': 21, 'start': '2025-06-05 20:00:00', 'end': '2025-06-05 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2472, 'schedule_id': 21, 'start': '2025-06-06 20:00:00', 'end': '2025-06-06 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2473, 'schedule_id': 21, 'start': '2025-06-09 20:00:00', 'end': '2025-06-09 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2474, 'schedule_id': 21, 'start': '2025-06-10 20:00:00', 'end': '2025-06-10 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2475, 'schedule_id': 21, 'start': '2025-06-11 20:00:00', 'end': '2025-06-11 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2476, 'schedule_id': 21, 'start': '2025-06-12 20:00:00', 'end': '2025-06-12 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2477, 'schedule_id': 21, 'start': '2025-06-13 20:00:00', 'end': '2025-06-13 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2478, 'schedule_id': 21, 'start': '2025-06-16 20:00:00', 'end': '2025-06-16 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2479, 'schedule_id': 21, 'start': '2025-06-17 20:00:00', 'end': '2025-06-17 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2480, 'schedule_id': 21, 'start': '2025-06-18 20:00:00', 'end': '2025-06-18 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2481, 'schedule_id': 21, 'start': '2025-06-19 20:00:00', 'end': '2025-06-19 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2482, 'schedule_id': 21, 'start': '2025-06-20 20:00:00', 'end': '2025-06-20 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2483, 'schedule_id': 21, 'start': '2025-06-23 20:00:00', 'end': '2025-06-23 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2484, 'schedule_id': 21, 'start': '2025-06-24 20:00:00', 'end': '2025-06-24 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2485, 'schedule_id': 21, 'start': '2025-06-25 20:00:00', 'end': '2025-06-25 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2486, 'schedule_id': 21, 'start': '2025-06-26 20:00:00', 'end': '2025-06-26 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2487, 'schedule_id': 21, 'start': '2025-06-27 20:00:00', 'end': '2025-06-27 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2488, 'schedule_id': 21, 'start': '2025-06-30 20:00:00', 'end': '2025-06-30 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31}
+2025-05-25 13:55:07,120 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 13:55:48,140 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 3 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 2), 5), (datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 23), 5)]Worker 4 works shifts [(datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 2), 5), (datetime.date(2025, 6, 18), 5)]Worker 5 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 25), 5), (datetime.date(2025, 6, 26), 5), (datetime.date(2025, 6, 27), 5)]Worker 6 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 17), 5)]Worker 7 works shifts [(datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 24), 5), (datetime.date(2025, 6, 25), 5), (datetime.date(2025, 6, 26), 5)]Worker 8 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 20), 5), (datetime.date(2025, 6, 27), 5)]Worker 9 works shifts [(datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 17), 5), (datetime.date(2025, 6, 23), 5), (datetime.date(2025, 6, 30), 5)]Worker 10 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 20), 5)]Worker 11 works shifts [(datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 19), 5), (datetime.date(2025, 6, 24), 5), (datetime.date(2025, 6, 30), 5)]Worker 12 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 18), 5), (datetime.date(2025, 6, 19), 5)]
+---------- Horario por turno ----------
+Shift 2025-06-02 (1) has workers [False, False, True, True, False, False, False, False, False, True]Shift 2025-06-03 (1) has workers [False, True, False, True, False, False, False, False, True, False]Shift 2025-06-04 (1) has workers [True, False, False, False, False, True, False, True, False, False]Shift 2025-06-05 (1) has workers [False, True, False, False, False, False, False, True, True, False]Shift 2025-06-06 (1) has workers [False, False, False, False, True, False, False, True, True, False]Shift 2025-06-09 (1) has workers [False, False, True, False, True, False, False, True, False, False]Shift 2025-06-10 (1) has workers [False, False, False, False, True, False, True, True, False, False]Shift 2025-06-11 (1) has workers [False, True, False, True, False, False, False, True, False, False]Shift 2025-06-12 (1) has workers [False, False, True, False, True, False, False, False, True, False]Shift 2025-06-13 (1) has workers [True, False, False, False, False, False, False, True, True, False]Shift 2025-06-16 (1) has workers [False, True, False, False, False, False, True, False, True, False]Shift 2025-06-17 (1) has workers [False, False, True, False, False, True, False, False, True, False]Shift 2025-06-18 (1) has workers [False, False, False, True, False, True, False, True, False, False]Shift 2025-06-19 (1) has workers [False, True, True, False, False, False, False, True, False, False]Shift 2025-06-20 (1) has workers [False, True, False, False, False, False, True, False, False, True]Shift 2025-06-23 (1) has workers [False, False, False, False, False, True, False, False, True, True]Shift 2025-06-24 (1) has workers [False, True, True, False, False, False, False, False, False, True]Shift 2025-06-25 (1) has workers [True, False, False, True, False, False, False, False, True, False]Shift 2025-06-26 (1) has workers [False, True, False, False, False, False, True, True, False, False]Shift 2025-06-27 (1) has workers [False, True, False, False, False, False, True, False, False, True]Shift 2025-06-30 (1) has workers [False, False, False, False, True, True, False, True, False, False]Shift 2025-06-02 (5) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-06-03 (5) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-04 (5) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-05 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-06 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-09 (5) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-10 (5) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-11 (5) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-06-12 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-13 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-16 (5) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-06-17 (5) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-18 (5) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-19 (5) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-20 (5) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-06-23 (5) has workers [True, False, False, False, False, False, True, False, False, False]Shift 2025-06-24 (5) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-25 (5) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-26 (5) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-27 (5) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-30 (5) has workers [False, False, False, False, False, False, True, False, True, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+2025-05-25 13:55:48,140 - INFO - Elapsed time: 41.06 seconds
+Current memory usage: 0.10 MB; Peak: 0.38 MB
+
+2025-05-25 13:55:48,156 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-05-25 13:55:48,156 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000238CBCA7020>
+2025-05-25 13:55:48,156 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-25 13:55:48,156 - DEBUG - send_request_headers.complete
+2025-05-25 13:55:48,156 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-25 13:55:48,156 - DEBUG - send_request_body.complete
+2025-05-25 13:55:48,156 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-25 13:55:49,469 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 25 May 2025 11:55:49 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImNUTTVpck8yb21mMFBOYlVuYXdsU2c9PSIsInZhbHVlIjoiQWdMUE5xY1R2TEdkV1hpOUJvcmdrZXpQNkFZM0tQcHpKU1FTY0ZGK3dqOEtvd0Z1NDZVTEs5bnF4aVJBeGl1YnVuUktoTkNEem1qVXBoeWkxUjlvaXFMRVVmcUZBRmg5SGQyRU9sOFlrZXBMaU40TFBsb2M2YmFXZGxLdzYydnIiLCJtYWMiOiI5ZmMzNzg3MjM0M2QwNDRhYjU0MDA0NmYyM2IwNjNlMmM3MmQyZDY4NDEzODdjMTE5OTk4ZWJmMmU5YTYxMDE5IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:55:49 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IlY3ZldSSEY5Y3d4L011NkgyeVJybGc9PSIsInZhbHVlIjoiUFFNUkFRNzZQRGxTM1RuRno0SEJEMUdPRWxQWHhXRkZrdG1BaUZSU3NYUVpMOXlYSXd2L0h5VGZXdGVOdEYyVUh2dG9sbUU3LzJ6clZSdGJ3dkRmK3dCVitJaitNcHJJVzVqc1V2RFZId1R5VlNMRlZoMFhOdTM4Q0xtRDRYKy8iLCJtYWMiOiI5NjhmY2M1Njk3OTNiOTZhZmM2YmEwOWIyNWRiM2U4NjBjNmRjYzdkZDJkZGQ1ZjI4NzQzNzk0NDcyZDQyZTNlIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:55:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-05-25 13:55:49,469 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-05-25 13:55:49,469 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-25 13:55:49,469 - DEBUG - receive_response_body.complete
+2025-05-25 13:55:49,469 - DEBUG - response_closed.started
+2025-05-25 13:55:49,469 - DEBUG - response_closed.complete
+2025-05-25 13:55:49,469 - DEBUG - Solution to send: {
+    "id": 21,
+    "status": "success",
+    "scheduleJSON": {
+        "3": [
+            2449,
+            2456,
+            2464,
+            2468,
+            2471,
+            2472,
+            2473,
+            2475,
+            2478,
+            2483
+        ],
+        "4": [
+            2448,
+            2450,
+            2454,
+            2457,
+            2460,
+            2461,
+            2463,
+            2465,
+            2466,
+            2468,
+            2480
+        ],
+        "5": [
+            2447,
+            2452,
+            2455,
+            2458,
+            2460,
+            2463,
+            2470,
+            2478,
+            2485,
+            2486,
+            2487
+        ],
+        "6": [
+            2447,
+            2448,
+            2454,
+            2459,
+            2464,
+            2474,
+            2479
+        ],
+        "7": [
+            2451,
+            2452,
+            2453,
+            2455,
+            2467,
+            2469,
+            2475,
+            2484,
+            2485,
+            2486
+        ],
+        "8": [
+            2449,
+            2458,
+            2459,
+            2462,
+            2467,
+            2476,
+            2477,
+            2482,
+            2487
+        ],
+        "9": [
+            2453,
+            2457,
+            2461,
+            2465,
+            2466,
+            2469,
+            2479,
+            2483,
+            2488
+        ],
+        "10": [
+            2449,
+            2450,
+            2451,
+            2452,
+            2453,
+            2454,
+            2456,
+            2459,
+            2460,
+            2465,
+            2467,
+            2482
+        ],
+        "11": [
+            2448,
+            2450,
+            2451,
+            2455,
+            2456,
+            2457,
+            2458,
+            2462,
+            2464,
+            2470,
+            2473,
+            2481,
+            2484,
+            2488
+        ],
+        "12": [
+            2447,
+            2461,
+            2462,
+            2463,
+            2466,
+            2471,
+            2472,
+            2474,
+            2476,
+            2477,
+            2480,
+            2481
+        ]
+    },
+    "satisfabilityJSON": {
+        "3": 100.0,
+        "4": 100.0,
+        "5": 0.0,
+        "6": 100.0,
+        "7": 100.0,
+        "8": 100.0,
+        "9": 100.0,
+        "10": 100.0,
+        "11": 100.0,
+        "12": 100.0
+    },
+    "message": [
+        "Elapsed time: 41.06 seconds\nCurrent memory usage: 0.10 MB; Peak: 0.38 MB\n"
+    ]
+}
+
+2025-05-25 13:55:49,469 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 25 May 2025 11:55:49 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImNUTTVpck8yb21mMFBOYlVuYXdsU2c9PSIsInZhbHVlIjoiQWdMUE5xY1R2TEdkV1hpOUJvcmdrZXpQNkFZM0tQcHpKU1FTY0ZGK3dqOEtvd0Z1NDZVTEs5bnF4aVJBeGl1YnVuUktoTkNEem1qVXBoeWkxUjlvaXFMRVVmcUZBRmg5SGQyRU9sOFlrZXBMaU40TFBsb2M2YmFXZGxLdzYydnIiLCJtYWMiOiI5ZmMzNzg3MjM0M2QwNDRhYjU0MDA0NmYyM2IwNjNlMmM3MmQyZDY4NDEzODdjMTE5OTk4ZWJmMmU5YTYxMDE5IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:55:49 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IlY3ZldSSEY5Y3d4L011NkgyeVJybGc9PSIsInZhbHVlIjoiUFFNUkFRNzZQRGxTM1RuRno0SEJEMUdPRWxQWHhXRkZrdG1BaUZSU3NYUVpMOXlYSXd2L0h5VGZXdGVOdEYyVUh2dG9sbUU3LzJ6clZSdGJ3dkRmK3dCVitJaitNcHJJVzVqc1V2RFZId1R5VlNMRlZoMFhOdTM4Q0xtRDRYKy8iLCJtYWMiOiI5NjhmY2M1Njk3OTNiOTZhZmM2YmEwOWIyNWRiM2U4NjBjNmRjYzdkZDJkZGQ1ZjI4NzQzNzk0NDcyZDQyZTNlIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:55:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-05-25 13:55:49,469 - DEBUG - close.started
+2025-05-25 13:55:49,469 - DEBUG - close.complete
+2025-05-25 13:56:57,654 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-05-25 13:56:57,655 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-05-25 13:56:58,003 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.44945215243055,85.44939428732638,85.44939429091436,85.44939429427083,85.44939429768519,85.4493943009838,85.44939430434027,85.4493943076389]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0,100]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.44939489646991,85.44939490266204]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.4493954754051,85.44939548287036,85.44939548668981,85.44939549016205,85.44939549357639,85.44939550399306,85.44939550752315,85.44939551087963,85.44939551429397,85.44939551770833]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100,0]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.44939604276621,85.44939604820601,85.44939605173612,85.44939605520833,85.44939605862268,85.4493960620949,85.449396065625,85.44939606944445,85.4493960728588,85.44939607627315]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.44939662644677,85.44939663234955,85.44939663587962]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.44939720815972,85.44939721539352]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.44939766203704,85.44939766689815,85.44939767042823,85.44939767384258,85.44939767719907,85.44939768055556,85.44939768408565]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.44945611834491,85.44939825636574,85.44939825995371,85.44939826354167]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.44945670138888,85.44945670752314,85.44939884074074,85.4493988441551]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.44939928807871,85.44939929392362,85.4493992974537,85.44939930086805,85.44939930434028]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [{'id': 2447, 'schedule_id': 21, 'start': '2025-06-02 12:00:00', 'end': '2025-06-02 14:00:00', 'users_needed': 3, 'type': 1, 'users': [5, 6, 12]}, {'id': 2448, 'schedule_id': 21, 'start': '2025-06-03 12:00:00', 'end': '2025-06-03 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 6, 11]}, {'id': 2449, 'schedule_id': 21, 'start': '2025-06-04 12:00:00', 'end': '2025-06-04 14:00:00', 'users_needed': 3, 'type': 1, 'users': [3, 8, 10]}, {'id': 2450, 'schedule_id': 21, 'start': '2025-06-05 12:00:00', 'end': '2025-06-05 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 10, 11]}, {'id': 2451, 'schedule_id': 21, 'start': '2025-06-06 12:00:00', 'end': '2025-06-06 14:00:00', 'users_needed': 3, 'type': 1, 'users': [7, 10, 11]}, {'id': 2452, 'schedule_id': 21, 'start': '2025-06-09 12:00:00', 'end': '2025-06-09 14:00:00', 'users_needed': 3, 'type': 1, 'users': [5, 7, 10]}, {'id': 2453, 'schedule_id': 21, 'start': '2025-06-10 12:00:00', 'end': '2025-06-10 14:00:00', 'users_needed': 3, 'type': 1, 'users': [7, 9, 10]}, {'id': 2454, 'schedule_id': 21, 'start': '2025-06-11 12:00:00', 'end': '2025-06-11 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 6, 10]}, {'id': 2455, 'schedule_id': 21, 'start': '2025-06-12 12:00:00', 'end': '2025-06-12 14:00:00', 'users_needed': 3, 'type': 1, 'users': [5, 7, 11]}, {'id': 2456, 'schedule_id': 21, 'start': '2025-06-13 12:00:00', 'end': '2025-06-13 14:00:00', 'users_needed': 3, 'type': 1, 'users': [3, 10, 11]}, {'id': 2457, 'schedule_id': 21, 'start': '2025-06-16 12:00:00', 'end': '2025-06-16 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 9, 11]}, {'id': 2458, 'schedule_id': 21, 'start': '2025-06-17 12:00:00', 'end': '2025-06-17 14:00:00', 'users_needed': 3, 'type': 1, 'users': [5, 8, 11]}, {'id': 2459, 'schedule_id': 21, 'start': '2025-06-18 12:00:00', 'end': '2025-06-18 14:00:00', 'users_needed': 3, 'type': 1, 'users': [6, 8, 10]}, {'id': 2460, 'schedule_id': 21, 'start': '2025-06-19 12:00:00', 'end': '2025-06-19 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 5, 10]}, {'id': 2461, 'schedule_id': 21, 'start': '2025-06-20 12:00:00', 'end': '2025-06-20 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 9, 12]}, {'id': 2462, 'schedule_id': 21, 'start': '2025-06-23 12:00:00', 'end': '2025-06-23 14:00:00', 'users_needed': 3, 'type': 1, 'users': [8, 11, 12]}, {'id': 2463, 'schedule_id': 21, 'start': '2025-06-24 12:00:00', 'end': '2025-06-24 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 5, 12]}, {'id': 2464, 'schedule_id': 21, 'start': '2025-06-25 12:00:00', 'end': '2025-06-25 14:00:00', 'users_needed': 3, 'type': 1, 'users': [3, 6, 11]}, {'id': 2465, 'schedule_id': 21, 'start': '2025-06-26 12:00:00', 'end': '2025-06-26 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 9, 10]}, {'id': 2466, 'schedule_id': 21, 'start': '2025-06-27 12:00:00', 'end': '2025-06-27 14:00:00', 'users_needed': 3, 'type': 1, 'users': [4, 9, 12]}, {'id': 2467, 'schedule_id': 21, 'start': '2025-06-30 12:00:00', 'end': '2025-06-30 14:00:00', 'users_needed': 3, 'type': 1, 'users': [7, 8, 10]}, {'id': 2468, 'schedule_id': 21, 'start': '2025-06-02 20:00:00', 'end': '2025-06-02 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 4]}, {'id': 2469, 'schedule_id': 21, 'start': '2025-06-03 20:00:00', 'end': '2025-06-03 23:00:00', 'users_needed': 2, 'type': 5, 'users': [7, 9]}, {'id': 2470, 'schedule_id': 21, 'start': '2025-06-04 20:00:00', 'end': '2025-06-04 23:00:00', 'users_needed': 2, 'type': 5, 'users': [5, 11]}, {'id': 2471, 'schedule_id': 21, 'start': '2025-06-05 20:00:00', 'end': '2025-06-05 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 12]}, {'id': 2472, 'schedule_id': 21, 'start': '2025-06-06 20:00:00', 'end': '2025-06-06 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 12]}, {'id': 2473, 'schedule_id': 21, 'start': '2025-06-09 20:00:00', 'end': '2025-06-09 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 11]}, {'id': 2474, 'schedule_id': 21, 'start': '2025-06-10 20:00:00', 'end': '2025-06-10 23:00:00', 'users_needed': 2, 'type': 5, 'users': [6, 12]}, {'id': 2475, 'schedule_id': 21, 'start': '2025-06-11 20:00:00', 'end': '2025-06-11 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 7]}, {'id': 2476, 'schedule_id': 21, 'start': '2025-06-12 20:00:00', 'end': '2025-06-12 23:00:00', 'users_needed': 2, 'type': 5, 'users': [8, 12]}, {'id': 2477, 'schedule_id': 21, 'start': '2025-06-13 20:00:00', 'end': '2025-06-13 23:00:00', 'users_needed': 2, 'type': 5, 'users': [8, 12]}, {'id': 2478, 'schedule_id': 21, 'start': '2025-06-16 20:00:00', 'end': '2025-06-16 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 5]}, {'id': 2479, 'schedule_id': 21, 'start': '2025-06-17 20:00:00', 'end': '2025-06-17 23:00:00', 'users_needed': 2, 'type': 5, 'users': [6, 9]}, {'id': 2480, 'schedule_id': 21, 'start': '2025-06-18 20:00:00', 'end': '2025-06-18 23:00:00', 'users_needed': 2, 'type': 5, 'users': [4, 12]}, {'id': 2481, 'schedule_id': 21, 'start': '2025-06-19 20:00:00', 'end': '2025-06-19 23:00:00', 'users_needed': 2, 'type': 5, 'users': [11, 12]}, {'id': 2482, 'schedule_id': 21, 'start': '2025-06-20 20:00:00', 'end': '2025-06-20 23:00:00', 'users_needed': 2, 'type': 5, 'users': [8, 10]}, {'id': 2483, 'schedule_id': 21, 'start': '2025-06-23 20:00:00', 'end': '2025-06-23 23:00:00', 'users_needed': 2, 'type': 5, 'users': [3, 9]}, {'id': 2484, 'schedule_id': 21, 'start': '2025-06-24 20:00:00', 'end': '2025-06-24 23:00:00', 'users_needed': 2, 'type': 5, 'users': [7, 11]}, {'id': 2485, 'schedule_id': 21, 'start': '2025-06-25 20:00:00', 'end': '2025-06-25 23:00:00', 'users_needed': 2, 'type': 5, 'users': [5, 7]}, {'id': 2486, 'schedule_id': 21, 'start': '2025-06-26 20:00:00', 'end': '2025-06-26 23:00:00', 'users_needed': 2, 'type': 5, 'users': [5, 7]}, {'id': 2487, 'schedule_id': 21, 'start': '2025-06-27 20:00:00', 'end': '2025-06-27 23:00:00', 'users_needed': 2, 'type': 5, 'users': [5, 8]}, {'id': 2488, 'schedule_id': 21, 'start': '2025-06-30 20:00:00', 'end': '2025-06-30 23:00:00', 'users_needed': 2, 'type': 5, 'users': [9, 11]}], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31}
+2025-05-25 13:56:58,015 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 13:57:04,446 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 3 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 2), 5), (datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 23), 5)]Worker 4 works shifts [(datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 2), 5), (datetime.date(2025, 6, 18), 5)]Worker 5 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 25), 5), (datetime.date(2025, 6, 26), 5), (datetime.date(2025, 6, 27), 5)]Worker 6 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 17), 5)]Worker 7 works shifts [(datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 24), 5), (datetime.date(2025, 6, 25), 5), (datetime.date(2025, 6, 26), 5)]Worker 8 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 20), 5), (datetime.date(2025, 6, 27), 5)]Worker 9 works shifts [(datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 17), 5), (datetime.date(2025, 6, 23), 5), (datetime.date(2025, 6, 30), 5)]Worker 10 works shifts [(datetime.date(2025, 6, 4), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 9), 1), (datetime.date(2025, 6, 10), 1), (datetime.date(2025, 6, 11), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 18), 1), (datetime.date(2025, 6, 19), 1), (datetime.date(2025, 6, 26), 1), (datetime.date(2025, 6, 30), 1), (datetime.date(2025, 6, 20), 5)]Worker 11 works shifts [(datetime.date(2025, 6, 3), 1), (datetime.date(2025, 6, 5), 1), (datetime.date(2025, 6, 6), 1), (datetime.date(2025, 6, 12), 1), (datetime.date(2025, 6, 13), 1), (datetime.date(2025, 6, 16), 1), (datetime.date(2025, 6, 17), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 25), 1), (datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 19), 5), (datetime.date(2025, 6, 24), 5), (datetime.date(2025, 6, 30), 5)]Worker 12 works shifts [(datetime.date(2025, 6, 2), 1), (datetime.date(2025, 6, 20), 1), (datetime.date(2025, 6, 23), 1), (datetime.date(2025, 6, 24), 1), (datetime.date(2025, 6, 27), 1), (datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 18), 5), (datetime.date(2025, 6, 19), 5)]
+---------- Horario por turno ----------
+Shift 2025-06-02 (1) has workers [False, False, True, True, False, False, False, False, False, True]Shift 2025-06-03 (1) has workers [False, True, False, True, False, False, False, False, True, False]Shift 2025-06-04 (1) has workers [True, False, False, False, False, True, False, True, False, False]Shift 2025-06-05 (1) has workers [False, True, False, False, False, False, False, True, True, False]Shift 2025-06-06 (1) has workers [False, False, False, False, True, False, False, True, True, False]Shift 2025-06-09 (1) has workers [False, False, True, False, True, False, False, True, False, False]Shift 2025-06-10 (1) has workers [False, False, False, False, True, False, True, True, False, False]Shift 2025-06-11 (1) has workers [False, True, False, True, False, False, False, True, False, False]Shift 2025-06-12 (1) has workers [False, False, True, False, True, False, False, False, True, False]Shift 2025-06-13 (1) has workers [True, False, False, False, False, False, False, True, True, False]Shift 2025-06-16 (1) has workers [False, True, False, False, False, False, True, False, True, False]Shift 2025-06-17 (1) has workers [False, False, True, False, False, True, False, False, True, False]Shift 2025-06-18 (1) has workers [False, False, False, True, False, True, False, True, False, False]Shift 2025-06-19 (1) has workers [False, True, True, False, False, False, False, True, False, False]Shift 2025-06-20 (1) has workers [False, True, False, False, False, False, True, False, False, True]Shift 2025-06-23 (1) has workers [False, False, False, False, False, True, False, False, True, True]Shift 2025-06-24 (1) has workers [False, True, True, False, False, False, False, False, False, True]Shift 2025-06-25 (1) has workers [True, False, False, True, False, False, False, False, True, False]Shift 2025-06-26 (1) has workers [False, True, False, False, False, False, True, True, False, False]Shift 2025-06-27 (1) has workers [False, True, False, False, False, False, True, False, False, True]Shift 2025-06-30 (1) has workers [False, False, False, False, True, True, False, True, False, False]Shift 2025-06-02 (5) has workers [True, True, False, False, False, False, False, False, False, False]Shift 2025-06-03 (5) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-04 (5) has workers [False, False, True, False, False, False, False, False, True, False]Shift 2025-06-05 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-06 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-09 (5) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-10 (5) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-11 (5) has workers [True, False, False, False, True, False, False, False, False, False]Shift 2025-06-12 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-13 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-16 (5) has workers [True, False, True, False, False, False, False, False, False, False]Shift 2025-06-17 (5) has workers [False, False, False, True, False, False, True, False, False, False]Shift 2025-06-18 (5) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-19 (5) has workers [False, False, False, False, False, False, False, False, True, True]Shift 2025-06-20 (5) has workers [False, False, False, False, False, True, False, True, False, False]Shift 2025-06-23 (5) has workers [True, False, False, False, False, False, True, False, False, False]Shift 2025-06-24 (5) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-25 (5) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-26 (5) has workers [False, False, True, False, True, False, False, False, False, False]Shift 2025-06-27 (5) has workers [False, False, True, False, False, True, False, False, False, False]Shift 2025-06-30 (5) has workers [False, False, False, False, False, False, True, False, True, False]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+2025-05-25 13:57:04,461 - INFO - Elapsed time: 6.46 seconds
+Current memory usage: 0.02 MB; Peak: 0.29 MB
+
+2025-05-25 13:57:04,461 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-05-25 13:57:04,461 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000238CBAA92B0>
+2025-05-25 13:57:04,461 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-25 13:57:04,461 - DEBUG - send_request_headers.complete
+2025-05-25 13:57:04,461 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-25 13:57:04,461 - DEBUG - send_request_body.complete
+2025-05-25 13:57:04,461 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-25 13:57:05,998 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 25 May 2025 11:57:05 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6ImJ2dDBuYi9KRm9SQjZHZml5MVpLWUE9PSIsInZhbHVlIjoiYktHcDQzdklXZmltV1d0V24ydGpZRHdYeG5Ya3Faa3FZaU9hWEhNR3BSSnJQT1J2ZnMraWl2dm9ReUpkMDU1RkhuNlBuNXZCMVk5bnV3QS9walBoc1VFQ1NMQi9YYUJndk5URVp6M25XV2UwVEVtTVZ1K25Zd09HMnlQUm1hMkYiLCJtYWMiOiIwNmExYzJlYjAyNThlZmVmZGRiZjdiNWJkMTY2NDczYjNmNzk2OGE4ZDlmMjMxMTg1MmI5ZTcxNmVhZDczZjBjIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:57:05 GMT; Max-Age=7199; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IjhPaW5EdmhPV0FsU0didHZZK3Bpc2c9PSIsInZhbHVlIjoiUmVPeFJBV0JHTE1sZU9xdnNMRTVVeWhGU3BJcnNKVUZQcU1oZitsZitoeUhHd0xZQWZWMjFVUndKSTl4NWZWekUyUVZDRnFnSWh2YWVtYm5WQnZTVVYrYXF4R0ZEYWE3TlA4STA1TjVYdm41N2lyRU5BL3FUS1E3UzBnZXR3azgiLCJtYWMiOiI0MGUyZmNhNzI0YjFkYzViYzY3YTFkYTEyZWFmMjYyNGI5NDA4MTNjZTk0OTJmNTExZGYxMDYyODAzMzhjYWYyIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:57:05 GMT; Max-Age=7199; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-05-25 13:57:05,998 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-05-25 13:57:05,998 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-25 13:57:05,998 - DEBUG - receive_response_body.complete
+2025-05-25 13:57:05,998 - DEBUG - response_closed.started
+2025-05-25 13:57:05,998 - DEBUG - response_closed.complete
+2025-05-25 13:57:05,998 - DEBUG - Solution to send: {
+    "id": 21,
+    "status": "success",
+    "scheduleJSON": {
+        "3": [
+            2449,
+            2456,
+            2464,
+            2468,
+            2471,
+            2472,
+            2473,
+            2475,
+            2478,
+            2483
+        ],
+        "4": [
+            2448,
+            2450,
+            2454,
+            2457,
+            2460,
+            2461,
+            2463,
+            2465,
+            2466,
+            2468,
+            2480
+        ],
+        "5": [
+            2447,
+            2452,
+            2455,
+            2458,
+            2460,
+            2463,
+            2470,
+            2478,
+            2485,
+            2486,
+            2487
+        ],
+        "6": [
+            2447,
+            2448,
+            2454,
+            2459,
+            2464,
+            2474,
+            2479
+        ],
+        "7": [
+            2451,
+            2452,
+            2453,
+            2455,
+            2467,
+            2469,
+            2475,
+            2484,
+            2485,
+            2486
+        ],
+        "8": [
+            2449,
+            2458,
+            2459,
+            2462,
+            2467,
+            2476,
+            2477,
+            2482,
+            2487
+        ],
+        "9": [
+            2453,
+            2457,
+            2461,
+            2465,
+            2466,
+            2469,
+            2479,
+            2483,
+            2488
+        ],
+        "10": [
+            2449,
+            2450,
+            2451,
+            2452,
+            2453,
+            2454,
+            2456,
+            2459,
+            2460,
+            2465,
+            2467,
+            2482
+        ],
+        "11": [
+            2448,
+            2450,
+            2451,
+            2455,
+            2456,
+            2457,
+            2458,
+            2462,
+            2464,
+            2470,
+            2473,
+            2481,
+            2484,
+            2488
+        ],
+        "12": [
+            2447,
+            2461,
+            2462,
+            2463,
+            2466,
+            2471,
+            2472,
+            2474,
+            2476,
+            2477,
+            2480,
+            2481
+        ]
+    },
+    "satisfabilityJSON": {
+        "3": 100.0,
+        "4": 100.0,
+        "5": 0.0,
+        "6": 100.0,
+        "7": 100.0,
+        "8": 100.0,
+        "9": 100.0,
+        "10": 100.0,
+        "11": 100.0,
+        "12": 100.0
+    },
+    "message": [
+        "Elapsed time: 6.46 seconds\nCurrent memory usage: 0.02 MB; Peak: 0.29 MB\n"
+    ]
+}
+
+2025-05-25 13:57:05,998 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 25 May 2025 11:57:05 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6ImJ2dDBuYi9KRm9SQjZHZml5MVpLWUE9PSIsInZhbHVlIjoiYktHcDQzdklXZmltV1d0V24ydGpZRHdYeG5Ya3Faa3FZaU9hWEhNR3BSSnJQT1J2ZnMraWl2dm9ReUpkMDU1RkhuNlBuNXZCMVk5bnV3QS9walBoc1VFQ1NMQi9YYUJndk5URVp6M25XV2UwVEVtTVZ1K25Zd09HMnlQUm1hMkYiLCJtYWMiOiIwNmExYzJlYjAyNThlZmVmZGRiZjdiNWJkMTY2NDczYjNmNzk2OGE4ZDlmMjMxMTg1MmI5ZTcxNmVhZDczZjBjIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:57:05 GMT; Max-Age=7199; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IjhPaW5EdmhPV0FsU0didHZZK3Bpc2c9PSIsInZhbHVlIjoiUmVPeFJBV0JHTE1sZU9xdnNMRTVVeWhGU3BJcnNKVUZQcU1oZitsZitoeUhHd0xZQWZWMjFVUndKSTl4NWZWekUyUVZDRnFnSWh2YWVtYm5WQnZTVVYrYXF4R0ZEYWE3TlA4STA1TjVYdm41N2lyRU5BL3FUS1E3UzBnZXR3azgiLCJtYWMiOiI0MGUyZmNhNzI0YjFkYzViYzY3YTFkYTEyZWFmMjYyNGI5NDA4MTNjZTk0OTJmNTExZGYxMDYyODAzMzhjYWYyIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 13:57:05 GMT; Max-Age=7199; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-05-25 13:57:05,998 - DEBUG - close.started
+2025-05-25 13:57:05,998 - DEBUG - close.complete
+2025-05-25 14:01:03,313 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.4636492193287,85.46359135549767,85.46359135908565,85.46359136244213,85.4635913657986,85.46359136909722,85.46359137239584,85.46359137569445]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0,100,100]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.46359188564814,85.46359189137732]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.46359248680557,85.46359249293982,85.4635924964699,85.4635924998264,85.46359250318288,85.46359250653936,85.46359250983797,85.46359251354167,85.46359251689815,85.4635925203125]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100,0,0]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.4635930574074,85.46359306383103,85.4635930673611,85.4635930707176,85.46359307407407,85.46359307748843,85.46359308096065,85.46359308425926,85.46359308755788,85.46359309108796]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.46359362737269,85.46359363373841,85.46359363715277]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.46359407598379,85.46359408165509]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.46359454976852,85.4635945552662,85.4635945587963,85.46359456221066,85.46359456568288,85.46359456903936,85.46359457245372]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.46365300572917,85.4635951407986,85.4635951443287,85.46359514913193]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.46365357563657,85.46365358072917,85.46359571383101,85.4635957171875]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.46359629016203,85.46359629583334,85.46359629930556,85.4635963027199,85.4635963060764]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [{'id': 2489, 'schedule_id': 21, 'start': '2025-06-02 20:00:00', 'end': '2025-06-02 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2490, 'schedule_id': 21, 'start': '2025-06-03 20:00:00', 'end': '2025-06-03 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2491, 'schedule_id': 21, 'start': '2025-06-04 20:00:00', 'end': '2025-06-04 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2492, 'schedule_id': 21, 'start': '2025-06-05 20:00:00', 'end': '2025-06-05 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2493, 'schedule_id': 21, 'start': '2025-06-06 20:00:00', 'end': '2025-06-06 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2494, 'schedule_id': 21, 'start': '2025-06-09 20:00:00', 'end': '2025-06-09 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2495, 'schedule_id': 21, 'start': '2025-06-10 20:00:00', 'end': '2025-06-10 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2496, 'schedule_id': 21, 'start': '2025-06-11 20:00:00', 'end': '2025-06-11 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2497, 'schedule_id': 21, 'start': '2025-06-12 20:00:00', 'end': '2025-06-12 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2498, 'schedule_id': 21, 'start': '2025-06-13 20:00:00', 'end': '2025-06-13 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2499, 'schedule_id': 21, 'start': '2025-06-16 20:00:00', 'end': '2025-06-16 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2500, 'schedule_id': 21, 'start': '2025-06-17 20:00:00', 'end': '2025-06-17 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2501, 'schedule_id': 21, 'start': '2025-06-18 20:00:00', 'end': '2025-06-18 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2502, 'schedule_id': 21, 'start': '2025-06-19 20:00:00', 'end': '2025-06-19 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2503, 'schedule_id': 21, 'start': '2025-06-20 20:00:00', 'end': '2025-06-20 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2504, 'schedule_id': 21, 'start': '2025-06-23 20:00:00', 'end': '2025-06-23 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2505, 'schedule_id': 21, 'start': '2025-06-24 20:00:00', 'end': '2025-06-24 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2506, 'schedule_id': 21, 'start': '2025-06-25 20:00:00', 'end': '2025-06-25 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2507, 'schedule_id': 21, 'start': '2025-06-26 20:00:00', 'end': '2025-06-26 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2508, 'schedule_id': 21, 'start': '2025-06-27 20:00:00', 'end': '2025-06-27 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}, {'id': 2509, 'schedule_id': 21, 'start': '2025-06-30 20:00:00', 'end': '2025-06-30 23:00:00', 'users_needed': 2, 'type': 5, 'users': []}], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31, 'debug': True}
+2025-05-25 14:01:03,330 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 14:01:11,687 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 3 works shifts [(datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 19), 5)]Worker 4 works shifts [(datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 27), 5)]Worker 5 works shifts [(datetime.date(2025, 6, 26), 5), (datetime.date(2025, 6, 30), 5)]Worker 6 works shifts [(datetime.date(2025, 6, 2), 5)]Worker 7 works shifts [(datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 11), 5), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 24), 5)]Worker 8 works shifts [(datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 20), 5)]Worker 9 works shifts [(datetime.date(2025, 6, 10), 5), (datetime.date(2025, 6, 18), 5), (datetime.date(2025, 6, 23), 5)]Worker 10 works shifts [(datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 17), 5), (datetime.date(2025, 6, 18), 5), (datetime.date(2025, 6, 23), 5), (datetime.date(2025, 6, 25), 5), (datetime.date(2025, 6, 26), 5)]Worker 11 works shifts [(datetime.date(2025, 6, 3), 5), (datetime.date(2025, 6, 9), 5), (datetime.date(2025, 6, 12), 5), (datetime.date(2025, 6, 25), 5)]Worker 12 works shifts [(datetime.date(2025, 6, 2), 5), (datetime.date(2025, 6, 4), 5), (datetime.date(2025, 6, 5), 5), (datetime.date(2025, 6, 6), 5), (datetime.date(2025, 6, 13), 5), (datetime.date(2025, 6, 16), 5), (datetime.date(2025, 6, 17), 5), (datetime.date(2025, 6, 19), 5), (datetime.date(2025, 6, 20), 5), (datetime.date(2025, 6, 24), 5), (datetime.date(2025, 6, 27), 5), (datetime.date(2025, 6, 30), 5)]
+---------- Horario por turno ----------
+Shift 2025-06-02 (5) has workers [False, False, False, True, False, False, False, False, False, True]Shift 2025-06-03 (5) has workers [False, True, False, False, False, False, False, False, True, False]Shift 2025-06-04 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-05 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-06 (5) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-09 (5) has workers [True, False, False, False, False, False, False, False, True, False]Shift 2025-06-10 (5) has workers [False, False, False, False, True, False, True, False, False, False]Shift 2025-06-11 (5) has workers [False, True, False, False, True, False, False, False, False, False]Shift 2025-06-12 (5) has workers [False, False, False, False, True, False, False, False, True, False]Shift 2025-06-13 (5) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-16 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-17 (5) has workers [False, False, False, False, False, False, False, True, False, True]Shift 2025-06-18 (5) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-06-19 (5) has workers [True, False, False, False, False, False, False, False, False, True]Shift 2025-06-20 (5) has workers [False, False, False, False, False, True, False, False, False, True]Shift 2025-06-23 (5) has workers [False, False, False, False, False, False, True, True, False, False]Shift 2025-06-24 (5) has workers [False, False, False, False, True, False, False, False, False, True]Shift 2025-06-25 (5) has workers [False, False, False, False, False, False, False, True, True, False]Shift 2025-06-26 (5) has workers [False, False, True, False, False, False, False, True, False, False]Shift 2025-06-27 (5) has workers [False, True, False, False, False, False, False, False, False, True]Shift 2025-06-30 (5) has workers [False, False, True, False, False, False, False, False, False, True]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+2025-05-25 14:01:11,687 - INFO - Elapsed time: 8.38 seconds
+Current memory usage: 0.09 MB; Peak: 0.24 MB
+
+2025-05-25 14:01:11,687 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-05-25 14:01:11,700 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025AAA42C200>
+2025-05-25 14:01:11,701 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-25 14:01:11,701 - DEBUG - send_request_headers.complete
+2025-05-25 14:01:11,701 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-25 14:01:11,701 - DEBUG - send_request_body.complete
+2025-05-25 14:01:11,701 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-25 14:01:12,499 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 25 May 2025 12:01:12 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InYwUnYvU043MHh4a0RKV1kyVlcyNEE9PSIsInZhbHVlIjoibStTL3R0em9wVzI2K1RaZUU3VlVjdlVLUkpwamt6dkIrQ005eThZMDQ5KzJZaVNSSi9LTjFJZUt6TlMvM1dTYmwwb1REcXJhVWdzOVJsM3pOWXd1YzR0U2hRaklkNnpZeG94cjBGeS9DZTFMYUdJZ1RvSVlwRlBHdkxVZXRyUFAiLCJtYWMiOiIyNTBjZTAzZWQ1NGZkYzE3ZDIyNDkyM2U3ZmExMWQ2ZGI2NTc3YjAxY2Q2MDQ3NWIzNmZmYmYxMmVkNGI1NGM1IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:01:12 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IjU5enoxbFNWUDliVDdVVTV3OFZQenc9PSIsInZhbHVlIjoiWUwxOEMvRWZNaWdJdldOT3VMcW5BeS9QQ3dHQldkaHNQdHBMdjI1alpvMzFoWGpPNUhrR3FCdnRraERoTk03TGRLU0diU1YxZk9pczFqaG5IanFkSU5UaVl1ZktIdnpISHNGdVFRZjBhbnVzWWh2N3BjelNIQ2lzaXZoSllObEQiLCJtYWMiOiIxZWQ3MzFmMzcwZDRjYjcyOWI5OWJkNDQzODFiOWFhYjZiNmMzZmZiZTRjOTVjMDMxMzE0MTBlMjBmY2FiODI4IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:01:12 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-05-25 14:01:12,500 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-05-25 14:01:12,500 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-25 14:01:12,501 - DEBUG - receive_response_body.complete
+2025-05-25 14:01:12,501 - DEBUG - response_closed.started
+2025-05-25 14:01:12,501 - DEBUG - response_closed.complete
+2025-05-25 14:01:12,501 - DEBUG - Solution to send: {
+    "id": 21,
+    "status": "success",
+    "scheduleJSON": {
+        "3": [
+            2491,
+            2494,
+            2499,
+            2502
+        ],
+        "4": [
+            2490,
+            2496,
+            2498,
+            2508
+        ],
+        "5": [
+            2507,
+            2509
+        ],
+        "6": [
+            2489
+        ],
+        "7": [
+            2495,
+            2496,
+            2497,
+            2505
+        ],
+        "8": [
+            2492,
+            2503
+        ],
+        "9": [
+            2495,
+            2501,
+            2504
+        ],
+        "10": [
+            2493,
+            2500,
+            2501,
+            2504,
+            2506,
+            2507
+        ],
+        "11": [
+            2490,
+            2494,
+            2497,
+            2506
+        ],
+        "12": [
+            2489,
+            2491,
+            2492,
+            2493,
+            2498,
+            2499,
+            2500,
+            2502,
+            2503,
+            2505,
+            2508,
+            2509
+        ]
+    },
+    "satisfabilityJSON": {
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100,
+        "7": 100,
+        "8": 100,
+        "9": 100,
+        "10": 100,
+        "11": 100,
+        "12": 100
+    },
+    "message": [
+        "Elapsed time: 8.38 seconds\nCurrent memory usage: 0.09 MB; Peak: 0.24 MB\n"
+    ]
+}
+
+2025-05-25 14:01:12,501 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 25 May 2025 12:01:12 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InYwUnYvU043MHh4a0RKV1kyVlcyNEE9PSIsInZhbHVlIjoibStTL3R0em9wVzI2K1RaZUU3VlVjdlVLUkpwamt6dkIrQ005eThZMDQ5KzJZaVNSSi9LTjFJZUt6TlMvM1dTYmwwb1REcXJhVWdzOVJsM3pOWXd1YzR0U2hRaklkNnpZeG94cjBGeS9DZTFMYUdJZ1RvSVlwRlBHdkxVZXRyUFAiLCJtYWMiOiIyNTBjZTAzZWQ1NGZkYzE3ZDIyNDkyM2U3ZmExMWQ2ZGI2NTc3YjAxY2Q2MDQ3NWIzNmZmYmYxMmVkNGI1NGM1IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:01:12 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IjU5enoxbFNWUDliVDdVVTV3OFZQenc9PSIsInZhbHVlIjoiWUwxOEMvRWZNaWdJdldOT3VMcW5BeS9QQ3dHQldkaHNQdHBMdjI1alpvMzFoWGpPNUhrR3FCdnRraERoTk03TGRLU0diU1YxZk9pczFqaG5IanFkSU5UaVl1ZktIdnpISHNGdVFRZjBhbnVzWWh2N3BjelNIQ2lzaXZoSllObEQiLCJtYWMiOiIxZWQ3MzFmMzcwZDRjYjcyOWI5OWJkNDQzODFiOWFhYjZiNmMzZmZiZTRjOTVjMDMxMzE0MTBlMjBmY2FiODI4IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:01:12 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-05-25 14:01:12,501 - DEBUG - close.started
+2025-05-25 14:01:12,501 - DEBUG - close.complete
+2025-05-25 14:03:13,519 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-05-25 14:03:13,520 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-05-25 14:03:13,872 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.47120479809027,85.47114693287037,85.47114693645833,85.47114693987268,85.47114694322916,85.47114694658563,85.47114694988426,85.47114695324075]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0,100,100,100]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.47114753084492,85.4711475369213]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.47114810202545,85.47114810723379,85.47114811070601,85.47114811400463,85.47114811724538,85.4711481204861,85.47114812378473,85.47114812702546,85.47114813043981,85.47114813385417]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100,0,0,100]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.47114867841435,85.4711486833912,85.47114868686343,85.4711486902199,85.47114869351851,85.47114869681712,85.47114870017361,85.47114870347222,85.47114870677083,85.47114871024306]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.47114914409721,85.47114914988425,85.47114915335648]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.471149728125,85.47114973362268]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.4711503,85.47115030503471,85.47115030844907,85.47115031180554,85.47115031516205,85.47115031846064,85.47115032175925]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.4712087545139,85.47115088981482,85.47115089328705,85.47115089664352]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.47120933084491,85.47120933599537,85.4711514693287,85.4711514726852]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.47115204346065,85.47115204942129,85.4711520529514,85.47115205630787,85.47115205966435]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31, 'debug': False}
+2025-05-25 14:03:13,880 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 14:03:13,886 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-9' coro=<send_schedule() done, defined at F:\Mis cosas\TimeFlex\fastApi\main.py:52> exception=AttributeError("'float' object has no attribute 'as_ast'")>
+Traceback (most recent call last):
+  File "F:\Mis cosas\TimeFlex\fastApi\main.py", line 65, in send_schedule
+    solution_to_send = optimize(data, logging)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mis cosas\TimeFlex\fastApi\optimize1.py", line 200, in optimize
+    s.maximize(avg_satisfaction)
+  File "C:\Users\andre\AppData\Local\Programs\Python\Python312\Lib\site-packages\z3\z3.py", line 8036, in maximize
+    Z3_optimize_maximize(self.ctx.ref(), self.optimize, arg.as_ast()),
+                                                        ^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'as_ast'
+2025-05-25 14:04:47,522 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-05-25 14:04:47,523 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-05-25 14:04:47,881 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.47664434195602,85.47658647667824,85.47658648020834,85.47658648350694,85.47658648680554,85.47658649010417,85.47658649340278,85.47658649670139]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0,100,100,100]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.4765870254051,85.47658703153935]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.47658760387732,85.47658760943287,85.4765876144676,85.47658761788193,85.47658762118056,85.47658762447917,85.47658762777777,85.47658763101852,85.47658763431713,85.47658763761574]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100,0,0,100]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.47658805711805,85.47658806244213,85.47658806591436,85.47658806932871,85.47658807268519,85.47658807604166,85.47658807934027,85.47658808269675,85.47658808599537,85.47658808940973]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.47658864913194,85.4765886550926,85.47658865850694]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.47658921412037,85.4765892199074]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.47658968975695,85.47658969479167,85.47658969820603,85.4765897015625,85.47658970486111,85.47658970821759,85.4765897115162]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.47664814855324,85.4765902842014,85.47659028773148,85.47659029108797]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.4766487134838,85.47664871903935,85.4765908521412,85.47659085543982]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.4765914355324,85.47659144149306,85.47659144496528,85.47659144832176,85.47659145260417]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [{'id': 2531, 'schedule_id': 21, 'start': '2025-06-02 12:00:00', 'end': '2025-06-02 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2532, 'schedule_id': 21, 'start': '2025-06-03 12:00:00', 'end': '2025-06-03 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2533, 'schedule_id': 21, 'start': '2025-06-04 12:00:00', 'end': '2025-06-04 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2534, 'schedule_id': 21, 'start': '2025-06-05 12:00:00', 'end': '2025-06-05 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2535, 'schedule_id': 21, 'start': '2025-06-06 12:00:00', 'end': '2025-06-06 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2536, 'schedule_id': 21, 'start': '2025-06-09 12:00:00', 'end': '2025-06-09 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2537, 'schedule_id': 21, 'start': '2025-06-10 12:00:00', 'end': '2025-06-10 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2538, 'schedule_id': 21, 'start': '2025-06-11 12:00:00', 'end': '2025-06-11 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2539, 'schedule_id': 21, 'start': '2025-06-12 12:00:00', 'end': '2025-06-12 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2540, 'schedule_id': 21, 'start': '2025-06-13 12:00:00', 'end': '2025-06-13 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2541, 'schedule_id': 21, 'start': '2025-06-16 12:00:00', 'end': '2025-06-16 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2542, 'schedule_id': 21, 'start': '2025-06-17 12:00:00', 'end': '2025-06-17 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2543, 'schedule_id': 21, 'start': '2025-06-18 12:00:00', 'end': '2025-06-18 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2544, 'schedule_id': 21, 'start': '2025-06-19 12:00:00', 'end': '2025-06-19 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2545, 'schedule_id': 21, 'start': '2025-06-20 12:00:00', 'end': '2025-06-20 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2546, 'schedule_id': 21, 'start': '2025-06-23 12:00:00', 'end': '2025-06-23 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2547, 'schedule_id': 21, 'start': '2025-06-24 12:00:00', 'end': '2025-06-24 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2548, 'schedule_id': 21, 'start': '2025-06-25 12:00:00', 'end': '2025-06-25 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2549, 'schedule_id': 21, 'start': '2025-06-26 12:00:00', 'end': '2025-06-26 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2550, 'schedule_id': 21, 'start': '2025-06-27 12:00:00', 'end': '2025-06-27 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}, {'id': 2551, 'schedule_id': 21, 'start': '2025-06-30 12:00:00', 'end': '2025-06-30 14:00:00', 'users_needed': 5, 'type': 6, 'users': []}], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31, 'debug': True}
+2025-05-25 14:04:47,891 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 14:05:01,431 - DEBUG - 
+---------- Horario por empleado ----------
+Worker 3 works shifts [(datetime.date(2025, 6, 5), 6), (datetime.date(2025, 6, 11), 6), (datetime.date(2025, 6, 16), 6), (datetime.date(2025, 6, 24), 6), (datetime.date(2025, 6, 30), 6)]Worker 4 works shifts [(datetime.date(2025, 6, 2), 6), (datetime.date(2025, 6, 3), 6), (datetime.date(2025, 6, 4), 6), (datetime.date(2025, 6, 6), 6), (datetime.date(2025, 6, 9), 6), (datetime.date(2025, 6, 11), 6), (datetime.date(2025, 6, 12), 6), (datetime.date(2025, 6, 13), 6), (datetime.date(2025, 6, 18), 6), (datetime.date(2025, 6, 19), 6), (datetime.date(2025, 6, 20), 6), (datetime.date(2025, 6, 24), 6), (datetime.date(2025, 6, 25), 6), (datetime.date(2025, 6, 26), 6), (datetime.date(2025, 6, 27), 6)]Worker 5 works shifts [(datetime.date(2025, 6, 4), 6), (datetime.date(2025, 6, 9), 6), (datetime.date(2025, 6, 16), 6), (datetime.date(2025, 6, 19), 6), (datetime.date(2025, 6, 23), 6), (datetime.date(2025, 6, 24), 6), (datetime.date(2025, 6, 25), 6), (datetime.date(2025, 6, 26), 6)]Worker 6 works shifts [(datetime.date(2025, 6, 11), 6), (datetime.date(2025, 6, 17), 6), (datetime.date(2025, 6, 19), 6), (datetime.date(2025, 6, 27), 6)]Worker 7 works shifts [(datetime.date(2025, 6, 2), 6), (datetime.date(2025, 6, 3), 6), (datetime.date(2025, 6, 4), 6), (datetime.date(2025, 6, 5), 6), (datetime.date(2025, 6, 6), 6), (datetime.date(2025, 6, 9), 6), (datetime.date(2025, 6, 10), 6), (datetime.date(2025, 6, 11), 6), (datetime.date(2025, 6, 12), 6), (datetime.date(2025, 6, 13), 6), (datetime.date(2025, 6, 17), 6), (datetime.date(2025, 6, 18), 6), (datetime.date(2025, 6, 20), 6), (datetime.date(2025, 6, 23), 6)]Worker 8 works shifts [(datetime.date(2025, 6, 2), 6), (datetime.date(2025, 6, 3), 6), (datetime.date(2025, 6, 4), 6), (datetime.date(2025, 6, 5), 6), (datetime.date(2025, 6, 6), 6), (datetime.date(2025, 6, 10), 6), (datetime.date(2025, 6, 12), 6), (datetime.date(2025, 6, 13), 6), (datetime.date(2025, 6, 16), 6), (datetime.date(2025, 6, 18), 6), (datetime.date(2025, 6, 20), 6), (datetime.date(2025, 6, 25), 6), (datetime.date(2025, 6, 26), 6), (datetime.date(2025, 6, 27), 6), (datetime.date(2025, 6, 30), 6)]Worker 9 works shifts [(datetime.date(2025, 6, 3), 6), (datetime.date(2025, 6, 9), 6), (datetime.date(2025, 6, 10), 6), (datetime.date(2025, 6, 17), 6), (datetime.date(2025, 6, 23), 6)]Worker 10 works shifts [(datetime.date(2025, 6, 2), 6), (datetime.date(2025, 6, 5), 6), (datetime.date(2025, 6, 6), 6), (datetime.date(2025, 6, 9), 6), (datetime.date(2025, 6, 10), 6), (datetime.date(2025, 6, 11), 6), (datetime.date(2025, 6, 13), 6), (datetime.date(2025, 6, 16), 6), (datetime.date(2025, 6, 17), 6), (datetime.date(2025, 6, 18), 6), (datetime.date(2025, 6, 20), 6), (datetime.date(2025, 6, 23), 6), (datetime.date(2025, 6, 26), 6), (datetime.date(2025, 6, 27), 6), (datetime.date(2025, 6, 30), 6)]Worker 11 works shifts [(datetime.date(2025, 6, 3), 6), (datetime.date(2025, 6, 12), 6), (datetime.date(2025, 6, 19), 6), (datetime.date(2025, 6, 20), 6), (datetime.date(2025, 6, 24), 6), (datetime.date(2025, 6, 25), 6), (datetime.date(2025, 6, 30), 6)]Worker 12 works shifts [(datetime.date(2025, 6, 2), 6), (datetime.date(2025, 6, 4), 6), (datetime.date(2025, 6, 5), 6), (datetime.date(2025, 6, 6), 6), (datetime.date(2025, 6, 10), 6), (datetime.date(2025, 6, 12), 6), (datetime.date(2025, 6, 13), 6), (datetime.date(2025, 6, 16), 6), (datetime.date(2025, 6, 17), 6), (datetime.date(2025, 6, 18), 6), (datetime.date(2025, 6, 19), 6), (datetime.date(2025, 6, 23), 6), (datetime.date(2025, 6, 24), 6), (datetime.date(2025, 6, 25), 6), (datetime.date(2025, 6, 26), 6), (datetime.date(2025, 6, 27), 6), (datetime.date(2025, 6, 30), 6)]
+---------- Horario por turno ----------
+Shift 2025-06-02 (6) has workers [False, True, False, False, True, True, False, True, False, True]Shift 2025-06-03 (6) has workers [False, True, False, False, True, True, True, False, True, False]Shift 2025-06-04 (6) has workers [False, True, True, False, True, True, False, False, False, True]Shift 2025-06-05 (6) has workers [True, False, False, False, True, True, False, True, False, True]Shift 2025-06-06 (6) has workers [False, True, False, False, True, True, False, True, False, True]Shift 2025-06-09 (6) has workers [False, True, True, False, True, False, True, True, False, False]Shift 2025-06-10 (6) has workers [False, False, False, False, True, True, True, True, False, True]Shift 2025-06-11 (6) has workers [True, True, False, True, True, False, False, True, False, False]Shift 2025-06-12 (6) has workers [False, True, False, False, True, True, False, False, True, True]Shift 2025-06-13 (6) has workers [False, True, False, False, True, True, False, True, False, True]Shift 2025-06-16 (6) has workers [True, False, True, False, False, True, False, True, False, True]Shift 2025-06-17 (6) has workers [False, False, False, True, True, False, True, True, False, True]Shift 2025-06-18 (6) has workers [False, True, False, False, True, True, False, True, False, True]Shift 2025-06-19 (6) has workers [False, True, True, True, False, False, False, False, True, True]Shift 2025-06-20 (6) has workers [False, True, False, False, True, True, False, True, True, False]Shift 2025-06-23 (6) has workers [False, False, True, False, True, False, True, True, False, True]Shift 2025-06-24 (6) has workers [True, True, True, False, False, False, False, False, True, True]Shift 2025-06-25 (6) has workers [False, True, True, False, False, True, False, False, True, True]Shift 2025-06-26 (6) has workers [False, True, True, False, False, True, False, True, False, True]Shift 2025-06-27 (6) has workers [False, True, False, True, False, True, False, True, False, True]Shift 2025-06-30 (6) has workers [True, False, False, False, False, True, False, True, True, True]
+---------- Satisfacción ----------
+Satisfaction score this calendar: [100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+2025-05-25 14:05:01,443 - INFO - Elapsed time: 13.56 seconds
+Current memory usage: 0.91 MB; Peak: 1.13 MB
+
+2025-05-25 14:05:01,444 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-05-25 14:05:01,445 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025AA9DEA840>
+2025-05-25 14:05:01,445 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-25 14:05:01,445 - DEBUG - send_request_headers.complete
+2025-05-25 14:05:01,445 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-25 14:05:01,446 - DEBUG - send_request_body.complete
+2025-05-25 14:05:01,446 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-25 14:05:02,784 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 25 May 2025 12:05:02 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6Ik5jSjZjbUx0RnVTQy9ySUs0U3dzUmc9PSIsInZhbHVlIjoiNjVFNWFsSVFveUZTV2xtSmNrNUZrNERIMGpyeFBhNy9JMnorSlc0cDhxNjh6Q2NPMnpoMzd3WktUUUR1YjNORTdva2MwTjBVOU1RN0I2bDl1dVk5YWZYcURibDhVWUhmWGZCOURJbXVpU1E2NU5NcE1vQUFEYXp3TEczL0E5aUgiLCJtYWMiOiI2MTMxY2I5OGY4ODJkN2FmZjIyYjAyZWFiMmJjNTY4YWVmZTVmMmQ5NjhlNjRiNjUxM2QwMmIyNTNjZDY0MzE5IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:05:02 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IngyRzMrOWEzMERHelBLbVRSMU9MSWc9PSIsInZhbHVlIjoicmJIRU5nTythTGNXdzJHYXVxTllnbmZZcGdJbGpMeDdwWEtDTVpEZlZLSmpZWlFUblZyblBDUlhka2g5WEVLa2U4SFdKT3dpNWFqczc0NmhFcXMwNUhhZnRiTjdHV285NTZIYUlZY2pPS0Q3TTlkVnR4QktmZ2hZU21kNE5sVHgiLCJtYWMiOiIyZTgwZmQ4MDU5ODhmYTZjODliZGI0OGVkMjEzMzFiZTczNTk3YjU2NmVmN2VjODkzZDhkNDc3ZDc0ODcyOTQ3IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:05:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-05-25 14:05:02,785 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-05-25 14:05:02,785 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-25 14:05:02,785 - DEBUG - receive_response_body.complete
+2025-05-25 14:05:02,785 - DEBUG - response_closed.started
+2025-05-25 14:05:02,785 - DEBUG - response_closed.complete
+2025-05-25 14:05:02,785 - DEBUG - Solution to send: {
+    "id": 21,
+    "status": "success",
+    "scheduleJSON": {
+        "3": [
+            2534,
+            2538,
+            2541,
+            2547,
+            2551
+        ],
+        "4": [
+            2531,
+            2532,
+            2533,
+            2535,
+            2536,
+            2538,
+            2539,
+            2540,
+            2543,
+            2544,
+            2545,
+            2547,
+            2548,
+            2549,
+            2550
+        ],
+        "5": [
+            2533,
+            2536,
+            2541,
+            2544,
+            2546,
+            2547,
+            2548,
+            2549
+        ],
+        "6": [
+            2538,
+            2542,
+            2544,
+            2550
+        ],
+        "7": [
+            2531,
+            2532,
+            2533,
+            2534,
+            2535,
+            2536,
+            2537,
+            2538,
+            2539,
+            2540,
+            2542,
+            2543,
+            2545,
+            2546
+        ],
+        "8": [
+            2531,
+            2532,
+            2533,
+            2534,
+            2535,
+            2537,
+            2539,
+            2540,
+            2541,
+            2543,
+            2545,
+            2548,
+            2549,
+            2550,
+            2551
+        ],
+        "9": [
+            2532,
+            2536,
+            2537,
+            2542,
+            2546
+        ],
+        "10": [
+            2531,
+            2534,
+            2535,
+            2536,
+            2537,
+            2538,
+            2540,
+            2541,
+            2542,
+            2543,
+            2545,
+            2546,
+            2549,
+            2550,
+            2551
+        ],
+        "11": [
+            2532,
+            2539,
+            2544,
+            2545,
+            2547,
+            2548,
+            2551
+        ],
+        "12": [
+            2531,
+            2533,
+            2534,
+            2535,
+            2537,
+            2539,
+            2540,
+            2541,
+            2542,
+            2543,
+            2544,
+            2546,
+            2547,
+            2548,
+            2549,
+            2550,
+            2551
+        ]
+    },
+    "satisfabilityJSON": {
+        "3": 100.0,
+        "4": 0.0,
+        "5": 100.0,
+        "6": 100.0,
+        "7": 100.0,
+        "8": 100.0,
+        "9": 100.0,
+        "10": 100.0,
+        "11": 100.0,
+        "12": 100.0
+    },
+    "message": [
+        "Elapsed time: 13.56 seconds\nCurrent memory usage: 0.91 MB; Peak: 1.13 MB\n"
+    ]
+}
+
+2025-05-25 14:05:02,785 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 25 May 2025 12:05:02 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6Ik5jSjZjbUx0RnVTQy9ySUs0U3dzUmc9PSIsInZhbHVlIjoiNjVFNWFsSVFveUZTV2xtSmNrNUZrNERIMGpyeFBhNy9JMnorSlc0cDhxNjh6Q2NPMnpoMzd3WktUUUR1YjNORTdva2MwTjBVOU1RN0I2bDl1dVk5YWZYcURibDhVWUhmWGZCOURJbXVpU1E2NU5NcE1vQUFEYXp3TEczL0E5aUgiLCJtYWMiOiI2MTMxY2I5OGY4ODJkN2FmZjIyYjAyZWFiMmJjNTY4YWVmZTVmMmQ5NjhlNjRiNjUxM2QwMmIyNTNjZDY0MzE5IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:05:02 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IngyRzMrOWEzMERHelBLbVRSMU9MSWc9PSIsInZhbHVlIjoicmJIRU5nTythTGNXdzJHYXVxTllnbmZZcGdJbGpMeDdwWEtDTVpEZlZLSmpZWlFUblZyblBDUlhka2g5WEVLa2U4SFdKT3dpNWFqczc0NmhFcXMwNUhhZnRiTjdHV285NTZIYUlZY2pPS0Q3TTlkVnR4QktmZ2hZU21kNE5sVHgiLCJtYWMiOiIyZTgwZmQ4MDU5ODhmYTZjODliZGI0OGVkMjEzMzFiZTczNTk3YjU2NmVmN2VjODkzZDhkNDc3ZDc0ODcyOTQ3IiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:05:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-05-25 14:05:02,786 - DEBUG - close.started
+2025-05-25 14:05:02,786 - DEBUG - close.complete
+2025-05-25 14:06:31,466 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-05-25 14:06:31,467 - DEBUG - load_verify_locations cafile='C:\\Users\\andre\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-05-25 14:06:31,812 - DEBUG - Received data: {'id': 21, 'workers': [{'form_id': 1, 'user_id': 3, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-26 00:00:00","2025-06-01 00:00:00","2025-06-17 00:00:00","2025-06-10 00:00:00","2025-06-03 00:00:00","2025-06-27 00:00:00"]', 'holidays_weight': '[85.48265916423611,85.48260129907406,85.48260130266203,85.48260130607639,85.48260130943288,85.48260131273148,85.48260131603008,85.48260131938659]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,3,9,9,8,5,10,6,100,100,100,100,100,100,100,100,100,0,100,100,100,100]'}, {'form_id': 1, 'user_id': 4, 'holidays': '["2025-06-12 00:00:00","2025-06-21 00:00:00"]', 'holidays_weight': '[85.48260182465278,85.48260183107638]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,7,5,9,4,9,10,8,100,100,100,100,0,50,100,100,100,100,100,100,100,0]'}, {'form_id': 1, 'user_id': 5, 'holidays': '["2025-06-03 00:00:00","2025-06-05 00:00:00","2025-06-13 00:00:00","2025-06-06 00:00:00","2025-06-20 00:00:00","2025-06-18 00:00:00","2025-06-15 00:00:00","2025-06-11 00:00:00","2025-06-10 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.48260241689816,85.48260242320602,85.48260242679397,85.48260243020833,85.48260243356481,85.48260243697916,85.48260244074073,85.48260244427084,85.48260244762731,85.48260245098379]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[7,9,6,2,9,8,100,100,50,50,0,0,100,100,100,100,0,0,100,100]'}, {'form_id': 1, 'user_id': 6, 'holidays': '["2025-06-26 00:00:00","2025-06-04 00:00:00","2025-06-13 00:00:00","2025-06-01 00:00:00","2025-06-13 00:00:00","2025-06-20 00:00:00","2025-06-23 00:00:00","2025-06-13 00:00:00","2025-06-12 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.48260297980323,85.48260298582177,85.48260298958333,85.48260299305555,85.48260299641203,85.48260299976852,85.48260300312499,85.48260300642362,85.48260300983797,85.48260301313658]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[2,3,9,4,5,6,3,8,100,100,100,100,0,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 7, 'holidays': '["2025-06-01 00:00:00","2025-06-28 00:00:00","2025-06-16 00:00:00"]', 'holidays_weight': '[85.48260357523148,85.48260358159722,85.48260358587964]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[9,6,8,3,6,8,8,100,100,100,100,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 8, 'holidays': '["2025-06-09 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.48260413680555,85.4826041427662]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[10,4,3,8,4,8,6,100,100,100,100,0,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 9, 'holidays': '["2025-06-11 00:00:00","2025-06-01 00:00:00","2025-06-06 00:00:00","2025-06-14 00:00:00","2025-06-25 00:00:00","2025-06-02 00:00:00","2025-06-12 00:00:00"]', 'holidays_weight': '[85.48260472806714,85.48260473402777,85.48260473755788,85.48260474091435,85.48260474432871,85.48260474768519,85.4826047509838]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[5,10,10,7,6,9,8,100,100,0,0,0,50,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 10, 'holidays': '["2025-06-12 00:00:00","2025-06-28 00:00:00","2025-06-08 00:00:00","2025-06-07 00:00:00"]', 'holidays_weight': '[85.48266316446758,85.48260529965277,85.4826053042824,85.48260530833333]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,5,3,4,3,10,6,7,100,100,50,50,100,100,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 11, 'holidays': '["2025-06-02 00:00:00","2025-06-11 00:00:00","2025-06-08 00:00:00","2025-06-18 00:00:00"]', 'holidays_weight': '[85.48266374837964,85.48266375393519,85.48260588703704,85.4826058904514]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[6,6,4,4,8,6,100,100,50,50,100,50,100,100,100,100,100,100,100,100]'}, {'form_id': 1, 'user_id': 12, 'holidays': '["2025-06-09 00:00:00","2025-06-03 00:00:00","2025-06-01 00:00:00","2025-06-03 00:00:00","2025-06-11 00:00:00"]', 'holidays_weight': '[85.48260641168982,85.48260641765046,85.48260642112268,85.48260642453704,85.48260642789351]', 'preferred_shift_types': '[]', 'preferred_shift_types_weight': 5, 'past_satisfaction': '[3,6,7,4,6,2,5,100,100,100,100,100,100,100,100,100,100,100,100,100,100]'}], 'shifts': [{'id': 2552, 'schedule_id': 21, 'start': '2025-06-02 12:00:00', 'end': '2025-06-02 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2553, 'schedule_id': 21, 'start': '2025-06-03 12:00:00', 'end': '2025-06-03 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2554, 'schedule_id': 21, 'start': '2025-06-04 12:00:00', 'end': '2025-06-04 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2555, 'schedule_id': 21, 'start': '2025-06-05 12:00:00', 'end': '2025-06-05 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2556, 'schedule_id': 21, 'start': '2025-06-06 12:00:00', 'end': '2025-06-06 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2557, 'schedule_id': 21, 'start': '2025-06-09 12:00:00', 'end': '2025-06-09 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2558, 'schedule_id': 21, 'start': '2025-06-10 12:00:00', 'end': '2025-06-10 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2559, 'schedule_id': 21, 'start': '2025-06-11 12:00:00', 'end': '2025-06-11 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2560, 'schedule_id': 21, 'start': '2025-06-12 12:00:00', 'end': '2025-06-12 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2561, 'schedule_id': 21, 'start': '2025-06-13 12:00:00', 'end': '2025-06-13 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2562, 'schedule_id': 21, 'start': '2025-06-16 12:00:00', 'end': '2025-06-16 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2563, 'schedule_id': 21, 'start': '2025-06-17 12:00:00', 'end': '2025-06-17 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2564, 'schedule_id': 21, 'start': '2025-06-18 12:00:00', 'end': '2025-06-18 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2565, 'schedule_id': 21, 'start': '2025-06-19 12:00:00', 'end': '2025-06-19 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2566, 'schedule_id': 21, 'start': '2025-06-20 12:00:00', 'end': '2025-06-20 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2567, 'schedule_id': 21, 'start': '2025-06-23 12:00:00', 'end': '2025-06-23 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2568, 'schedule_id': 21, 'start': '2025-06-24 12:00:00', 'end': '2025-06-24 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2569, 'schedule_id': 21, 'start': '2025-06-25 12:00:00', 'end': '2025-06-25 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2570, 'schedule_id': 21, 'start': '2025-06-26 12:00:00', 'end': '2025-06-26 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2571, 'schedule_id': 21, 'start': '2025-06-27 12:00:00', 'end': '2025-06-27 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2572, 'schedule_id': 21, 'start': '2025-06-30 12:00:00', 'end': '2025-06-30 14:00:00', 'users_needed': 3, 'type': 1, 'users': []}, {'id': 2573, 'schedule_id': 21, 'start': '2025-06-02 12:00:00', 'end': '2025-06-02 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2574, 'schedule_id': 21, 'start': '2025-06-03 12:00:00', 'end': '2025-06-03 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2575, 'schedule_id': 21, 'start': '2025-06-04 12:00:00', 'end': '2025-06-04 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2576, 'schedule_id': 21, 'start': '2025-06-05 12:00:00', 'end': '2025-06-05 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2577, 'schedule_id': 21, 'start': '2025-06-06 12:00:00', 'end': '2025-06-06 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2578, 'schedule_id': 21, 'start': '2025-06-09 12:00:00', 'end': '2025-06-09 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2579, 'schedule_id': 21, 'start': '2025-06-10 12:00:00', 'end': '2025-06-10 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2580, 'schedule_id': 21, 'start': '2025-06-11 12:00:00', 'end': '2025-06-11 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2581, 'schedule_id': 21, 'start': '2025-06-12 12:00:00', 'end': '2025-06-12 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2582, 'schedule_id': 21, 'start': '2025-06-13 12:00:00', 'end': '2025-06-13 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2583, 'schedule_id': 21, 'start': '2025-06-16 12:00:00', 'end': '2025-06-16 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2584, 'schedule_id': 21, 'start': '2025-06-17 12:00:00', 'end': '2025-06-17 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2585, 'schedule_id': 21, 'start': '2025-06-18 12:00:00', 'end': '2025-06-18 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2586, 'schedule_id': 21, 'start': '2025-06-19 12:00:00', 'end': '2025-06-19 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2587, 'schedule_id': 21, 'start': '2025-06-20 12:00:00', 'end': '2025-06-20 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2588, 'schedule_id': 21, 'start': '2025-06-23 12:00:00', 'end': '2025-06-23 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2589, 'schedule_id': 21, 'start': '2025-06-24 12:00:00', 'end': '2025-06-24 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2590, 'schedule_id': 21, 'start': '2025-06-25 12:00:00', 'end': '2025-06-25 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2591, 'schedule_id': 21, 'start': '2025-06-26 12:00:00', 'end': '2025-06-26 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2592, 'schedule_id': 21, 'start': '2025-06-27 12:00:00', 'end': '2025-06-27 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}, {'id': 2593, 'schedule_id': 21, 'start': '2025-06-30 12:00:00', 'end': '2025-06-30 14:00:00', 'users_needed': 10, 'type': 6, 'users': []}], 'minHoursPerWorker': 38, 'maxHoursPerWorker': 40, 'minShiftsPerWorker': 5, 'maxShiftsPerWorker': 31, 'debug': True}
+2025-05-25 14:06:31,822 - DEBUG - Configuración de pesos: PREFERRED_SHIFTS_WEIGHT=10, HOLIDAYS_WEIGHT=10, N_MAX_SHIFTS_PER_WORKER=31, N_MAX_HOURS_PER_WORKER=200, N_MIN_HOURS_PER_WORKER=38, N_MIN_SHIFTS_PER_WORKER=5
+2025-05-25 14:06:37,234 - DEBUG - ('No solution found', ['%worker_11% trabaja más de un turno en el día 2025-06-23', '%worker_10% trabaja más de un turno en el día 2025-06-26', '%worker_10% trabaja más de un turno en el día 2025-06-05', '%worker_3% trabaja más de un turno en el día 2025-06-25', '%worker_4% trabaja más de un turno en el día 2025-06-04', '%worker_3% trabaja más de un turno en el día 2025-06-06', '%worker_3% trabaja más de un turno en el día 2025-06-12', '%worker_11% trabaja más de un turno en el día 2025-06-05', '%worker_9% trabaja más de un turno en el día 2025-06-19', '%worker_10% trabaja más de un turno en el día 2025-06-17', '%worker_3% trabaja más de un turno en el día 2025-06-13', '%worker_3% trabaja más de un turno en el día 2025-06-18', '%worker_10% trabaja más de un turno en el día 2025-06-12', '%worker_4% trabaja más de un turno en el día 2025-06-18', '%worker_10% trabaja más de un turno en el día 2025-06-10', '%worker_3% trabaja más de un turno en el día 2025-06-24', '%worker_12% supera el máximo de turnos 31 a trabajar', '%shift_2558% no alcanza el mínimo de 3 trabajadores', '%shift_2570% no alcanza el mínimo de 3 trabajadores', '%worker_11% trabaja más de un turno en el día 2025-06-19', '%worker_11% trabaja más de un turno en el día 2025-06-16', '%worker_11% trabaja más de un turno en el día 2025-06-10', '%worker_10% trabaja más de un turno en el día 2025-06-16', '%worker_11% trabaja más de un turno en el día 2025-06-06', '%worker_10% trabaja más de un turno en el día 2025-06-19', '%worker_11% trabaja más de un turno en el día 2025-06-02', '%worker_11% trabaja más de un turno en el día 2025-06-26', '%worker_11% trabaja más de un turno en el día 2025-06-12', '%worker_11% trabaja más de un turno en el día 2025-06-24', '%worker_11% trabaja más de un turno en el día 2025-06-30', '%worker_11% trabaja más de un turno en el día 2025-06-13', '%worker_11% trabaja más de un turno en el día 2025-06-17', '%worker_10% trabaja más de un turno en el día 2025-06-30', '%worker_11% trabaja más de un turno en el día 2025-06-04', '%worker_11% trabaja más de un turno en el día 2025-06-18', '%worker_11% trabaja más de un turno en el día 2025-06-27', '%worker_11% trabaja más de un turno en el día 2025-06-20', '%worker_11% trabaja más de un turno en el día 2025-06-25', '%worker_10% trabaja más de un turno en el día 2025-06-06', '%worker_10% trabaja más de un turno en el día 2025-06-23', '%worker_9% trabaja más de un turno en el día 2025-06-16', '%worker_7% trabaja más de un turno en el día 2025-06-23', '%worker_7% trabaja más de un turno en el día 2025-06-06', '%worker_7% trabaja más de un turno en el día 2025-06-26', '%worker_7% trabaja más de un turno en el día 2025-06-12', '%worker_7% trabaja más de un turno en el día 2025-06-24', '%worker_10% trabaja más de un turno en el día 2025-06-24', '%worker_10% trabaja más de un turno en el día 2025-06-02', '%worker_9% trabaja más de un turno en el día 2025-06-30', '%worker_10% trabaja más de un turno en el día 2025-06-13', '%worker_10% trabaja más de un turno en el día 2025-06-04', '%worker_10% trabaja más de un turno en el día 2025-06-18', '%worker_10% trabaja más de un turno en el día 2025-06-27', '%worker_10% trabaja más de un turno en el día 2025-06-20', '%worker_10% trabaja más de un turno en el día 2025-06-25', '%worker_9% trabaja más de un turno en el día 2025-06-23', '%worker_9% trabaja más de un turno en el día 2025-06-10', '%worker_9% trabaja más de un turno en el día 2025-06-05', '%worker_9% trabaja más de un turno en el día 2025-06-02', '%worker_9% trabaja más de un turno en el día 2025-06-25', '%worker_9% trabaja más de un turno en el día 2025-06-06', '%worker_9% trabaja más de un turno en el día 2025-06-26', '%worker_9% trabaja más de un turno en el día 2025-06-12', '%worker_9% trabaja más de un turno en el día 2025-06-24', '%shift_2584% no alcanza el mínimo de 10 trabajadores', '%worker_9% trabaja más de un turno en el día 2025-06-17', '%worker_8% trabaja más de un turno en el día 2025-06-19', '%worker_8% trabaja más de un turno en el día 2025-06-16', '%worker_8% trabaja más de un turno en el día 2025-06-30', '%worker_9% trabaja más de un turno en el día 2025-06-13', '%worker_9% trabaja más de un turno en el día 2025-06-04', '%worker_9% trabaja más de un turno en el día 2025-06-18', '%worker_9% trabaja más de un turno en el día 2025-06-27', '%worker_9% trabaja más de un turno en el día 2025-06-20', '%worker_8% trabaja más de un turno en el día 2025-06-23', '%worker_8% trabaja más de un turno en el día 2025-06-10', '%worker_8% trabaja más de un turno en el día 2025-06-05', '%worker_8% trabaja más de un turno en el día 2025-06-02', '%worker_8% trabaja más de un turno en el día 2025-06-25', '%worker_8% trabaja más de un turno en el día 2025-06-20', '%worker_8% trabaja más de un turno en el día 2025-06-27', '%worker_8% trabaja más de un turno en el día 2025-06-18', '%worker_8% trabaja más de un turno en el día 2025-06-04', '%worker_8% trabaja más de un turno en el día 2025-06-13', '%worker_8% trabaja más de un turno en el día 2025-06-06', '%worker_8% trabaja más de un turno en el día 2025-06-26', '%worker_8% trabaja más de un turno en el día 2025-06-12', '%worker_8% trabaja más de un turno en el día 2025-06-24', '%worker_7% trabaja más de un turno en el día 2025-06-10', '%worker_7% trabaja más de un turno en el día 2025-06-05', '%worker_7% trabaja más de un turno en el día 2025-06-02', '%worker_7% trabaja más de un turno en el día 2025-06-25', '%worker_7% trabaja más de un turno en el día 2025-06-30', '%worker_7% trabaja más de un turno en el día 2025-06-16', '%worker_7% trabaja más de un turno en el día 2025-06-19', '%worker_8% trabaja más de un turno en el día 2025-06-17', '%worker_6% trabaja más de un turno en el día 2025-06-19', '%worker_6% trabaja más de un turno en el día 2025-06-16', '%worker_6% trabaja más de un turno en el día 2025-06-30', '%worker_6% trabaja más de un turno en el día 2025-06-24', '%worker_6% trabaja más de un turno en el día 2025-06-12', '%worker_6% trabaja más de un turno en el día 2025-06-26', '%worker_6% trabaja más de un turno en el día 2025-06-06', '%worker_7% trabaja más de un turno en el día 2025-06-17', '%worker_7% trabaja más de un turno en el día 2025-06-13', '%worker_7% trabaja más de un turno en el día 2025-06-04', '%worker_7% trabaja más de un turno en el día 2025-06-18', '%worker_7% trabaja más de un turno en el día 2025-06-27', '%worker_7% trabaja más de un turno en el día 2025-06-20', '%worker_6% trabaja más de un turno en el día 2025-06-27', '%worker_6% trabaja más de un turno en el día 2025-06-18', '%worker_6% trabaja más de un turno en el día 2025-06-04', '%worker_6% trabaja más de un turno en el día 2025-06-13', '%worker_6% trabaja más de un turno en el día 2025-06-17', '%worker_5% trabaja más de un turno en el día 2025-06-19', '%worker_5% trabaja más de un turno en el día 2025-06-16', '%worker_5% trabaja más de un turno en el día 2025-06-30', '%worker_6% trabaja más de un turno en el día 2025-06-20', '%worker_6% trabaja más de un turno en el día 2025-06-25', '%worker_6% trabaja más de un turno en el día 2025-06-02', '%worker_6% trabaja más de un turno en el día 2025-06-05', '%worker_6% trabaja más de un turno en el día 2025-06-10', '%worker_6% trabaja más de un turno en el día 2025-06-23', '%worker_5% trabaja más de un turno en el día 2025-06-10', '%worker_5% trabaja más de un turno en el día 2025-06-05', '%worker_5% trabaja más de un turno en el día 2025-06-02', '%worker_5% trabaja más de un turno en el día 2025-06-25', '%worker_5% trabaja más de un turno en el día 2025-06-20', '%worker_5% trabaja más de un turno en el día 2025-06-27', '%worker_5% trabaja más de un turno en el día 2025-06-18', '%worker_5% trabaja más de un turno en el día 2025-06-04', '%worker_5% trabaja más de un turno en el día 2025-06-13', '%worker_5% trabaja más de un turno en el día 2025-06-17', '%worker_5% trabaja más de un turno en el día 2025-06-23', '%worker_5% trabaja más de un turno en el día 2025-06-06', '%worker_5% trabaja más de un turno en el día 2025-06-26', '%worker_5% trabaja más de un turno en el día 2025-06-12', '%worker_5% trabaja más de un turno en el día 2025-06-24', '%worker_4% trabaja más de un turno en el día 2025-06-24', '%worker_4% trabaja más de un turno en el día 2025-06-12', '%worker_4% trabaja más de un turno en el día 2025-06-26', '%worker_4% trabaja más de un turno en el día 2025-06-06', '%worker_4% trabaja más de un turno en el día 2025-06-23', '%worker_4% trabaja más de un turno en el día 2025-06-10', '%worker_4% trabaja más de un turno en el día 2025-06-05', '%worker_4% trabaja más de un turno en el día 2025-06-02', '%worker_4% trabaja más de un turno en el día 2025-06-25', '%worker_4% trabaja más de un turno en el día 2025-06-20', '%worker_4% trabaja más de un turno en el día 2025-06-30', '%worker_4% trabaja más de un turno en el día 2025-06-16', '%worker_4% trabaja más de un turno en el día 2025-06-19', '%worker_3% trabaja más de un turno en el día 2025-06-16', '%worker_3% trabaja más de un turno en el día 2025-06-20', '%worker_3% trabaja más de un turno en el día 2025-06-27', '%worker_3% trabaja más de un turno en el día 2025-06-17', '%worker_3% trabaja más de un turno en el día 2025-06-04', '%worker_4% trabaja más de un turno en el día 2025-06-27', '%worker_4% trabaja más de un turno en el día 2025-06-13', '%worker_4% trabaja más de un turno en el día 2025-06-17', '%worker_3% trabaja más de un turno en el día 2025-06-19', '%worker_3% trabaja más de un turno en el día 2025-06-23', '%worker_3% trabaja más de un turno en el día 2025-06-26', '%worker_3% trabaja más de un turno en el día 2025-06-02', '%worker_3% trabaja más de un turno en el día 2025-06-05', '%worker_3% trabaja más de un turno en el día 2025-06-10', '%worker_3% trabaja más de un turno en el día 2025-06-30', '%shift_2593% no alcanza el mínimo de 10 trabajadores', '%shift_2579% no alcanza el mínimo de 10 trabajadores', '%shift_2561% no alcanza el mínimo de 3 trabajadores', '%shift_2576% no alcanza el mínimo de 10 trabajadores', '%shift_2567% no alcanza el mínimo de 3 trabajadores', '%shift_2573% no alcanza el mínimo de 10 trabajadores', '%shift_2560% no alcanza el mínimo de 3 trabajadores', '%shift_2591% no alcanza el mínimo de 10 trabajadores', '%shift_2592% no alcanza el mínimo de 10 trabajadores', '%shift_2590% no alcanza el mínimo de 10 trabajadores', '%shift_2585% no alcanza el mínimo de 10 trabajadores', '%shift_2586% no alcanza el mínimo de 10 trabajadores', '%shift_2587% no alcanza el mínimo de 10 trabajadores', '%shift_2589% no alcanza el mínimo de 10 trabajadores', '%shift_2588% no alcanza el mínimo de 10 trabajadores', '%shift_2581% no alcanza el mínimo de 10 trabajadores', '%shift_2575% no alcanza el mínimo de 10 trabajadores', '%shift_2577% no alcanza el mínimo de 10 trabajadores', '%shift_2566% no alcanza el mínimo de 3 trabajadores', '%shift_2565% no alcanza el mínimo de 3 trabajadores', '%shift_2563% no alcanza el mínimo de 3 trabajadores', '%shift_2582% no alcanza el mínimo de 10 trabajadores', '%shift_2564% no alcanza el mínimo de 3 trabajadores', '%shift_2552% no alcanza el mínimo de 3 trabajadores', '%shift_2555% no alcanza el mínimo de 3 trabajadores', '%shift_2554% no alcanza el mínimo de 3 trabajadores', '%shift_2583% no alcanza el mínimo de 10 trabajadores', '%shift_2569% no alcanza el mínimo de 3 trabajadores', '%shift_2556% no alcanza el mínimo de 3 trabajadores', '%shift_2572% no alcanza el mínimo de 3 trabajadores', '%shift_2562% no alcanza el mínimo de 3 trabajadores', '%shift_2571% no alcanza el mínimo de 3 trabajadores', '%shift_2568% no alcanza el mínimo de 3 trabajadores'])
+2025-05-25 14:06:37,239 - INFO - Elapsed time: 5.43 seconds
+Current memory usage: 0.03 MB; Peak: 0.29 MB
+
+2025-05-25 14:06:37,239 - DEBUG - connect_tcp.started host='timeflex.test' port=80 local_address=None timeout=5.0 socket_options=None
+2025-05-25 14:06:37,240 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025AAA4AB380>
+2025-05-25 14:06:37,240 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-25 14:06:37,241 - DEBUG - send_request_headers.complete
+2025-05-25 14:06:37,241 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-25 14:06:37,241 - DEBUG - send_request_body.complete
+2025-05-25 14:06:37,241 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-25 14:06:37,308 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx/1.25.2'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Vary', b'Accept-Encoding'), (b'X-Powered-By', b'PHP/8.4.5'), (b'Cache-Control', b'no-cache, private'), (b'Date', b'Sun, 25 May 2025 12:06:37 GMT'), (b'Set-Cookie', b'XSRF-TOKEN=eyJpdiI6InUvZXJuNGdxTERXWHBPcTh6V0VZU3c9PSIsInZhbHVlIjoiVVFwdVhXd1ZHNUpGeDY3YXREb2ZwTlNldjBPTUQ2L1I1ZWp2Z2JVeGEwOHVBbVFkK1dFT0p4c3dyOUpWaFRobFBuSEFsK0poMjVTTC9DU1pNZ1hVWGFQRkRaLzlLdmNheTVXKzBJdzB6ZkVoUnhyL2NQYjdHZ0NicEc2b1MvZkIiLCJtYWMiOiJhZTFiOWUwMWRkMzJhYTlmMDVmOGYzYjAzNGNkNmZhOWNmN2I3MTdmZjZiMmYwOWZiYjBhZmQ3M2U1MDM4NjlhIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:06:37 GMT; Max-Age=7200; path=/; samesite=lax'), (b'Set-Cookie', b'laravel_session=eyJpdiI6IkR6RnZlRzNLRENEdUhDSjBmNnJ0OGc9PSIsInZhbHVlIjoiQi9IdjN3TmN6QVlrcS92RnRLeDNFMmNXR3cxWk5QTjNNRm44ck1Db05oZEJNWlRBd0tkTkE2V0VsRUpHZVptQUJZdjdXbWUxTTUvanRBRnhteDBJdGxnYjZ0SEFmMEl1U0JFNmw3MFRLVlpiaHpyMFpYNk5ubm00bkVUemp1ajMiLCJtYWMiOiJmOWRiOTJiYTcwYWI5N2ExYThjZGNiYzEyYTdlMTFmZDc2NzYyYmQyZGQzNTZlNDY3MzA2ZjhmNjc1NzcwNzAyIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:06:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), (b'Content-Encoding', b'gzip')])
+2025-05-25 14:06:37,309 - INFO - HTTP Request: POST http://timeflex.test/fastapi-schedule "HTTP/1.1 200 OK"
+2025-05-25 14:06:37,309 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-25 14:06:37,309 - DEBUG - receive_response_body.complete
+2025-05-25 14:06:37,309 - DEBUG - response_closed.started
+2025-05-25 14:06:37,309 - DEBUG - response_closed.complete
+2025-05-25 14:06:37,309 - DEBUG - Solution to send: {
+    "id": 21,
+    "status": "failed",
+    "message": [
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_12% supera el m\u00e1ximo de turnos 31 a trabajar",
+        "%shift_2558% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2570% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_11% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_10% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%shift_2584% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_9% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_8% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_7% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_6% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-18",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_5% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-24",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-12",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-06",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-25",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-16",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-20",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-04",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-27",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-13",
+        "%worker_4% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-17",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-19",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-23",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-26",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-02",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-05",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-10",
+        "%worker_3% trabaja m\u00e1s de un turno en el d\u00eda 2025-06-30",
+        "%shift_2593% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2579% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2561% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2576% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2567% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2573% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2560% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2591% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2592% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2590% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2585% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2586% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2587% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2589% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2588% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2581% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2575% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2577% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2566% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2565% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2563% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2582% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2564% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2552% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2555% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2554% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2583% no alcanza el m\u00ednimo de 10 trabajadores",
+        "%shift_2569% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2556% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2572% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2562% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2571% no alcanza el m\u00ednimo de 3 trabajadores",
+        "%shift_2568% no alcanza el m\u00ednimo de 3 trabajadores",
+        "Elapsed time: 5.43 seconds\nCurrent memory usage: 0.03 MB; Peak: 0.29 MB\n"
+    ]
+}
+
+2025-05-25 14:06:37,309 - INFO - Response status code: 200
+Response headers: Headers([('server', 'nginx/1.25.2'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('vary', 'Accept-Encoding'), ('x-powered-by', 'PHP/8.4.5'), ('cache-control', 'no-cache, private'), ('date', 'Sun, 25 May 2025 12:06:37 GMT'), ('set-cookie', 'XSRF-TOKEN=eyJpdiI6InUvZXJuNGdxTERXWHBPcTh6V0VZU3c9PSIsInZhbHVlIjoiVVFwdVhXd1ZHNUpGeDY3YXREb2ZwTlNldjBPTUQ2L1I1ZWp2Z2JVeGEwOHVBbVFkK1dFT0p4c3dyOUpWaFRobFBuSEFsK0poMjVTTC9DU1pNZ1hVWGFQRkRaLzlLdmNheTVXKzBJdzB6ZkVoUnhyL2NQYjdHZ0NicEc2b1MvZkIiLCJtYWMiOiJhZTFiOWUwMWRkMzJhYTlmMDVmOGYzYjAzNGNkNmZhOWNmN2I3MTdmZjZiMmYwOWZiYjBhZmQ3M2U1MDM4NjlhIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:06:37 GMT; Max-Age=7200; path=/; samesite=lax'), ('set-cookie', 'laravel_session=eyJpdiI6IkR6RnZlRzNLRENEdUhDSjBmNnJ0OGc9PSIsInZhbHVlIjoiQi9IdjN3TmN6QVlrcS92RnRLeDNFMmNXR3cxWk5QTjNNRm44ck1Db05oZEJNWlRBd0tkTkE2V0VsRUpHZVptQUJZdjdXbWUxTTUvanRBRnhteDBJdGxnYjZ0SEFmMEl1U0JFNmw3MFRLVlpiaHpyMFpYNk5ubm00bkVUemp1ajMiLCJtYWMiOiJmOWRiOTJiYTcwYWI5N2ExYThjZGNiYzEyYTdlMTFmZDc2NzYyYmQyZGQzNTZlNDY3MzA2ZjhmNjc1NzcwNzAyIiwidGFnIjoiIn0%3D; expires=Sun, 25 May 2025 14:06:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'), ('content-encoding', 'gzip')])
+Response content: <Response [200 OK]>
+2025-05-25 14:06:37,310 - DEBUG - close.started
+2025-05-25 14:06:37,310 - DEBUG - close.complete

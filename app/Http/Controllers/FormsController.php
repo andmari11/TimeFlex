@@ -637,6 +637,14 @@ class FormsController extends Controller
             return Carbon::now()->addMonths($i)->startOfMonth();
         });
 
+        $holidays = Holidays::all()->map(function ($holiday) {
+            return Carbon::parse($holiday->dia_vacaciones)->format('m-d');
+        });
+
+        $holidayCounts = $holidays->countBy();
+
+        $maxCount = $holidayCounts->max() ?? 1;
+
         $calendars = collect();
 
         foreach ($months as $month) {
@@ -647,11 +655,16 @@ class FormsController extends Controller
             // generar las fechas dentro del rango
             $days = collect();
             for ($currentDay = $startOfCalendar; $currentDay <= $endOfCalendar; $currentDay->addDay()) {
+                $dayMonthKey = $currentDay->format('m-d');
+                $holidayCount = $holidayCounts[$dayMonthKey] ?? 0;
+
+                $normalized = round(($holidayCount / $maxCount) * 10, 2);
+
                 $days->push([
                     'date' => $currentDay->copy(),
                     'day_of_week' => $currentDay->dayOfWeek,
                     'is_current_month' => $currentDay->month === $month->month,
-                    'value'=>rand(0,10),
+                    'value'=>$normalized,
                     'id'=> $currentDay->format('Y-m-d'),
                 ]);
             }
