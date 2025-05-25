@@ -495,6 +495,33 @@ class FormsController extends Controller
         return view('forms.answers', compact('formularios', 'sections', 'users'));
     }
 
+    public function showAnswersUser(Request $request)
+    {
+
+        $userId = Auth()->user()->id;
+        $query = Form::query();
+
+        // Filtro por título
+        if ($request->has('title') && $request->title) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filtro por rango de fechas
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('start_date', '>=', $request->date_from);
+        }
+
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('end_date', '<=', $request->date_to);
+        }
+
+        $formularios = $query->with(['questions.results' => function ($q) use ($userId) {
+            $q->where('id_user', $userId);
+        }])->get();
+
+        return view('forms.answersuser', compact('formularios'));
+    }
+
     public function showResults($formId)
     {
         $userId = auth()->user()->id;

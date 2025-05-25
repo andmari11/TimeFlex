@@ -11,6 +11,7 @@
             <form action="{{ route('forms.answers') }}" method="GET" class="flex flex-wrap items-center gap-4">
                 <!-- Filtro por título del formulario -->
                 <div class="w-full md:w-1/4">
+                    <label for="date-from" class="block text-sm font-medium text-gray-600">Título</label>
                     <input type="text" name="title" placeholder="Buscar por título"
                            value="{{ request('title') }}"
                            class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400">

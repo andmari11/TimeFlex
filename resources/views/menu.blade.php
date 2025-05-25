@@ -314,9 +314,16 @@
                                 <a href="/notificationspanel?tipo=turno" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                                     Solicitudes
                                 </a>
-                                <a href="/formularios/respuestas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
-                                    Formularios
-                                </a>
+                                @if(auth()->user()->role === 'admin')
+                                    <a href="/formularios/respuestas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                                        Formularios
+                                    </a>
+                                @else
+                                    <a href="/formularios/respuestasUser" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
+                                        Formularios
+                                    </a>
+                                @endif
+
                                 <a href="/estadisticas" class="block text-center w-40 py-4 bg-sky-900 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-200">
                                     Estadísticas
                                 </a>
