@@ -47,6 +47,8 @@ class DatabaseSeeder extends Seeder
 
         ScheduleFactory::createMultiples();
 
+        ShiftTypeFactory::createMultiples();
+
         ShiftFactory::createMultiples();
 
         $users = User::all();
