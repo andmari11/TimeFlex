@@ -188,7 +188,19 @@
             flatpickr(".flatpickr", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                time_24hr: true
+                time_24hr: true,
+
+                locale: {
+                    firstDayOfWeek: 0, // Lunes
+                    weekdays: {
+                        shorthand: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                        longhand: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    },
+                }
             });
 
             // Lógica de modales
